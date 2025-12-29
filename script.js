@@ -15,7 +15,7 @@ const progressBar = document.getElementById("progress");
 
 const quizQuestions= [
     {
-        question:"What is Keegans dog's name",
+        question:"What is Keegans dog's name?",
         answers: [
             {text: "Bailey", correct:false},
             {text: "Roofus", correct: false},
@@ -24,7 +24,7 @@ const quizQuestions= [
         ],
     },
     {
-        question:"What is Keegans favorite story game",
+        question:"What is Keegans favorite story game?",
         answers: [
             {text:"RDR2", correct:true},
             {text:"Hogwarts Legacy", correct: false},
@@ -33,7 +33,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"What club has Keegan NOT been a part",
+        question:"What club has Keegan NOT been a part?",
         answers: [
             {text:"Cheese Club", correct: true},
             {text:"Quantum Club", correct: false},
@@ -42,7 +42,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"What is Keegans favorite childhood book series",
+        question:"What is Keegans favorite childhood book series?",
         answers: [
             {text:"Harry Potter", correct: false},
             {text:"Percy Jackson", correct: true},
@@ -51,7 +51,7 @@ const quizQuestions= [
         ],
     },
     {
-        question:"Where has Keegan been approximately 16 times",
+        question:"Where has Keegan been approximately 16 times?",
         answers: [
             {text:"Vancouver", correct: false},
             {text:"Mexico", correct: false},
@@ -60,7 +60,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"What drink does Keegan carry in a flask",
+        question:"What drink does Keegan carry in a flask?",
         answers: [
             {text:"Pink Whitney", correct:false},
             {text:"Fireball", correct:true},
@@ -69,7 +69,7 @@ const quizQuestions= [
         ],
     },
     {
-        question:"What dating site has Keegan unfortunately been on",
+        question:"What dating site has Keegan unfortunately been on?",
         answers: [
             {text:"Tinder", correct:false},
             {text:"Bumble", correct:false},
@@ -78,7 +78,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"What is Keegans favorite illegitimate ski run",
+        question:"What is Keegans favorite illegitimate ski run?",
         answers: [
             {text:"Destroyer",correct: false},
             {text:"K2", correct: false},
@@ -87,7 +87,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"Which of Keegan's friends is now on a leash from his girlfriend",
+        question:"Which of Keegan's friends is now on his girlfriend's leash?",
         answers: [
             {text:"Limtown", correct:true},
             {text:"Thickolicious",correct:false},
@@ -96,7 +96,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"Which of Keegans friends did this quiz first",
+        question:"Which of Keegans friends did this quiz first?",
         answers: [
             {text:"Thickolicious", correct: true},
             {text:"Bomba", correct: true},
