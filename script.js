@@ -98,9 +98,9 @@ const quizQuestions= [
     {
         question:"Which of Keegans friends did this quiz first?",
         answers: [
-            {text:"Thickolicious", correct: true},
+            {text:"Thickolicious", correct: false},
             {text:"Bomba", correct: true},
-            {text:"Limtown", correct: true},
+            {text:"Limtown", correct: false},
             {text:"Stir Fry",correct: false}
         ]
     },
