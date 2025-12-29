@@ -17,7 +17,7 @@ const quizQuestions= [
     {
         question:"What is Keegans dog's name",
         answers: [
-            { text: "Bailey", correct:false},
+            {text: "Bailey", correct:false},
             {text: "Roofus", correct: false},
             {text: "David Duke", correct: false},
             {text: "Stir Fry", correct: true}
@@ -60,12 +60,47 @@ const quizQuestions= [
         ]
     },
     {
-        question:"Which of Keegans friends is mostly likely to do this quiz",
+        question:"What drink does Keegan carry in a flask",
         answers: [
-            {text:"Brayden", correct: true},
-            {text:"BBomba", correct: true},
-            {text:"Bombetty", correct: true},
-            {text:"Brayden middlename Bomba", correct: true},
+            {text:"Pink Whitney", correct:false},
+            {text:"Fireball", correct:true},
+            {text:"Milk", correct:false},
+            {text:"Vodka",correct:false},
+        ],
+    },
+    {
+        question:"What dating site has Keegan unfortunately been on",
+        answers: [
+            {text:"Tinder", correct:false},
+            {text:"Bumble", correct:false},
+            {text:"Grindr", correct:false},
+            {text:"Hinge",correct:true}
+        ]
+    },
+    {
+        question:"What is Keegans favorite illegitimate ski run",
+        answers: [
+            {text:"Destroyer",correct: false},
+            {text:"K2", correct: false},
+            {text:"Zootopia",correct:false},
+            {text:"Randy's Run", correct: true},
+        ]
+    },
+    {
+        question:"Which of Keegan's friends is now on a leash from his girlfriend",
+        answers: [
+            {text:"Limtown", correct:true},
+            {text:"Thickolicious",correct:false},
+            {text:"Drossdude",correct:false},
+            {text:"BBomba",correct:false}
+        ]
+    },
+    {
+        question:"Which of Keegans friends did this quiz first",
+        answers: [
+            {text:"Thickolicious", correct: true},
+            {text:"Bomba", correct: true},
+            {text:"Limtown", correct: true},
             {text:"Stir Fry",correct: false}
         ]
     },
@@ -143,11 +178,11 @@ function showResults() {
     finalScoreSpan.textContent = score;
     const percentage = (score/quizQuestions.length) * 100
     if(percentage === 100) {
-        resultMessage.textContent = "Good Boy Brayden, text me for your reward";
+        resultMessage.textContent = "Thick Nick, text me for your reward";
     } else if (percentage >=80){ 
         resultMessage.textContent = "Damn ok! you know me decently";
     } else if (percentage >= 60) {
-        resultMessage.textContent = "Alright maybe know me a little better";
+        resultMessage.textContent = "Alright maybe know me a little better thickolicious";
     } else {
         resultMessage.textContent = "Maybe talk to me a little more!";
     }
