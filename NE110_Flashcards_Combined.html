@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NE110 Flashcards</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #141414;
+    color: #e8e6e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 3rem;
+  }
+
+  h1 { font-size: 18px; font-weight: 500; color: #e8e6e0; margin-bottom: 4px; text-align: center; }
+  .subtitle { font-size: 12px; color: #666; margin-bottom: 1.75rem; text-align: center; }
+
+  /* deck tabs */
+  .deck-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.5rem;
+    background: #1e1e1e;
+    border: 0.5px solid #2e2e2e;
+    border-radius: 10px;
+    padding: 4px;
+  }
+  .deck-tab {
+    font-size: 13px;
+    padding: 7px 20px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    color: #888;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+  }
+  .deck-tab.active {
+    background: #2a2a2a;
+    color: #e8e6e0;
+    border: 0.5px solid #3a3a3a;
+  }
+  .deck-tab:hover:not(.active) { color: #bbb; }
+
+  /* filter pills */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    max-width: 640px;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 4px 11px;
+    border-radius: 20px;
+    border: 0.5px solid #333;
+    cursor: pointer;
+    color: #888;
+    background: #1e1e1e;
+    transition: background 0.12s, color 0.12s;
+  }
+  .pill.active { background: #2e2e2e; color: #e8e6e0; border-color: #555; }
+  .pill:hover:not(.active) { color: #bbb; background: #242424; }
+
+  /* card */
+  .card-container {
+    perspective: 1100px;
+    width: 100%;
+    max-width: 620px;
+    height: 320px;
+    cursor: pointer;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.48s ease;
+    transform-style: preserve-3d;
+  }
+  .card-inner.flipped { transform: rotateY(180deg); }
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 14px;
+    border: 0.5px solid #2e2e2e;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #1c1c1c;
+  }
+  .card-back {
+    transform: rotateY(180deg);
+    background: #202020;
+    border-color: #333;
+  }
+  .tag { font-size: 10px; color: #a4a4a4; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+  .q-text { font-size: 24px; font-weight: 500; color: #e8e6e0; line-height: 1.5; }
+  .a-text { font-size: 24px; color: #c8c6c0; line-height: 1.7; }
+  .hint { font-size: 11px; color: #a4a4a4; margin-top: 14px; }
+
+  /* score buttons */
+  .score-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem;
+    min-height: 34px;
+  }
+  .score-btn {
+    font-size: 12px;
+    padding: 5px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.12s;
+  }
+  .score-btn.know { background: #1a2e1a; color: #6dbd6d; border: 0.5px solid #2d5a2d; }
+  .score-btn.know:hover { background: #223822; }
+  .score-btn.skip { background: #2e1a1a; color: #c96a6a; border: 0.5px solid #5a2d2d; }
+  .score-btn.skip:hover { background: #381e1e; }
+
+  /* nav */
+  .nav-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  button {
+    padding: 6px 16px;
+    border: 0.5px solid #333;
+    border-radius: 8px;
+    background: #1e1e1e;
+    cursor: pointer;
+    font-size: 13px;
+    color: #aaa;
+    font-family: inherit;
+    transition: background 0.12s, color 0.12s;
+  }
+  button:hover { background: #2a2a2a; color: #e8e6e0; }
+  button:disabled { opacity: 0.3; cursor: default; }
+
+  .progress { font-size: 13px; color: #555; min-width: 60px; text-align: center; }
+  .tally { font-size: 12px; color: #555; margin-top: 0.75rem; text-align: center; min-height: 18px; }
+</style>
+</head>
+<body>
+
+<h1>NE110 flashcards</h1>
+<p class="subtitle">Lectures 28 &amp; 29</p>
+
+<div class="deck-tabs">
+  <button class="deck-tab active" onclick="switchDeck(0)">Lec 28 — toxicology &amp; transport</button>
+  <button class="deck-tab" onclick="switchDeck(1)">Lec 29 — OHS, epidemiology &amp; nano</button>
+</div>
+
+<div class="pill-row" id="filters"></div>
+
+<div class="card-container" onclick="flip()">
+  <div class="card-inner" id="cardInner">
+    <div class="card-face">
+      <div class="tag" id="cardTag"></div>
+      <div class="q-text" id="cardQ"></div>
+      <div class="hint">click to reveal answer</div>
+    </div>
+    <div class="card-face card-back">
+      <div class="tag">answer</div>
+      <div class="a-text" id="cardA"></div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-row">
+  <button onclick="prev()">&#8592; prev</button>
+  <span class="progress" id="prog"></span>
+  <button onclick="next()">next &#8594;</button>
+  <button onclick="shuffle()" style="margin-left:8px;">shuffle</button>
+</div>
+
+<div class="tally" id="tally"></div>
+
+<script>
+const DECKS = [
+[
+  {tag:"hazard id", q:"What is a toxicant?", a:"A substance that can adversely affect biological tissue, leading to harmful responses."},
+  {tag:"hazard id", q:"What is toxicology?", a:"The science that relates chemical substance properties to their toxic effects."},
+  {tag:"hazard id", q:"What is toxicity?", a:"The magnitude of adverse outcome from exposure to a toxicant."},
+  {tag:"hazard id", q:"What is a chemical hazard?", a:"A chemical substance that has the potential of causing harm."},
+  {tag:"hazard id", q:"What are three main ways to determine if a chemical is hazardous?", a:"(1) Structure-activity relationships (QSAR / read-across), (2) controlled animal studies, (3) reports of human effects (case studies, anecdotal)."},
+  {tag:"hazard id", q:"What are the drawbacks of animal toxicology studies?", a:"Low throughput, high cost, animal suffering, and interspecies differences. Alternatives include in vitro biochemical and cell-based assays."},
+  {tag:"read-across", q:"What toxicity is generally expected from hydrocarbons?", a:"Central nervous system (CNS) effects. Exception: n-hexane can cause nerve degradation."},
+  {tag:"read-across", q:"What toxicity is generally expected from ketones?", a:"CNS effects."},
+  {tag:"read-across", q:"What toxicity is generally expected from alcohols?", a:"Eye and respiratory tract irritation; ingestion can be carcinogenic (metabolized to aldehydes)."},
+  {tag:"read-across", q:"What toxicity is generally expected from aromatics?", a:"Carcinogenic (metabolized to epoxides). Exception: toluene causes CNS effects."},
+  {tag:"factors", q:"Name 5 of the 10 factors affecting toxicity.", a:"Form of substance, dosage, route of exposure, species, life stage, absorption, metabolism, distribution/excretion, individual health, co-exposures."},
+  {tag:"factors", q:"How are acute, subchronic, and chronic exposures defined by time?", a:"Acute: <24 hrs. Subchronic: 1–3 months. Chronic: >months."},
+  {tag:"factors", q:"Why is co-exposure a concern in toxicology?", a:"Combining substances can increase health risks many times greater than either substance alone (synergistic outcomes)."},
+  {tag:"factors", q:"How can the physical form of a substance affect toxicity?", a:"Charge, polarity, particle shape and size all matter. Nanomaterials may have higher toxicity if their reactivity is surface-driven."},
+  {tag:"dose-response", q:"What is LD50?", a:"The dose resulting in 50% mortality of test animals. Studies typically use 2–3 doses to extrapolate the LD50."},
+  {tag:"dose-response", q:"What is NOAEL?", a:"No Observable Adverse Effect Level — the highest dose studied where no observable adverse effect was recorded."},
+  {tag:"dose-response", q:"What is LOAEL?", a:"Lowest Observable Adverse Effect Level — the lowest dose studied where an observable adverse effect was recorded."},
+  {tag:"dose-response", q:"What is the formula for Safe Human Concentration (non-cancer)?", a:"Safe Human Conc = NOAEL ÷ (UF_L × UF_A × UF_H × UF_S)"},
+  {tag:"dose-response", q:"What do the four uncertainty factors (UFs) represent?", a:"UF_L=10 (LOAEL used instead of NOAEL), UF_A=10 (interspecies variability), UF_H=10 (human variability — always applied), UF_S=10 (short-term to chronic extrapolation)."},
+  {tag:"dose-response", q:"What makes human epidemiological data 'weak'? Give examples.", a:"Inconsistent results, small sample sizes (large error bars), and confounding co-exposures."},
+  {tag:"dose-response", q:"In the vinyl chloride rat study, NOAEL = 0.13 mg/kg/day. What is the safe human concentration if UF_A, UF_H, and UF_S apply?", a:"Safe Conc = 0.13 ÷ (10 × 10 × 10) = 0.00013 mg/kg/day. UF_L does not apply because NOAEL (not LOAEL) is used."},
+  {tag:"inhalation", q:"Where do small molecules and large particles (>1 µm) deposit in the lung?", a:"In the nasal/pharyngeal region. They react with the surface or are cleared by mucus and cilia."},
+  {tag:"inhalation", q:"Where do nanoparticles (~20–100 nm) deposit in the lung?", a:"Principally in the alveolar region. They can translocate to blood, be cleared by macrophage, or persist."},
+  {tag:"inhalation", q:"What are the 6 possible outcomes after nanoparticles deposit in the lung?", a:"1. No deposition (~500 nm), 2. macrophage clearance, 3. translocation via endocytosis, 4. clearance to GI tract, 5. fibrosis (repair), 6. cancer (from chronic inflammation)."},
+  {tag:"ingestion", q:"What happens after a toxicant is absorbed in the small intestine?", a:"It is sent to the liver via the hepatic portal vein for metabolism (detoxification or bioactivation), then distributed to blood or excreted."},
+  {tag:"ingestion", q:"What are the approximate pH values of the stomach, small intestine, and large intestine?", a:"Stomach ~2, small intestine pH 5–7, large intestine ~8. The pH swings can dissolve redox-active metals and promote absorption."},
+  {tag:"ingestion", q:"How is ethanol metabolized to a carcinogen?", a:"ADH enzyme oxidizes ethanol to acetaldehyde (an animal carcinogen). ALDH enzyme then oxidizes acetaldehyde to acetic acid (detoxification)."},
+  {tag:"ingestion", q:"What effect do ALDH gene mutations that slow detoxification have?", a:"Acetaldehyde accumulates in blood, causing flushed skin and nausea — but this is strongly protective against heavy drinking."},
+  {tag:"dermal", q:"What types of compounds penetrate skin most effectively?", a:"Non-polar (lipophilic/hydrophobic) compounds with low molecular weight, generally liquids (or vapours), that can reach blood vessels."},
+  {tag:"geno/carcino", q:"What is the difference between a genotoxin and a mutagen?", a:"A genotoxin damages DNA (repairable). A mutagen results in permanently altered DNA — it happens after the replication cycle."},
+  {tag:"geno/carcino", q:"What is a non-genotoxic carcinogen?", a:"An agent that increases tumor formation by promoting cell division or impairing repair — without directly modifying DNA. Tests negative in vitro but increases tumor rates in animals."},
+  {tag:"geno/carcino", q:"DNA damage is not the same as a DNA mutation. Why?", a:"Damage can be repaired before replication. A mutation only becomes permanent after the cell replicates with the damaged template."},
+  {tag:"geno/carcino", q:"What are four types of DNA damage?", a:"Altered base, double-strand break, base dimers, and mismatch. Caused by ROS, X-rays, UV, or replication errors."},
+  {tag:"transport", q:"What three partition coefficients are most relevant for predicting chemical transport?", a:"K_OW (octanol/water — predicts partitioning into biota/lipids), K_AW (air/water — Henry's Law), K_OA (octanol/air — predicts partitioning into vegetation)."},
+  {tag:"transport", q:"Why is 1-octanol used to model partitioning into organisms?", a:"It is immiscible in water and a good analog for natural lipids. Individual organisms vary too much to use directly."},
+  {tag:"transport", q:"What are the three modes of POP transport (swimmers, fliers, hoppers)?", a:"Swimmers: partition into water, slow/short-range. Fliers: partition into air, fast/long-range. Hoppers: semi-volatile, alternate between air and water via evaporation and rainfall."},
+  {tag:"transport", q:"Why does the Canadian Arctic accumulate POPs from industrialized regions?", a:"Air currents carry semi-volatile POPs poleward (global distillation). Cold temperatures cause condensation and deposition. Permanent ice acts as a sink, trapping POPs until it melts."},
+  {tag:"transport", q:"What are Persistent Organic Pollutants (POPs)?", a:"Long-lasting synthetic compounds, principally halogenated (e.g., chlorinated) organics. The WHO Dirty Dozen includes aldrin, DDT, PCBs, dioxins, furans, and others."},
+],
+[
+  {tag:"OHSA", q:"What does OHSA stand for and which ministry oversees it?", a:"Occupational Health and Safety Act (R.S.O. 1990, c. O.1), overseen by the Ministry of Labour, Immigration, Training, and Skills Development (MLITSD)."},
+  {tag:"OHSA", q:"What are the four main goals of OHSA's mandate?", a:"1) Promote occupational health and safety. 2) Prevent workplace injuries and occupational diseases. 3) Promote public awareness of OHS. 4) Educate employers, workers, and supervisors."},
+  {tag:"OHSA", q:"How does OHSA fulfill its mandate? Name the four mechanisms.", a:"1) Outlines rights and duties for all workplace parties. 2) Establishes the Internal Responsibility System (IRS). 3) Sets measures and procedures for workplace hazards. 4) Provides enforcement for noncompliance."},
+  {tag:"workers", q:"What are the three rights of workers under OHSA?", a:"1) Right to know about health and safety matters. 2) Right to participate in health and safety decisions. 3) Right to refuse unsafe work until conditions are addressed."},
+  {tag:"workers", q:"List three key duties of workers under OHSA.", a:"1) Comply with OHSA and regulations. 2) Use required equipment and protective devices (cannot remove or disable them). 3) Report hazards or contraventions to a supervisor or employer."},
+  {tag:"supervisors", q:"Who qualifies as a supervisor under OHSA?", a:"Someone who hires/fires/disciplines workers, directs scheduling and performance, enforces safety standards, or manages resources and equipment for worker tasks."},
+  {tag:"supervisors", q:"What are supervisors responsible for under OHSA?", a:"Ensuring OHSA compliance, ensuring proper use of equipment and PPE (with adequate instructions), and notifying workers of known workplace health and safety hazards."},
+  {tag:"employers", q:"Name three key responsibilities of employers under OHSA.", a:"1) Ensure workplaces are safe and well-maintained. 2) Provide hazard info, safety equipment, training, and competent supervisors. 3) Post the OHSA in the workplace and ensure adequate JHSC worker representation."},
+  {tag:"IRS / JHSC", q:"What is the Internal Responsibility System (IRS) and how does it work?", a:"The IRS outlines the flow of responsibilities. Responsibilities are delegated downwards (Directors → Employer → Supervisor → Workers) and accountability flows upwards."},
+  {tag:"IRS / JHSC", q:"What is the Joint Health and Safety Committee (JHSC) and what does it do?", a:"A committee of worker and employer representatives. It identifies health and safety concerns, makes recommendations, and conducts regular workplace safety inspections."},
+  {tag:"controls", q:"List the five levels of the Hierarchy of Controls from most to least effective.", a:"1) Elimination. 2) Substitution. 3) Engineering controls. 4) Administrative controls. 5) PPE (last resort)."},
+  {tag:"controls", q:"Give an example of substitution in the hierarchy of controls.", a:"Switching from copper-beryllium alloys to nanostructured metals, or from fine powders to slurries to reduce inhalation risk."},
+  {tag:"controls", q:"What is PPE and when is it used?", a:"Personal Protective Equipment (respirators, gloves, aprons, earplugs). Used only when all other control levels are insufficient."},
+  {tag:"controls", q:"What does the RACE model stand for?", a:"Recognize hazard → Assess hazard → Control hazard → Evaluate. A continuous improvement cycle for OHSA compliance."},
+  {tag:"inspections", q:"What are the three aims of a workplace inspection?", a:"1) Identify potential health and safety hazards. 2) Identify equipment deficiencies. 3) Identify improper employee actions or inadequate corrective actions."},
+  {tag:"inspections", q:"What is the goal of an incident investigation and what are its three stages?", a:"Goal: prevent reoccurrence. Stages: 1) Data collection. 2) Identify root cause(s) using the 5 Whys. 3) Recommend corrective actions."},
+  {tag:"inspections", q:"Why is 'incident' preferred over 'accident' in OHS terminology?", a:"'Accident' implies an unpredictable event. Most workplace events are predictable, so 'incident' (exposure to a hazard) is the correct term."},
+  {tag:"inspections", q:"What is the purpose of the '5 Whys' in an incident investigation?", a:"A root-cause analysis technique used to move past surface symptoms and identify the actual structural failure that caused an incident."},
+  {tag:"risk", q:"What is the formula for hazard risk?", a:"Risk = Σ Consequence × Probability. Hazards can be discrete (either/or, e.g., a fall) or continuous (ongoing exposure, e.g., noise level)."},
+  {tag:"epidemiology", q:"Define epidemiology and how it applies to nanomaterials.", a:"The study of how often diseases occur in different groups and why. Applied to nanomaterials, it investigates harmful effects and diseases they may cause."},
+  {tag:"epidemiology", q:"Define incidence rate, prevalence rate, and mortality rate.", a:"Incidence rate = new cases / exposed population. Prevalence rate = existing cases / population at a point in time. Mortality rate = deaths / total population."},
+  {tag:"epidemiology", q:"What is the age-standardized incidence rate (ASIR) and why is it used?", a:"ASIR adjusts for population age structure so disease rates can be compared fairly across populations. Formula: Σ rᵢ × (pᵢ / P) over all age groups."},
+  {tag:"epidemiology", q:"What is Relative Risk (RR) and what does RR > 1 vs. RR < 1 mean?", a:"RR = (exposed with disease / total exposed) ÷ (unexposed with disease / total unexposed). RR > 1 = increased risk; RR < 1 = protective effect."},
+  {tag:"epidemiology", q:"What is a confounder in an epidemiological study?", a:"An independent risk factor that distorts the apparent association between an exposure and an outcome. Examples: age, smoking, socioeconomic status, family history."},
+  {tag:"study types", q:"Name the four observational study designs.", a:"1) Cross-sectional — snapshot at one point in time. 2) Prospective — follow exposed/control groups forward. 3) Retrospective — look back using records. 4) Case-control — find those with the outcome, then classify by exposure."},
+  {tag:"study types", q:"List four features that make a clinical trial rigorous.", a:"1) Random allocation. 2) Double-blinding. 3) Placebo-controlled. 4) Terminated if the exposed group shows harm or dramatic improvement."},
+  {tag:"study types", q:"What is antecedent-consequent (chicken-or-egg) bias in cross-sectional studies?", a:"It is impossible to determine whether the exposure occurred before the disease — the study records the event but lacks individual timeline data."},
+  {tag:"study types", q:"What is the Odds Ratio (OR) and when is it preferred?", a:"OR = (cases with exposure / cases without) ÷ (controls with exposure / controls without). Preferred for rare outcomes in case-control studies."},
+  {tag:"study types", q:"Name three biases common in case-control studies.", a:"1) Selection bias (choice of control group). 2) Recall bias (cases remember exposures differently). 3) Interviewer bias (question framing skews results)."},
+  {tag:"study types", q:"List the six Bradford Hill criteria for causation.", a:"1) Strength of association. 2) Temporality. 3) Consistency. 4) Plausibility (biological mechanism). 5) Biological gradient (dose-response). 6) Specificity (no other confounders)."},
+  {tag:"study types", q:"What is the epidemiological controversy around glyphosate and cancer?", a:"IARC classified it as 'probably carcinogenic' (Class 2A) based largely on case-control studies with recall bias. The U.S. EPA and European Chemicals Agency concluded it is not likely carcinogenic."},
+  {tag:"sensor stats", q:"Define sensitivity (SEN) and what low sensitivity means clinically.", a:"SEN = TP / (TP + FN). Low sensitivity means the hazard 'gets away' — infected people are incorrectly told they are negative and may infect others."},
+  {tag:"sensor stats", q:"Define specificity (SPEC) and what low specificity means clinically.", a:"SPEC = TN / (TN + FP). Low specificity means healthy people are told they are positive and receive unnecessary treatment."},
+  {tag:"sensor stats", q:"Define PPV and NPV.", a:"PPV = TP / (TP + FP) — probability a positive result is truly positive. NPV = TN / (TN + FN) — probability a negative result is truly negative."},
+  {tag:"sensor stats", q:"Why is the Positive Predictive Value (PPV) often low even for accurate tests?", a:"When the target (disease) is rare, the large healthy population produces enough false positives to drown out the true cases."},
+  {tag:"sensor stats", q:"In high-stakes sensing (e.g., allergens), is sensitivity or specificity prioritized?", a:"Sensitivity — to prevent fatal false negatives, even if it results in more false positives (e.g., wasted food)."},
+  {tag:"nano", q:"What physical and chemical properties are needed to characterize a nanomaterial sample?", a:"Size, size distribution, shape, agglomeration state, density, surface area, composition, surface charge, solubility, and crystallinity."},
+  {tag:"nano", q:"Why does nanomaterial toxicity differ from that of micromaterials?", a:"Greater surface area relative to mass, easier penetration of biological barriers, and different reactivity that does not simply scale from bulk or micro-scale behavior."},
+  {tag:"nano", q:"What is PEGylation and why is it used?", a:"Coating a nanoparticle in polyethylene glycol (PEG) to make it 'invisible' to the immune system, allowing it to circulate without being attacked."},
+  {tag:"nano", q:"Why is gold a 'gold standard' for nano-sensors?", a:"Thiols (sulfur groups) form a strong, semi-permanent bond with gold, allowing easy tethering of specific biological antibodies to the nanoparticle surface."},
+]
+];
+
+let currentDeck = 0;
+let active = [];
+let idx = 0;
+let flipped = false;
+let selTag = "all";
+let known = 0, learning = 0;
+
+function buildFilters() {
+  const filtersEl = document.getElementById("filters");
+  filtersEl.innerHTML = "";
+  const tags = ["all", ...new Set(DECKS[currentDeck].map(c => c.tag))];
+  tags.forEach(t => {
+    const p = document.createElement("div");
+    p.className = "pill" + (t === "all" ? " active" : "");
+    p.textContent = t;
+    p.onclick = () => {
+      selTag = t;
+      document.querySelectorAll(".pill").forEach(x => x.classList.remove("active"));
+      p.classList.add("active");
+      active = t === "all" ? [...DECKS[currentDeck]] : DECKS[currentDeck].filter(c => c.tag === t);
+      idx = 0; known = 0; learning = 0; unflip(); render();
+    };
+    filtersEl.appendChild(p);
+  });
+}
+
+function switchDeck(n) {
+  currentDeck = n;
+  document.querySelectorAll(".deck-tab").forEach((t, i) => t.classList.toggle("active", i === n));
+  selTag = "all";
+  active = [...DECKS[n]];
+  idx = 0; known = 0; learning = 0;
+  buildFilters(); unflip(); render();
+}
+
+function render() {
+  const c = active[idx];
+  document.getElementById("cardTag").textContent = c.tag;
+  document.getElementById("cardQ").textContent = c.q;
+  document.getElementById("cardA").textContent = c.a;
+  document.getElementById("prog").textContent = (idx + 1) + " / " + active.length;
+  document.getElementById("scoreRow").style.visibility = flipped ? "visible" : "hidden";
+  const total = known + learning;
+  document.getElementById("tally").textContent = total > 0
+    ? "got it: " + known + "     still learning: " + learning
+    : "";
+}
+
+function unflip() {
+  flipped = false;
+  document.getElementById("cardInner").classList.remove("flipped");
+}
+
+function flip() {
+  flipped = !flipped;
+  document.getElementById("cardInner").classList.toggle("flipped", flipped);
+  render();
+}
+
+function next() { if (idx < active.length - 1) { idx++; unflip(); render(); } }
+function prev() { if (idx > 0) { idx--; unflip(); render(); } }
+
+function shuffle() {
+  for (let i = active.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [active[i], active[j]] = [active[j], active[i]];
+  }
+  idx = 0; known = 0; learning = 0; unflip(); render();
+}
+switchDeck(0);
+</script>
+</body>
+</html>
