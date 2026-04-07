@@ -233,7 +233,10 @@ const DECKS = [
   {tag:"geno/carcino", q:"What are four types of DNA damage?", a:"Altered base, double-strand break, base dimers, and mismatch. Caused by ROS, X-rays, UV, or replication errors."},
   {tag:"transport", q:"What three partition coefficients are most relevant for predicting chemical transport?", a:"K_OW (octanol/water — predicts partitioning into biota/lipids), K_AW (air/water — Henry's Law), K_OA (octanol/air — predicts partitioning into vegetation)."},
   {tag:"transport", q:"Why is 1-octanol used to model partitioning into organisms?", a:"It is immiscible in water and a good analog for natural lipids. Individual organisms vary too much to use directly."},
-  {tag:"transport", q:"What are the three modes of POP transport (swimmers, fliers, hoppers)?", a:"Swimmers: partition into water, slow/short-range. Fliers: partition into air, fast/long-range. Hoppers: semi-volatile, alternate between air and water via evaporation and rainfall."},
+  {tag:"transport", q:"What are the criteria for a chemical 'swimmer'?", a:"High water solubility and low vapor pressure. Dissolves easily in water but does not evaporate much — stays in waterways, slow and local transport."},
+  {tag:"transport", q:"What are the criteria for a chemical 'flyer'?", a:"High vapor pressure and low or moderate water solubility. Evaporates easily and travels in the atmosphere — fast, long-range transport."},
+  {tag:"transport", q:"How do Flyers, Swimmers, and Hoppers differ in environmental mobility?", a:"Flyers: high vapor pressure, low/moderate solubility — stay in air, fast long-range transport. Swimmers: high solubility, low vapor pressure — stay dissolved in water, slow local transport. Hoppers: low solubility AND low vapor pressure — sorb to particles and vegetation, move by repeated deposition and resuspension."},
+  {tag:"transport", q:"What are the criteria for a chemical 'hopper'?", a:"Low water solubility AND low vapor pressure. Doesn't dissolve in water or stay in air — instead sorbs to particles, soil, and vegetation and moves by repeated deposition and resuspension. High K_OW means it bioaccumulates."},
   {tag:"transport", q:"Why does the Canadian Arctic accumulate POPs from industrialized regions?", a:"Air currents carry semi-volatile POPs poleward (global distillation). Cold temperatures cause condensation and deposition. Permanent ice acts as a sink, trapping POPs until it melts."},
   {tag:"transport", q:"What are Persistent Organic Pollutants (POPs)?", a:"Long-lasting synthetic compounds, principally halogenated (e.g., chlorinated) organics. The WHO Dirty Dozen includes aldrin, DDT, PCBs, dioxins, furans, and others."},
 ],
@@ -325,8 +328,17 @@ function render() {
   document.getElementById("scoreRow").style.visibility = flipped ? "visible" : "hidden";
   const total = known + learning;
   document.getElementById("tally").textContent = total > 0
-    ? "got it: " + known + "     still learning: " + learning
-    : "";
+    ? "got it: " + known + "     still learning: " + learning : "";
+
+  // shrink long answers
+  const aEl = document.getElementById("cardA");
+  const len = aEl.textContent.length;
+  aEl.style.fontSize = len > 300 ? "11px" : len > 200 ? "10px" : len > 120 ? "13px" : "14px";
+
+  // shrink long questions
+  const qEl = document.getElementById("cardQ");
+  const qlen = qEl.textContent.length;
+  qEl.style.fontSize = qlen > 150 ? "12px" : qlen > 100 ? "15px" : "17px";
 }
 
 function unflip() {
