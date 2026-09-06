@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Content</title>
+<style>
+:root{
+  --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#666;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:lightgray;font-family:sans-serif;color:var(--ink);line-height:1.5;padding:0 1rem 4rem}
+header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
+h1{color:var(--green);font-size:2.2rem}
+.sub{color:var(--muted);margin-top:.4rem}
+nav{position:sticky;top:0;z-index:50;background:lightgray;padding:.75rem 0;border-bottom:1px solid #bbb;margin-bottom:1.5rem}
+nav .wrap{max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+nav a{background:white;color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:5px 12px;font-size:12px;font-weight:600;text-decoration:none}
+nav a:hover{background:var(--green);color:white}
+main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
+section{background:white;border-radius:1rem;box-shadow:0 10px 30px rgba(0,0,0,.1);padding:1.5rem;scroll-margin-top:70px}
+h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
+h3{font-size:1.05rem;margin:1.25rem 0 .5rem;color:#333;border-left:4px solid var(--green);padding-left:.5rem}
+p,li{font-size:.95rem}
+ul,ol{margin:.5rem 0 .5rem 1.25rem}
+li{margin-bottom:.25rem}
+.tag{display:inline-block;background:var(--green-soft);color:var(--green);border-radius:6px;
+  padding:1px 7px;font-size:.75rem;font-weight:700;margin-left:.35rem}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.5rem 0}
+table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:520px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--green-soft);color:var(--green);position:sticky;top:0}
+tbody tr:nth-child(even){background:#fafafa}
+code{background:#f2f2f2;padding:1px 5px;border-radius:4px;font-size:.85em}
+.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.6rem .8rem;border-radius:6px;margin:.6rem 0;font-size:.9rem}
+figure{margin:.75rem 0;text-align:center}
+figcaption{color:var(--muted);font-size:.8rem;margin-top:.35rem}
+svg{max-width:100%;height:auto}
+.svgtxt{font:12px sans-serif;fill:#1e1e1e}
+.svgsm{font:10px sans-serif;fill:#666}
+.svgbold{font:bold 12px sans-serif;fill:#1c7c3a}
+.codon td,.codon th{text-align:center;padding:3px 5px;font-size:.78rem}
+.stop{background:#fff0f0;color:#c62828;font-weight:700}
+.start{background:#e6fff0;color:#1c7c3a;font-weight:700}
+.back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
+.rc-topics{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0}
+.rc-topics button{background:white;color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.rc-topics button.on{background:var(--green);color:white}
+.rc-clue{background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
+  padding:.8rem;font-size:1rem;font-weight:600;margin:.75rem 0}
+#rc-select{width:100%;max-width:520px;padding:10px;font-size:.95rem;border:2px solid var(--green);
+  border-radius:8px;background:white;color:var(--ink)}
+.rc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.75rem}
+.rc-btns button{background:var(--green);color:white;border:none;border-radius:8px;
+  padding:10px 20px;font-size:.9rem;font-weight:600;cursor:pointer}
+.rc-btns button.ghost{background:white;color:var(--green);border:1px solid var(--green)}
+.rc-feedback{margin-top:.6rem;font-weight:700;font-size:.95rem;min-height:1.2em}
+.rc-feedback.ok{color:var(--green)}
+.rc-feedback.bad{color:#c62828}
+.rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+@media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Study Content</h1>
+  <p class="sub">Diagrams, tables and reference sheets — biochemistry, genetics, molecular biology.</p>
+  <a class="back" href="index.html">&larr; Back to quiz</a>
+</header>
+
+<nav><div class="wrap">
+  <a href="#aminoacids">Amino Acids</a>
+  <a href="#code">Genetic Code</a>
+  <a href="#dogma">Central Dogma</a>
+  <a href="#macro">Macromolecules</a>
+  <a href="#bonds">Bonds &amp; Forces</a>
+  <a href="#protein">Protein Structure</a>
+  <a href="#enzymes">Enzymes &amp; ATP</a>
+  <a href="#cells">Cells</a>
+  <a href="#dna">DNA &amp; Replication</a>
+  <a href="#txn">Transcription/Translation</a>
+  <a href="#lac">Lac Operon</a>
+  <a href="#resp">Respiration</a>
+  <a href="#glycolysis">Glycolysis</a>
+  <a href="#krebs">Krebs</a>
+  <a href="#etc">ETC</a>
+  <a href="#ferment">Fermentation &amp; Yeast</a>
+  <a href="#photo">Photosynthesis</a>
+  <a href="#calvin">Calvin Cycle</a>
+  <a href="#c4cam">C3 / C4 / CAM</a>
+  <a href="#mendel">Mendel &amp; Pedigrees</a>
+  <a href="#linkage">Linkage</a>
+  <a href="#recdna">Recombinant DNA</a>
+  <a href="#methods">Methods</a>
+  <a href="#classic">Classic Experiments</a>
+  <a href="#organelles">Organelles</a>
+  <a href="#recall">Recall Practice</a>
+</div></nav>
+
+<main>
+
+<!-- ================= AMINO ACIDS ================= -->
+<section id="aminoacids">
+  <h2>Amino Acids</h2>
+  <p>Every amino acid = central α-carbon + amino group (–NH<sub>2</sub>) + carboxyl group (–COOH) + hydrogen + R group (side chain). <strong>Only the R group differs.</strong></p>
+
+  <figure>
+    <svg viewBox="0 0 420 150" role="img" aria-label="Generic amino acid structure">
+      <line x1="210" y1="45" x2="210" y2="70" stroke="#1e1e1e" stroke-width="1.5"/>
+      <line x1="210" y1="88" x2="210" y2="115" stroke="#1e1e1e" stroke-width="1.5"/>
+      <line x1="150" y1="79" x2="196" y2="79" stroke="#1e1e1e" stroke-width="1.5"/>
+      <line x1="224" y1="79" x2="270" y2="79" stroke="#1e1e1e" stroke-width="1.5"/>
+      <text class="svgtxt" x="205" y="42" text-anchor="middle">H</text>
+      <text class="svgbold" x="210" y="84" text-anchor="middle">Cα</text>
+      <text class="svgbold" x="210" y="132" text-anchor="middle">R</text>
+      <text class="svgtxt" x="145" y="84" text-anchor="end">H₂N</text>
+      <text class="svgtxt" x="275" y="84">COOH</text>
+      <text class="svgsm" x="145" y="102" text-anchor="end">amino group (basic)</text>
+      <text class="svgsm" x="275" y="102">carboxyl group (acidic)</text>
+      <text class="svgsm" x="210" y="148" text-anchor="middle">side chain — defines identity, polarity, charge</text>
+    </svg>
+    <figcaption>Generic amino acid at neutral pH exists as a zwitterion: –NH<sub>3</sub><sup>+</sup> and –COO<sup>–</sup>.</figcaption>
+  </figure>
+
+  <h3>The 20 standard amino acids</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Name</th><th>3-letter</th><th>1-letter</th><th>Class</th><th>Charge (pH 7)</th><th>Key characteristics</th></tr></thead>
+    <tbody>
+      <tr><td>Glycine</td><td>Gly</td><td>G</td><td>Nonpolar</td><td>Neutral</td><td>R = H. Smallest, achiral, very flexible; fits tight turns.</td></tr>
+      <tr><td>Alanine</td><td>Ala</td><td>A</td><td>Nonpolar</td><td>Neutral</td><td>R = CH₃. Small, hydrophobic, helix-friendly.</td></tr>
+      <tr><td>Valine *</td><td>Val</td><td>V</td><td>Nonpolar, branched</td><td>Neutral</td><td>Hydrophobic core. Glu→Val swap causes sickle-cell.</td></tr>
+      <tr><td>Leucine *</td><td>Leu</td><td>L</td><td>Nonpolar, branched</td><td>Neutral</td><td>Very common; buried in hydrophobic core; leucine zippers.</td></tr>
+      <tr><td>Isoleucine *</td><td>Ile</td><td>I</td><td>Nonpolar, branched</td><td>Neutral</td><td>Hydrophobic, two chiral centers.</td></tr>
+      <tr><td>Methionine *</td><td>Met</td><td>M</td><td>Nonpolar, sulfur</td><td>Neutral</td><td>Contains S (thioether). <strong>Start codon AUG</strong>; first residue of every protein.</td></tr>
+      <tr><td>Proline</td><td>Pro</td><td>P</td><td>Nonpolar, cyclic</td><td>Neutral</td><td>Side chain bonds back to N (imino acid). Rigid — <strong>helix breaker</strong>, found in turns.</td></tr>
+      <tr><td>Phenylalanine *</td><td>Phe</td><td>F</td><td>Nonpolar, aromatic</td><td>Neutral</td><td>Big hydrophobic benzene ring; stacking interactions.</td></tr>
+      <tr><td>Tryptophan *</td><td>Trp</td><td>W</td><td>Nonpolar, aromatic</td><td>Neutral</td><td>Largest residue, indole ring; absorbs at 280 nm (protein quantitation).</td></tr>
+      <tr><td>Serine</td><td>Ser</td><td>S</td><td>Polar uncharged</td><td>Neutral</td><td>–OH. Phosphorylation site; serine-protease active sites.</td></tr>
+      <tr><td>Threonine *</td><td>Thr</td><td>T</td><td>Polar uncharged</td><td>Neutral</td><td>–OH + methyl. Phosphorylation site; O-glycosylation.</td></tr>
+      <tr><td>Cysteine</td><td>Cys</td><td>C</td><td>Polar, sulfur</td><td>Neutral (pKa 8.3)</td><td>–SH thiol. Two Cys form a <strong>disulfide bond</strong> — only covalent bond in tertiary structure.</td></tr>
+      <tr><td>Tyrosine</td><td>Tyr</td><td>Y</td><td>Polar, aromatic</td><td>Neutral (pKa 10.1)</td><td>Aromatic + –OH; phosphorylation target; absorbs at 280 nm.</td></tr>
+      <tr><td>Asparagine</td><td>Asn</td><td>N</td><td>Polar uncharged</td><td>Neutral</td><td>Amide of Asp; N-linked glycosylation site.</td></tr>
+      <tr><td>Glutamine</td><td>Gln</td><td>Q</td><td>Polar uncharged</td><td>Neutral</td><td>Amide of Glu; nitrogen transport.</td></tr>
+      <tr><td>Aspartate</td><td>Asp</td><td>D</td><td>Acidic</td><td><strong>Negative</strong> (pKa 3.9)</td><td>Carboxylate side chain; salt bridges, metal binding, catalysis.</td></tr>
+      <tr><td>Glutamate</td><td>Glu</td><td>E</td><td>Acidic</td><td><strong>Negative</strong> (pKa 4.3)</td><td>One CH₂ longer than Asp; neurotransmitter.</td></tr>
+      <tr><td>Lysine *</td><td>Lys</td><td>K</td><td>Basic</td><td><strong>Positive</strong> (pKa 10.5)</td><td>Long –NH₃⁺ chain; binds DNA backbone; acetylation site on histones.</td></tr>
+      <tr><td>Arginine</td><td>Arg</td><td>R</td><td>Basic</td><td><strong>Positive</strong> (pKa 12.5)</td><td>Guanidinium — most basic, positive at nearly any pH; DNA binding.</td></tr>
+      <tr><td>Histidine *</td><td>His</td><td>H</td><td>Basic, aromatic</td><td>Partly + (pKa 6.0)</td><td>Only side chain that ionizes near physiological pH — <strong>buffering + acid/base catalysis</strong>; metal coordination.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">* = essential in humans (9 total: His, Ile, Leu, Lys, Met, Phe, Thr, Trp, Val — "PVT TIM HaLL").</p>
+
+  <div class="key"><strong>Grouping to memorize:</strong> 9 nonpolar (G A V L I M P F W) · 6 polar uncharged (S T C Y N Q) · 2 acidic/negative (D E) · 3 basic/positive (K R H). Charged + polar face water on the outside; nonpolar bury in the core.</div>
+
+  <h3>Peptide bond</h3>
+  <figure>
+    <svg viewBox="0 0 460 130" role="img" aria-label="Peptide bond formation">
+      <text class="svgtxt" x="10" y="45">H₂N–CHR₁–C(=O)–OH</text>
+      <text class="svgtxt" x="160" y="45">+</text>
+      <text class="svgtxt" x="180" y="45">H–NH–CHR₂–COOH</text>
+      <line x1="200" y1="60" x2="200" y2="82" stroke="#1c7c3a" stroke-width="1.5" marker-end="url(#a1)"/>
+      <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="4" refY="6" orient="auto">
+        <path d="M0,0 L8,0 L4,8 z" fill="#1c7c3a"/></marker></defs>
+      <text class="svgsm" x="210" y="76">dehydration synthesis (– H₂O)</text>
+      <text class="svgtxt" x="60" y="108">H₂N–CHR₁–</text>
+      <text class="svgbold" x="150" y="108">C(=O)–NH</text>
+      <text class="svgtxt" x="222" y="108">–CHR₂–COOH</text>
+      <text class="svgsm" x="150" y="124">peptide bond (amide) — rigid, planar, partial double-bond character</text>
+    </svg>
+    <figcaption>Chains are always written and synthesized <strong>N-terminus → C-terminus</strong>.</figcaption>
+  </figure>
+</section>
+
+<!-- ================= GENETIC CODE ================= -->
+<section id="code">
+  <h2>The Genetic Code</h2>
+  <ul>
+    <li><strong>Triplet:</strong> 3 mRNA bases = 1 codon = 1 amino acid. 4³ = 64 codons.</li>
+    <li><strong>Degenerate/redundant:</strong> 61 sense codons for 20 amino acids; most redundancy at the 3rd base (wobble).</li>
+    <li><strong>Unambiguous:</strong> one codon never codes for two amino acids.</li>
+    <li><strong>Nearly universal</strong> across all organisms (mitochondria are the exception).</li>
+    <li><strong>Non-overlapping,</strong> read continuously from a fixed start — insertions/deletions cause frameshifts.</li>
+    <li><strong>AUG</strong> = start (Met; fMet in bacteria). <strong>UAA, UAG, UGA</strong> = stop (no tRNA; release factors bind).</li>
+  </ul>
+
+  <h3>Codon table (mRNA 5'→3')</h3>
+  <div class="scroll">
+  <table class="codon">
+    <thead><tr><th>1st ↓ / 2nd →</th><th>U</th><th>C</th><th>A</th><th>G</th><th>3rd</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="4"><strong>U</strong></td><td>Phe (F)</td><td>Ser (S)</td><td>Tyr (Y)</td><td>Cys (C)</td><td>U</td></tr>
+      <tr><td>Phe (F)</td><td>Ser (S)</td><td>Tyr (Y)</td><td>Cys (C)</td><td>C</td></tr>
+      <tr><td>Leu (L)</td><td>Ser (S)</td><td class="stop">STOP</td><td class="stop">STOP</td><td>A</td></tr>
+      <tr><td>Leu (L)</td><td>Ser (S)</td><td class="stop">STOP</td><td>Trp (W)</td><td>G</td></tr>
+      <tr><td rowspan="4"><strong>C</strong></td><td>Leu (L)</td><td>Pro (P)</td><td>His (H)</td><td>Arg (R)</td><td>U</td></tr>
+      <tr><td>Leu (L)</td><td>Pro (P)</td><td>His (H)</td><td>Arg (R)</td><td>C</td></tr>
+      <tr><td>Leu (L)</td><td>Pro (P)</td><td>Gln (Q)</td><td>Arg (R)</td><td>A</td></tr>
+      <tr><td>Leu (L)</td><td>Pro (P)</td><td>Gln (Q)</td><td>Arg (R)</td><td>G</td></tr>
+      <tr><td rowspan="4"><strong>A</strong></td><td>Ile (I)</td><td>Thr (T)</td><td>Asn (N)</td><td>Ser (S)</td><td>U</td></tr>
+      <tr><td>Ile (I)</td><td>Thr (T)</td><td>Asn (N)</td><td>Ser (S)</td><td>C</td></tr>
+      <tr><td>Ile (I)</td><td>Thr (T)</td><td>Lys (K)</td><td>Arg (R)</td><td>A</td></tr>
+      <tr><td class="start">Met (M) START</td><td>Thr (T)</td><td>Lys (K)</td><td>Arg (R)</td><td>G</td></tr>
+      <tr><td rowspan="4"><strong>G</strong></td><td>Val (V)</td><td>Ala (A)</td><td>Asp (D)</td><td>Gly (G)</td><td>U</td></tr>
+      <tr><td>Val (V)</td><td>Ala (A)</td><td>Asp (D)</td><td>Gly (G)</td><td>C</td></tr>
+      <tr><td>Val (V)</td><td>Ala (A)</td><td>Glu (E)</td><td>Gly (G)</td><td>A</td></tr>
+      <tr><td>Val (V)</td><td>Ala (A)</td><td>Glu (E)</td><td>Gly (G)</td><td>G</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Mutation types</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Type</th><th>What changes</th><th>Effect on protein</th></tr></thead>
+    <tbody>
+      <tr><td>Silent</td><td>Base change, same amino acid (usually 3rd position)</td><td>None</td></tr>
+      <tr><td>Missense — conservative</td><td>New amino acid with similar chemistry (e.g. Leu→Ile)</td><td>Often tolerated</td></tr>
+      <tr><td>Missense — non-conservative</td><td>New amino acid, different chemistry (e.g. Glu→Val)</td><td>Can destroy function (sickle-cell)</td></tr>
+      <tr><td>Nonsense</td><td>Codon → STOP</td><td>Truncated, usually non-functional</td></tr>
+      <tr><td>Frameshift</td><td>Insertion/deletion not a multiple of 3</td><td>Everything downstream garbled — usually most severe</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= CENTRAL DOGMA ================= -->
+<section id="dogma">
+  <h2>Central Dogma</h2>
+  <figure>
+    <svg viewBox="0 0 620 170" role="img" aria-label="Central dogma flow diagram">
+      <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 z" fill="#1c7c3a"/></marker></defs>
+      <rect x="20" y="55" width="110" height="42" rx="8" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgbold" x="75" y="80" text-anchor="middle">DNA</text>
+      <rect x="250" y="55" width="110" height="42" rx="8" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgbold" x="305" y="80" text-anchor="middle">RNA</text>
+      <rect x="480" y="55" width="120" height="42" rx="8" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgbold" x="540" y="80" text-anchor="middle">Protein</text>
+      <line x1="132" y1="76" x2="245" y2="76" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgtxt" x="188" y="66" text-anchor="middle">transcription</text>
+      <text class="svgsm" x="188" y="94" text-anchor="middle">RNA polymerase</text>
+      <line x1="362" y1="76" x2="475" y2="76" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgtxt" x="418" y="66" text-anchor="middle">translation</text>
+      <text class="svgsm" x="418" y="94" text-anchor="middle">ribosome + tRNA</text>
+      <path d="M75,50 C75,20 20,20 20,55" fill="none" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgsm" x="60" y="18">replication (DNA pol)</text>
+      <path d="M305,105 C305,140 140,140 90,102" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+      <text class="svgsm" x="200" y="152" text-anchor="middle">reverse transcription — retroviruses, cDNA synthesis (reverse transcriptase)</text>
+    </svg>
+  </figure>
+  <div class="key">Direction rules: nucleic acids are always synthesized <strong>5' → 3'</strong>; the template is read 3' → 5'. Proteins are synthesized <strong>N → C</strong>.</div>
+</section>
+
+<!-- ================= MACROMOLECULES ================= -->
+<section id="macro">
+  <h2>Macromolecules</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Class</th><th>Monomer</th><th>Bond</th><th>Elements</th><th>Function / notes</th></tr></thead>
+    <tbody>
+      <tr><td>Carbohydrates</td><td>Monosaccharide (glucose)</td><td>Glycosidic</td><td>C H O (1:2:1)</td><td>Energy + structure. Starch/glycogen = storage; cellulose/chitin/peptidoglycan = structure.</td></tr>
+      <tr><td>Lipids</td><td><em>Not true polymers</em> — glycerol + fatty acids</td><td>Ester</td><td>C H O (little O)</td><td>Hydrophobic. Saturated = no C=C, solid; unsaturated = C=C kinks, liquid. Phospholipids are amphipathic → bilayer. Steroids = 4 fused rings.</td></tr>
+      <tr><td>Proteins</td><td>Amino acid</td><td>Peptide (amide)</td><td>C H O N (S)</td><td>Enzymes, structure, transport, signaling, defense. Most functionally diverse.</td></tr>
+      <tr><td>Nucleic acids</td><td>Nucleotide</td><td>Phosphodiester</td><td>C H O N P</td><td>Information storage/transfer. Nucleotide = phosphate + 5-carbon sugar + nitrogenous base.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">All polymers are built by <strong>dehydration synthesis</strong> (removes H₂O) and broken by <strong>hydrolysis</strong> (adds H₂O).</div>
+
+  <h3>DNA vs RNA</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>DNA</th><th>RNA</th></tr></thead>
+    <tbody>
+      <tr><td>Sugar</td><td>Deoxyribose (no 2'-OH)</td><td>Ribose (2'-OH → less stable)</td></tr>
+      <tr><td>Bases</td><td>A T G C</td><td>A U G C</td></tr>
+      <tr><td>Strands</td><td>Double helix, antiparallel</td><td>Usually single, folds on itself</td></tr>
+      <tr><td>Role</td><td>Long-term storage</td><td>mRNA message, tRNA adaptor, rRNA catalytic core</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= BONDS ================= -->
+<section id="bonds">
+  <h2>Bonds &amp; Non-Covalent Forces</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Interaction</th><th>Relative strength</th><th>What it is</th><th>Where it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Covalent (nonpolar)</td><td>Strongest (~80–100 kcal/mol)</td><td>Equal electron sharing (C–C, C–H)</td><td>Backbones of all macromolecules</td></tr>
+      <tr><td>Covalent (polar)</td><td>Strongest</td><td>Unequal sharing → partial charges (O–H, N–H)</td><td>Source of water's polarity</td></tr>
+      <tr><td>Disulfide bond</td><td>Strong covalent</td><td>Cys–S–S–Cys</td><td>Locks tertiary structure of secreted proteins</td></tr>
+      <tr><td>Ionic / salt bridge</td><td>Moderate (weak in water)</td><td>Full + attracts full –</td><td>Asp/Glu with Lys/Arg; strong when buried, shielded in water</td></tr>
+      <tr><td>Hydrogen bond</td><td>Weak (~1–5 kcal/mol), strong in bulk</td><td>H on N/O/F attracted to another N/O</td><td>DNA base pairing, α-helix, β-sheet, water properties</td></tr>
+      <tr><td>Van der Waals</td><td>Weakest</td><td>Transient dipoles, requires close contact</td><td>Tight-packed protein interiors, shape complementarity</td></tr>
+      <tr><td>Hydrophobic effect</td><td>Major driving force</td><td>Nonpolar groups cluster to free ordered water (entropy)</td><td>Protein folding, membrane bilayers</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Water:</strong> polar + H-bonding → cohesion/adhesion, high specific heat, high heat of vaporization, ice floats (less dense), universal solvent for polar/ionic solutes. Weak bonds are individually breakable but collectively decisive — that's what makes binding specific <em>and</em> reversible.</div>
+
+  <h3>Base pairing</h3>
+  <figure>
+    <svg viewBox="0 0 420 130" role="img" aria-label="DNA base pairing hydrogen bonds">
+      <text class="svgbold" x="55" y="40" text-anchor="middle">A</text>
+      <text class="svgbold" x="185" y="40" text-anchor="middle">T</text>
+      <line x1="72" y1="32" x2="168" y2="32" stroke="#888" stroke-dasharray="4 3"/>
+      <line x1="72" y1="42" x2="168" y2="42" stroke="#888" stroke-dasharray="4 3"/>
+      <text class="svgsm" x="120" y="62" text-anchor="middle">2 H-bonds</text>
+      <text class="svgbold" x="255" y="40" text-anchor="middle">G</text>
+      <text class="svgbold" x="385" y="40" text-anchor="middle">C</text>
+      <line x1="272" y1="27" x2="368" y2="27" stroke="#888" stroke-dasharray="4 3"/>
+      <line x1="272" y1="37" x2="368" y2="37" stroke="#888" stroke-dasharray="4 3"/>
+      <line x1="272" y1="47" x2="368" y2="47" stroke="#888" stroke-dasharray="4 3"/>
+      <text class="svgsm" x="320" y="62" text-anchor="middle">3 H-bonds — more stable, higher Tm</text>
+      <text class="svgtxt" x="10" y="92">Purines (2 rings): A, G</text>
+      <text class="svgtxt" x="230" y="92">Pyrimidines (1 ring): C, T, U</text>
+      <text class="svgsm" x="10" y="112">Purine always pairs with pyrimidine → constant 2 nm helix width.</text>
+      <text class="svgsm" x="10" y="126">Chargaff: %A = %T and %G = %C. Strands are antiparallel (5'→3' opposite 3'→5').</text>
+    </svg>
+  </figure>
+</section>
+
+<!-- ================= PROTEIN STRUCTURE ================= -->
+<section id="protein">
+  <h2>Levels of Protein Structure</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Level</th><th>What it is</th><th>Held together by</th><th>Examples</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Primary</strong></td><td>Linear amino acid sequence, N→C</td><td>Peptide bonds (covalent)</td><td>Encoded directly by the gene; determines all higher levels (Anfinsen)</td></tr>
+      <tr><td><strong>Secondary</strong></td><td>α-helix and β-pleated sheet (parallel/antiparallel), turns</td><td>H-bonds between <em>backbone</em> C=O and N–H</td><td>Keratin (α), silk fibroin (β). Pro breaks helices; Gly adds flexibility</td></tr>
+      <tr><td><strong>Tertiary</strong></td><td>Full 3-D fold of one polypeptide</td><td><em>R-group</em> interactions: hydrophobic clustering, H-bonds, ionic/salt bridges, van der Waals, disulfides</td><td>Myoglobin; enzyme active site is formed here</td></tr>
+      <tr><td><strong>Quaternary</strong></td><td>Two or more folded subunits assembled</td><td>Same non-covalent forces, between chains</td><td>Hemoglobin (α₂β₂), collagen triple helix, DNA polymerase holoenzyme</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Denaturation</strong> (heat, extreme pH, urea, detergents, reducing agents) breaks weak bonds and unfolds the protein — primary structure survives, function does not. Often reversible if the sequence is intact. <strong>Structure determines function</strong> is the recurring exam point.</div>
+</section>
+
+<!-- ================= ENZYMES ================= -->
+<section id="enzymes">
+  <h2>Enzymes, Reactions &amp; ATP</h2>
+  <h3>Enzyme basics</h3>
+  <ul>
+    <li>Biological catalyst — <strong>lowers activation energy (Ea)</strong>, speeds the reaction, is <em>not</em> consumed and does <em>not</em> change ΔG or equilibrium.</li>
+    <li><strong>Active site</strong> binds substrate; <strong>induced fit</strong> — the site reshapes around the substrate.</li>
+    <li>Specific for substrate and reaction. Named for what they act on: -ase.</li>
+    <li>Sensitive to temperature and pH — beyond the optimum, denaturation kills activity.</li>
+    <li>Cofactors = inorganic (Mg²⁺, Zn²⁺); coenzymes = organic (NAD⁺, FAD, coenzyme A — often from vitamins).</li>
+  </ul>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Regulation</th><th>Binds where</th><th>Effect</th><th>Overcome by more substrate?</th></tr></thead>
+    <tbody>
+      <tr><td>Competitive inhibitor</td><td>Active site</td><td>Blocks substrate binding</td><td>Yes</td></tr>
+      <tr><td>Noncompetitive / allosteric inhibitor</td><td>Allosteric site</td><td>Changes active-site shape</td><td>No</td></tr>
+      <tr><td>Allosteric activator</td><td>Allosteric site</td><td>Stabilizes the active form</td><td>—</td></tr>
+      <tr><td>Feedback inhibition</td><td>Allosteric site of the first enzyme</td><td>End product shuts down its own pathway</td><td>No</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Energy &amp; ATP</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Exergonic (ΔG &lt; 0)</td><td>Releases energy, spontaneous — catabolism (breakdown)</td></tr>
+      <tr><td>Endergonic (ΔG &gt; 0)</td><td>Requires energy input — anabolism (building)</td></tr>
+      <tr><td>Coupled reaction</td><td>ATP hydrolysis drives an endergonic reaction</td></tr>
+      <tr><td>ATP structure</td><td>Adenine + ribose + 3 phosphates; energy sits in the repulsion of the negative phosphates</td></tr>
+      <tr><td>ATP → ADP + Pi</td><td>Exergonic, ≈ –7.3 kcal/mol; the cell's energy currency, constantly recycled</td></tr>
+      <tr><td>Redox</td><td><strong>OIL RIG</strong> — Oxidation Is Loss of electrons, Reduction Is Gain. NAD⁺/FAD are electron carriers (reduced to NADH/FADH₂).</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= CELLS ================= -->
+<section id="cells">
+  <h2>Types of Organisms &amp; Cell Composition</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Feature</th><th>Prokaryote (Bacteria, Archaea)</th><th>Eukaryote</th></tr></thead>
+    <tbody>
+      <tr><td>Nucleus</td><td>None — nucleoid region</td><td>True membrane-bound nucleus</td></tr>
+      <tr><td>DNA</td><td>Single circular chromosome + plasmids</td><td>Multiple linear chromosomes with histones</td></tr>
+      <tr><td>Organelles</td><td>No membrane-bound organelles</td><td>Mitochondria, ER, Golgi, lysosomes, (chloroplasts)</td></tr>
+      <tr><td>Ribosomes</td><td>70S (30S + 50S)</td><td>80S (40S + 60S); 70S inside mitochondria</td></tr>
+      <tr><td>Cell wall</td><td>Peptidoglycan (bacteria)</td><td>Cellulose (plants), chitin (fungi), none in animals</td></tr>
+      <tr><td>Size</td><td>~1–10 µm</td><td>~10–100 µm</td></tr>
+      <tr><td>Transcription/translation</td><td>Coupled — same compartment, no introns</td><td>Separated by the nuclear envelope; mRNA processed first</td></tr>
+      <tr><td>Division</td><td>Binary fission</td><td>Mitosis / meiosis</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3 id="organelles">Organelles — structure &amp; function</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Organelle</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>Nucleus</td><td>Stores DNA; site of replication and transcription; bounded by a double envelope with pores</td></tr>
+      <tr><td>Nucleolus</td><td>Makes rRNA and assembles ribosomal subunits</td></tr>
+      <tr><td>Ribosome</td><td>Protein synthesis (translation); free in cytosol or bound to rough ER</td></tr>
+      <tr><td>Rough ER</td><td>Ribosome-studded; synthesizes and folds proteins for secretion or membranes</td></tr>
+      <tr><td>Smooth ER</td><td>Lipid and steroid synthesis, detoxification, Ca²⁺ storage</td></tr>
+      <tr><td>Golgi apparatus</td><td>Modifies, sorts, tags and ships proteins — the "post office"</td></tr>
+      <tr><td>Lysosome</td><td>Digestive enzymes (acidic interior); breaks down waste and worn organelles</td></tr>
+      <tr><td>Peroxisome</td><td>Breaks down fatty acids and detoxifies H₂O₂ using catalase</td></tr>
+      <tr><td>Mitochondrion</td><td>ATP production — Krebs in the matrix, ETC on the cristae; own circular DNA + 70S ribosomes</td></tr>
+      <tr><td>Chloroplast</td><td>Photosynthesis — light reactions in thylakoids, Calvin cycle in stroma; own DNA</td></tr>
+      <tr><td>Vacuole</td><td>Storage, waste, turgor pressure (large central vacuole in plants)</td></tr>
+      <tr><td>Plasma membrane</td><td>Selectively permeable phospholipid bilayer; transport and signaling (fluid mosaic model)</td></tr>
+      <tr><td>Cell wall</td><td>Rigid support — cellulose (plants), chitin (fungi), peptidoglycan (bacteria)</td></tr>
+      <tr><td>Cytoskeleton</td><td>Microfilaments (actin), intermediate filaments, microtubules — shape, transport, division</td></tr>
+      <tr><td>Centrosome / centrioles</td><td>Organizes microtubules and the mitotic spindle (animals)</td></tr>
+      <tr><td>Cilia &amp; flagella</td><td>Movement; 9+2 microtubule arrangement</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm"><strong>Endosymbiotic theory:</strong> mitochondria and chloroplasts were once free-living bacteria — double membranes, circular DNA, 70S ribosomes, and they divide by binary fission.</p>
+
+  <div class="key">Three domains: <strong>Bacteria, Archaea, Eukarya</strong>. Cell theory: all organisms are made of cells; the cell is the basic unit of life; cells come only from pre-existing cells. Viruses are acellular — not alive by these criteria. Elements by mass: C, H, O, N account for ~96% of living matter.</div>
+</section>
+
+<!-- ================= DNA / REPLICATION ================= -->
+<section id="dna">
+  <h2>DNA Structure &amp; Replication</h2>
+  <ul>
+    <li>Double helix, <strong>antiparallel</strong> strands, sugar-phosphate backbone outside, bases inside.</li>
+    <li>Backbone joined by <strong>phosphodiester bonds</strong> (5' phosphate to 3' OH); negatively charged → runs to the + electrode in a gel.</li>
+    <li>Replication is <strong>semiconservative</strong>: each daughter duplex = 1 old + 1 new strand.</li>
+    <li>DNA polymerase can only add to a free <strong>3'-OH</strong> → synthesis is strictly 5'→3' and a primer is mandatory.</li>
+  </ul>
+
+  <figure>
+    <svg viewBox="0 0 620 210" role="img" aria-label="Replication fork">
+      <defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 z" fill="#1c7c3a"/></marker></defs>
+      <path d="M40,100 L250,100" stroke="#1e1e1e" stroke-width="2"/>
+      <path d="M250,100 L560,40" stroke="#1e1e1e" stroke-width="2"/>
+      <path d="M250,100 L560,160" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="250" cy="100" r="16" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgsm" x="250" y="104" text-anchor="middle">hel</text>
+      <text class="svgsm" x="250" y="140" text-anchor="middle">helicase unwinds; SSB proteins hold strands apart</text>
+      <text class="svgsm" x="120" y="90" text-anchor="middle">topoisomerase/gyrase relieves supercoiling</text>
+      <text class="svgsm" x="60" y="118">parent duplex</text>
+      <line x1="300" y1="66" x2="520" y2="24" stroke="#1c7c3a" stroke-width="3" marker-end="url(#ar2)"/>
+      <text class="svgbold" x="400" y="52">leading strand — continuous 5'→3'</text>
+      <text class="svgtxt" x="565" y="42">3'</text>
+      <line x1="520" y1="182" x2="440" y2="167" stroke="#1c7c3a" stroke-width="3" marker-end="url(#ar2)"/>
+      <line x1="420" y1="177" x2="345" y2="163" stroke="#1c7c3a" stroke-width="3" marker-end="url(#ar2)"/>
+      <line x1="325" y1="173" x2="285" y2="160" stroke="#1c7c3a" stroke-width="3" marker-end="url(#ar2)"/>
+      <text class="svgbold" x="330" y="200">lagging strand — discontinuous Okazaki fragments</text>
+      <text class="svgsm" x="565" y="165">5'</text>
+    </svg>
+  </figure>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Enzyme / protein</th><th>Job</th></tr></thead>
+    <tbody>
+      <tr><td>Helicase</td><td>Unwinds the double helix at the origin, breaking H-bonds</td></tr>
+      <tr><td>Single-strand binding protein</td><td>Keeps separated strands from re-annealing</td></tr>
+      <tr><td>Topoisomerase / gyrase</td><td>Relieves supercoiling ahead of the fork</td></tr>
+      <tr><td>Primase</td><td>Lays down a short <strong>RNA primer</strong> to give pol a 3'-OH</td></tr>
+      <tr><td>DNA polymerase III</td><td>Main elongation enzyme, 5'→3'; proofreads with 3'→5' exonuclease</td></tr>
+      <tr><td>DNA polymerase I</td><td>Removes RNA primers, fills the gaps with DNA</td></tr>
+      <tr><td>DNA ligase</td><td>Seals nicks between Okazaki fragments (phosphodiester bond)</td></tr>
+      <tr><td>Telomerase</td><td>Extends chromosome ends in eukaryotes (end-replication problem)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= TRANSCRIPTION / TRANSLATION ================= -->
+<section id="txn">
+  <h2>Transcription &amp; Translation</h2>
+  <h3>Transcription</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Stage</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>Initiation</td><td>RNA polymerase binds the <strong>promoter</strong>. Bacteria: sigma factor recognizes –10 (TATAAT, Pribnow) and –35 boxes. Eukaryotes: transcription factors + TATA box recruit RNA pol II.</td></tr>
+      <tr><td>Elongation</td><td>Reads template (antisense) strand 3'→5', builds RNA 5'→3'. No primer needed. The coding/sense strand matches the mRNA (with U for T).</td></tr>
+      <tr><td>Termination</td><td>Bacteria: rho-dependent or hairpin (rho-independent). Eukaryotes: poly-A signal, then cleavage.</td></tr>
+      <tr><td>Processing (eukaryotes only)</td><td>5' methyl-guanosine cap, 3' poly-A tail, <strong>splicing</strong> of introns by the spliceosome (snRNPs) leaving exons. Alternative splicing → multiple proteins from one gene.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">Eukaryotic polymerases: pol I → rRNA, pol II → mRNA, pol III → tRNA + 5S rRNA. Bacteria use a single RNA polymerase.</p>
+
+  <h3>Translation</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Component</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td>mRNA</td><td>Carries codons; read 5'→3'</td></tr>
+      <tr><td>tRNA</td><td>Adaptor: anticodon pairs with the codon (antiparallel), carries the amino acid at its 3' CCA end</td></tr>
+      <tr><td>Aminoacyl-tRNA synthetase</td><td>Charges each tRNA with its <strong>correct</strong> amino acid — one per amino acid; the real "reader" of the code</td></tr>
+      <tr><td>Ribosome</td><td>rRNA + protein. <strong>A site</strong> accepts incoming charged tRNA, <strong>P site</strong> holds the growing chain, <strong>E site</strong> exits the empty tRNA</td></tr>
+      <tr><td>Peptidyl transferase</td><td>rRNA ribozyme activity in the large subunit — forms the peptide bond</td></tr>
+      <tr><td>Release factor</td><td>Recognizes a stop codon, hydrolyzes the chain off the tRNA</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">Bacteria start at a <strong>Shine-Dalgarno</strong> sequence with fMet-tRNA; eukaryotes scan from the 5' cap to the first AUG (Kozak). Many ribosomes on one mRNA = a <strong>polysome</strong>. Chain grows N-terminus → C-terminus.</div>
+</section>
+
+<!-- ================= LAC OPERON ================= -->
+<section id="lac">
+  <h2>Gene Regulation &amp; the Lac Operon</h2>
+  <figure>
+    <svg viewBox="0 0 620 120" role="img" aria-label="Lac operon gene map">
+      <rect x="15" y="40" width="70" height="30" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="50" y="60" text-anchor="middle">lacI</text>
+      <rect x="105" y="40" width="55" height="30" fill="#fff" stroke="#888"/><text class="svgtxt" x="132" y="60" text-anchor="middle">P</text>
+      <rect x="160" y="40" width="55" height="30" fill="#fff" stroke="#888"/><text class="svgtxt" x="187" y="60" text-anchor="middle">O</text>
+      <rect x="215" y="40" width="125" height="30" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="277" y="60" text-anchor="middle">lacZ</text>
+      <rect x="340" y="40" width="115" height="30" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="397" y="60" text-anchor="middle">lacY</text>
+      <rect x="455" y="40" width="105" height="30" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="507" y="60" text-anchor="middle">lacA</text>
+      <text class="svgsm" x="50" y="34" text-anchor="middle">repressor gene</text>
+      <text class="svgsm" x="132" y="34" text-anchor="middle">promoter</text>
+      <text class="svgsm" x="187" y="34" text-anchor="middle">operator</text>
+      <text class="svgsm" x="277" y="88" text-anchor="middle">β-galactosidase</text>
+      <text class="svgsm" x="397" y="88" text-anchor="middle">permease</text>
+      <text class="svgsm" x="507" y="88" text-anchor="middle">transacetylase</text>
+      <text class="svgsm" x="277" y="108" text-anchor="middle">splits lactose → glucose + galactose</text>
+      <text class="svgsm" x="420" y="108" text-anchor="middle">imports lactose</text>
+      <text class="svgsm" x="337" y="20" text-anchor="middle">single polycistronic mRNA — all three genes transcribed together</text>
+    </svg>
+  </figure>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Lactose</th><th>Glucose</th><th>Repressor</th><th>cAMP–CAP</th><th>Transcription</th></tr></thead>
+    <tbody>
+      <tr><td>Absent</td><td>Present</td><td>Bound to operator</td><td>Low cAMP, no CAP</td><td><strong>Off</strong></td></tr>
+      <tr><td>Absent</td><td>Absent</td><td>Bound to operator</td><td>High cAMP, CAP bound</td><td><strong>Off</strong> (repressor wins)</td></tr>
+      <tr><td>Present</td><td>Present</td><td>Released (allolactose)</td><td>Low cAMP, no CAP</td><td>Low / leaky</td></tr>
+      <tr><td>Present</td><td>Absent</td><td>Released</td><td>High cAMP, CAP bound</td><td><strong>Maximum</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Inducer:</strong> allolactose (lab substitute: IPTG) binds the repressor and inactivates it = <em>negative</em> control. <strong>CAP–cAMP</strong> = <em>positive</em> control; glucose lowers cAMP, so glucose is used first (catabolite repression). Inducible operon = normally off, turns on for catabolism (lac). Repressible operon = normally on, turns off when the product accumulates (trp).</div>
+</section>
+
+<!-- ================= RESPIRATION ================= -->
+<section id="resp">
+  <h2>Cellular Respiration &amp; Fermentation</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Stage</th><th>Location</th><th>Input</th><th>Output per glucose</th></tr></thead>
+    <tbody>
+      <tr><td>Glycolysis</td><td>Cytosol (all cells, no O₂ needed)</td><td>Glucose (6C), 2 ATP invested</td><td>2 pyruvate (3C), <strong>net 2 ATP</strong> (substrate-level), 2 NADH</td></tr>
+      <tr><td>Pyruvate oxidation</td><td>Mitochondrial matrix</td><td>2 pyruvate</td><td>2 acetyl-CoA, 2 NADH, 2 CO₂</td></tr>
+      <tr><td>Krebs / citric acid cycle</td><td>Mitochondrial matrix</td><td>2 acetyl-CoA</td><td>6 NADH, 2 FADH₂, 2 ATP (GTP), 4 CO₂</td></tr>
+      <tr><td>Electron transport + chemiosmosis</td><td>Inner mitochondrial membrane (plasma membrane in prokaryotes)</td><td>NADH, FADH₂, O₂ (final electron acceptor)</td><td>~26–28 ATP, H₂O</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Totals:</strong> ~30–32 ATP per glucose. NADH ≈ 2.5 ATP, FADH₂ ≈ 1.5 ATP. All CO₂ you exhale comes from pyruvate oxidation + Krebs; all O₂ you breathe ends up as water at complex IV.</div>
+
+  <h3 id="glycolysis">Glycolysis — step by step</h3>
+  <p>Cytosol · no oxygen required · universal to nearly all life · 10 enzyme steps, split into an investment phase (spend 2 ATP) and a payoff phase (make 4 ATP).</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>#</th><th>Reaction</th><th>Enzyme</th><th>Energy change</th></tr></thead>
+    <tbody>
+      <tr><td colspan="4" class="start">ENERGY INVESTMENT PHASE (per glucose)</td></tr>
+      <tr><td>1</td><td>Glucose → glucose-6-phosphate</td><td>Hexokinase (glucokinase in liver)</td><td><strong>–1 ATP</strong>; phosphate traps glucose inside the cell</td></tr>
+      <tr><td>2</td><td>G6P → fructose-6-phosphate</td><td>Phosphoglucose isomerase</td><td>—</td></tr>
+      <tr><td>3</td><td>F6P → fructose-1,6-bisphosphate</td><td><strong>Phosphofructokinase-1 (PFK-1)</strong></td><td><strong>–1 ATP</strong>; <strong>rate-limiting / committed step</strong>. Inhibited by ATP &amp; citrate, activated by AMP &amp; F-2,6-BP</td></tr>
+      <tr><td>4</td><td>F-1,6-BP → DHAP + G3P (two 3C sugars)</td><td>Aldolase</td><td>—</td></tr>
+      <tr><td>5</td><td>DHAP ⇌ G3P</td><td>Triose phosphate isomerase</td><td>Now <strong>2 × G3P</strong> — everything below happens twice</td></tr>
+      <tr><td colspan="4" class="start">ENERGY PAYOFF PHASE (×2)</td></tr>
+      <tr><td>6</td><td>G3P → 1,3-bisphosphoglycerate</td><td>G3P dehydrogenase (GAPDH)</td><td><strong>+1 NADH</strong> each (2 total)</td></tr>
+      <tr><td>7</td><td>1,3-BPG → 3-phosphoglycerate</td><td>Phosphoglycerate kinase</td><td><strong>+1 ATP</strong> each — <em>substrate-level phosphorylation</em></td></tr>
+      <tr><td>8</td><td>3-PG → 2-phosphoglycerate</td><td>Phosphoglycerate mutase</td><td>—</td></tr>
+      <tr><td>9</td><td>2-PG → phosphoenolpyruvate (PEP)</td><td>Enolase</td><td>Releases H₂O, creates a high-energy bond</td></tr>
+      <tr><td>10</td><td>PEP → pyruvate</td><td>Pyruvate kinase</td><td><strong>+1 ATP</strong> each — substrate-level</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Glycolysis balance sheet:</strong> 4 ATP made – 2 ATP spent = <strong>net 2 ATP</strong>, plus <strong>2 NADH</strong> and <strong>2 pyruvate</strong> per glucose. Runs with or without O₂ — this is the only ATP an anaerobic cell gets.</div>
+
+  <h3 id="krebs">Pyruvate oxidation &amp; the Krebs (citric acid / TCA) cycle</h3>
+  <p><strong>Link reaction:</strong> pyruvate enters the matrix, and pyruvate dehydrogenase complex strips a CO₂ and attaches coenzyme A → <strong>acetyl-CoA (2C) + NADH + CO₂</strong>. Happens twice per glucose. Irreversible — fat cannot be turned back into glucose from here.</p>
+
+  <figure>
+    <svg viewBox="0 0 470 300" role="img" aria-label="Krebs cycle diagram">
+      <circle cx="235" cy="150" r="105" fill="none" stroke="#1c7c3a" stroke-width="2" stroke-dasharray="6 5"/>
+      <text class="svgbold" x="235" y="145" text-anchor="middle">KREBS CYCLE</text>
+      <text class="svgsm" x="235" y="163" text-anchor="middle">mitochondrial matrix</text>
+      <text class="svgtxt" x="235" y="34" text-anchor="middle">Citrate (6C)</text>
+      <text class="svgtxt" x="352" y="80" text-anchor="middle">Isocitrate (6C)</text>
+      <text class="svgtxt" x="392" y="160" text-anchor="middle">α-ketoglutarate (5C)</text>
+      <text class="svgtxt" x="350" y="240" text-anchor="middle">Succinyl-CoA (4C)</text>
+      <text class="svgtxt" x="235" y="276" text-anchor="middle">Succinate (4C)</text>
+      <text class="svgtxt" x="112" y="240" text-anchor="middle">Fumarate (4C)</text>
+      <text class="svgtxt" x="72" y="160" text-anchor="middle">Malate (4C)</text>
+      <text class="svgtxt" x="105" y="80" text-anchor="middle">Oxaloacetate (4C)</text>
+      <text class="svgsm" x="352" y="96" text-anchor="middle">NADH + CO₂</text>
+      <text class="svgsm" x="392" y="176" text-anchor="middle">NADH + CO₂</text>
+      <text class="svgsm" x="350" y="256" text-anchor="middle">GTP/ATP</text>
+      <text class="svgsm" x="180" y="276" text-anchor="middle">FADH₂</text>
+      <text class="svgsm" x="72" y="176" text-anchor="middle">NADH</text>
+      <text class="svgbold" x="105" y="62" text-anchor="middle">+ Acetyl-CoA (2C)</text>
+    </svg>
+    <figcaption>Each turn regenerates oxaloacetate — the cycle is catalytic, not consumed.</figcaption>
+  </figure>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Step</th><th>Enzyme</th><th>Yield</th></tr></thead>
+    <tbody>
+      <tr><td>Acetyl-CoA (2C) + oxaloacetate (4C) → citrate (6C)</td><td>Citrate synthase</td><td>—</td></tr>
+      <tr><td>Citrate → isocitrate</td><td>Aconitase</td><td>—</td></tr>
+      <tr><td>Isocitrate → α-ketoglutarate (5C)</td><td>Isocitrate dehydrogenase (<strong>rate-limiting</strong>)</td><td>NADH + CO₂</td></tr>
+      <tr><td>α-ketoglutarate → succinyl-CoA (4C)</td><td>α-ketoglutarate dehydrogenase</td><td>NADH + CO₂</td></tr>
+      <tr><td>Succinyl-CoA → succinate</td><td>Succinyl-CoA synthetase</td><td><strong>GTP/ATP</strong> (substrate-level)</td></tr>
+      <tr><td>Succinate → fumarate</td><td>Succinate dehydrogenase (= <strong>Complex II</strong>, sits in the inner membrane)</td><td>FADH₂</td></tr>
+      <tr><td>Fumarate → malate</td><td>Fumarase (+H₂O)</td><td>—</td></tr>
+      <tr><td>Malate → oxaloacetate</td><td>Malate dehydrogenase</td><td>NADH</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Per turn:</strong> 3 NADH · 1 FADH₂ · 1 ATP/GTP · 2 CO₂ — and the cycle turns <strong>twice per glucose</strong>, so <strong>6 NADH, 2 FADH₂, 2 ATP, 4 CO₂</strong>. The cycle makes almost no ATP directly; its real product is <em>reduced electron carriers</em>. Regulated by ATP/NADH (inhibit) and ADP/NAD⁺ (activate). Requires O₂ <em>indirectly</em> — without it NADH piles up and the cycle stalls.</div>
+
+  <h3 id="etc">Electron transport chain &amp; chemiosmosis</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Complex</th><th>Name</th><th>Electron flow</th><th>H⁺ pumped</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>NADH dehydrogenase</td><td>NADH → coenzyme Q</td><td>4</td></tr>
+      <tr><td>II</td><td>Succinate dehydrogenase</td><td>FADH₂ → coenzyme Q (<strong>enters after complex I</strong>)</td><td><strong>0</strong> — this is why FADH₂ yields less ATP</td></tr>
+      <tr><td>III</td><td>Cytochrome bc₁</td><td>Q → cytochrome c</td><td>4</td></tr>
+      <tr><td>IV</td><td>Cytochrome c oxidase</td><td>cyt c → <strong>O₂ + 4H⁺ → 2 H₂O</strong></td><td>2</td></tr>
+      <tr><td>V</td><td>ATP synthase</td><td>Not a carrier — H⁺ flows back through it and it phosphorylates ADP (~4 H⁺ per ATP)</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">Carriers are arranged in order of increasing electronegativity; oxygen is the <strong>final electron acceptor</strong>. Block O₂ and the entire chain backs up — NAD⁺ is never regenerated, Krebs stops, and only glycolysis/fermentation continues.</p>
+
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Poison / uncoupler</th><th>Target</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>Rotenone</td><td>Complex I</td><td rowspan="3">Electron flow stops → no gradient → no ATP</td></tr>
+      <tr><td>Antimycin A</td><td>Complex III</td></tr>
+      <tr><td>Cyanide, carbon monoxide, azide</td><td>Complex IV</td></tr>
+      <tr><td>Oligomycin</td><td>ATP synthase</td><td>Gradient builds but cannot be spent</td></tr>
+      <tr><td>DNP, thermogenin (brown fat)</td><td>Membrane — <strong>uncoupler</strong></td><td>H⁺ leaks back; transport runs hot, ATP is not made — energy is released as heat</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 600 150" role="img" aria-label="Chemiosmosis across a membrane">
+      <rect x="20" y="55" width="560" height="26" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgsm" x="300" y="46" text-anchor="middle">intermembrane space — HIGH H⁺ (low pH)</text>
+      <text class="svgsm" x="300" y="105" text-anchor="middle">matrix — LOW H⁺</text>
+      <rect x="70" y="48" width="34" height="40" fill="#fff" stroke="#1c7c3a"/><text class="svgsm" x="87" y="73" text-anchor="middle">I</text>
+      <rect x="160" y="48" width="34" height="40" fill="#fff" stroke="#1c7c3a"/><text class="svgsm" x="177" y="73" text-anchor="middle">II</text>
+      <rect x="250" y="48" width="34" height="40" fill="#fff" stroke="#1c7c3a"/><text class="svgsm" x="267" y="73" text-anchor="middle">III</text>
+      <rect x="340" y="48" width="34" height="40" fill="#fff" stroke="#1c7c3a"/><text class="svgsm" x="357" y="73" text-anchor="middle">IV</text>
+      <rect x="470" y="44" width="46" height="48" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgsm" x="493" y="72" text-anchor="middle">ATP synthase</text>
+      <path d="M87,44 L87,26" stroke="#1c7c3a" stroke-width="2"/><text class="svgsm" x="95" y="24">H⁺</text>
+      <path d="M267,44 L267,26" stroke="#1c7c3a" stroke-width="2"/><text class="svgsm" x="275" y="24">H⁺</text>
+      <path d="M357,44 L357,26" stroke="#1c7c3a" stroke-width="2"/><text class="svgsm" x="365" y="24">H⁺</text>
+      <path d="M493,36 L493,96" stroke="#1c7c3a" stroke-width="2.5"/>
+      <text class="svgsm" x="500" y="34">H⁺ flows down its gradient</text>
+      <text class="svgbold" x="530" y="120">ADP + Pi → ATP</text>
+      <text class="svgsm" x="20" y="132">Electrons from NADH/FADH₂ pass down the chain; released energy pumps H⁺ out, building the proton-motive force.</text>
+      <text class="svgsm" x="20" y="146">Uncouplers (e.g. DNP) leak H⁺ back and destroy ATP synthesis while electron transport keeps running.</text>
+    </svg>
+  </figure>
+
+  <h3>ATP tally per glucose</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Stage</th><th>ATP (direct)</th><th>NADH</th><th>FADH₂</th><th>ATP from carriers</th></tr></thead>
+    <tbody>
+      <tr><td>Glycolysis</td><td>2 (net, substrate-level)</td><td>2 (cytosolic)</td><td>—</td><td>3–5 (depends on shuttle)</td></tr>
+      <tr><td>Pyruvate oxidation (×2)</td><td>0</td><td>2</td><td>—</td><td>5</td></tr>
+      <tr><td>Krebs (×2 turns)</td><td>2 (GTP, substrate-level)</td><td>6</td><td>2</td><td>15 + 3</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>4 substrate-level</strong></td><td><strong>10</strong></td><td><strong>2</strong></td><td><strong>~26–28 oxidative</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">Conversion: <strong>1 NADH ≈ 2.5 ATP, 1 FADH₂ ≈ 1.5 ATP</strong> → <strong>~30–32 ATP per glucose</strong> aerobically. Older textbooks say 36–38 (they assumed 3 and 2 and ignored transport costs). Cytosolic NADH must be shuttled into the mitochondrion: the <strong>glycerol-phosphate shuttle</strong> (yeast, muscle, brain) hands electrons to FADH₂ → 1.5 ATP each (total ≈ 30); the <strong>malate–aspartate shuttle</strong> (liver, heart) keeps them as NADH → 2.5 ATP each (total ≈ 32). Prokaryotes have no mitochondrion to import into, so they score highest (~38 theoretical).</div>
+
+  <h3 id="ferment">Fermentation</h3>
+  <p>Fermentation makes <strong>no ATP of its own</strong>. Its only job is to <strong>oxidize NADH back to NAD⁺</strong> so glycolysis can keep turning — otherwise the cell runs out of NAD⁺ within seconds and even the 2 ATP stop.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Type</th><th>Organism</th><th>Pathway</th><th>Products per glucose</th><th>Net ATP</th></tr></thead>
+    <tbody>
+      <tr><td>Alcoholic</td><td><strong>Yeast</strong> (<em>Saccharomyces cerevisiae</em>), <em>Zymomonas</em></td><td>Pyruvate → acetaldehyde + CO₂ (<strong>pyruvate decarboxylase</strong>) → ethanol (<strong>alcohol dehydrogenase</strong>, oxidizes NADH)</td><td><strong>2 ethanol + 2 CO₂</strong></td><td><strong>2</strong></td></tr>
+      <tr><td>Lactic acid</td><td>Muscle cells, <em>Lactobacillus</em></td><td>Pyruvate + NADH → lactate (lactate dehydrogenase) — one step, <strong>no CO₂</strong></td><td>2 lactate</td><td><strong>2</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Yeast: aerobic vs anaerobic side by side</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Aerobic (respiration, O₂ present)</th><th>Anaerobic (alcoholic fermentation, no O₂)</th></tr></thead>
+    <tbody>
+      <tr><td>Overall equation</td><td><code>C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O</code></td><td><code>C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂</code></td></tr>
+      <tr><td>Pathways used</td><td>Glycolysis + pyruvate oxidation + Krebs + ETC</td><td><strong>Glycolysis only</strong>, then the 2-step ethanol branch</td></tr>
+      <tr><td>ATP per glucose</td><td><strong>~30–32</strong> (yeast ≈ 30, glycerol-phosphate shuttle)</td><td><strong>2</strong></td></tr>
+      <tr><td>ATP source</td><td>Mostly <strong>oxidative phosphorylation</strong> (chemiosmosis)</td><td><strong>Substrate-level</strong> only</td></tr>
+      <tr><td>Final electron acceptor</td><td><strong>O₂</strong> → water</td><td><strong>Acetaldehyde</strong> (an organic molecule) → ethanol</td></tr>
+      <tr><td>Carbon products</td><td>CO₂ + H₂O — glucose fully oxidized</td><td>Ethanol + CO₂ — ethanol still holds most of the energy, which is why it burns</td></tr>
+      <tr><td>Efficiency</td><td>~15–16× more ATP; ~34% of glucose energy captured</td><td>~2% captured; yeast must burn glucose fast to compensate</td></tr>
+      <tr><td>Where CO₂ comes from</td><td>Pyruvate oxidation + Krebs</td><td>Pyruvate decarboxylase step only</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Yeast is a facultative anaerobe</strong> — it respires when O₂ is available and ferments when it is not. <strong>Pasteur effect:</strong> adding O₂ suppresses fermentation and glucose consumption drops (more ATP per glucose, so less sugar is needed). <strong>Crabtree effect:</strong> given <em>high glucose</em>, yeast ferments even with O₂ present. Applications: the <strong>CO₂</strong> raises bread dough (ethanol bakes off), the <strong>ethanol</strong> makes beer and wine (fermentation self-limits around 14–15% alcohol, which is toxic to the yeast).</div>
+
+  <h3>Anaerobic respiration ≠ fermentation</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Aerobic respiration</th><th>Anaerobic respiration</th><th>Fermentation</th></tr></thead>
+    <tbody>
+      <tr><td>Final electron acceptor</td><td>O₂</td><td>Inorganic, not O₂ (NO₃⁻, SO₄²⁻, Fe³⁺)</td><td>Organic (pyruvate, acetaldehyde)</td></tr>
+      <tr><td>Uses an ETC?</td><td>Yes</td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+      <tr><td>ATP yield</td><td>~30–32</td><td>Intermediate (fewer than aerobic)</td><td>2</td></tr>
+      <tr><td>Examples</td><td>Most eukaryotes</td><td>Denitrifying and sulfate-reducing bacteria</td><td>Yeast, muscle, <em>Lactobacillus</em></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Other fuels entering the pathway</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Fuel</th><th>Broken into</th><th>Entry point</th></tr></thead>
+    <tbody>
+      <tr><td>Fats (triglycerides)</td><td>Glycerol; fatty acids via <strong>β-oxidation</strong></td><td>Glycerol → G3P (glycolysis); fatty acids → acetyl-CoA (Krebs). Most ATP per gram — ~9 kcal/g vs 4 for carbs</td></tr>
+      <tr><td>Proteins</td><td>Amino acids, <strong>deaminated</strong> (amino group → urea)</td><td>Pyruvate, acetyl-CoA, or Krebs intermediates depending on the residue</td></tr>
+      <tr><td>Other sugars</td><td>Fructose, galactose, glycogen</td><td>Converted into glycolysis intermediates</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= PHOTOSYNTHESIS ================= -->
+<section id="photo">
+  <h2>Photosynthesis</h2>
+  <p><code>6 CO₂ + 6 H₂O + light → C₆H₁₂O₆ + 6 O₂</code> — an <strong>endergonic, anabolic, redox</strong> process: CO₂ is reduced, water is oxidized. Respiration's balance sheet run backwards.</p>
+
+  <h3>Chloroplast structure &amp; pigments</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Part</th><th>What happens there</th></tr></thead>
+    <tbody>
+      <tr><td>Thylakoid membrane (stacked into grana)</td><td><strong>Light-dependent reactions</strong> — photosystems, ETC, ATP synthase all embedded here</td></tr>
+      <tr><td>Thylakoid lumen (inside the disc)</td><td>Where H⁺ accumulates; water is split facing this space</td></tr>
+      <tr><td>Stroma (fluid around the thylakoids)</td><td><strong>Calvin cycle</strong>; also holds chloroplast DNA and 70S ribosomes</td></tr>
+      <tr><td>Double outer membrane</td><td>Envelope — evidence for endosymbiotic origin</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul>
+    <li><strong>Chlorophyll a</strong> — the only pigment in the reaction center; absorbs blue-violet (~430 nm) and red (~662 nm), <em>reflects green</em>.</li>
+    <li><strong>Chlorophyll b</strong> + <strong>carotenoids</strong> (carotenes, xanthophylls) = accessory pigments; widen the range absorbed and dissipate excess energy (photoprotection). Visible in fall once chlorophyll degrades.</li>
+    <li><strong>Absorption spectrum</strong> = light a pigment takes in. <strong>Action spectrum</strong> = light that actually drives photosynthesis. They match closely — Engelmann's bacteria clustered in red and blue light, proving chlorophyll drives the process.</li>
+    <li><strong>Antenna complex</strong> harvests photons and funnels the energy to the <strong>reaction-center</strong> chlorophyll, which passes an excited electron to the <strong>primary electron acceptor</strong>.</li>
+  </ul>
+
+  <h3>Light-dependent reactions (thylakoid membrane)</h3>
+  <figure>
+    <svg viewBox="0 0 620 210" role="img" aria-label="Light reactions Z scheme">
+      <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+        <path d="M0,0 L9,4.5 L0,9 z" fill="#1c7c3a"/></marker></defs>
+      <rect x="20" y="120" width="90" height="40" rx="6" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgbold" x="65" y="138" text-anchor="middle">PS II</text>
+      <text class="svgsm" x="65" y="153" text-anchor="middle">P680</text>
+      <rect x="240" y="105" width="90" height="40" rx="6" fill="#fff" stroke="#888"/>
+      <text class="svgsm" x="285" y="122" text-anchor="middle">cytochrome</text>
+      <text class="svgsm" x="285" y="136" text-anchor="middle">b₆f — pumps H⁺</text>
+      <rect x="400" y="80" width="90" height="40" rx="6" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgbold" x="445" y="98" text-anchor="middle">PS I</text>
+      <text class="svgsm" x="445" y="113" text-anchor="middle">P700</text>
+      <text class="svgsm" x="175" y="100" text-anchor="middle">plastoquinone (PQ)</text>
+      <text class="svgsm" x="368" y="80" text-anchor="middle">plastocyanin (PC)</text>
+      <line x1="112" y1="130" x2="236" y2="120" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar3)"/>
+      <line x1="332" y1="115" x2="396" y2="100" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar3)"/>
+      <line x1="492" y1="96" x2="560" y2="70" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar3)"/>
+      <text class="svgsm" x="545" y="52" text-anchor="middle">ferredoxin → NADP⁺ reductase</text>
+      <text class="svgbold" x="560" y="88" text-anchor="middle">NADPH</text>
+      <path d="M65,116 L65,86" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar3)"/>
+      <text class="svgsm" x="65" y="76" text-anchor="middle">photon</text>
+      <path d="M445,76 L445,50" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar3)"/>
+      <text class="svgsm" x="445" y="42" text-anchor="middle">photon</text>
+      <text class="svgtxt" x="20" y="185">H₂O → 2 H⁺ + ½ O₂ + 2 e⁻</text>
+      <text class="svgsm" x="20" y="200">water splitting (photolysis) at PSII replaces the lost electron — source of ALL atmospheric O₂</text>
+      <line x1="115" y1="176" x2="60" y2="166" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar3)"/>
+    </svg>
+    <figcaption>The Z-scheme: electrons flow H₂O → PSII → PQ → cytochrome b₆f → PC → PSI → ferredoxin → NADPH.</figcaption>
+  </figure>
+  <ol>
+    <li><strong>PSII (P680)</strong> absorbs a photon; an excited electron leaves for the primary acceptor. P680⁺ is the strongest biological oxidizer known.</li>
+    <li><strong>Photolysis:</strong> the oxygen-evolving complex splits water to replace that electron → releases <strong>O₂</strong> and dumps H⁺ into the lumen.</li>
+    <li>Electron travels down the chain (PQ → cytochrome b₆f → PC); the b₆f complex <strong>pumps H⁺ into the lumen</strong>.</li>
+    <li><strong>PSI (P700)</strong> re-energizes the electron with a second photon → ferredoxin → NADP⁺ reductase makes <strong>NADPH</strong> in the stroma.</li>
+    <li><strong>Chemiosmosis:</strong> H⁺ flows from lumen back to stroma through ATP synthase = <strong>photophosphorylation</strong> → ATP.</li>
+  </ol>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Noncyclic (linear)</th><th>Cyclic</th></tr></thead>
+    <tbody>
+      <tr><td>Photosystems used</td><td>PSII → PSI</td><td>PSI only (electron loops back to b₆f)</td></tr>
+      <tr><td>Products</td><td><strong>ATP + NADPH + O₂</strong></td><td><strong>ATP only</strong> — no NADPH, no O₂</td></tr>
+      <tr><td>Why</td><td>Standard route</td><td>Tops up ATP when the Calvin cycle needs more ATP than NADPH (it needs 3:2)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">Same chemiosmotic principle as mitochondria — an ETC builds an H⁺ gradient, ATP synthase spends it. Differences: the gradient forms in the <strong>thylakoid lumen</strong>, the electron source is <strong>water</strong> (not NADH), and the final acceptor is <strong>NADP⁺</strong> (not O₂). The O₂ you exhale-worth of atmosphere comes from split <strong>water</strong>, not from CO₂ — proven with ¹⁸O labeling.</div>
+
+  <h3 id="calvin">Light-independent reactions — the Calvin cycle (stroma)</h3>
+  <p>Called "dark reactions" but they run in daylight — they just do not use photons directly, they spend the ATP and NADPH the light reactions made.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Phase</th><th>What happens</th><th>Cost per 3 CO₂</th></tr></thead>
+    <tbody>
+      <tr><td>1. Carbon fixation</td><td><strong>Rubisco</strong> attaches CO₂ to <strong>RuBP</strong> (5C); the 6C product immediately splits into <strong>two 3-phosphoglycerate (3-PGA, 3C)</strong></td><td>—</td></tr>
+      <tr><td>2. Reduction</td><td>3-PGA → 1,3-BPG (uses ATP) → <strong>G3P</strong> (uses NADPH)</td><td><strong>6 ATP + 6 NADPH</strong></td></tr>
+      <tr><td>3. Regeneration of RuBP</td><td>5 of the 6 G3P are rearranged back into 3 RuBP; <strong>1 G3P exits</strong></td><td><strong>3 ATP</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Per G3P:</strong> 3 CO₂, <strong>9 ATP, 6 NADPH</strong>, 3 turns. <strong>Per glucose:</strong> 6 CO₂, <strong>18 ATP, 12 NADPH</strong>, 6 turns — two G3P join to make one glucose. G3P also feeds into starch, cellulose, lipids and amino acids. Rubisco is the most abundant protein on Earth and is <em>slow</em>, which is why plants make so much of it.</div>
+
+  <h3 id="c4cam">Photorespiration and the C3 / C4 / CAM strategies</h3>
+  <p><strong>The problem:</strong> rubisco also accepts <strong>O₂</strong> instead of CO₂. On hot, dry days stomata close to save water — CO₂ inside the leaf falls, O₂ builds up, and rubisco starts fixing O₂. That is <strong>photorespiration</strong>: it consumes ATP, releases CO₂ and makes no sugar, wasting up to ~25% of the plant's fixed carbon.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>C3</th><th>C4</th><th>CAM</th></tr></thead>
+    <tbody>
+      <tr><td>First stable product</td><td>3-PGA (<strong>3C</strong>)</td><td>Oxaloacetate → malate (<strong>4C</strong>)</td><td>Oxaloacetate → malate (4C)</td></tr>
+      <tr><td>Initial fixing enzyme</td><td>Rubisco</td><td><strong>PEP carboxylase</strong> — high affinity for CO₂, <em>ignores O₂</em></td><td>PEP carboxylase</td></tr>
+      <tr><td>Separation strategy</td><td>None — everything in mesophyll cells</td><td><strong>Spatial:</strong> CO₂ fixed in mesophyll, pumped to <strong>bundle-sheath</strong> cells where rubisco works (Kranz anatomy)</td><td><strong>Temporal:</strong> stomata open at <strong>night</strong> to fix CO₂ into malate (stored in vacuole); Calvin cycle runs by <strong>day</strong> with stomata shut</td></tr>
+      <tr><td>Photorespiration</td><td>High in heat/drought</td><td>Very low</td><td>Very low</td></tr>
+      <tr><td>Water efficiency</td><td>Lowest</td><td>Better</td><td><strong>Best</strong></td></tr>
+      <tr><td>Energy cost</td><td>Cheapest per CO₂</td><td>Extra ATP to regenerate PEP</td><td>Extra ATP; slowest growth</td></tr>
+      <tr><td>Best conditions</td><td>Cool, moist, moderate light</td><td>Hot, sunny, moderately dry</td><td>Arid deserts</td></tr>
+      <tr><td>Examples</td><td>Wheat, rice, soybean, most trees (~85% of species)</td><td>Corn, sugarcane, sorghum, crabgrass</td><td>Cacti, succulents, pineapple, agave, jade plant</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">Both C4 and CAM solve the same problem the same way — <strong>concentrate CO₂ around rubisco</strong> so it cannot grab O₂. They differ only in <em>how</em> they separate the two steps: C4 separates them in <strong>space</strong> (different cells), CAM in <strong>time</strong> (night vs day).</div>
+
+  <h3>Photosynthesis vs respiration</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Photosynthesis</th><th>Cellular respiration</th></tr></thead>
+    <tbody>
+      <tr><td>Equation</td><td>6 CO₂ + 6 H₂O → C₆H₁₂O₆ + 6 O₂</td><td>C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O</td></tr>
+      <tr><td>Energy</td><td>Endergonic — stores light energy in bonds</td><td>Exergonic — releases it as ATP</td></tr>
+      <tr><td>Organelle</td><td>Chloroplast</td><td>Mitochondrion</td></tr>
+      <tr><td>Electron carrier</td><td>NADP⁺ / NADPH</td><td>NAD⁺ / NADH, FAD / FADH₂</td></tr>
+      <tr><td>Carbon</td><td>CO₂ <strong>reduced</strong> to sugar</td><td>Sugar <strong>oxidized</strong> to CO₂</td></tr>
+      <tr><td>Who does it</td><td>Plants, algae, cyanobacteria</td><td>Essentially all organisms — <em>including plants</em>, day and night</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= MENDEL ================= -->
+<section id="mendel">
+  <h2>Mendel's Laws &amp; Pedigrees</h2>
+  <ul>
+    <li><strong>Law of segregation:</strong> the two alleles of a gene separate during meiosis; each gamete gets one.</li>
+    <li><strong>Law of independent assortment:</strong> genes on different chromosomes assort independently.</li>
+    <li><strong>Dominance:</strong> the dominant allele masks the recessive in a heterozygote.</li>
+    <li>Genotype = alleles carried; phenotype = trait shown. Homozygous (AA/aa) vs heterozygous (Aa).</li>
+  </ul>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Cross</th><th>Genotypic ratio</th><th>Phenotypic ratio</th></tr></thead>
+    <tbody>
+      <tr><td>Monohybrid Aa × Aa</td><td>1 AA : 2 Aa : 1 aa</td><td><strong>3 : 1</strong></td></tr>
+      <tr><td>Dihybrid AaBb × AaBb</td><td>—</td><td><strong>9 : 3 : 3 : 1</strong></td></tr>
+      <tr><td>Testcross Aa × aa</td><td>1 Aa : 1 aa</td><td>1 : 1 (reveals unknown genotype)</td></tr>
+      <tr><td>Incomplete dominance Aa</td><td>1 : 2 : 1</td><td>1 : 2 : 1 (blended, e.g. pink snapdragons)</td></tr>
+      <tr><td>Codominance</td><td>1 : 2 : 1</td><td>Both alleles fully expressed (AB blood type)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Punnett square — Aa × Aa</h3>
+  <figure>
+    <svg viewBox="0 0 260 200" role="img" aria-label="Punnett square">
+      <text class="svgtxt" x="105" y="24">A</text><text class="svgtxt" x="185" y="24">a</text>
+      <text class="svgtxt" x="45" y="80">A</text><text class="svgtxt" x="45" y="150">a</text>
+      <rect x="70" y="35" width="70" height="60" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="105" y="70" text-anchor="middle">AA</text>
+      <rect x="140" y="35" width="70" height="60" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="175" y="70" text-anchor="middle">Aa</text>
+      <rect x="70" y="95" width="70" height="60" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgtxt" x="105" y="130" text-anchor="middle">Aa</text>
+      <rect x="140" y="95" width="70" height="60" fill="#fff0f0" stroke="#c62828"/><text class="svgtxt" x="175" y="130" text-anchor="middle">aa</text>
+      <text class="svgsm" x="130" y="178" text-anchor="middle">3 dominant : 1 recessive phenotype</text>
+      <text class="svgsm" x="130" y="194" text-anchor="middle">1 AA : 2 Aa : 1 aa genotype</text>
+    </svg>
+  </figure>
+
+  <h3>Inheritance patterns in pedigrees</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Pattern</th><th>Tell-tale signs</th></tr></thead>
+    <tbody>
+      <tr><td>Autosomal recessive</td><td>Skips generations; affected child from two unaffected carriers; sexes equally affected; consanguinity raises risk</td></tr>
+      <tr><td>Autosomal dominant</td><td>Appears every generation; affected child always has an affected parent; sexes equally affected</td></tr>
+      <tr><td>X-linked recessive</td><td><strong>Mostly males</strong>; passed from carrier mother to son; affected father → all daughters are carriers, no son affected</td></tr>
+      <tr><td>X-linked dominant</td><td>Affected father → <strong>all</strong> daughters affected, no sons; more females affected overall</td></tr>
+      <tr><td>Y-linked</td><td>Father → all sons only</td></tr>
+      <tr><td>Mitochondrial</td><td>Affected mother → all children; fathers never transmit</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">Pedigree symbols: square = male, circle = female, filled = affected, half-filled/dot = carrier, horizontal line = mating, double line = consanguineous.</p>
+</section>
+
+<!-- ================= LINKAGE ================= -->
+<section id="linkage">
+  <h2>Linkage, Recombination &amp; Maps</h2>
+  <ul>
+    <li>Genes on the same chromosome are <strong>linked</strong> and violate independent assortment — parental combinations outnumber recombinants.</li>
+    <li><strong>Crossing over</strong> in prophase I of meiosis breaks linkage; the closer two genes are, the less often it happens.</li>
+  </ul>
+  <div class="key"><strong>Recombination frequency (RF) = (recombinant offspring / total offspring) × 100.</strong> 1% RF = 1 map unit = 1 centimorgan (cM). RF maxes out at <strong>50%</strong> — that means unlinked (or far apart on the same chromosome).</div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Concept</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Testcross</td><td>Heterozygote × homozygous recessive — offspring phenotypes read out gamete frequencies directly</td></tr>
+      <tr><td>Parental classes</td><td>The two most numerous phenotypes; match the original chromosome arrangement</td></tr>
+      <tr><td>Double crossover class</td><td>The two <strong>rarest</strong> classes; compare them to the parentals — the gene that flipped is the <strong>middle</strong> gene</td></tr>
+      <tr><td>Three-point cross</td><td>Maps order and distance for three genes in one experiment</td></tr>
+      <tr><td>Interference</td><td>One crossover suppresses another nearby. Coefficient of coincidence = observed / expected doubles; interference = 1 – c.o.c.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ================= RECOMBINANT DNA ================= -->
+<section id="recdna">
+  <h2>Recombinant DNA &amp; Cloning</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td>Restriction endonuclease</td><td>Cuts DNA at a specific <strong>palindromic</strong> site. <code>EcoRI = G↓AATTC</code> → sticky ends; <code>SmaI</code> → blunt ends. Bacterial defense against phage; host DNA protected by methylation.</td></tr>
+      <tr><td>DNA ligase</td><td>Seals the insert into the vector (phosphodiester bonds)</td></tr>
+      <tr><td>Plasmid vector</td><td>Needs an <strong>origin of replication</strong>, a <strong>selectable marker</strong> (antibiotic resistance), and a <strong>multiple cloning site</strong></td></tr>
+      <tr><td>Other vectors</td><td>Phage λ (bigger inserts), cosmid, BAC, YAC — capacity rises in that order</td></tr>
+      <tr><td>Transformation</td><td>Getting the plasmid into competent bacteria (heat shock, electroporation)</td></tr>
+      <tr><td>Blue/white screening</td><td>Insert disrupts <em>lacZ</em> → white colonies carry the insert; blue colonies (X-gal + IPTG) are empty vector</td></tr>
+      <tr><td>Reverse transcriptase</td><td>Makes DNA from an RNA template — the enzyme behind cDNA (from retroviruses)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Cloning workflow</h3>
+  <ol>
+    <li>Cut insert DNA and vector with the <em>same</em> restriction enzyme → compatible ends.</li>
+    <li>Ligate insert into vector = recombinant plasmid.</li>
+    <li>Transform into bacteria.</li>
+    <li>Select on antibiotic plates (only transformed cells grow).</li>
+    <li>Screen for the right clone — colony hybridization with a labeled probe, or antibody for an expression library.</li>
+    <li>Grow up and purify the amplified DNA or expressed protein.</li>
+  </ol>
+
+  <h3>Genomic vs cDNA library</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Genomic library</th><th>cDNA library</th></tr></thead>
+    <tbody>
+      <tr><td>Starting material</td><td>Total chromosomal DNA, restriction-digested</td><td><strong>mRNA</strong> + reverse transcriptase</td></tr>
+      <tr><td>Priming</td><td>—</td><td><strong>Oligo-dT primer</strong> anneals to the poly-A tail, so only mature mRNA is copied</td></tr>
+      <tr><td>Contents</td><td>Every sequence: exons, introns, promoters, junk</td><td>Only sequences expressed in that tissue, <strong>introns already spliced out</strong></td></tr>
+      <tr><td>Same for every tissue?</td><td>Yes</td><td>No — it is a snapshot of that tissue/time</td></tr>
+      <tr><td>Best for</td><td>Regulatory regions, gene structure</td><td>Expressing a eukaryotic protein in bacteria (which cannot splice); a <strong>full-length clone</strong> gives the entire coding sequence</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">An <strong>expression library</strong> puts cDNA behind a bacterial promoter so protein is made — screen it with an <strong>antibody</strong> instead of a nucleic-acid probe.</p>
+</section>
+
+<!-- ================= METHODS ================= -->
+<section id="methods">
+  <h2>Lab Methods</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Method</th><th>How it works</th><th>Detects / gives you</th></tr></thead>
+    <tbody>
+      <tr><td>Gel electrophoresis</td><td>DNA is negative → migrates toward the <strong>positive</strong> electrode through agarose. Small fragments travel <strong>fastest/farthest</strong>.</td><td>Fragment sizes vs a ladder. Stained with ethidium bromide (UV) or SYBR</td></tr>
+      <tr><td>PCR</td><td>Cycles: <strong>denature 94–95 °C → anneal primers 50–65 °C → extend 72 °C</strong> with heat-stable <em>Taq</em> polymerase. Product doubles each cycle (2ⁿ).</td><td>Millions of copies of a target region from tiny samples</td></tr>
+      <tr><td>RT-PCR / qPCR</td><td>Reverse-transcribe RNA first / track fluorescence in real time</td><td>Gene expression levels</td></tr>
+      <tr><td>Sanger sequencing</td><td>Chain termination with <strong>ddNTPs</strong> (no 3'-OH → extension stops); fragments separated by size, fluorescent readout</td><td>The base sequence</td></tr>
+      <tr><td>Southern blot</td><td>DNA on a gel → membrane → labeled DNA probe hybridizes</td><td>Presence of a specific <strong>DNA</strong> sequence</td></tr>
+      <tr><td>Northern blot</td><td>Same, but RNA is separated</td><td><strong>RNA</strong> — is the gene transcribed?</td></tr>
+      <tr><td>Western blot</td><td>Proteins separated (SDS-PAGE), probed with an <strong>antibody</strong></td><td><strong>Protein</strong> presence and size</td></tr>
+      <tr><td>Restriction mapping / RFLP</td><td>Compare fragment patterns after digestion</td><td>Sequence differences between individuals</td></tr>
+      <tr><td>Microarray / RNA-seq</td><td>Hybridization to a chip / sequencing of all transcripts</td><td>Expression of thousands of genes at once</td></tr>
+      <tr><td>CRISPR-Cas9</td><td>Guide RNA targets Cas9 to a matching sequence; it cuts, and repair edits the gene</td><td>Targeted genome editing</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">Memory hook for blots: <strong>S</strong>outhern = DNA, <strong>N</strong>orthern = RNA, <strong>W</strong>estern = protein ("SNoW DRoP").</div>
+</section>
+
+<!-- ================= CLASSIC EXPERIMENTS ================= -->
+<section id="classic">
+  <h2>Classic Experiments</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Experiment</th><th>Setup</th><th>Conclusion</th></tr></thead>
+    <tbody>
+      <tr><td>Griffith (1928)</td><td>Heat-killed S strain + live R strain killed mice</td><td>A "transforming principle" moves between bacteria</td></tr>
+      <tr><td>Avery, MacLeod &amp; McCarty (1944)</td><td>Destroyed protein, RNA or DNA in turn; only DNase stopped transformation</td><td>The transforming principle is <strong>DNA</strong></td></tr>
+      <tr><td>Hershey &amp; Chase (1952)</td><td>Phage labeled with <sup>35</sup>S (protein) or <sup>32</sup>P (DNA); blender + centrifuge</td><td><sup>32</sup>P entered the cells → <strong>DNA is the genetic material</strong></td></tr>
+      <tr><td>Chargaff</td><td>Measured base composition across species</td><td>%A = %T, %G = %C — set up base pairing</td></tr>
+      <tr><td>Franklin &amp; Wilkins</td><td>X-ray diffraction (Photo 51)</td><td>Helical, uniform width, 3.4 Å per base</td></tr>
+      <tr><td>Watson &amp; Crick (1953)</td><td>Model building from the above</td><td>Antiparallel double helix; suggested a copying mechanism</td></tr>
+      <tr><td>Meselson &amp; Stahl (1958)</td><td><sup>15</sup>N → <sup>14</sup>N shift, CsCl density gradient. Gen 1 = all hybrid; Gen 2 = half hybrid, half light</td><td>Replication is <strong>semiconservative</strong> (rules out conservative and dispersive)</td></tr>
+      <tr><td>Beadle &amp; Tatum</td><td><em>Neurospora</em> mutants needing single supplements</td><td>One gene → one enzyme (updated: one gene → one polypeptide)</td></tr>
+      <tr><td>Garrod</td><td>Alkaptonuria in families</td><td>Inborn errors of metabolism — genes control biochemical steps</td></tr>
+      <tr><td>Nirenberg &amp; Matthaei</td><td>Poly-U RNA in a cell-free system → polyphenylalanine</td><td>Cracked the first codon: UUU = Phe</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <a class="back" href="index.html">&larr; Back to quiz</a>
+</section>
+
+<!-- ================= RECALL PRACTICE ================= -->
+<section id="recall">
+  <h2>Recall Practice — name the thing</h2>
+  <p>Function or description is given; pick the name from the list. Options are drawn from the same topic, so guessing by elimination is hard.</p>
+  <div class="rc-topics" id="rc-topics"></div>
+  <p class="rc-clue" id="rc-clue">Loading…</p>
+  <select id="rc-select" aria-label="Choose the answer"></select>
+  <div class="rc-btns">
+    <button id="rc-check">Check</button>
+    <button id="rc-next" class="ghost">Next</button>
+    <button id="rc-reset" class="ghost">Reset score</button>
+  </div>
+  <p class="rc-feedback" id="rc-feedback"></p>
+  <p class="rc-score" id="rc-score"></p>
+</section>
+
+</main>
+
+<script>
+// question bank: t = topic, q = clue (the function), a = the name to recall
+const RC_TOPICS = {
+  resp: "Respiration &amp; cycles",
+  photo: "Photosynthesis",
+  cell: "Cells &amp; organelles",
+  mol: "Molecular biology",
+  organ: "Organs &amp; systems"
+};
+const RC_Q = [
+  // --- respiration ---
+  {t:"resp", q:"Phosphorylates glucose the moment it enters the cell, trapping it inside", a:"Hexokinase"},
+  {t:"resp", q:"Rate-limiting enzyme of glycolysis; inhibited by ATP and citrate, activated by AMP", a:"Phosphofructokinase-1 (PFK-1)"},
+  {t:"resp", q:"Splits fructose-1,6-bisphosphate into two 3-carbon sugars", a:"Aldolase"},
+  {t:"resp", q:"Oxidizes G3P and reduces NAD⁺ to NADH in the payoff phase", a:"G3P dehydrogenase (GAPDH)"},
+  {t:"resp", q:"Converts PEP to pyruvate, making ATP by substrate-level phosphorylation", a:"Pyruvate kinase"},
+  {t:"resp", q:"Links glycolysis to the Krebs cycle: pyruvate → acetyl-CoA + CO₂ + NADH", a:"Pyruvate dehydrogenase complex"},
+  {t:"resp", q:"Joins acetyl-CoA to oxaloacetate to form citrate", a:"Citrate synthase"},
+  {t:"resp", q:"Rate-limiting enzyme of the Krebs cycle; makes NADH and releases CO₂", a:"Isocitrate dehydrogenase"},
+  {t:"resp", q:"The only Krebs enzyme embedded in the inner membrane; it is also Complex II and yields FADH₂", a:"Succinate dehydrogenase"},
+  {t:"resp", q:"Regenerates oxaloacetate at the end of the cycle, producing the last NADH", a:"Malate dehydrogenase"},
+  {t:"resp", q:"Accepts electrons from NADH and pumps 4 H⁺; entry point of the electron transport chain", a:"Complex I (NADH dehydrogenase)"},
+  {t:"resp", q:"Transfers electrons to O₂ to form water; blocked by cyanide and carbon monoxide", a:"Complex IV (cytochrome c oxidase)"},
+  {t:"resp", q:"Mobile lipid carrier that shuttles electrons from Complexes I and II to Complex III", a:"Coenzyme Q (ubiquinone)"},
+  {t:"resp", q:"Uses the proton-motive force to phosphorylate ADP; blocked by oligomycin", a:"ATP synthase"},
+  {t:"resp", q:"Removes CO₂ from pyruvate to make acetaldehyde in yeast fermentation", a:"Pyruvate decarboxylase"},
+  {t:"resp", q:"Reduces acetaldehyde to ethanol, regenerating NAD⁺ in yeast", a:"Alcohol dehydrogenase"},
+  {t:"resp", q:"Converts pyruvate to lactate in muscle so glycolysis can continue without O₂", a:"Lactate dehydrogenase"},
+  {t:"resp", q:"The 2-carbon molecule that actually enters the Krebs cycle", a:"Acetyl-CoA"},
+  {t:"resp", q:"The 4-carbon molecule that accepts acetyl-CoA and is regenerated each turn", a:"Oxaloacetate"},
+  {t:"resp", q:"Compartment holding the Krebs cycle enzymes", a:"Mitochondrial matrix"},
+  // --- photosynthesis ---
+  {t:"photo", q:"Fixes CO₂ onto RuBP; also grabs O₂ by mistake, causing photorespiration", a:"Rubisco"},
+  {t:"photo", q:"Fixes CO₂ in C4 and CAM plants; has no affinity for O₂", a:"PEP carboxylase"},
+  {t:"photo", q:"Reaction center P680; splits water and releases O₂", a:"Photosystem II"},
+  {t:"photo", q:"Reaction center P700; re-energizes electrons to make NADPH", a:"Photosystem I"},
+  {t:"photo", q:"Pumps H⁺ into the thylakoid lumen between the two photosystems", a:"Cytochrome b₆f complex"},
+  {t:"photo", q:"Small copper protein carrying electrons from cytochrome b₆f to PSI", a:"Plastocyanin"},
+  {t:"photo", q:"Carries electrons from PSI to the enzyme that reduces NADP⁺", a:"Ferredoxin"},
+  {t:"photo", q:"Fluid region of the chloroplast where the Calvin cycle runs", a:"Stroma"},
+  {t:"photo", q:"Membrane system holding the photosystems and ATP synthase", a:"Thylakoid membrane"},
+  {t:"photo", q:"Space where H⁺ accumulates during the light reactions", a:"Thylakoid lumen"},
+  {t:"photo", q:"Only pigment found in the reaction center; reflects green light", a:"Chlorophyll a"},
+  {t:"photo", q:"Accessory pigments that widen light capture and protect against excess energy", a:"Carotenoids"},
+  {t:"photo", q:"5-carbon acceptor that CO₂ is attached to in carbon fixation", a:"RuBP (ribulose bisphosphate)"},
+  {t:"photo", q:"3-carbon sugar that exits the Calvin cycle and builds glucose", a:"G3P"},
+  {t:"photo", q:"Pores that close in heat to save water, starving the leaf of CO₂", a:"Stomata"},
+  {t:"photo", q:"Cells where rubisco works in C4 plants, kept CO₂-rich and O₂-poor", a:"Bundle-sheath cells"},
+  {t:"photo", q:"Wasteful pathway when rubisco fixes O₂ instead of CO₂", a:"Photorespiration"},
+  {t:"photo", q:"Route that uses PSI alone to make extra ATP with no NADPH or O₂", a:"Cyclic photophosphorylation"},
+  // --- cells ---
+  {t:"cell", q:"Makes rRNA and assembles ribosomal subunits", a:"Nucleolus"},
+  {t:"cell", q:"Site of translation; 70S in prokaryotes, 80S in eukaryotes", a:"Ribosome"},
+  {t:"cell", q:"Studded with ribosomes; folds proteins destined for secretion", a:"Rough endoplasmic reticulum"},
+  {t:"cell", q:"Synthesizes lipids and steroids, detoxifies drugs, stores Ca²⁺", a:"Smooth endoplasmic reticulum"},
+  {t:"cell", q:"Modifies, sorts and ships proteins — the cell's post office", a:"Golgi apparatus"},
+  {t:"cell", q:"Acidic sac of digestive enzymes that breaks down waste and old organelles", a:"Lysosome"},
+  {t:"cell", q:"Breaks down fatty acids and neutralizes H₂O₂ with catalase", a:"Peroxisome"},
+  {t:"cell", q:"Folded inner membrane where the electron transport chain sits", a:"Cristae"},
+  {t:"cell", q:"Maintains turgor pressure and stores water in plant cells", a:"Central vacuole"},
+  {t:"cell", q:"Selectively permeable phospholipid bilayer described by the fluid mosaic model", a:"Plasma membrane"},
+  {t:"cell", q:"Rigid outer layer made of peptidoglycan in bacteria, cellulose in plants", a:"Cell wall"},
+  {t:"cell", q:"Actin filaments, intermediate filaments and microtubules giving shape and transport", a:"Cytoskeleton"},
+  {t:"cell", q:"Organizes the mitotic spindle in animal cells", a:"Centrosome (centrioles)"},
+  {t:"cell", q:"Motile structures built on a 9+2 microtubule arrangement", a:"Cilia and flagella"},
+  {t:"cell", q:"Stores the DNA and is the site of transcription", a:"Nucleus"},
+  // --- molecular ---
+  {t:"mol", q:"Unwinds the double helix at the replication fork", a:"Helicase"},
+  {t:"mol", q:"Lays down the short RNA primer that gives polymerase a 3'-OH", a:"Primase"},
+  {t:"mol", q:"Main replication enzyme in bacteria; elongates 5'→3' and proofreads", a:"DNA polymerase III"},
+  {t:"mol", q:"Removes RNA primers and fills the gaps with DNA", a:"DNA polymerase I"},
+  {t:"mol", q:"Seals nicks between Okazaki fragments", a:"DNA ligase"},
+  {t:"mol", q:"Relieves supercoiling ahead of the replication fork", a:"Topoisomerase (gyrase)"},
+  {t:"mol", q:"Extends chromosome ends, solving the end-replication problem", a:"Telomerase"},
+  {t:"mol", q:"Synthesizes RNA from a DNA template without needing a primer", a:"RNA polymerase"},
+  {t:"mol", q:"Removes introns and joins exons in eukaryotic pre-mRNA", a:"Spliceosome"},
+  {t:"mol", q:"Makes DNA from an RNA template; used to build cDNA", a:"Reverse transcriptase"},
+  {t:"mol", q:"Attaches the correct amino acid to its matching tRNA", a:"Aminoacyl-tRNA synthetase"},
+  {t:"mol", q:"Ribosomal site that holds the tRNA carrying the growing polypeptide", a:"P site"},
+  {t:"mol", q:"Recognizes a stop codon and releases the finished protein", a:"Release factor"},
+  {t:"mol", q:"Cuts DNA at a specific palindromic sequence, leaving sticky or blunt ends", a:"Restriction endonuclease"},
+  {t:"mol", q:"Heat-stable polymerase that makes PCR possible", a:"Taq polymerase"},
+  {t:"mol", q:"Binds the operator and blocks transcription until allolactose removes it", a:"Lac repressor"},
+  {t:"mol", q:"Positive regulator that binds cAMP and boosts lac transcription when glucose is low", a:"CAP (catabolite activator protein)"},
+  {t:"mol", q:"Chain-terminating nucleotides used in Sanger sequencing", a:"ddNTPs"},
+  // --- organs ---
+  {t:"organ", q:"Pumps blood through the pulmonary and systemic circuits", a:"Heart"},
+  {t:"organ", q:"Site of gas exchange between air and blood", a:"Lungs"},
+  {t:"organ", q:"Detoxifies blood, stores glycogen, makes bile and plasma proteins", a:"Liver"},
+  {t:"organ", q:"Filters blood, balances water and salts, produces urine", a:"Kidney"},
+  {t:"organ", q:"Secretes insulin and glucagon plus digestive enzymes", a:"Pancreas"},
+  {t:"organ", q:"Churns food with acid and pepsin to begin protein digestion", a:"Stomach"},
+  {t:"organ", q:"Main site of nutrient absorption; lined with villi", a:"Small intestine"},
+  {t:"organ", q:"Reabsorbs water and compacts waste", a:"Large intestine"},
+  {t:"organ", q:"Filters blood and recycles old red blood cells", a:"Spleen"},
+  {t:"organ", q:"Releases hormones that set metabolic rate", a:"Thyroid"},
+  {t:"organ", q:"Tiny air sacs where O₂ and CO₂ cross into the blood", a:"Alveoli"},
+  {t:"organ", q:"Functional filtering unit of the kidney", a:"Nephron"},
+  {t:"organ", q:"Stores bile made by the liver", a:"Gallbladder"},
+  {t:"organ", q:"Muscle whose contraction drives inhalation", a:"Diaphragm"},
+  {t:"organ", q:"Produces blood cells", a:"Bone marrow"}
+];
+
+(function(){
+  const $ = id => document.getElementById(id);
+  let topic = "all", pool = [], current = null, answered = false;
+  let right = 0, total = 0;
+
+  const shuffle = arr => arr.map(v => [Math.random(), v]).sort((a,b) => a[0]-b[0]).map(p => p[1]);
+
+  // 6+ choices, all drawn from the same topic so distractors stay plausible
+  function choicesFor(q){
+    const siblings = RC_Q.filter(x => x.t === q.t && x.a !== q.a).map(x => x.a);
+    const distractors = shuffle([...new Set(siblings)]).slice(0, 7);
+    return shuffle([q.a, ...distractors]);
+  }
+
+  function nextQuestion(){
+    if(!pool.length) pool = shuffle(RC_Q.filter(q => topic === "all" || q.t === topic));
+    current = pool.pop();
+    answered = false;
+    $("rc-clue").textContent = current.q;
+    const sel = $("rc-select");
+    sel.innerHTML = '<option value="">— choose an answer —</option>' +
+      choicesFor(current).map(c => '<option>' + c + '</option>').join("");
+    sel.disabled = false;
+    $("rc-feedback").textContent = "";
+    $("rc-feedback").className = "rc-feedback";
+  }
+
+  function check(){
+    if(answered) return nextQuestion();
+    const val = $("rc-select").value;
+    if(!val) return;
+    answered = true; total++;
+    const fb = $("rc-feedback");
+    if(val === current.a){ right++; fb.textContent = "✓ Correct"; fb.className = "rc-feedback ok"; }
+    else { fb.textContent = "✗ Answer: " + current.a; fb.className = "rc-feedback bad"; }
+    $("rc-select").disabled = true;
+    $("rc-score").textContent = "Score: " + right + " / " + total;
+  }
+
+  $("rc-topics").innerHTML = ['<button data-t="all" class="on">All</button>']
+    .concat(Object.keys(RC_TOPICS).map(k => '<button data-t="' + k + '">' + RC_TOPICS[k] + '</button>')).join("");
+  $("rc-topics").addEventListener("click", e => {
+    if(e.target.tagName !== "BUTTON") return;
+    topic = e.target.dataset.t;
+    [...$("rc-topics").children].forEach(b => b.classList.toggle("on", b === e.target));
+    pool = []; nextQuestion();
+  });
+  $("rc-check").addEventListener("click", check);
+  $("rc-next").addEventListener("click", nextQuestion);
+  $("rc-reset").addEventListener("click", () => { right = total = 0; $("rc-score").textContent = ""; });
+  nextQuestion();
+
+  // ponytail: self-check, run by loading the page with #selftest
+  if(location.hash === "#selftest"){
+    RC_Q.forEach(q => {
+      const c = choicesFor(q);
+      console.assert(c.includes(q.a), "missing answer", q.a);
+      console.assert(c.length >= 6, "fewer than 6 options for topic " + q.t, c.length);
+      console.assert(new Set(c).size === c.length, "duplicate option", q.a);
+    });
+    console.log("selftest done:", RC_Q.length, "questions");
+  }
+})();
+</script>
+</body>
+</html>
