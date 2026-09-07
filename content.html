@@ -6,61 +6,76 @@
 <title>Study Content</title>
 <style>
 :root{
-  --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#666;
+  --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#5c5c5c;
+  --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
+  --shadow:0 10px 30px rgba(0,0,0,.1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --green:#4ec97b; --green-soft:#12331f; --line:#3a3f45; --ink:#e8eaed; --muted:#a5abb3;
+    --page:#15181c; --card:#1e2227; --stripe:#22262c; --ring:#4ec97b; --danger:#ff8a80;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:lightgray;font-family:sans-serif;color:var(--ink);line-height:1.5;padding:0 1rem 4rem}
+body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
 header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
 h1{color:var(--green);font-size:2.2rem}
 .sub{color:var(--muted);margin-top:.4rem}
-nav{position:sticky;top:0;z-index:50;background:lightgray;padding:.75rem 0;border-bottom:1px solid #bbb;margin-bottom:1.5rem}
+nav{position:sticky;top:0;z-index:50;background:var(--page);padding:.6rem 0;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
 nav .wrap{max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-nav a{background:white;color:var(--green);border:1px solid var(--green);border-radius:999px;
-  padding:5px 12px;font-size:12px;font-weight:600;text-decoration:none}
+nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;
+  text-decoration:none;transition:background .18s ease-out,color .18s ease-out}
 nav a:hover{background:var(--green);color:white}
 main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
-section{background:white;border-radius:1rem;box-shadow:0 10px 30px rgba(0,0,0,.1);padding:1.5rem;scroll-margin-top:70px}
+section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);padding:1.5rem;scroll-margin-top:88px}
 h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
-h3{font-size:1.05rem;margin:1.25rem 0 .5rem;color:#333;border-left:4px solid var(--green);padding-left:.5rem}
-p,li{font-size:.95rem}
+h3{font-size:1.1rem;margin:1.5rem 0 .5rem;color:var(--ink);border-left:4px solid var(--green);padding-left:.5rem;scroll-margin-top:88px}
+p,li{font-size:1rem;max-width:72ch}
 ul,ol{margin:.5rem 0 .5rem 1.25rem}
 li{margin-bottom:.25rem}
 .tag{display:inline-block;background:var(--green-soft);color:var(--green);border-radius:6px;
   padding:1px 7px;font-size:.75rem;font-weight:700;margin-left:.35rem}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.5rem 0}
-table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:520px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px}
 th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
-th{background:var(--green-soft);color:var(--green);position:sticky;top:0}
-tbody tr:nth-child(even){background:#fafafa}
-code{background:#f2f2f2;padding:1px 5px;border-radius:4px;font-size:.85em}
-.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.6rem .8rem;border-radius:6px;margin:.6rem 0;font-size:.9rem}
+th{background:var(--green-soft);color:var(--green);position:sticky;top:0;text-align:left}
+tbody tr:nth-child(even){background:var(--stripe)}
+code{background:var(--stripe);border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:.9em}
+.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.7rem .9rem;border-radius:6px;margin:.7rem 0;font-size:.95rem;max-width:78ch}
 figure{margin:.75rem 0;text-align:center}
 figcaption{color:var(--muted);font-size:.8rem;margin-top:.35rem}
 svg{max-width:100%;height:auto}
-figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px}
-.svgtxt{font:12px sans-serif;fill:#1e1e1e}
-.svgsm{font:10px sans-serif;fill:#666}
+figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:6px}
+.svgtxt{font:12px sans-serif;fill:var(--ink)}
+.svgsm{font:10px sans-serif;fill:var(--muted)}
 .svgbold{font:bold 12px sans-serif;fill:#1c7c3a}
 .codon td,.codon th{text-align:center;padding:3px 5px;font-size:.78rem}
-.stop{background:#fff0f0;color:#c62828;font-weight:700}
+.stop{background:var(--green-soft);color:var(--danger);font-weight:700}
 .start{background:#e6fff0;color:#1c7c3a;font-weight:700}
 .back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
 .rc-topics{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0}
-.rc-topics button{background:white;color:var(--green);border:1px solid var(--green);border-radius:999px;
-  padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.rc-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;
+  transition:background .18s ease-out,color .18s ease-out}
 .rc-topics button.on{background:var(--green);color:white}
 .rc-clue{background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
   padding:.8rem;font-size:1rem;font-weight:600;margin:.75rem 0}
-#rc-select{width:100%;max-width:520px;padding:10px;font-size:.95rem;border:2px solid var(--green);
-  border-radius:8px;background:white;color:var(--ink)}
+#rc-select{width:100%;max-width:560px;min-height:48px;padding:10px 12px;font-size:16px;
+  border:2px solid var(--green);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
 .rc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.75rem}
-.rc-btns button{background:var(--green);color:white;border:none;border-radius:8px;
-  padding:10px 20px;font-size:.9rem;font-weight:600;cursor:pointer}
-.rc-btns button.ghost{background:white;color:var(--green);border:1px solid var(--green)}
+.rc-btns button{background:var(--green);color:var(--card);border:none;border-radius:8px;
+  min-height:44px;padding:0 22px;font-size:.95rem;font-weight:600;cursor:pointer;
+  transition:filter .18s ease-out}
+.rc-btns button:hover{filter:brightness(1.08)}
+.rc-btns button.ghost{background:var(--card);color:var(--green);border:1px solid var(--green)}
 .rc-feedback{margin-top:.6rem;font-weight:700;font-size:.95rem;min-height:1.2em}
 .rc-feedback.ok{color:var(--green)}
-.rc-feedback.bad{color:#c62828}
+.rc-feedback.bad{color:var(--danger)}
 .rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
 </style>
 </head>
@@ -974,8 +989,8 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 <!-- ================= RECALL PRACTICE ================= -->
 <section id="recall">
   <h2>Recall practice: name the thing</h2>
-  <p>Function or description is given; pick the name from the list. Options come from the same topic and are matched for length, so the answer does not stand out.</p>
-  <div class="rc-topics" id="rc-topics"></div>
+  <p>Function or description is given; pick the name from the list. Options are matched to the answer for length, wording and format, so nothing gives it away.</p>
+  <div class="rc-topics" id="rc-topics" role="group" aria-label="Filter questions by topic"></div>
   <p class="rc-clue" id="rc-clue">Loading…</p>
   <select id="rc-select" aria-label="Choose the answer"></select>
   <div class="rc-btns">
@@ -983,8 +998,8 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
     <button id="rc-next" class="ghost">Next</button>
     <button id="rc-reset" class="ghost">Reset score</button>
   </div>
-  <p class="rc-feedback" id="rc-feedback"></p>
-  <p class="rc-score" id="rc-score"></p>
+  <p class="rc-feedback" id="rc-feedback" role="status" aria-live="polite"></p>
+  <p class="rc-score" id="rc-score" aria-live="polite"></p>
 </section>
 
 </main>
@@ -1001,18 +1016,18 @@ const RC_TOPICS = {
 const RC_Q = [
   // --- respiration ---
   {t:"resp", q:"Phosphorylates glucose the moment it enters the cell, trapping it inside", a:"Hexokinase"},
-  {t:"resp", q:"Rate-limiting enzyme of glycolysis; inhibited by ATP and citrate, activated by AMP", a:"Phosphofructokinase-1 (PFK-1)"},
+  {t:"resp", q:"Rate-limiting enzyme of glycolysis; inhibited by ATP and citrate, activated by AMP", a:"Phosphofructokinase-1"},
   {t:"resp", q:"Splits fructose-1,6-bisphosphate into two 3-carbon sugars", a:"Aldolase"},
-  {t:"resp", q:"Oxidizes G3P and reduces NAD⁺ to NADH in the payoff phase", a:"G3P dehydrogenase (GAPDH)"},
+  {t:"resp", q:"Oxidizes G3P and reduces NAD⁺ to NADH in the payoff phase", a:"G3P dehydrogenase"},
   {t:"resp", q:"Converts PEP to pyruvate, making ATP by substrate-level phosphorylation", a:"Pyruvate kinase"},
   {t:"resp", q:"Links glycolysis to the Krebs cycle: pyruvate → acetyl-CoA + CO₂ + NADH", a:"Pyruvate dehydrogenase complex"},
   {t:"resp", q:"Joins acetyl-CoA to oxaloacetate to form citrate", a:"Citrate synthase"},
   {t:"resp", q:"Rate-limiting enzyme of the Krebs cycle; makes NADH and releases CO₂", a:"Isocitrate dehydrogenase"},
   {t:"resp", q:"The only Krebs enzyme embedded in the inner membrane; it is also Complex II and yields FADH₂", a:"Succinate dehydrogenase"},
   {t:"resp", q:"Regenerates oxaloacetate at the end of the cycle, producing the last NADH", a:"Malate dehydrogenase"},
-  {t:"resp", q:"Accepts electrons from NADH and pumps 4 H⁺; entry point of the electron transport chain", a:"Complex I (NADH dehydrogenase)"},
-  {t:"resp", q:"Transfers electrons to O₂ to form water; blocked by cyanide and carbon monoxide", a:"Complex IV (cytochrome c oxidase)"},
-  {t:"resp", q:"Mobile lipid carrier that shuttles electrons from Complexes I and II to Complex III", a:"Coenzyme Q (ubiquinone)"},
+  {t:"resp", q:"Complex I of the electron transport chain: accepts electrons from NADH and pumps 4 H⁺", a:"NADH dehydrogenase"},
+  {t:"resp", q:"Complex IV: transfers electrons to O₂ to form water, and is blocked by cyanide", a:"Cytochrome c oxidase"},
+  {t:"resp", q:"Mobile lipid carrier shuttling electrons from Complexes I and II to Complex III", a:"Coenzyme Q"},
   {t:"resp", q:"Uses the proton-motive force to phosphorylate ADP; blocked by oligomycin", a:"ATP synthase"},
   {t:"resp", q:"Removes CO₂ from pyruvate to make acetaldehyde in yeast fermentation", a:"Pyruvate decarboxylase"},
   {t:"resp", q:"Reduces acetaldehyde to ethanol, regenerating NAD⁺ in yeast", a:"Alcohol dehydrogenase"},
@@ -1033,7 +1048,7 @@ const RC_Q = [
   {t:"photo", q:"Space where H⁺ accumulates during the light reactions", a:"Thylakoid lumen"},
   {t:"photo", q:"Only pigment found in the reaction center; reflects green light", a:"Chlorophyll a"},
   {t:"photo", q:"Accessory pigments that widen light capture and protect against excess energy", a:"Carotenoids"},
-  {t:"photo", q:"5-carbon acceptor that CO₂ is attached to in carbon fixation", a:"RuBP (ribulose bisphosphate)"},
+  {t:"photo", q:"5-carbon acceptor, abbreviated RuBP, that CO₂ is attached to in carbon fixation", a:"Ribulose bisphosphate"},
   {t:"photo", q:"3-carbon sugar that exits the Calvin cycle and builds glucose", a:"G3P"},
   {t:"photo", q:"Pores that close in heat to save water, starving the leaf of CO₂", a:"Stomata"},
   {t:"photo", q:"Cells where rubisco works in C4 plants, kept CO₂-rich and O₂-poor", a:"Bundle-sheath cells"},
@@ -1052,8 +1067,8 @@ const RC_Q = [
   {t:"cell", q:"Selectively permeable phospholipid bilayer described by the fluid mosaic model", a:"Plasma membrane"},
   {t:"cell", q:"Rigid outer layer made of peptidoglycan in bacteria, cellulose in plants", a:"Cell wall"},
   {t:"cell", q:"Actin filaments, intermediate filaments and microtubules giving shape and transport", a:"Cytoskeleton"},
-  {t:"cell", q:"Organizes the mitotic spindle in animal cells", a:"Centrosome (centrioles)"},
-  {t:"cell", q:"Motile structures built on a 9+2 microtubule arrangement", a:"Cilia and flagella"},
+  {t:"cell", q:"Organizes the mitotic spindle in animal cells", a:"Centrosome"},
+  {t:"cell", q:"Hair-like motile structures built on a 9+2 microtubule arrangement", a:"Cilia"},
   {t:"cell", q:"Stores the DNA and is the site of transcription", a:"Nucleus"},
   // --- molecular ---
   {t:"mol", q:"Unwinds the double helix at the replication fork", a:"Helicase"},
@@ -1061,19 +1076,19 @@ const RC_Q = [
   {t:"mol", q:"Main replication enzyme in bacteria; elongates 5'→3' and proofreads", a:"DNA polymerase III"},
   {t:"mol", q:"Removes RNA primers and fills the gaps with DNA", a:"DNA polymerase I"},
   {t:"mol", q:"Seals nicks between Okazaki fragments", a:"DNA ligase"},
-  {t:"mol", q:"Relieves supercoiling ahead of the replication fork", a:"Topoisomerase (gyrase)"},
+  {t:"mol", q:"Relieves supercoiling ahead of the replication fork; called gyrase in bacteria", a:"Topoisomerase"},
   {t:"mol", q:"Extends chromosome ends, solving the end-replication problem", a:"Telomerase"},
   {t:"mol", q:"Synthesizes RNA from a DNA template without needing a primer", a:"RNA polymerase"},
   {t:"mol", q:"Removes introns and joins exons in eukaryotic pre-mRNA", a:"Spliceosome"},
   {t:"mol", q:"Makes DNA from an RNA template; used to build cDNA", a:"Reverse transcriptase"},
   {t:"mol", q:"Attaches the correct amino acid to its matching tRNA", a:"Aminoacyl-tRNA synthetase"},
-  {t:"mol", q:"Ribosomal site that holds the tRNA carrying the growing polypeptide", a:"P site"},
+  {t:"mol", q:"Ribosomal site holding the tRNA that carries the growing polypeptide", a:"Peptidyl site"},
   {t:"mol", q:"Recognizes a stop codon and releases the finished protein", a:"Release factor"},
   {t:"mol", q:"Cuts DNA at a specific palindromic sequence, leaving sticky or blunt ends", a:"Restriction endonuclease"},
   {t:"mol", q:"Heat-stable polymerase that makes PCR possible", a:"Taq polymerase"},
   {t:"mol", q:"Binds the operator and blocks transcription until allolactose removes it", a:"Lac repressor"},
-  {t:"mol", q:"Positive regulator that binds cAMP and boosts lac transcription when glucose is low", a:"CAP (catabolite activator protein)"},
-  {t:"mol", q:"Chain-terminating nucleotides used in Sanger sequencing", a:"ddNTPs"},
+  {t:"mol", q:"Binds cAMP and boosts lac transcription when glucose is low, abbreviated CAP", a:"Catabolite activator protein"},
+  {t:"mol", q:"Chain-terminating nucleotides, abbreviated ddNTPs, used in Sanger sequencing", a:"Dideoxynucleotides"},
   // --- organs ---
   {t:"organ", q:"Pumps blood through the pulmonary and systemic circuits", a:"Heart"},
   {t:"organ", q:"Site of gas exchange between air and blood", a:"Lungs"},
@@ -1099,13 +1114,52 @@ const RC_Q = [
 
   const shuffle = arr => arr.map(v => [Math.random(), v]).sort((a,b) => a[0]-b[0]).map(p => p[1]);
 
-  // 8 choices from the same topic, picked from the answers closest in length
-  // so the correct one cannot be spotted by being the longest or shortest option
+  // Distractors are chosen to look like the answer: similar length, same word count,
+  // same use of digits or hyphens, same -ase ending. Same topic is preferred but a
+  // closer-looking name from another topic wins over an odd-one-out from this one.
+  const shape = t => ({
+    len: t.length,
+    words: t.split(/\s+/).length,
+    digit: /\d/.test(t) ? 1 : 0,
+    hyphen: /-/.test(t) ? 1 : 0,
+    ase: /ase$/.test(t) ? 1 : 0
+  });
+  function distance(a, b){
+    const x = shape(a), y = shape(b);
+    return Math.abs(x.len - y.len)
+         + 7 * Math.abs(x.words - y.words)
+         + 12 * Math.abs(x.digit - y.digit)
+         + 7 * Math.abs(x.hyphen - y.hyphen)
+         + 5 * Math.abs(x.ase - y.ase);
+  }
+  // counts the ways the answer still stands out from the options around it
+  function tells(opts, ans){
+    const others = opts.filter(o => o !== ans);
+    const only = f => f(ans) && !others.some(f);
+    const lens = opts.map(o => o.length).sort((a, b) => a - b);
+    let n = 0;
+    if(ans.length === lens[lens.length - 1] && ans.length - lens[lens.length - 2] > 3) n++;
+    if(ans.length === lens[0] && lens[1] - ans.length > 3) n++;
+    const wc = t => t.split(/\s+/).length;
+    if(!others.some(o => wc(o) === wc(ans))) n++;
+    if(only(t => /\d/.test(t))) n++;
+    if(only(t => /-/.test(t))) n++;
+    if(only(t => /ase$/.test(t))) n++;
+    return n;
+  }
   function choicesFor(q){
-    const siblings = [...new Set(RC_Q.filter(x => x.t === q.t && x.a !== q.a).map(x => x.a))];
-    const near = siblings.sort((a, b) => Math.abs(a.length - q.a.length) - Math.abs(b.length - q.a.length));
-    const distractors = shuffle(near.slice(0, 12)).slice(0, 7);
-    return shuffle([q.a, ...distractors]);
+    const pool = [...new Set(RC_Q.filter(x => x.a !== q.a).map(x => x.t + "\u0000" + x.a))]
+      .map(k => ({ t: k.split("\u0000")[0], a: k.split("\u0000")[1] }));
+    pool.forEach(c => { c.d = distance(c.a, q.a) + (c.t === q.t ? 0 : 9); });
+    pool.sort((a, b) => a.d - b.d);
+    const near = pool.slice(0, 18).map(c => c.a);
+    let best = null, bestScore = 99;
+    for(let i = 0; i < 25 && bestScore > 0; i++){
+      const draw = [q.a, ...shuffle(near).slice(0, 7)];
+      const score = tells(draw, q.a);
+      if(score < bestScore){ bestScore = score; best = draw; }
+    }
+    return shuffle(best);
   }
 
   function nextQuestion(){
@@ -1155,6 +1209,7 @@ const RC_Q = [
       console.assert(new Set(c).size === c.length, "duplicate option", q.a);
       const lens = c.map(x => x.length).sort((a, b) => a - b);
       console.assert(lens[lens.length - 1] - lens[0] <= 26, "option lengths too spread for " + q.a, lens);
+      console.assert(tells(c, q.a) === 0, "answer stands out for " + q.a, c);
     });
     console.log("selftest done:", RC_Q.length, "questions");
   }
