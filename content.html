@@ -37,6 +37,7 @@ code{background:#f2f2f2;padding:1px 5px;border-radius:4px;font-size:.85em}
 figure{margin:.75rem 0;text-align:center}
 figcaption{color:var(--muted);font-size:.8rem;margin-top:.35rem}
 svg{max-width:100%;height:auto}
+figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px}
 .svgtxt{font:12px sans-serif;fill:#1e1e1e}
 .svgsm{font:10px sans-serif;fill:#666}
 .svgbold{font:bold 12px sans-serif;fill:#1c7c3a}
@@ -441,82 +442,7 @@ svg{max-width:100%;height:auto}
   </ul>
 
   <figure>
-    <svg viewBox="0 0 760 340" role="img" aria-label="Replication fork with helicase, primase, SSB proteins, polymerase and ligase">
-      <defs>
-        <marker id="ar2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-          <path d="M0,0 L9,4.5 L0,9 z" fill="#1e1e1e"/></marker>
-        <marker id="ar2b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 z" fill="#666"/></marker>
-      </defs>
-
-      <!-- parent duplex, right -->
-      <path d="M615,170 C645,140 675,200 705,170 C725,150 740,180 752,168" fill="none" stroke="#555" stroke-width="2.5"/>
-      <path d="M615,190 C645,220 675,160 705,190 C725,210 740,180 752,192" fill="none" stroke="#555" stroke-width="2.5"/>
-      <g stroke="#999" stroke-width="1.4">
-        <line x1="632" y1="163" x2="632" y2="197"/><line x1="652" y1="172" x2="652" y2="188"/>
-        <line x1="690" y1="172" x2="690" y2="188"/><line x1="710" y1="163" x2="710" y2="197"/>
-      </g>
-      <text class="svgsm" x="700" y="228" text-anchor="middle">parent duplex</text>
-
-      <!-- topoisomerase -->
-      <ellipse cx="617" cy="180" rx="17" ry="42" fill="#bdbdbd" stroke="#444"/>
-      <text class="svgtxt" x="625" y="256" text-anchor="middle">Topoisomerase</text>
-      <line x1="617" y1="224" x2="622" y2="244" stroke="#444"/>
-
-      <!-- helicase at the fork -->
-      <ellipse cx="545" cy="180" rx="24" ry="36" fill="#8d8d8d" stroke="#333"/>
-      <text class="svgtxt" x="470" y="196" text-anchor="end">Helicase</text>
-      <line x1="474" y1="192" x2="521" y2="184" stroke="#444" marker-end="url(#ar2b)"/>
-
-      <!-- template strands opening into a Y -->
-      <path d="M528,152 L300,88 L150,72" fill="none" stroke="#555" stroke-width="2.5"/>
-      <path d="M528,208 L300,262 L150,278" fill="none" stroke="#555" stroke-width="2.5"/>
-
-      <!-- SSB proteins on the unwound single strands -->
-      <g fill="#d5d5d5" stroke="#444">
-        <circle cx="500" cy="140" r="8"/><circle cx="470" cy="132" r="8"/><circle cx="440" cy="124" r="8"/>
-        <circle cx="500" cy="220" r="8"/><circle cx="470" cy="230" r="8"/><circle cx="440" cy="238" r="8"/>
-      </g>
-      <text class="svgtxt" x="520" y="40" >SSB proteins</text>
-      <line x1="518" y1="46" x2="474" y2="124" stroke="#444" marker-end="url(#ar2b)"/>
-
-      <!-- LAGGING strand (top) -->
-      <text class="svgbold" x="20" y="86">Lagging</text><text class="svgbold" x="20" y="102">strand</text>
-      <text class="svgsm" x="120" y="62">3'</text><text class="svgsm" x="120" y="96">5'</text>
-      <ellipse cx="400" cy="98" rx="16" ry="20" fill="#9e9e9e" stroke="#333"/>
-      <text class="svgtxt" x="392" y="40" text-anchor="middle">Primase</text>
-      <line x1="396" y1="46" x2="399" y2="78" stroke="#444" marker-end="url(#ar2b)"/>
-      <rect x="330" y="104" width="34" height="9" fill="#fff" stroke="#333"/>
-      <text class="svgtxt" x="378" y="130">RNA primer</text>
-      <line x1="376" y1="126" x2="352" y2="116" stroke="#444" marker-end="url(#ar2b)"/>
-      <!-- new fragments (white = new DNA), synthesized away from the fork -->
-      <rect x="196" y="92" width="118" height="10" fill="#fff" stroke="#333"/>
-      <rect x="330" y="104" width="0" height="0"/>
-      <line x1="310" y1="120" x2="215" y2="112" stroke="#1e1e1e" stroke-width="2" marker-end="url(#ar2)"/>
-      <text class="svgtxt" x="230" y="150" text-anchor="middle">Okazaki fragment</text>
-      <line x1="248" y1="142" x2="268" y2="106" stroke="#444" marker-end="url(#ar2b)"/>
-      <ellipse cx="182" cy="86" rx="22" ry="17" fill="#8d8d8d" stroke="#333"/>
-      <circle cx="182" cy="86" r="9" fill="none" stroke="#fff" stroke-width="2"/>
-      <text class="svgtxt" x="196" y="34" text-anchor="middle">DNA ligase</text>
-      <line x1="192" y1="40" x2="184" y2="66" stroke="#444" marker-end="url(#ar2b)"/>
-      <ellipse cx="308" cy="112" rx="22" ry="18" fill="#8d8d8d" stroke="#333"/>
-
-      <!-- LEADING strand (bottom) -->
-      <text class="svgbold" x="60" y="300">Leading</text><text class="svgbold" x="60" y="316">strand</text>
-      <text class="svgsm" x="120" y="266">5'</text><text class="svgsm" x="120" y="300">3'</text>
-      <rect x="180" y="248" width="200" height="10" fill="#fff" stroke="#333"/>
-      <line x1="196" y1="240" x2="430" y2="240" stroke="#1e1e1e" stroke-width="2" marker-end="url(#ar2)"/>
-      <ellipse cx="410" cy="256" rx="24" ry="20" fill="#8d8d8d" stroke="#333"/>
-      <circle cx="380" cy="256" r="13" fill="none" stroke="#333" stroke-width="3"/>
-      <text class="svgtxt" x="300" y="330" text-anchor="middle">DNA polymerase III</text>
-      <line x1="360" y1="322" x2="404" y2="278" stroke="#444" marker-end="url(#ar2b)"/>
-      <text class="svgtxt" x="150" y="322" text-anchor="middle">Sliding clamp</text>
-      <line x1="196" y1="314" x2="372" y2="270" stroke="#444" marker-end="url(#ar2b)"/>
-
-      <!-- legend -->
-      <rect x="640" y="52" width="34" height="12" fill="#bdbdbd" stroke="#333"/><text class="svgtxt" x="682" y="62">= old DNA</text>
-      <rect x="640" y="80" width="34" height="12" fill="#fff" stroke="#333"/><text class="svgtxt" x="682" y="90">= new DNA</text>
-    </svg>
+    <img src="media/replication-fork.png" alt="Replication fork labelled with topoisomerase, helicase, SSB proteins, primase, RNA primer, sliding clamp, DNA polymerase III, DNA ligase and Okazaki fragments on the lagging strand" loading="lazy">
     <figcaption>Leading strand: one continuous arrow toward the fork. Lagging strand: short Okazaki fragments made <em>away</em> from the fork, each starting on an RNA primer, later joined by ligase.</figcaption>
   </figure>
 
@@ -650,53 +576,7 @@ svg{max-width:100%;height:auto}
   <p><strong>Link reaction:</strong> pyruvate enters the matrix, and pyruvate dehydrogenase complex strips a CO₂ and attaches coenzyme A → <strong>acetyl-CoA (2C) + NADH + CO₂</strong>. Happens twice per glucose. Irreversible, so fat cannot be turned back into glucose from here.</p>
 
   <figure>
-    <svg viewBox="0 0 620 420" role="img" aria-label="Krebs cycle in the mitochondrial matrix">
-      <defs><marker id="kr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-        <path d="M0,0 L8,4 L0,8 z" fill="#1e1e1e"/></marker></defs>
-      <!-- inner membrane walls -->
-      <path d="M28,10 C58,45 -2,80 28,115 C58,150 -2,185 28,220 C58,255 -2,290 28,325 C58,360 -2,385 28,412"
-            fill="none" stroke="#1e1e1e" stroke-width="2.5"/>
-      <path d="M592,10 C562,45 622,80 592,115 C562,150 622,185 592,220 C562,255 622,290 592,325 C562,360 622,385 592,412"
-            fill="none" stroke="#1e1e1e" stroke-width="2.5"/>
-      <text class="svgbold" x="310" y="406" text-anchor="middle">Mitochondrial matrix</text>
-
-      <!-- entry -->
-      <text class="svgtxt" x="310" y="34" text-anchor="middle">Acetyl-CoA (2C)</text>
-      <path d="M330,44 C370,52 378,66 372,78" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#kr)"/>
-      <text class="svgsm" x="392" y="70">CoA released</text>
-
-      <!-- cycle ring -->
-      <circle cx="310" cy="215" r="118" fill="none" stroke="#1c7c3a" stroke-width="2" stroke-dasharray="7 6"/>
-      <text class="svgbold" x="310" y="210" text-anchor="middle">KREBS CYCLE</text>
-      <text class="svgsm" x="310" y="228" text-anchor="middle">(citric acid / TCA cycle)</text>
-
-      <!-- intermediates, clockwise from top -->
-      <text class="svgtxt" x="382" y="96" text-anchor="middle">Citrate (6C)</text>
-      <text class="svgtxt" x="470" y="176" text-anchor="middle">Isocitrate (6C)</text>
-      <text class="svgtxt" x="470" y="268" text-anchor="middle">α-ketoglutarate (5C)</text>
-      <text class="svgtxt" x="384" y="344" text-anchor="middle">Succinyl-CoA (4C)</text>
-      <text class="svgtxt" x="236" y="344" text-anchor="middle">Succinate (4C)</text>
-      <text class="svgtxt" x="150" y="268" text-anchor="middle">Fumarate (4C)</text>
-      <text class="svgtxt" x="150" y="176" text-anchor="middle">Malate (4C)</text>
-      <text class="svgtxt" x="238" y="96" text-anchor="middle">Oxaloacetate (4C)</text>
-
-      <!-- cofactor half-arrows -->
-      <path d="M492,192 C520,204 520,232 492,248" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-      <text class="svgsm" x="530" y="196">NAD⁺</text>
-      <text class="svgsm" x="530" y="252">NADH + CO₂</text>
-      <path d="M448,296 C470,318 448,336 424,338" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-      <text class="svgsm" x="474" y="316">NADH + CO₂</text>
-      <path d="M350,360 C326,376 292,376 268,360" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-      <text class="svgsm" x="308" y="384" text-anchor="middle">GDP + Pi → GTP (ATP)</text>
-      <path d="M196,336 C168,330 150,312 152,292" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-      <text class="svgsm" x="120" y="322">FAD → FADH₂</text>
-      <path d="M128,248 C100,232 100,204 128,190" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-      <text class="svgsm" x="34" y="252">NAD⁺</text>
-      <text class="svgsm" x="34" y="196">NADH</text>
-      <path d="M172,152 C186,126 208,108 226,102" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-      <text class="svgsm" x="118" y="140">NAD⁺ → NADH</text>
-      <path d="M266,88 C300,74 340,78 366,88" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#kr)"/>
-    </svg>
+    <img src="media/krebs-cycle.png" alt="Krebs cycle in the mitochondrial matrix: acetyl-CoA joins oxaloacetate to form citrate, carbon count falls from 6C to 5C to 4C, producing NADH, FADH2, GTP and CO2" loading="lazy">
     <figcaption>Per turn: <strong>3 NADH · 1 FADH₂ · 1 GTP/ATP · 2 CO₂</strong>. Carbon count drops 6C → 5C → 4C as the two CO₂ leave; oxaloacetate is regenerated, so the cycle is catalytic.</figcaption>
   </figure>
 
@@ -746,80 +626,7 @@ svg{max-width:100%;height:auto}
   </div>
 
   <figure>
-    <svg viewBox="0 0 780 400" role="img" aria-label="Electron transport chain and ATP synthase in the inner mitochondrial membrane">
-      <defs>
-        <marker id="et" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 z" fill="#1e1e1e"/></marker>
-        <marker id="etg" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-          <path d="M0,0 L9,4.5 L0,9 z" fill="#1c7c3a"/></marker>
-      </defs>
-      <text class="svgbold" x="14" y="22">Cytoplasm</text>
-      <!-- outer membrane -->
-      <rect x="14" y="34" width="752" height="20" fill="#e9e9e9" stroke="#999"/>
-      <text class="svgbold" x="14" y="86">Intermembrane space</text>
-      <text class="svgsm" x="14" y="102">high H⁺ · low pH</text>
-      <!-- inner membrane -->
-      <rect x="14" y="150" width="752" height="34" fill="#e9e9e9" stroke="#999"/>
-      <text class="svgbold" x="14" y="216">Mitochondrial matrix</text>
-      <text class="svgsm" x="14" y="232">low H⁺</text>
-
-      <!-- H+ pumping arrows -->
-      <g fill="#dcdcdc" stroke="#888">
-        <path d="M96,148 L96,116 L84,116 L108,92 L132,116 L120,116 L120,148 z"/>
-        <path d="M406,148 L406,116 L394,116 L418,92 L442,116 L430,116 L430,148 z"/>
-        <path d="M556,148 L556,116 L544,116 L568,92 L592,116 L580,116 L580,148 z"/>
-      </g>
-      <text class="svgtxt" x="108" y="84" text-anchor="middle">H⁺</text>
-      <text class="svgtxt" x="418" y="84" text-anchor="middle">H⁺</text>
-      <text class="svgtxt" x="568" y="84" text-anchor="middle">H⁺</text>
-
-      <!-- complexes -->
-      <rect x="76" y="142" width="64" height="52" rx="7" fill="#fff" stroke="#333"/>
-      <ellipse cx="248" cy="176" rx="40" ry="24" fill="#fff" stroke="#333"/>
-      <rect x="386" y="142" width="64" height="52" rx="7" fill="#fff" stroke="#333"/>
-      <rect x="536" y="142" width="64" height="52" rx="7" fill="#fff" stroke="#333"/>
-      <text class="svgbold" x="108" y="270" text-anchor="middle">Complex I</text>
-      <text class="svgbold" x="248" y="270" text-anchor="middle">Complex II</text>
-      <text class="svgbold" x="418" y="270" text-anchor="middle">Complex III</text>
-      <text class="svgbold" x="568" y="270" text-anchor="middle">Complex IV</text>
-      <text class="svgbold" x="700" y="270" text-anchor="middle">ATP synthase</text>
-
-      <!-- mobile carriers -->
-      <circle cx="330" cy="168" r="15" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="330" y="172" text-anchor="middle" fill="#fff">UQ</text>
-      <ellipse cx="495" cy="140" rx="22" ry="13" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="495" y="144" text-anchor="middle" fill="#fff">Cyt c</text>
-
-      <!-- electron path -->
-      <text class="svgsm" x="112" y="182" text-anchor="middle">e⁻</text>
-      <path d="M126,178 C200,196 268,192 314,172" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <path d="M262,166 C288,158 300,160 316,164" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <path d="M344,162 C362,150 372,146 384,150" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <path d="M450,152 C462,142 470,138 474,139" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <path d="M516,142 C530,146 536,150 542,152" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <text class="svgsm" x="568" y="182" text-anchor="middle">2e⁻</text>
-
-      <!-- donors and acceptor -->
-      <path d="M108,196 C104,220 116,236 138,238" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <text class="svgtxt" x="60" y="244">NADH</text><text class="svgtxt" x="146" y="244">NAD⁺</text>
-      <path d="M240,200 C238,222 252,236 274,238" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <text class="svgtxt" x="196" y="244">FADH₂</text><text class="svgtxt" x="282" y="244">FAD</text>
-      <path d="M568,196 C568,218 590,232 614,234" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-      <text class="svgtxt" x="470" y="240">2H⁺ + ½O₂</text><text class="svgtxt" x="622" y="240">H₂O</text>
-
-      <!-- ATP synthase -->
-      <rect x="682" y="140" width="36" height="54" fill="#fff" stroke="#333"/>
-      <circle cx="700" cy="212" r="26" fill="#fff" stroke="#333"/>
-      <path d="M700,132 L700,110 L688,110 L712,86 L736,110 L724,110 L724,132 z" fill="none" stroke="#fff"/>
-      <g fill="#dcdcdc" stroke="#888"><path d="M688,96 L712,96 L712,124 L724,124 L700,150 L676,124 L688,124 z"/></g>
-      <text class="svgtxt" x="700" y="118" text-anchor="middle">H⁺</text>
-      <path d="M728,208 C748,196 756,182 758,168" fill="none" stroke="#1c7c3a" stroke-width="2" marker-end="url(#etg)"/>
-      <text class="svgbold" x="736" y="160">ATP</text>
-      <text class="svgtxt" x="640" y="252">ADP + Pi</text>
-      <path d="M672,246 C688,240 694,232 696,224" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#et)"/>
-
-      <text class="svgsm" x="14" y="316">Electrons lose energy at each step; that energy pumps H⁺ into the intermembrane space (Complexes I, III, IV, never II).</text>
-      <text class="svgsm" x="14" y="336">H⁺ flows back through ATP synthase = oxidative phosphorylation. O₂ is the final electron acceptor, forming water.</text>
-      <text class="svgsm" x="14" y="356">Uncouplers (DNP, thermogenin) leak H⁺ back across the membrane, so transport keeps running, ATP is not made, energy leaves as heat.</text>
-    </svg>
+    <img src="media/electron-transport-chain.png" alt="Electron transport chain in the inner mitochondrial membrane: Complexes I to IV with ubiquinone and cytochrome c, H+ pumped into the intermembrane space, oxygen reduced to water, and ATP synthase making ATP" loading="lazy">
   </figure>
 
   <h3>ATP tally per glucose</h3>
@@ -918,80 +725,8 @@ svg{max-width:100%;height:auto}
 
   <h3>Light-dependent reactions (thylakoid membrane)</h3>
   <figure>
-    <svg viewBox="0 0 780 350" role="img" aria-label="Light dependent reactions in the thylakoid membrane">
-      <defs>
-        <marker id="ph" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 z" fill="#1e1e1e"/></marker>
-        <marker id="phg" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-          <path d="M0,0 L9,4.5 L0,9 z" fill="#1c7c3a"/></marker>
-      </defs>
-      <text class="svgbold" x="14" y="30">Thylakoid lumen</text>
-      <text class="svgsm" x="14" y="46">H⁺ accumulates here</text>
-      <rect x="14" y="150" width="752" height="34" fill="#e9e9e9" stroke="#999"/>
-      <text class="svgbold" x="14" y="216">Stroma</text>
-
-      <!-- water splitting at PSII -->
-      <text class="svgtxt" x="30" y="92">H₂O</text>
-      <path d="M56,86 C86,74 104,80 112,96" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-      <text class="svgtxt" x="112" y="58" text-anchor="middle">2H⁺ + ½O₂</text>
-      <path d="M118,92 C124,78 122,72 118,66" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-
-      <!-- photosystem II -->
-      <rect x="96" y="140" width="64" height="54" rx="7" fill="#fff" stroke="#333"/>
-      <circle cx="128" cy="158" r="17" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="128" y="162" text-anchor="middle" fill="#fff">P680</text>
-      <text class="svgsm" x="128" y="184" text-anchor="middle">2e⁻</text>
-      <text class="svgbold" x="128" y="270" text-anchor="middle">Photosystem II</text>
-      <path d="M176,104 L192,104 L182,126 L200,126 L172,152 L180,128 L164,128 z" fill="#f0f0f0" stroke="#999"/>
-      <text class="svgsm" x="200" y="112">light</text>
-
-      <!-- plastoquinone -->
-      <circle cx="240" cy="170" r="15" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="240" y="174" text-anchor="middle" fill="#fff">Pq</text>
-      <path d="M162,172 C190,180 214,178 224,172" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-
-      <!-- cytochrome complex, pumps H+ -->
-      <rect x="300" y="140" width="70" height="54" rx="7" fill="#fff" stroke="#333"/>
-      <text class="svgbold" x="335" y="270" text-anchor="middle">Cytochrome</text>
-      <text class="svgbold" x="335" y="286" text-anchor="middle">complex (b₆f)</text>
-      <path d="M256,166 C280,158 292,156 298,158" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-      <g fill="#dcdcdc" stroke="#888"><path d="M323,138 L323,104 L311,104 L335,80 L359,104 L347,104 L347,138 z"/></g>
-      <text class="svgtxt" x="335" y="72" text-anchor="middle">H⁺</text>
-
-      <!-- plastocyanin -->
-      <circle cx="416" cy="164" r="15" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="416" y="168" text-anchor="middle" fill="#fff">Pc</text>
-      <path d="M372,160 C392,158 400,160 402,162" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-
-      <!-- photosystem I -->
-      <rect x="470" y="140" width="64" height="54" rx="7" fill="#fff" stroke="#333"/>
-      <circle cx="502" cy="158" r="17" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="502" y="162" text-anchor="middle" fill="#fff">P700</text>
-      <text class="svgbold" x="502" y="270" text-anchor="middle">Photosystem I</text>
-      <path d="M432,160 C452,156 462,156 468,158" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-      <path d="M548,104 L564,104 L554,126 L572,126 L544,152 L552,128 L536,128 z" fill="#f0f0f0" stroke="#999"/>
-      <text class="svgsm" x="572" y="112">light</text>
-
-      <!-- ferredoxin and NADP+ reductase -->
-      <circle cx="552" cy="190" r="14" fill="#9e9e9e" stroke="#333"/><text class="svgsm" x="552" y="194" text-anchor="middle" fill="#fff">Fd</text>
-      <ellipse cx="618" cy="200" rx="42" ry="24" fill="#fff" stroke="#333"/>
-      <text class="svgbold" x="618" y="278" text-anchor="middle">NADP⁺ reductase</text>
-      <path d="M536,182 C544,186 542,188 540,190" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-      <path d="M566,194 C580,198 586,198 592,198" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-      <text class="svgtxt" x="576" y="240">NADP⁺</text>
-      <path d="M628,224 C644,232 656,234 662,234" fill="none" stroke="#1c7c3a" stroke-width="1.8" marker-end="url(#phg)"/>
-      <text class="svgbold" x="668" y="238">NADPH</text>
-
-      <!-- ATP synthase -->
-      <rect x="700" y="140" width="34" height="54" fill="#fff" stroke="#333"/>
-      <circle cx="717" cy="212" r="24" fill="#fff" stroke="#333"/>
-      <g fill="#dcdcdc" stroke="#888"><path d="M705,96 L729,96 L729,124 L741,124 L717,150 L693,124 L705,124 z"/></g>
-      <text class="svgtxt" x="717" y="118" text-anchor="middle">H⁺</text>
-      <text class="svgbold" x="717" y="270" text-anchor="middle">ATP synthase</text>
-      <text class="svgtxt" x="644" y="316">ADP + Pi</text>
-      <path d="M690,310 C704,300 710,290 712,238" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#ph)"/>
-      <path d="M740,206 C756,196 760,186 762,176" fill="none" stroke="#1c7c3a" stroke-width="2" marker-end="url(#phg)"/>
-      <text class="svgbold" x="742" y="168">ATP</text>
-
-      <text class="svgsm" x="14" y="330">Electron path: H₂O → PSII (P680) → Pq → cytochrome b₆f → Pc → PSI (P700) → Fd → NADP⁺ reductase → NADPH.</text>
-    </svg>
-    <figcaption><strong>Naming check:</strong> P680 is <strong>Photosystem II</strong> and P700 is <strong>Photosystem I</strong>. They are numbered by order of discovery, not order of use, so electrons hit II first. Some printed handouts (including the one you shared) label them the other way round; go by the <strong>P680 / P700</strong> tags, which are never ambiguous.</figcaption>
+    <img src="media/light-reactions.png" alt="Light dependent reactions in the thylakoid membrane: water split at P680, electrons passing through plastoquinone, the cytochrome complex and plastocyanin to P700, ferredoxin and NADP+ reductase making NADPH, with ATP synthase driven by the H+ gradient" loading="lazy">
+    <figcaption><strong>Label warning:</strong> this figure has the photosystems the wrong way round. P680 is <strong>Photosystem II</strong> and P700 is <strong>Photosystem I</strong>. They are numbered by order of discovery, not order of use, so electrons reach II first. Go by the <strong>P680 / P700</strong> tags, which are never ambiguous.</figcaption>
   </figure>
   <ol>
     <li><strong>PSII (P680)</strong> absorbs a photon; an excited electron leaves for the primary acceptor. P680⁺ is the strongest biological oxidizer known.</li>
@@ -1025,45 +760,7 @@ svg{max-width:100%;height:auto}
   </table>
   </div>
   <figure>
-    <svg viewBox="0 0 640 440" role="img" aria-label="Calvin cycle in the stroma">
-      <defs><marker id="cv" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-        <path d="M0,0 L8,4 L0,8 z" fill="#1e1e1e"/></marker></defs>
-      <path d="M22,14 C6,120 6,320 22,426" fill="none" stroke="#1e1e1e" stroke-width="2.5"/>
-      <path d="M618,14 C634,120 634,320 618,426" fill="none" stroke="#1e1e1e" stroke-width="2.5"/>
-      <text class="svgbold" x="320" y="424" text-anchor="middle">Stroma</text>
-
-      <text class="svgtxt" x="320" y="34" text-anchor="middle">3 CO₂</text>
-      <path d="M330,44 C350,58 362,70 368,84" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#cv)"/>
-      <text class="svgbold" x="268" y="72" text-anchor="middle">Rubisco</text>
-
-      <circle cx="320" cy="230" r="122" fill="none" stroke="#1c7c3a" stroke-width="2" stroke-dasharray="7 6"/>
-      <text class="svgbold" x="320" y="224" text-anchor="middle">CALVIN CYCLE</text>
-      <text class="svgsm" x="320" y="242" text-anchor="middle">3 turns = 1 G3P out</text>
-
-      <!-- fixation -->
-      <text class="svgtxt" x="452" y="106" text-anchor="middle">6 × 3-PGA (3C)</text>
-      <text class="svgsm" x="452" y="122" text-anchor="middle">unstable 6C splits instantly</text>
-      <!-- reduction -->
-      <path d="M486,146 C512,168 512,196 490,214" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#cv)"/>
-      <text class="svgsm" x="524" y="156">6 ATP</text>
-      <text class="svgsm" x="524" y="178">→ 6 ADP + Pi</text>
-      <text class="svgsm" x="524" y="204">6 NADPH</text>
-      <text class="svgsm" x="524" y="224">→ 6 NADP⁺</text>
-      <text class="svgtxt" x="452" y="286" text-anchor="middle">6 × G3P (3C)</text>
-
-      <!-- exit -->
-      <path d="M420,300 C400,340 360,360 330,364" fill="none" stroke="#1c7c3a" stroke-width="2" marker-end="url(#cv)"/>
-      <text class="svgbold" x="300" y="384" text-anchor="middle">1 G3P exits → glucose, starch, lipids</text>
-
-      <!-- regeneration -->
-      <path d="M414,300 C360,332 250,332 200,300" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#cv)"/>
-      <text class="svgtxt" x="176" y="286" text-anchor="middle">5 × G3P</text>
-      <path d="M156,264 C130,236 130,206 154,178" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#cv)"/>
-      <text class="svgsm" x="52" y="242">3 ATP</text>
-      <text class="svgsm" x="52" y="222">→ 3 ADP + Pi</text>
-      <text class="svgtxt" x="180" y="118" text-anchor="middle">3 × RuBP (5C)</text>
-      <path d="M226,96 C262,80 296,80 316,88" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#cv)"/>
-    </svg>
+    <img src="media/calvin-cycle.png" alt="Calvin cycle in the stroma: 3 CO2 fixed by rubisco onto 3 RuBP, six 3-PGA reduced using 6 ATP and 6 NADPH into six G3P, five G3P regenerating RuBP with 3 ATP, one G3P leaving" loading="lazy">
     <figcaption>Phase 1 fixation (rubisco) → phase 2 reduction (6 ATP + 6 NADPH) → phase 3 regeneration (3 ATP). Net per 3 CO₂: <strong>1 G3P</strong>.</figcaption>
   </figure>
 
@@ -1087,64 +784,7 @@ svg{max-width:100%;height:auto}
   </table>
   </div>
   <figure>
-    <svg viewBox="0 0 780 330" role="img" aria-label="C4 leaf anatomy and the C4 pathway">
-      <defs><marker id="c4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-        <path d="M0,0 L8,4 L0,8 z" fill="#1e1e1e"/></marker></defs>
-
-      <!-- leaf cross-section -->
-      <rect x="16" y="60" width="210" height="190" rx="10" fill="#f4f4f4" stroke="#999"/>
-      <g fill="#fff" stroke="#888">
-        <rect x="24" y="66" width="30" height="22" rx="5"/><rect x="58" y="66" width="30" height="22" rx="5"/>
-        <rect x="92" y="66" width="30" height="22" rx="5"/><rect x="126" y="66" width="30" height="22" rx="5"/>
-        <rect x="160" y="66" width="30" height="22" rx="5"/><rect x="192" y="66" width="26" height="22" rx="5"/>
-        <rect x="24" y="222" width="30" height="22" rx="5"/><rect x="58" y="222" width="30" height="22" rx="5"/>
-        <rect x="92" y="222" width="30" height="22" rx="5"/><rect x="160" y="222" width="30" height="22" rx="5"/>
-        <rect x="192" y="222" width="26" height="22" rx="5"/>
-      </g>
-      <circle cx="120" cy="155" r="52" fill="#e4e4e4" stroke="#666"/>
-      <circle cx="120" cy="155" r="28" fill="#8d8d8d" stroke="#333"/>
-      <ellipse cx="132" cy="230" rx="12" ry="14" fill="#9e9e9e" stroke="#333"/>
-      <ellipse cx="150" cy="230" rx="12" ry="14" fill="#9e9e9e" stroke="#333"/>
-      <text class="svgsm" x="250" y="120" text-anchor="end">Vascular tissue</text>
-      <line x1="150" y1="146" x2="196" y2="116" stroke="#444"/>
-      <text class="svgsm" x="264" y="150" text-anchor="end">Bundle-sheath cell</text>
-      <line x1="160" y1="176" x2="200" y2="146" stroke="#444"/>
-      <text class="svgsm" x="258" y="200" text-anchor="end">Mesophyll cell</text>
-      <line x1="70" y1="190" x2="196" y2="196" stroke="#444"/>
-      <text class="svgsm" x="250" y="272" text-anchor="end">Guard cell (stoma)</text>
-      <line x1="142" y1="244" x2="188" y2="268" stroke="#444"/>
-
-      <!-- bundle sheath cell -->
-      <path d="M300,60 C370,44 440,60 448,150 C456,250 380,286 320,270 C280,258 286,90 300,60 z" fill="#efefef" stroke="#666"/>
-      <text class="svgbold" x="372" y="308" text-anchor="middle">Bundle-sheath cell</text>
-      <circle cx="384" cy="160" r="36" fill="#fff" stroke="#333"/>
-      <text class="svgsm" x="384" y="156" text-anchor="middle">Calvin</text>
-      <text class="svgsm" x="384" y="170" text-anchor="middle">cycle</text>
-      <text class="svgsm" x="384" y="212" text-anchor="middle">rubisco</text>
-      <circle cx="318" cy="112" r="24" fill="#8d8d8d" stroke="#333"/>
-      <text class="svgsm" x="318" y="116" text-anchor="middle" fill="#fff">glucose</text>
-      <path d="M350,146 C338,134 332,128 330,124" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#c4)"/>
-
-      <!-- mesophyll cell -->
-      <path d="M520,58 C610,40 700,66 712,152 C724,252 640,292 566,272 C512,258 506,84 520,58 z" fill="#efefef" stroke="#666"/>
-      <text class="svgbold" x="618" y="308" text-anchor="middle">Mesophyll cell</text>
-      <circle cx="616" cy="164" r="62" fill="none" stroke="#1e1e1e" stroke-width="1.4" stroke-dasharray="5 5"/>
-      <text class="svgtxt" x="660" y="88" text-anchor="middle">CO₂</text>
-      <text class="svgtxt" x="614" y="112" text-anchor="middle">PEP</text>
-      <text class="svgtxt" x="700" y="176" text-anchor="middle">oxaloacetate</text>
-      <text class="svgtxt" x="654" y="252" text-anchor="middle">malate</text>
-      <text class="svgtxt" x="540" y="140" text-anchor="middle">pyruvate</text>
-      <text class="svgbold" x="592" y="196" text-anchor="middle">PEP</text>
-      <text class="svgbold" x="592" y="210" text-anchor="middle">carboxylase</text>
-      <path d="M652,92 C640,98 634,102 630,106" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#c4)"/>
-      <text class="svgsm" x="540" y="70" text-anchor="middle">ATP → AMP + PPi</text>
-      <path d="M560,80 C580,92 596,100 604,106" fill="none" stroke="#1e1e1e" stroke-width="1.4" marker-end="url(#c4)"/>
-      <!-- malate crosses to the bundle sheath, pyruvate returns -->
-      <path d="M622,258 C560,278 470,268 432,232" fill="none" stroke="#1e1e1e" stroke-width="1.8" marker-end="url(#c4)"/>
-      <text class="svgsm" x="512" y="288" text-anchor="middle">malate carries CO₂ inward</text>
-      <path d="M414,196 C466,168 500,150 526,142" fill="none" stroke="#1e1e1e" stroke-width="1.6" marker-end="url(#c4)"/>
-      <text class="svgsm" x="452" y="128" text-anchor="middle">CO₂ released to rubisco</text>
-    </svg>
+    <img src="media/c4-pathway.png" alt="C4 leaf cross-section showing vascular tissue, bundle-sheath cells, mesophyll cells and guard cells, with PEP carboxylase fixing CO2 into oxaloacetate and malate in the mesophyll, malate carrying CO2 to rubisco and the Calvin cycle in the bundle sheath, and pyruvate returning" loading="lazy">
     <figcaption>C4: PEP carboxylase fixes CO₂ in the mesophyll (no O₂ affinity), malate ferries it to the O₂-poor bundle sheath, and only there does rubisco work, so photorespiration barely happens.</figcaption>
   </figure>
 
