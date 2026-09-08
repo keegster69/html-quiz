@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Study Content</title>
 <style>
 :root{
@@ -10,20 +11,25 @@
   --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
   --shadow:0 10px 30px rgba(0,0,0,.1);
 }
-@media (prefers-color-scheme: dark){
-  :root{
-    --green:#4ec97b; --green-soft:#12331f; --line:#3a3f45; --ink:#e8eaed; --muted:#a5abb3;
-    --page:#15181c; --card:#1e2227; --stripe:#22262c; --ring:#4ec97b; --danger:#ff8a80;
-    --shadow:0 10px 30px rgba(0,0,0,.45);
-  }
-}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
 header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
 h1{color:var(--green);font-size:2.2rem}
 .sub{color:var(--muted);margin-top:.4rem}
 nav{position:sticky;top:0;z-index:50;background:var(--page);padding:.6rem 0;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
-nav .wrap{max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+nav .wrap{max-width:1000px;margin:.6rem auto 0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+  max-height:40vh;overflow-y:auto}
+#jump{max-width:1000px;margin:0 auto}
+#jump summary{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;
+  list-style:none;cursor:pointer;color:var(--green);font-size:13px;font-weight:600;
+  border:1px solid var(--green);border-radius:999px;background:var(--card);padding:0 16px;width:max-content;
+  margin:0 auto;transition:background .18s ease-out,color .18s ease-out}
+#jump summary::-webkit-details-marker{display:none}
+#jump summary:hover{background:var(--green);color:var(--card)}
+#jump summary::after{content:"\25be";font-size:11px;transition:transform .18s ease-out}
+#jump[open] summary::after{transform:rotate(180deg)}
+.jump-count{color:var(--muted);font-weight:400}
+#jump summary:hover .jump-count{color:inherit}
 nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
   padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;
   text-decoration:none;transition:background .18s ease-out,color .18s ease-out}
@@ -87,7 +93,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <a class="back" href="index.html">&larr; Back to quiz</a>
 </header>
 
-<nav><div class="wrap">
+<nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">26 sections</span></summary><div class="wrap">
   <a href="#aminoacids">Amino Acids</a>
   <a href="#code">Genetic Code</a>
   <a href="#dogma">Central Dogma</a>
@@ -114,7 +120,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <a href="#classic">Classic Experiments</a>
   <a href="#organelles">Organelles</a>
   <a href="#recall">Recall Practice</a>
-</div></nav>
+</div></details></nav>
 
 <main>
 
@@ -1106,6 +1112,18 @@ const RC_Q = [
   {t:"organ", q:"Muscle whose contraction drives inhalation", a:"Diaphragm"},
   {t:"organ", q:"Produces blood cells", a:"Bone marrow"}
 ];
+
+(function(){
+  // keep the section list collapsed by default so it stops eating the screen
+  const jump = document.getElementById("jump");
+  try { jump.open = localStorage.getItem("jumpOpen") === "1"; } catch (e) {}
+  jump.addEventListener("toggle", () => {
+    try { localStorage.setItem("jumpOpen", jump.open ? "1" : "0"); } catch (e) {}
+  });
+  jump.querySelector(".wrap").addEventListener("click", e => {
+    if(e.target.tagName === "A") jump.open = false;
+  });
+})();
 
 (function(){
   const $ = id => document.getElementById(id);
