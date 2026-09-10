@@ -61,6 +61,22 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 .stop{background:var(--green-soft);color:var(--danger);font-weight:700}
 .start{background:#e6fff0;color:#1c7c3a;font-weight:700}
 .back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
+.deck{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
+.deck-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+.deck-title{color:var(--green);font-weight:700;font-size:1.05rem}
+.deck-count{color:var(--muted);font-size:.85rem}
+.card{display:block;width:100%;text-align:left;background:var(--green-soft);border:1px solid var(--green);
+  border-left:5px solid var(--green);border-radius:10px;padding:1rem;min-height:112px;cursor:pointer;
+  font-family:inherit;font-size:1rem;color:var(--ink);line-height:1.5;transition:background .18s ease-out}
+.card:hover{background:var(--card)}
+.card-side{display:block;font-weight:600}
+.card[aria-expanded="true"] .card-side{font-weight:400}
+.card-hint{display:block;margin-top:.6rem;color:var(--muted);font-size:.8rem;font-weight:400}
+.deck-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.6rem}
+.deck-btns button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:8px;
+  min-height:44px;padding:0 18px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;
+  transition:background .18s ease-out,color .18s ease-out}
+.deck-btns button:hover{background:var(--green);color:var(--card)}
 .rc-topics{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0}
 .rc-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
   padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;
@@ -91,6 +107,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <h1>Study Content</h1>
   <p class="sub">Diagrams, tables and reference sheets for biochemistry, genetics and molecular biology.</p>
   <a class="back" href="index.html">&larr; Back to quiz</a>
+  <a class="back" href="microbiology.html" style="margin-left:1rem">Microbiology content &rarr;</a>
 </header>
 
 <nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">26 sections</span></summary><div class="wrap">
@@ -196,6 +213,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </svg>
     <figcaption>Chains are always written and synthesized <strong>N-terminus → C-terminus</strong>.</figcaption>
   </figure>
+
+  <div class="deck" data-topic="aminoacids"></div>
 </section>
 
 <!-- ================= GENETIC CODE ================= -->
@@ -248,6 +267,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="code"></div>
 </section>
 
 <!-- ================= CENTRAL DOGMA ================= -->
@@ -276,6 +297,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </svg>
   </figure>
   <div class="key">Direction rules: nucleic acids are always synthesized <strong>5' → 3'</strong>; the template is read 3' → 5'. Proteins are synthesized <strong>N → C</strong>.</div>
+
+  <div class="deck" data-topic="dogma"></div>
 </section>
 
 <!-- ================= MACROMOLECULES ================= -->
@@ -306,6 +329,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="macro"></div>
 </section>
 
 <!-- ================= BONDS ================= -->
@@ -347,6 +372,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
       <text class="svgsm" x="10" y="126">Chargaff: %A = %T and %G = %C. Strands are antiparallel (5'→3' opposite 3'→5').</text>
     </svg>
   </figure>
+
+  <div class="deck" data-topic="bonds"></div>
 </section>
 
 <!-- ================= PROTEIN STRUCTURE ================= -->
@@ -364,6 +391,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <div class="key"><strong>Denaturation</strong> (heat, extreme pH, urea, detergents, reducing agents) breaks weak bonds and unfolds the protein. Primary structure survives, function does not. Often reversible if the sequence is intact. <strong>Structure determines function</strong> is the recurring exam point.</div>
+
+  <div class="deck" data-topic="protein"></div>
 </section>
 
 <!-- ================= ENZYMES ================= -->
@@ -403,6 +432,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="enzymes"></div>
 </section>
 
 <!-- ================= CELLS ================= -->
@@ -450,6 +481,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <p class="svgsm"><strong>Endosymbiotic theory:</strong> mitochondria and chloroplasts were once free-living bacteria. They kept double membranes, circular DNA and 70S ribosomes, and they still divide by binary fission.</p>
 
   <div class="key">Three domains: <strong>Bacteria, Archaea, Eukarya</strong>. Cell theory: all organisms are made of cells; the cell is the basic unit of life; cells come only from pre-existing cells. Viruses are acellular, so they are not alive by these criteria. Elements by mass: C, H, O, N account for ~96% of living matter.</div>
+
+  <div class="deck" data-topic="cells"></div>
 </section>
 
 <!-- ================= DNA / REPLICATION ================= -->
@@ -482,6 +515,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="dna"></div>
 </section>
 
 <!-- ================= TRANSCRIPTION / TRANSLATION ================= -->
@@ -516,6 +551,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <div class="key">Bacteria start at a <strong>Shine-Dalgarno</strong> sequence with fMet-tRNA; eukaryotes scan from the 5' cap to the first AUG (Kozak). Many ribosomes on one mRNA = a <strong>polysome</strong>. Chain grows N-terminus → C-terminus.</div>
+
+  <div class="deck" data-topic="txn"></div>
 </section>
 
 <!-- ================= LAC OPERON ================= -->
@@ -552,6 +589,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <div class="key"><strong>Inducer:</strong> allolactose (lab substitute: IPTG) binds the repressor and inactivates it = <em>negative</em> control. <strong>CAP–cAMP</strong> = <em>positive</em> control; glucose lowers cAMP, so glucose is used first (catabolite repression). Inducible operon = normally off, turns on for catabolism (lac). Repressible operon = normally on, turns off when the product accumulates (trp).</div>
+
+  <div class="deck" data-topic="lac"></div>
 </section>
 
 <!-- ================= RESPIRATION ================= -->
@@ -718,6 +757,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="resp"></div>
 </section>
 
 <!-- ================= PHOTOSYNTHESIS ================= -->
@@ -825,6 +866,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="photo"></div>
 </section>
 
 <!-- ================= MENDEL ================= -->
@@ -878,6 +921,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <p class="svgsm">Pedigree symbols: square = male, circle = female, filled = affected, half-filled/dot = carrier, horizontal line = mating, double line = consanguineous.</p>
+
+  <div class="deck" data-topic="mendel"></div>
 </section>
 
 <!-- ================= LINKAGE ================= -->
@@ -900,6 +945,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <div class="deck" data-topic="linkage"></div>
 </section>
 
 <!-- ================= RECOMBINANT DNA ================= -->
@@ -944,6 +991,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <p class="svgsm">An <strong>expression library</strong> puts cDNA behind a bacterial promoter so protein is made. Screen it with an <strong>antibody</strong> instead of a nucleic-acid probe.</p>
+
+  <div class="deck" data-topic="recdna"></div>
 </section>
 
 <!-- ================= METHODS ================= -->
@@ -967,6 +1016,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <div class="key">Memory hook for blots: <strong>S</strong>outhern = DNA, <strong>N</strong>orthern = RNA, <strong>W</strong>estern = protein ("SNoW DRoP").</div>
+
+  <div class="deck" data-topic="methods"></div>
 </section>
 
 <!-- ================= CLASSIC EXPERIMENTS ================= -->
@@ -990,6 +1041,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <a class="back" href="index.html">&larr; Back to quiz</a>
+
+  <div class="deck" data-topic="classic"></div>
 </section>
 
 <!-- ================= RECALL PRACTICE ================= -->
@@ -1009,6 +1062,56 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 </section>
 
 </main>
+
+<script>
+// one flashcard deck per topic section: click the card to turn it over
+const FC = {"aminoacids": [["How many standard amino acids, and what differs between them?", "20. Only the R group differs. Every one has an amino group, an alpha carbon, a hydrogen and a carboxyl group."], ["Which amino acid breaks helices, and why?", "Proline. Its side chain bonds back to the backbone nitrogen, so the chain cannot rotate freely."], ["Which amino acids are negatively charged at pH 7?", "Aspartate (pKa 3.9) and glutamate (pKa 4.3)."], ["Which amino acids are positively charged at pH 7?", "Lysine (pKa 10.5) and arginine (pKa 12.5). Histidine (pKa 6.0) is only partly charged."], ["Why does histidine turn up in so many active sites?", "Its side chain pKa is near 6, so it gains or loses a proton at physiological pH. That suits buffering and acid/base catalysis."], ["Which amino acid forms disulfide bonds?", "Cysteine. Two cysteines make the only covalent bond in tertiary structure."], ["Which residues absorb at 280 nm?", "Tryptophan and tyrosine. That absorbance is how protein concentration is measured."], ["Name the nine essential amino acids.", "His, Ile, Leu, Lys, Met, Phe, Thr, Trp, Val. Mnemonic: PVT TIM HaLL."], ["Which amino acid is smallest and most flexible?", "Glycine. Its R group is a single hydrogen, so it is achiral and fits tight turns."], ["In which direction is a polypeptide built?", "From the N terminus to the C terminus."]], "code": [["How many codons are there, and how many encode amino acids?", "64 in total. 61 sense codons plus 3 stop codons."], ["What is the start codon?", "AUG, encoding methionine. Bacteria use formylmethionine."], ["Name the three stop codons.", "UAA, UAG and UGA. No tRNA reads them; release factors do."], ["What does it mean that the code is degenerate?", "Several codons encode the same amino acid, mostly differing at the third base. That is wobble."], ["Silent, missense and nonsense mutations?", "Silent changes the base but not the amino acid. Missense changes the amino acid. Nonsense creates a stop codon."], ["Why is a frameshift usually the most severe mutation?", "An insertion or deletion that is not a multiple of three shifts the reading frame, so everything downstream is garbled."], ["Is the genetic code universal?", "Almost. It is shared by nearly all organisms, with mitochondria as the main exception."], ["What makes a missense mutation conservative?", "The new amino acid has similar chemistry, so function is often kept. Glu to Val is non-conservative and causes sickle cell."]], "dogma": [["State the central dogma.", "DNA is transcribed to RNA, and RNA is translated to protein."], ["Which enzyme carries out transcription?", "RNA polymerase. It needs no primer."], ["What breaks the one way flow?", "Reverse transcriptase, which copies RNA back into DNA in retroviruses and in cDNA synthesis."], ["In which direction are nucleic acids synthesized?", "Always 5 prime to 3 prime, reading the template 3 prime to 5 prime."], ["Where does each step happen in a eukaryote?", "Transcription in the nucleus, translation in the cytoplasm."], ["How do prokaryotes differ?", "Transcription and translation are coupled in the same compartment, and there are no introns to remove."], ["What is replication?", "DNA copied into DNA by DNA polymerase, semiconservatively."], ["What carries amino acids to the ribosome?", "tRNA, charged with its matching amino acid by aminoacyl-tRNA synthetase."]], "macro": [["Name the four classes of macromolecule and their monomers.", "Carbohydrates from monosaccharides, lipids (not true polymers), proteins from amino acids, nucleic acids from nucleotides."], ["Which bond joins each polymer?", "Glycosidic in carbohydrates, ester in lipids, peptide in proteins, phosphodiester in nucleic acids."], ["How are polymers built and broken?", "Built by dehydration synthesis, which removes water. Broken by hydrolysis, which adds it."], ["What are the three parts of a nucleotide?", "A phosphate, a five carbon sugar and a nitrogenous base."], ["Purines and pyrimidines?", "Purines A and G have two rings. Pyrimidines C, T and U have one."], ["Why do phospholipids form bilayers?", "They are amphipathic. Hydrophilic heads face water while hydrophobic tails cluster inward."], ["Saturated against unsaturated fats?", "Saturated has no carbon double bonds and packs solid. Unsaturated has kinks and stays liquid."], ["How do DNA and RNA differ chemically?", "DNA uses deoxyribose with thymine. RNA uses ribose with uracil, and its 2 prime OH makes it less stable."]], "bonds": [["Rank the interactions by strength.", "Covalent, then ionic, then hydrogen bonds, then van der Waals."], ["What holds the two DNA strands together?", "Hydrogen bonds between the base pairs, plus base stacking interactions."], ["How many hydrogen bonds in each base pair?", "Two for A to T and three for G to C, so GC rich DNA melts at a higher temperature."], ["What mainly drives protein folding?", "The hydrophobic effect. Nonpolar side chains cluster inward and release ordered water, which raises entropy."], ["What makes a covalent bond polar?", "A difference in electronegativity between the two bonded atoms."], ["Why does ice float?", "Hydrogen bonds hold the molecules in an open lattice that is less dense than liquid water."], ["What is a salt bridge?", "An electrostatic attraction between oppositely charged side chains. It is strongest when buried away from water."], ["State Chargaff's rules.", "The amount of A equals T and the amount of G equals C, in every species."]], "protein": [["Name the four levels of protein structure.", "Primary sequence, secondary helices and sheets, tertiary fold, quaternary assembly of subunits."], ["What stabilizes secondary structure?", "Hydrogen bonds between backbone carbonyl and amide groups, not between side chains."], ["Which groups hydrogen bond in an alpha helix?", "The backbone carbonyl of one residue and the backbone amide about four residues along."], ["What stabilizes tertiary structure?", "R group interactions: hydrophobic clustering, hydrogen bonds, salt bridges, van der Waals and disulfide bonds."], ["What did Anfinsen's experiment establish?", "That the amino acid sequence contains all the information needed for folding. Denatured ribonuclease refolded on its own."], ["What does denaturation do?", "Heat, extreme pH or urea break the weak bonds and unfold the protein. Primary structure survives, function does not."], ["Give an example of quaternary structure.", "Hemoglobin, built from two alpha and two beta subunits."], ["What is a protein domain?", "A compact, independently folding region that usually has a function of its own."]], "enzymes": [["How does an enzyme speed up a reaction?", "It lowers the activation energy by stabilizing the transition state. It does not change delta G or the equilibrium."], ["What is induced fit?", "Substrate binding reshapes the active site around it, improving catalysis."], ["Competitive against noncompetitive inhibition?", "A competitive inhibitor binds the active site and is beaten by more substrate. A noncompetitive one binds elsewhere and is not."], ["What does Km represent?", "The substrate concentration that gives half maximal velocity. A low Km means high affinity."], ["What is feedback inhibition?", "The end product of a pathway inhibits an enzyme near its start, shutting the pathway down."], ["Cofactor against coenzyme?", "Cofactors are inorganic, such as magnesium or zinc. Coenzymes are organic, such as NAD+, FAD and coenzyme A."], ["Why does activity fall at high temperature?", "The enzyme denatures once it passes its stability limit."], ["Exergonic against endergonic?", "Exergonic has a negative delta G and is spontaneous. Endergonic has a positive delta G and needs energy."], ["Describe ATP and its yield.", "Adenine, ribose and three phosphates. Hydrolysis to ADP releases about 7.3 kcal per mole."], ["What does OIL RIG stand for?", "Oxidation Is Loss of electrons, Reduction Is Gain."]], "cells": [["Give three differences between prokaryotes and eukaryotes.", "No nucleus against a true nucleus, circular against linear chromosomes, 70S against 80S ribosomes."], ["Name the three domains of life.", "Bacteria, Archaea and Eukarya."], ["What does the nucleolus do?", "Makes ribosomal RNA and assembles ribosomal subunits."], ["Rough against smooth ER?", "Rough ER carries ribosomes and folds proteins for secretion. Smooth ER makes lipids, detoxifies and stores calcium."], ["What does the Golgi apparatus do?", "Modifies, sorts, tags and ships proteins to their destinations."], ["Lysosome against peroxisome?", "Lysosomes digest waste with acidic enzymes. Peroxisomes break down fatty acids and neutralize hydrogen peroxide."], ["What supports endosymbiotic theory?", "Mitochondria and chloroplasts have double membranes, circular DNA and 70S ribosomes, and they divide by binary fission."], ["Why must cells stay small?", "The surface area to volume ratio falls as a cell grows, which limits exchange with the environment."], ["Are viruses alive?", "No. They are acellular and cannot reproduce without host machinery."]], "dna": [["What does semiconservative replication mean?", "Each daughter duplex keeps one parental strand and one newly made strand."], ["Which experiment proved it?", "Meselson and Stahl, shifting cells from heavy to light nitrogen and separating the DNA on a caesium chloride gradient."], ["Why is a primer needed?", "DNA polymerase can only extend a free 3 prime hydroxyl, so primase lays down a short RNA primer first."], ["Leading against lagging strand?", "The leading strand is made continuously toward the fork. The lagging strand is made as Okazaki fragments running away from it."], ["What do helicase, SSB and topoisomerase do?", "Helicase unwinds the helix, SSB proteins keep the strands apart, topoisomerase relieves supercoiling ahead of the fork."], ["DNA polymerase I against III in bacteria?", "Pol III does the main elongation. Pol I removes the RNA primers and fills the gaps with DNA."], ["What does ligase do?", "Seals the nicks between Okazaki fragments by forming a phosphodiester bond."], ["How does proofreading work?", "A 3 prime to 5 prime exonuclease activity removes mispaired nucleotides as they are added."], ["Why do chromosomes shorten without telomerase?", "Removing the last RNA primer on the lagging strand leaves a gap that cannot be filled."], ["What does antiparallel mean?", "One strand runs 5 prime to 3 prime while its partner runs 3 prime to 5 prime."]], "txn": [["Name the three stages of transcription.", "Initiation at the promoter, elongation 5 prime to 3 prime, and termination."], ["Which strand does RNA polymerase read?", "The template or antisense strand, read 3 prime to 5 prime. The coding strand matches the mRNA."], ["How is eukaryotic mRNA processed?", "A 5 prime cap is added, a poly-A tail is added, and the spliceosome removes the introns."], ["What marks a bacterial promoter?", "The minus 10 box (TATAAT) and the minus 35 box, recognized by sigma factor."], ["What happens at the ribosomal A, P and E sites?", "A accepts the incoming charged tRNA, P holds the growing chain, and E is where the empty tRNA leaves."], ["What forms the peptide bond?", "Peptidyl transferase, a ribozyme activity of the rRNA in the large subunit."], ["Which enzyme charges tRNA?", "Aminoacyl-tRNA synthetase, one for each amino acid."], ["How does translation end?", "A stop codon enters the A site and release factors cut the finished chain free."], ["What is wobble?", "Flexible pairing at the third codon position, which lets a single tRNA read several codons."], ["Which eukaryotic polymerase makes mRNA?", "RNA polymerase II. Pol I makes rRNA and pol III makes tRNA."]], "lac": [["Name the three structural genes of the lac operon.", "lacZ for beta-galactosidase, lacY for permease, lacA for transacetylase."], ["What does the lac repressor do?", "Made from lacI, it binds the operator and blocks transcription."], ["What is the inducer?", "Allolactose, or IPTG in the laboratory. It binds the repressor and inactivates it."], ["What does CAP do?", "With cAMP bound, it binds upstream of the promoter and increases RNA polymerase binding. That is positive control."], ["Why does glucose shut the operon down?", "Glucose lowers cAMP, so CAP cannot activate the promoter. That is catabolite repression."], ["When is expression at its maximum?", "Lactose present and glucose absent."], ["Inducible against repressible operon?", "Inducible is normally off and switches on for catabolism, like lac. Repressible is normally on and switches off when the product builds up, like trp."], ["Cis against trans acting?", "The operator acts only on genes on its own DNA molecule. The repressor is a diffusible protein and acts on any copy."]], "resp": [["What is the net yield of glycolysis?", "2 ATP, 2 NADH and 2 pyruvate per glucose, in the cytosol, with no oxygen required."], ["Which enzyme limits the rate of glycolysis?", "Phosphofructokinase-1. It is inhibited by ATP and citrate and activated by AMP."], ["What is the link reaction?", "Pyruvate dehydrogenase converts pyruvate to acetyl-CoA in the matrix, releasing CO2 and making NADH."], ["What does one turn of the Krebs cycle yield?", "3 NADH, 1 FADH2, 1 GTP and 2 CO2. The cycle turns twice per glucose."], ["Which complexes pump protons?", "Complexes I, III and IV. Complex II pumps none, which is why FADH2 yields less ATP."], ["What is the final electron acceptor?", "Oxygen, which is reduced to water at complex IV."], ["How much ATP does each carrier give?", "About 2.5 per NADH and 1.5 per FADH2, for roughly 30 to 32 ATP per glucose."], ["What does an uncoupler such as DNP do?", "It lets protons leak back, so electron transport keeps running while ATP synthesis stops and the energy leaves as heat."], ["What does yeast make when fermenting?", "Ethanol and carbon dioxide, with a net of 2 ATP per glucose."], ["Why ferment at all?", "To regenerate NAD+ so that glycolysis can keep running without oxygen. Fermentation itself makes no ATP."], ["Compare aerobic and anaerobic yeast.", "About 30 ATP per glucose with oxygen against 2 without it, roughly a fifteen fold difference."], ["How does lactic acid fermentation differ?", "Pyruvate is reduced straight to lactate in one step, with no carbon dioxide released."]], "photo": [["Give the overall equation.", "6 CO2 plus 6 H2O plus light gives C6H12O6 plus 6 O2."], ["Where does each stage happen?", "Light reactions in the thylakoid membrane, Calvin cycle in the stroma."], ["Where does the released oxygen come from?", "From splitting water at photosystem II, not from carbon dioxide."], ["Which photosystem is P680?", "Photosystem II. P700 is photosystem I, and electrons reach II first despite the numbering."], ["What do the light reactions produce?", "ATP, NADPH and oxygen."], ["What is cyclic photophosphorylation?", "Electrons loop around photosystem I alone, making extra ATP with no NADPH and no oxygen."], ["Name the three phases of the Calvin cycle.", "Carbon fixation by rubisco, reduction to G3P, and regeneration of RuBP."], ["What does one G3P cost?", "3 CO2, 9 ATP and 6 NADPH over three turns. A glucose needs six turns."], ["What is photorespiration?", "Rubisco fixes oxygen instead of carbon dioxide when stomata close, consuming ATP and making no sugar."], ["C4 against CAM?", "C4 separates the two steps in space, using mesophyll and bundle sheath cells. CAM separates them in time, fixing carbon at night."], ["Which enzyme fixes carbon in C4 plants?", "PEP carboxylase, which has no affinity for oxygen."]], "mendel": [["State the law of segregation.", "The two alleles of a gene separate during gamete formation, so each gamete carries only one."], ["State the law of independent assortment.", "Genes on different chromosomes are inherited independently of one another."], ["Give the monohybrid and dihybrid ratios.", "3 to 1 for a monohybrid cross and 9 to 3 to 3 to 1 for a dihybrid cross."], ["What is a test cross for?", "Crossing to a homozygous recessive reveals whether a dominant individual is homozygous or heterozygous."], ["Incomplete dominance against codominance?", "Incomplete dominance blends the two phenotypes. Codominance shows both fully, as in AB blood type."], ["How does autosomal recessive inheritance look?", "It skips generations, affected children come from unaffected carriers, and both sexes are affected equally."], ["How does X linked recessive inheritance look?", "Mostly males are affected, carrier mothers pass it to sons, and an affected father gives every daughter carrier status."], ["What is incomplete penetrance?", "Some individuals carrying the genotype never show the phenotype at all."], ["What is variable expressivity?", "Affected individuals differ in how severe the phenotype turns out to be."], ["Pleiotropy against epistasis?", "Pleiotropy is one gene affecting several traits. Epistasis is one gene masking the effect of another."]], "linkage": [["How is recombination frequency calculated?", "Recombinant offspring divided by total offspring, times 100. One percent equals one map unit."], ["What is the maximum recombination frequency?", "50 percent, which is what unlinked genes give. Anything at that value behaves as unlinked."], ["How do you find the middle gene in a three point cross?", "Compare the rarest double crossover class with the parental class. The gene that has switched sits in the middle."], ["Which offspring classes are most common?", "The parental classes, matching the original chromosome arrangement."], ["Why do distant genes underestimate map distance?", "Double crossovers restore the parental arrangement, so they are never counted."], ["What is interference?", "One crossover reduces the chance of another nearby. It equals one minus the coefficient of coincidence."], ["When does crossing over happen?", "In prophase of meiosis I, between homologous chromosomes."], ["What was Sturtevant's contribution?", "He used recombination frequencies to build the first genetic map."]], "recdna": [["What do restriction enzymes recognize?", "Short palindromic sequences, which they cut to leave either sticky overhangs or blunt ends."], ["Why does the host not cut its own DNA?", "A modification enzyme methylates the recognition sites in the host genome."], ["What three features does a cloning vector need?", "An origin of replication, a selectable marker and a multiple cloning site."], ["Why are sticky ends useful?", "The overhangs base pair with any fragment cut by the same enzyme, holding the ends together while ligase seals them."], ["How does blue white screening work?", "An insert disrupts the lacZ fragment, so recombinant colonies stay white while empty vectors turn blue on X-gal."], ["Genomic against cDNA library?", "A genomic library holds every sequence including introns. A cDNA library is built from mRNA, so the introns are already spliced out."], ["Why use an oligo-dT primer?", "It anneals to the poly-A tail, so only mature messenger RNA gets copied."], ["How do you screen an expression library?", "With an antibody against the protein product, since the insert is transcribed and translated."], ["What is a cosmid?", "A plasmid carrying phage lambda packaging sequences, which lets it accept much larger inserts."], ["What is insertional inactivation?", "Cloning DNA into a marker gene disrupts it, which signals that the insert went in."], ["What did the Asilomar conference address?", "Voluntary safety guidelines for recombinant DNA research."]], "methods": [["Which way does DNA move in a gel?", "Toward the positive electrode, because the phosphate backbone is negative. Small fragments travel fastest."], ["Give the three PCR steps and their temperatures.", "Denature at 94 to 95, anneal primers at 50 to 65, extend at 72 degrees with Taq polymerase."], ["Why is Taq polymerase used?", "It is thermostable, so it survives the repeated high temperature denaturation steps."], ["What terminates the chains in Sanger sequencing?", "Dideoxynucleotides, which have no 3 prime hydroxyl for the next base to attach to."], ["Southern, Northern and Western blots?", "DNA, RNA and protein respectively. Remember SNoW DRoP."], ["What does quantitative PCR measure?", "The amount of starting template, by monitoring product accumulation in real time."], ["How does a labeled probe find its target?", "By complementary base pairing to the target sequence."], ["What is reverse transcriptase used for?", "Converting mRNA into cDNA for cloning and analysis."], ["How does CRISPR-Cas9 work?", "A guide RNA takes Cas9 to a matching sequence, where it cuts so that repair edits the gene."], ["Why run a DNA ladder beside your samples?", "It provides known size standards for estimating the fragment sizes."]], "classic": [["What did Griffith show in 1928?", "Heat killed virulent bacteria could transform live avirulent bacteria, so something was being transferred."], ["What did Avery, MacLeod and McCarty add?", "Destroying DNA abolished transformation while destroying protein or RNA did not, so DNA is the transforming principle."], ["What did Hershey and Chase find?", "Phosphorus labeled DNA entered the bacteria while sulfur labeled protein stayed outside."], ["Why did they use a blender?", "To shear the empty phage coats off the bacterial surface so the two labels could be separated."], ["What did Meselson and Stahl prove?", "Replication is semiconservative, ruling out the conservative and dispersive models."], ["What did Beadle and Tatum conclude?", "One gene, one enzyme, later refined to one gene, one polypeptide."], ["What did Garrod propose?", "That inherited metabolic disorders such as alkaptonuria come from a missing enzyme activity."], ["What did Franklin and Wilkins contribute?", "X-ray diffraction images showing a helix of regular width and repeat spacing."], ["What did Nirenberg and Matthaei do?", "Poly-U RNA in a cell free system made polyphenylalanine, cracking the first codon."], ["Why were proteins once thought to be the genetic material?", "They have twenty different subunits and seemed better able to carry complex information than DNA's four bases."]]};
+
+document.querySelectorAll(".deck").forEach(deck => {
+  const cards = FC[deck.dataset.topic];
+  if(!cards || !cards.length) return;
+  let order = cards.map((_, i) => i), at = 0, shown = false;
+
+  deck.innerHTML =
+    '<div class="deck-head"><span class="deck-title">Flashcards</span>' +
+    '<span class="deck-count"></span></div>' +
+    '<button class="card" type="button" aria-expanded="false">' +
+    '<span class="card-side"></span><span class="card-hint"></span></button>' +
+    '<div class="deck-btns"><button type="button" data-a="prev">Previous</button>' +
+    '<button type="button" data-a="next">Next</button>' +
+    '<button type="button" data-a="shuffle">Shuffle</button></div>';
+
+  const card = deck.querySelector(".card");
+  const side = deck.querySelector(".card-side");
+  const hint = deck.querySelector(".card-hint");
+  const count = deck.querySelector(".deck-count");
+
+  function draw(){
+    const c = cards[order[at]];
+    side.textContent = shown ? c[1] : c[0];
+    hint.textContent = shown ? "Click to see the question" : "Click to reveal the answer";
+    card.setAttribute("aria-expanded", shown ? "true" : "false");
+    count.textContent = (at + 1) + " of " + cards.length;
+  }
+  function step(by){
+    at = (at + by + cards.length) % cards.length;
+    shown = false;
+    draw();
+  }
+
+  card.addEventListener("click", () => { shown = !shown; draw(); });
+  deck.querySelector(".deck-btns").addEventListener("click", e => {
+    const act = e.target.dataset.a;
+    if(act === "next") step(1);
+    else if(act === "prev") step(-1);
+    else if(act === "shuffle"){
+      order = order.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map(p => p[1]);
+      at = 0; shown = false; draw();
+    }
+  });
+  draw();
+});
+</script>
 
 <script>
 // question bank: t = topic, q = clue (the function), a = the name to recall
