@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Microbiology Quiz</title>
+<style>
+:root{
+  --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#5c5c5c;
+  --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
+  --shadow:0 10px 30px rgba(0,0,0,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
+header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
+h1{color:var(--green);font-size:2.2rem}
+.sub{color:var(--muted);margin-top:.4rem}
+nav{position:sticky;top:0;z-index:50;background:var(--page);padding:.6rem 0;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
+nav .wrap{max-width:1000px;margin:.6rem auto 0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+  max-height:40vh;overflow-y:auto}
+#jump{max-width:1000px;margin:0 auto}
+#jump summary{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;
+  list-style:none;cursor:pointer;color:var(--green);font-size:13px;font-weight:600;
+  border:1px solid var(--green);border-radius:999px;background:var(--card);padding:0 16px;width:max-content;
+  margin:0 auto;transition:background .18s ease-out,color .18s ease-out}
+#jump summary::-webkit-details-marker{display:none}
+#jump summary:hover{background:var(--green);color:var(--card)}
+#jump summary::after{content:"\25be";font-size:11px;transition:transform .18s ease-out}
+#jump[open] summary::after{transform:rotate(180deg)}
+.jump-count{color:var(--muted);font-weight:400}
+#jump summary:hover .jump-count{color:inherit}
+nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;
+  text-decoration:none;transition:background .18s ease-out,color .18s ease-out}
+nav a:hover{background:var(--green);color:white}
+main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
+section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);padding:1.5rem;scroll-margin-top:88px}
+h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
+h3{font-size:1.1rem;margin:1.5rem 0 .5rem;color:var(--ink);border-left:4px solid var(--green);padding-left:.5rem;scroll-margin-top:88px}
+p,li{font-size:1rem;max-width:72ch}
+ul,ol{margin:.5rem 0 .5rem 1.25rem}
+li{margin-bottom:.25rem}
+.tag{display:inline-block;background:var(--green-soft);color:var(--green);border-radius:6px;
+  padding:1px 7px;font-size:.75rem;font-weight:700;margin-left:.35rem}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.5rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--green-soft);color:var(--green);position:sticky;top:0;text-align:left}
+tbody tr:nth-child(even){background:var(--stripe)}
+code{background:var(--stripe);border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:.9em}
+.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.7rem .9rem;border-radius:6px;margin:.7rem 0;font-size:.95rem;max-width:78ch}
+figure{margin:.75rem 0;text-align:center}
+figcaption{color:var(--muted);font-size:.8rem;margin-top:.35rem}
+svg{max-width:100%;height:auto}
+figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:6px}
+.svgtxt{font:12px sans-serif;fill:var(--ink)}
+.svgsm{font:10px sans-serif;fill:var(--muted)}
+.svgbold{font:bold 12px sans-serif;fill:#1c7c3a}
+.codon td,.codon th{text-align:center;padding:3px 5px;font-size:.78rem}
+.stop{background:var(--green-soft);color:var(--danger);font-weight:700}
+.start{background:#e6fff0;color:#1c7c3a;font-weight:700}
+.back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
+.deck{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
+.deck-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+.deck-title{color:var(--green);font-weight:700;font-size:1.05rem}
+.deck-count{color:var(--muted);font-size:.85rem}
+.card{display:block;width:100%;text-align:left;background:var(--green-soft);border:1px solid var(--green);
+  border-left:5px solid var(--green);border-radius:10px;padding:1rem;min-height:112px;cursor:pointer;
+  font-family:inherit;font-size:1rem;color:var(--ink);line-height:1.5;transition:background .18s ease-out}
+.card:hover{background:var(--card)}
+.card-side{display:block;font-weight:600}
+.card[aria-expanded="true"] .card-side{font-weight:400}
+.card-hint{display:block;margin-top:.6rem;color:var(--muted);font-size:.8rem;font-weight:400}
+.deck-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.6rem}
+.deck-btns button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:8px;
+  min-height:44px;padding:0 18px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;
+  transition:background .18s ease-out,color .18s ease-out}
+.deck-btns button:hover{background:var(--green);color:var(--card)}
+.rc-topics{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0}
+.rc-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;
+  transition:background .18s ease-out,color .18s ease-out}
+.rc-topics button.on{background:var(--green);color:white}
+.rc-clue{background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
+  padding:.8rem;font-size:1rem;font-weight:600;margin:.75rem 0}
+#rc-select{width:100%;max-width:560px;min-height:48px;padding:10px 12px;font-size:16px;
+  border:2px solid var(--green);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
+.rc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.75rem}
+.rc-btns button{background:var(--green);color:var(--card);border:none;border-radius:8px;
+  min-height:44px;padding:0 22px;font-size:.95rem;font-weight:600;cursor:pointer;
+  transition:filter .18s ease-out}
+.rc-btns button:hover{filter:brightness(1.08)}
+.rc-btns button.ghost{background:var(--card);color:var(--green);border:1px solid var(--green)}
+.rc-feedback{margin-top:.6rem;font-weight:700;font-size:.95rem;min-height:1.2em}
+.rc-feedback.ok{color:var(--green)}
+.rc-feedback.bad{color:var(--danger)}
+.rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
+.qz-topics{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 1rem}
+.qz-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;
+  transition:background .18s ease-out,color .18s ease-out}
+.qz-topics button:hover{background:var(--green);color:var(--card)}
+.qz-topics button.on{background:var(--green);color:#fff}
+.qz-bar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  color:var(--muted);font-size:.85rem;margin-bottom:.5rem}
+.qz-prompt{font-size:1.05rem;font-weight:600;margin:.5rem 0 1rem;max-width:72ch}
+.qz-opts{display:flex;flex-direction:column;gap:8px}
+.qz-opts button{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);
+  border:1px solid var(--line);border-left:5px solid var(--line);border-radius:8px;padding:12px 14px;
+  min-height:48px;font-size:1rem;font-family:inherit;line-height:1.45;cursor:pointer;
+  transition:border-color .18s ease-out,background .18s ease-out}
+.qz-opts button:hover:not(:disabled){border-color:var(--green);background:var(--green-soft)}
+.qz-opts button:disabled{cursor:default}
+.qz-opts button.right{border-color:var(--green);border-left-color:var(--green);background:var(--green-soft);font-weight:600}
+.qz-opts button.wrong{border-color:var(--danger);border-left-color:var(--danger);background:#fdeceb}
+.qz-expl{margin-top:1rem;background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
+  padding:.8rem .9rem;font-size:.95rem;max-width:78ch}
+.qz-expl.miss{background:#fdeceb;border-left-color:var(--danger)}
+.qz-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
+.qz-btns button{background:var(--green);color:var(--card);border:none;border-radius:8px;min-height:44px;
+  padding:0 22px;font-size:.95rem;font-weight:600;font-family:inherit;cursor:pointer;transition:filter .18s ease-out}
+.qz-btns button:hover{filter:brightness(1.08)}
+.qz-btns button.ghost{background:var(--card);color:var(--green);border:1px solid var(--green)}
+.qz-done{font-size:1.1rem;font-weight:600;color:var(--green)}
+</style>
+</head>
+<body id="top">
+
+<header>
+  <h1>Microbiology Quiz</h1>
+  <p class="sub">200 multiple choice questions across the ten course topics, with an explanation after every answer.</p>
+  <a class="back" href="microbiology.html">&larr; Microbiology content</a>
+  <a class="back" href="biology-review.html" style="margin-left:1rem">Biology review &rarr;</a>
+</header>
+
+<main>
+<section>
+  <div class="qz-topics" id="qz-topics" role="group" aria-label="Choose a topic"></div>
+  <div class="qz-bar">
+    <span id="qz-progress">Loading…</span>
+    <span id="qz-score" aria-live="polite"></span>
+  </div>
+  <p class="qz-prompt" id="qz-prompt"></p>
+  <div class="qz-opts" id="qz-opts" role="group" aria-label="Answer options"></div>
+  <p class="qz-expl" id="qz-expl" role="status" aria-live="polite" hidden></p>
+  <div class="qz-btns">
+    <button id="qz-next" hidden>Next question</button>
+    <button id="qz-restart" class="ghost">Restart</button>
+  </div>
+</section>
+</main>
+
+<script>
+const QZ_TOPICS = {"world": "Microbial world", "bact": "Bacteria", "arch": "Archaea", "euk": "Eukaryal microbes", "virus": "Viruses", "cult": "Cultivation", "mvp": "Bacterial MVPs", "reg": "Gene regulation", "bgen": "Bacterial genetics", "gnom": "Genomics"};
+// [topic, prompt, options, index of the correct option, explanation]
+const QB = [
+["world", "Which molecule did Woese use to separate Archaea from Bacteria?", ["Small subunit ribosomal RNA sequence", "The beta subunit of RNA polymerase", "Cytochrome c from the membrane", "Elongation factor Tu protein"], 0, "16S and 18S rRNA are universal, functionally constant and slow changing, so they work as a molecular clock across all life."],
+["world", "Which stereoisomer of glycerol phosphate carries archaeal membrane lipids?", ["Glycerol-1-phosphate", "Glycerol-3-phosphate", "Glycerol-2-phosphate", "Glycerol-6-phosphate"], 0, "Archaea build on glycerol-1-phosphate, the mirror image of the glycerol-3-phosphate used by bacteria and eukaryotes."],
+["world", "Which bond joins the hydrocarbon chains to glycerol in an archaeon?", ["An ether bond", "An ester bond", "An amide bond", "A thioester bond"], 0, "Ether bonds resist hydrolysis at high temperature and low pH, which suits the habitats many archaea occupy."],
+["world", "Which feature groups Archaea with Eukarya rather than with Bacteria?", ["Histones packaging the chromosome", "Operons with polycistronic mRNA", "A single circular chromosome", "Chemiosmotic energy conservation"], 0, "Information processing is eukaryote-like in archaea, while metabolism and genome layout stay bacterial."],
+["world", "An organism uses light for energy, hydrogen sulfide as electron donor and carbon dioxide for carbon. What is it?", ["A photolithoautotroph", "A chemolithoautotroph", "A photoorganoheterotroph", "A chemoorganoheterotroph"], 0, "The three parts of the label report energy source, electron donor and carbon source in that order."],
+["world", "Which organisms carry out the first step of nitrification?", ["Nitrosomonas and relatives", "Nitrobacter and relatives", "Rhizobium and relatives", "Desulfovibrio and relatives"], 0, "Nitrosomonas oxidises ammonia to nitrite; Nitrobacter then oxidises nitrite to nitrate."],
+["world", "Which process is carried out only by archaea?", ["Methanogenesis", "Denitrification", "Nitrification", "Photosynthesis"], 0, "No bacterium or eukaryote produces methane; the other three processes are all found in bacteria."],
+["world", "Anammox bacteria combine which two substrates?", ["Ammonium and nitrite", "Ammonium and sulfate", "Nitrate and methane", "Nitrite and hydrogen"], 0, "Anaerobic ammonium oxidation converts ammonium plus nitrite straight to dinitrogen gas."],
+["world", "Why do cells inside a biofilm survive high doses of antibiotic?", ["The matrix slows entry and interior cells grow slowly", "Every cell in the matrix carries a resistance plasmid", "The matrix chemically destroys the drug on contact", "Biofilm cells switch to an entirely archaeal envelope"], 0, "Tolerance can be a thousandfold higher than for planktonic cells without any change in genotype."],
+["world", "Which statement about Koch's first postulate is correct?", ["Asymptomatic carriers violate it", "Uncultivable pathogens satisfy it", "It applies to viruses only", "Healthy tissue always stays sterile"], 0, "Healthy carriers of Salmonella or Neisseria harbour the organism without disease, so the postulate fails."],
+["world", "What do molecular Koch's postulates test instead of the organism?", ["A candidate virulence gene", "A serum antibody response", "A colony morphology change", "A ribosomal RNA sequence"], 0, "Inactivating the gene should reduce virulence and restoring it should bring virulence back."],
+["world", "Which description fits endotoxin rather than exotoxin?", ["Heat stable and released on lysis", "Secreted and specific in its target", "Lethal in nanogram quantities", "Convertible into a toxoid vaccine"], 0, "Endotoxin is the lipid A of LPS, a structural component, so it cannot be turned into a toxoid."],
+["world", "What does a siderophore do for a pathogen?", ["Captures iron from host proteins", "Blocks phagocytosis by the host", "Degrades host antibody molecules", "Anchors the cell to host tissue"], 0, "Enterobactin and similar chelators strip iron from transferrin and lactoferrin."],
+["world", "Which term describes a pathogen that only causes disease when defences fail?", ["Opportunistic pathogen", "Intracellular parasite", "Systemic pathogen", "Zoonotic reservoir"], 0, "Pseudomonas aeruginosa and Candida albicans are harmless in most people and dangerous in a compromised host."],
+["world", "Roughly what fraction of the Escherichia coli chromosome encodes protein?", ["About 88 per cent", "About 45 per cent", "About 25 per cent", "About 8 per cent"], 0, "Bacterial genomes are gene dense, unlike the human genome where coding sequence is a few per cent."],
+["world", "Why do endosymbionts such as Carsonella have tiny genomes?", ["The host supplies what the pathways made", "Small cells cannot copy long chromosomes fast", "Their polymerases have no proofreading capacity", "Symbionts shed DNA during host transmission"], 0, "Genes for biosynthesis decay to pseudogenes and are lost once the host provides the product."],
+["world", "Which measurement now defines a bacterial species?", ["Average nucleotide identity", "Guanine cytosine content", "Colony morphology comparison", "Doubling time measurement"], 0, "Whole-genome identity above roughly 95 per cent is treated as one species, replacing DNA hybridisation."],
+["world", "What limits the resolution of a light microscope to about 0.2 micrometres?", ["The wavelength of visible light", "The refractive index of glass", "The thickness of the specimen", "The intensity of the light source"], 0, "Anything below that limit needs electron microscopy, which is why viruses stayed hypothetical for decades."],
+["world", "Which cell is the largest bacterium known?", ["Thiomargarita namibiensis", "Mycoplasma genitalium", "Escherichia coli K-12", "Prochlorococcus marinus"], 0, "It reaches 750 micrometres, though most of that volume is a storage vacuole rather than cytoplasm."],
+["world", "Why does a small cell grow faster than a large one?", ["A high surface to volume ratio", "A shorter chromosome to copy out", "A lower demand for ribosome production", "A thinner wall to build each time"], 0, "More membrane per unit of cytoplasm means faster exchange of nutrients and waste."],
+["bact", "Which protein forms the ring that marks the bacterial division site?", ["FtsZ", "MreB", "CreS", "ParA"], 0, "FtsZ is the tubulin homologue; it polymerises at midcell and recruits the rest of the divisome."],
+["bact", "Which cytoskeletal protein maintains rod shape and is absent from cocci?", ["MreB", "FtsZ", "CreS", "FtsA"], 0, "MreB is the actin homologue and directs where new wall material is inserted along the cylinder."],
+["bact", "What keeps the Z ring from assembling near a cell pole?", ["The oscillating MinCDE system", "The nucleoid occlusion effect", "The polar MreB anchoring", "The methylation of oriC"], 0, "MinC oscillates pole to pole as an inhibitor, leaving midcell as the only permissive site."],
+["bact", "Which bond does lysozyme hydrolyse in the bacterial wall?", ["The beta-1,4 bond between sugars", "The lipid II carrier linkage", "The 3-position peptide cross bridge", "The teichoic acid phosphodiester link"], 0, "Lysozyme cuts between N-acetylmuramic acid and N-acetylglucosamine, collapsing the sacculus."],
+["bact", "What do penicillin and the other beta-lactams inhibit?", ["Peptide stem cross-linking", "Glycan chain polymerisation", "Lipid carrier recycling", "Teichoic acid attachment"], 0, "Penicillin binding proteins cannot knit the peptide stems together, so the cell lyses under turgor."],
+["bact", "Which part of the wall does vancomycin bind?", ["The D-alanyl-D-alanine terminus", "The N-acetylmuramic acid ring", "The diaminopimelic acid stem", "The pentaglycine bridge"], 0, "It blocks cross-linking from the substrate side, and it is too large to cross a Gram-negative outer membrane."],
+["bact", "Why does a Gram-positive cell keep the crystal violet stain?", ["Alcohol shrinks its thick peptidoglycan", "Iodine cannot penetrate thin walls", "Its membrane binds the dye covalently", "Safranin displaces the dye more slowly"], 0, "The dehydrated mesh traps the dye and iodine complex, while alcohol dissolves the Gram-negative outer membrane."],
+["bact", "Which layer carries the endotoxin activity of a Gram-negative cell?", ["Lipid A of the lipopolysaccharide", "The O antigen sugar repeats", "The core polysaccharide region", "The peptidoglycan cross bridges"], 0, "Lipid A triggers fever, inflammation and septic shock through the innate immune system."],
+["bact", "What is the O antigen used for in the clinic?", ["Serotyping a Gram-negative isolate", "Measuring the thickness of the wall", "Predicting beta-lactam sensitivity", "Distinguishing archaea from bacteria"], 0, "The variable sugar repeat gives names such as Escherichia coli O157:H7."],
+["bact", "Which structure makes mycobacteria acid-fast?", ["A mycolic acid outer layer", "A thick capsule of protein", "An unusually dense S-layer", "A double outer membrane"], 0, "The waxy layer retains carbolfuchsin through acid alcohol and also slows nutrient uptake and drug entry."],
+["bact", "What powers the rotation of a bacterial flagellum?", ["The proton-motive force", "Hydrolysis of stored ATP", "A calcium ion gradient", "Sliding filament subunits"], 0, "MotA and MotB conduct protons across the membrane and turn the rotor; the archaellum uses ATP instead."],
+["bact", "Which arrangement describes flagella distributed over the whole cell?", ["Peritrichous", "Lophotrichous", "Amphitrichous", "Monotrichous"], 0, "Escherichia coli is peritrichous, which lets its filaments bundle into one propeller during a run."],
+["bact", "What does the H antigen of a serotype refer to?", ["Flagellar protein antigen", "Capsular polysaccharide", "Lipopolysaccharide sugar", "Fimbrial adhesin tip"], 0, "O is the LPS sugar chain, H is flagellin and K is the capsule."],
+["bact", "Which surface structure is used both for twitching motility and for DNA uptake?", ["The type IV pilus", "The F sex pilus", "The polar flagellar hook", "A short curli fibre"], 0, "Retraction of the pilus pulls the cell forward and also draws DNA across the envelope."],
+["bact", "What is inside a carboxysome?", ["Rubisco and carbonic anhydrase", "Magnetite crystals in a chain", "Stored polyhydroxybutyrate", "Gas at atmospheric pressure"], 0, "The protein shell concentrates carbon dioxide around rubisco in autotrophs."],
+["bact", "How many endospores does one sporulating cell produce?", ["Exactly one", "Precisely two", "Four spores", "Eight spores"], 0, "Sporulation is survival rather than reproduction, which is why it does not increase cell numbers."],
+["bact", "Which component is responsible for the dehydrated core of an endospore?", ["Calcium dipicolinate", "Lipoteichoic acid", "Poly-beta-hydroxybutyrate", "N-acetylmuramic acid"], 0, "Dipicolinic acid chelated with calcium replaces water and stabilises the DNA with small acid-soluble proteins."],
+["bact", "Which organism has no cell wall at all?", ["Mycoplasma", "Mycobacterium", "Streptococcus", "Pseudomonas"], 0, "It keeps sterols in its membrane instead, so it is pleomorphic and untouched by beta-lactams."],
+["bact", "What is an S-layer made of?", ["Self-assembling protein subunits", "Branched isoprenoid lipid bilayers", "Long repeating teichoic acid chains", "Cross-linked glycan strands"], 0, "The paracrystalline sheet is the outermost layer of many archaea and some bacteria."],
+["bact", "Which phylum contains Streptomyces, Mycobacterium and Corynebacterium?", ["Actinobacteria", "Firmicutes", "Proteobacteria", "Bacteroidetes"], 0, "They are the Gram-positive bacteria with high GC content, several of them filamentous."],
+["arch", "Which archaeal genes group with eukaryotes rather than with bacteria?", ["Informational genes", "Operational genes", "Transport genes", "Biosynthetic genes"], 0, "Replication, transcription and translation are eukaryote-like; metabolism stays bacterial."],
+["arch", "What does the two-domain hypothesis claim?", ["Eukaryotes arose from within the archaea", "Archaea arose from within the eukaryotes", "Bacteria and archaea share one domain", "Eukaryotes predate both prokaryotic groups"], 0, "On this model eukaryotes are a branch inside the Asgard archaea, so there are two primary domains."],
+["arch", "Which proteins in Asgard genomes support that argument?", ["Actin, profilin and ESCRT components", "Tubulin, myosin and kinesin motors", "Histone, ligase and gyrase enzymes", "Porin, flagellin and pilin subunits"], 0, "These eukaryotic signature proteins were unexpected in an archaeon and imply a shared ancestry."],
+["arch", "What is unusual about the membrane of a hyperthermophilic archaeon?", ["The chains span it as a monolayer", "The chains carry no branches at all", "It contains no lipid whatsoever", "It carries cholesterol for rigidity"], 0, "Tetraether lipids fuse the two leaflets, so heat cannot pull the membrane apart."],
+["arch", "Which wall polymer replaces peptidoglycan in Methanobacterium?", ["Pseudomurein", "Methanochondroitin", "Arabinogalactan", "Lipoteichoic acid"], 0, "It uses N-acetyltalosaminuronic acid with beta-1,3 links and L-amino acids, so lysozyme has no effect."],
+["arch", "Why do beta-lactam antibiotics fail against archaea?", ["They make no peptidoglycan", "Their walls are extremely thick", "They pump the drug out", "Their ribosomes are unusual"], 0, "There are no transpeptidases to inhibit, so the drug has no target."],
+["arch", "How does the archaellum differ from a bacterial flagellum?", ["It is driven by ATP hydrolysis", "It bends rather than rotating", "It is built from tubulin subunits", "It grows from the distal tip outward"], 0, "It is assembled from type IV pilus components and adds subunits at the base, not the tip."],
+["arch", "Which archaea divide using a system related to eukaryotic ESCRT-III?", ["Crenarchaeota", "Euryarchaeota", "Thaumarchaeota", "Nanoarchaeota"], 0, "They use the Cdv proteins, while Euryarchaeota keep the bacterial FtsZ machinery."],
+["arch", "What do methanogens require of their environment?", ["Strict absence of oxygen", "Salt above three molar", "A pH below two units", "Pressure above 400 atmospheres"], 0, "They are killed by oxygen, so they live in rumen, wetlands, digesters and the gut."],
+["arch", "How does Halobacterium balance a saturated brine?", ["It accumulates molar potassium chloride", "It accumulates compatible cytoplasmic solutes", "It stores fresh water inside a large vacuole", "It excludes salt using dedicated ion pumps"], 0, "Its enzymes actually require the high internal salt, unlike those of most halotolerant organisms."],
+["arch", "What does bacteriorhodopsin do?", ["Pumps protons using light energy", "Fixes carbon dioxide into sugar", "Splits water to release oxygen", "Reduces nitrate to nitrogen gas"], 0, "It is a light-driven proton pump, not a photosystem, and it makes no oxygen and no NADPH."],
+["arch", "Which archaea oxidise ammonia in the open ocean?", ["Thaumarchaeota", "Halobacteria", "Methanogens", "Nanoarchaeota"], 0, "Ammonia-oxidising archaea have a very high affinity for ammonia and are among the most abundant cells alive."],
+["arch", "What do the ANME groups of archaea do?", ["Oxidise methane without oxygen", "Produce methane from acetate", "Fix nitrogen in marine sediment", "Reduce sulfate to hydrogen sulfide"], 0, "They usually work in syntrophy with sulfate reducers and form a major global methane sink."],
+["arch", "What is unusual about Nanoarchaeum equitans?", ["It grows only attached to another archaeon", "It has the largest archaeal genome known", "It is the only archaeon with peptidoglycan", "It divides by budding rather than fission"], 0, "It is a member of DPANN, with a genome under half a megabase and an obligate host requirement."],
+["arch", "Which archaeon grows at the lowest pH recorded?", ["Picrophilus torridus", "Sulfolobus solfataricus", "Pyrolobus fumarii", "Thermoplasma volcanium"], 0, "It grows at pH zero, and its cytoplasm is still held near neutral by pumps and antiporters."],
+["arch", "Which organism holds the record for growth at high temperature?", ["Pyrolobus fumarii", "Thermus aquaticus", "Geobacillus stearothermophilus", "Deinococcus radiodurans"], 0, "It grows at 113 degrees at hydrothermal vents, well above the boiling point at surface pressure."],
+["arch", "Which superphylum contains Thaumarchaeota and Crenarchaeota?", ["TACK", "DPANN", "Asgard", "Euryarchaeota"], 0, "The name is an acronym of the four founding groups: Thaumarchaeota, Aigarchaeota, Crenarchaeota and Korarchaeota."],
+["arch", "Why were archaea once thought to live only in extreme places?", ["Culture methods favoured thermophiles", "Mesophilic archaea lack ribosomal genes", "Culture-independent methods were unavailable", "Enrichment cultures favoured hyperthermophiles"], 0, "Sequencing later found them throughout the ocean, soil and animal guts."],
+["arch", "How many human diseases are confirmed to be caused by archaea?", ["None so far", "About a dozen", "Roughly fifty", "Several hundred"], 0, "Methanogens are normal members of gut and oral flora, but no archaeon is an established pathogen."],
+["arch", "Which transcription factors do archaea use?", ["TBP and TFB, as eukaryotes do", "Sigma factors, as bacteria do", "Nuclear receptors and coactivators", "No factors, the polymerase acts alone"], 0, "The archaeal polymerase has eight to twelve subunits and eukaryote-like basal factors."],
+["euk", "Which supergroup contains the fungi?", ["Opisthokonta", "Amoebozoa", "Excavata", "Archaeplastida"], 0, "Fungi sit with animals and choanoflagellates, so animals are closer relatives of fungi than of plants."],
+["euk", "What is a hydrogenosome?", ["A mitochondrion that makes hydrogen", "A vesicle storing hydrogen gas", "A plastid that lost its pigment", "A vacuole that acidifies the cell"], 0, "Trichomonas uses it for anaerobic ATP production; it has no cristae and no genome."],
+["euk", "Which organelle does Giardia retain in place of a mitochondrion?", ["A reduced mitosome", "A hydrogenosome", "A tiny peroxisome", "A glycosome"], 0, "The mitosome has lost energy metabolism and only assembles iron-sulfur clusters."],
+["euk", "What is the apicoplast of Plasmodium derived from?", ["A secondary plastid endosymbiont", "A degenerate mitochondrion", "An invaginated nuclear envelope", "A captured bacteriophage genome"], 0, "It no longer photosynthesises but retains pathways that make it a useful drug target."],
+["euk", "Which membrane sterol do antifungal azoles target?", ["Ergosterol", "Cholesterol", "Stigmasterol", "Hopanoid"], 0, "Fungi use ergosterol where animals use cholesterol, which is one of the few exploitable differences."],
+["euk", "What does a dimorphic fungus do?", ["Grows as a mould at 25 and a yeast at 37", "Divides by fission at 25 and then it buds at 37", "Makes spores at 25 and hyphae at 37 degrees", "Fixes carbon at 25 and nitrogen at 37 degrees"], 0, "Histoplasma and Blastomyces are inhaled as mould spores from soil and convert to yeast in tissue."],
+["euk", "Which term describes hyphae with no cross walls?", ["Coenocytic", "Septate", "Pseudohyphal", "Dikaryotic"], 0, "Rhizopus is coenocytic, so the cytoplasm and many nuclei are continuous along the filament."],
+["euk", "Where does an ascomycete form its sexual spores?", ["Inside a sac called an ascus", "On the surface of a basidium", "Within a motile zoospore", "In an arbuscule inside a root"], 0, "Saccharomyces, Aspergillus, Penicillium and Neurospora are all ascomycetes."],
+["euk", "Which fungal phylum forms arbuscular mycorrhizae?", ["Glomeromycota", "Basidiomycota", "Chytridiomycota", "Zygomycota"], 0, "They are obligate symbionts and cannot be grown apart from a plant root."],
+["euk", "How does budding differ from binary fission?", ["The daughter cell starts smaller", "The daughter cell has no nucleus", "No DNA replication takes place", "The parent cell dies afterwards"], 0, "Saccharomyces buds asymmetrically and leaves a bud scar, unlike the equal split of fission yeast."],
+["euk", "Which host of the malaria parasite is the definitive host?", ["The mosquito", "The human", "The liver cell", "The red blood cell"], 0, "The definitive host is where sexual reproduction happens, and the only meiosis occurs in the mosquito midgut."],
+["euk", "What does schizogony describe?", ["Repeated nuclear division then one cytokinesis", "Fusion of two haploid micronuclei during pairing", "Formation of spores inside a sporangium", "Alternation of haploid and diploid phases"], 0, "Multiple fission produces many merozoites at once inside a host cell."],
+["euk", "Which observation supports the endosymbiotic origin of mitochondria?", ["They carry 70S ribosomes", "They lack inner membranes", "They hold 80S ribosomes", "They divide with the nucleus"], 0, "Bacterial ribosomes, circular DNA, double membranes and fission all point to a free-living ancestor."],
+["euk", "Which bacteria are the closest relatives of mitochondria?", ["Alphaproteobacteria", "Gammaproteobacteria", "Deltaproteobacteria", "Epsilonproteobacteria"], 0, "Chloroplasts came from cyanobacteria, and mitochondria from an alphaproteobacterium."],
+["euk", "What does secondary endosymbiosis produce?", ["Plastids with three or four membranes", "Mitochondria with a single membrane", "Nuclei with a double pore complex", "Ribosomes with an extra subunit"], 0, "A eukaryote engulfed an already photosynthetic eukaryote, which is why diatoms and euglenids have extra layers."],
+["euk", "What is a nucleomorph?", ["A remnant nucleus inside a plastid", "A second nucleus in a ciliate cell", "A protein shell around the nucleolus", "A pore complex that lost its channel"], 0, "Cryptophytes retain the vestigial nucleus of the engulfed algal endosymbiont."],
+["euk", "Which partnership allows colonisation of bare rock?", ["A lichen", "A mycorrhiza", "A rumen community", "A coral symbiosis"], 0, "The photobiont fixes carbon and the fungal partner supplies structure and holds water."],
+["euk", "Roughly what share of land plants depend on mycorrhizae?", ["About 80 per cent", "About 40 per cent", "About 15 per cent", "About 3 per cent"], 0, "The fungus supplies phosphate and water and receives sugar in return."],
+["euk", "Which fungus causes potato blight?", ["Phytophthora infestans", "Sclerotinia sclerotiorum", "Pseudoperonospora cubensis", "Colletotrichum lindemuthianum"], 0, "It is an oomycete, a stramenopile, so it is fungus-like but not a true fungus."],
+["euk", "Which mycosis category requires a compromised immune system?", ["Opportunistic mycosis", "Superficial mycosis", "Systemic mycosis", "Cutaneous mycosis"], 0, "Candida, Aspergillus, Cryptococcus and Pneumocystis account for most fungal deaths."],
+["virus", "On what basis does the Baltimore system group viruses?", ["The route from genome to messenger RNA", "The shape and symmetry of the capsid", "The host species that they infect", "The presence or absence of an envelope"], 0, "That route predicts which enzymes the particle must carry with it."],
+["virus", "Why must a minus-sense RNA virus package a polymerase?", ["Its genome cannot be translated directly", "Its capsid blocks all ribosome attachment", "Its genome is too long to translate", "Host polymerase stays inside the nucleus"], 0, "An RNA-dependent RNA polymerase must first copy the genome into readable mRNA."],
+["virus", "Which Baltimore class does HIV belong to?", ["Class VI, a retrovirus", "Class IV, plus-sense RNA", "Class VII, a pararetrovirus", "Class III, double-stranded RNA"], 0, "It carries reverse transcriptase and integrates a DNA provirus into the host chromosome."],
+["virus", "What determines the tissue tropism of a virus?", ["Its match to a host surface receptor", "The thickness of the host cell wall", "The temperature of the host tissue", "The size of its genome segments"], 0, "Influenza binds sialic acid and HIV binds CD4 with CCR5, which sets where each can replicate."],
+["virus", "Which step do phages skip that animal viruses must perform?", ["Uncoating inside the host cell", "Attachment to a surface receptor", "Assembly of progeny particles", "Replication of the viral genome"], 0, "A tailed phage injects its genome and leaves the empty capsid outside the cell."],
+["virus", "What is a prophage?", ["A viral genome integrated into the host", "A capsid assembled without any genome inside", "An immature particle before its cleavage", "A phage that has lost all its tail fibres"], 0, "It is replicated silently with the chromosome until a repressor is cleaved and induction follows."],
+["virus", "Which agent induces a prophage into the lytic cycle?", ["Ultraviolet light or mitomycin C", "Excess glucose in the medium", "A drop in the growth temperature", "High cell density in the culture"], 0, "DNA damage activates RecA, which triggers cleavage of the repressor holding lysogeny in place."],
+["virus", "Which toxin is encoded by a prophage?", ["Diphtheria toxin", "Endotoxin lipid A", "Enterobactin siderophore", "Streptokinase enzyme"], 0, "Cholera, botulinum and Shiga toxins are phage encoded too, which is lysogenic conversion."],
+["virus", "How does a filamentous phage such as M13 leave the cell?", ["By continuous extrusion without lysis", "By budding through the membrane", "By bursting the cell after assembly", "By waiting for cell division"], 0, "Chronic release keeps the host alive, which is what makes phage display practical."],
+["virus", "What does a plaque assay count?", ["Infectious particles only", "Total physical particles", "Viral genome copies", "Antibody binding units"], 0, "Electron microscopy and qPCR count everything, so the particle to PFU ratio is often 10 to 1000."],
+["virus", "Which two values come from a one-step growth curve?", ["Latent period and burst size", "Titre and the infectious dose", "Host range and tissue tropism", "Mutation rate and fitness cost"], 0, "It is run at high multiplicity so every cell is infected at the same moment."],
+["virus", "What is multiplicity of infection?", ["Infectious particles per host cell", "Progeny released per infected cell", "Genome copies per capsid shell", "Receptors bound per virus particle"], 0, "A high MOI infects every cell at once, which synchronises the population."],
+["virus", "How does antigenic shift differ from drift?", ["Whole genome segments are exchanged", "Single bases change in the genome", "The envelope is lost completely", "The host receptor is altered"], 0, "Reassortment between strains in a shared host produces the sudden changes behind pandemics."],
+["virus", "Why do RNA viruses mutate faster than DNA viruses?", ["Their polymerase cannot proofread", "Their genomes replicate faster", "Their capsids damage the genome", "Their hosts repair only DNA"], 0, "Error rates are about ten thousand times higher, giving quasispecies and rapid drug resistance."],
+["virus", "Which group of RNA viruses carries a proofreading exonuclease?", ["Coronaviruses", "Orthomyxoviruses", "Picornaviruses", "Retroviruses"], 0, "Coronaviruses proofread, which is how they tolerate a 30 kilobase genome; other RNA viruses cannot."],
+["virus", "How does a poliovirus genome behave on entry?", ["It acts directly as messenger RNA", "It waits for a packaged polymerase", "It integrates into host chromosome", "It is copied into DNA by the host"], 0, "Plus-sense RNA is translated as one polyprotein that is then cleaved into the individual proteins."],
+["virus", "What is a virus-like particle?", ["A capsid assembled with no genome", "A genome with no protein coat at all", "A membrane vesicle with surface spikes", "A defective particle with deletions"], 0, "It cannot replicate, which makes it a safe vaccine platform for HPV and hepatitis B."],
+["virus", "Which infectious agent has no nucleic acid?", ["A prion particle", "A viroid", "A satellite virus", "A bacteriophage"], 0, "A misfolded protein templates conversion of the normal form, and it survives autoclaving."],
+["virus", "What is a viroid?", ["A small naked circular RNA", "A protein shell with no genome", "A phage that infects archaea", "A virus with a segmented genome"], 0, "It encodes no protein, is replicated by host polymerase, and infects plants."],
+["virus", "Which hypothesis says viruses descend from cells that lost functions?", ["The regressive hypothesis", "The escaped gene hypothesis", "The virus-first hypothesis", "The coevolution hypothesis"], 0, "It fits giant viruses well but does not explain capsid folds with no cellular counterpart."],
+["cult", "Which class of organism has an optimum near 15 degrees?", ["Psychrophile", "Mesophile", "Thermophile", "Psychrotroph"], 0, "They keep membranes fluid with unsaturated lipids and use enzymes with flexible active sites."],
+["cult", "Why does Listeria matter in a domestic refrigerator?", ["It is a psychrotroph and grows at 4 degrees", "It forms tough endospores that survive at 4 degrees", "It is an obligate anaerobe in packs at 4 degrees", "It makes a heat-stable toxin at 4 degrees"], 0, "Growth at refrigerator temperature is what makes it dangerous in ready-to-eat food."],
+["cult", "What is the internal pH of an acidophile growing at pH 1?", ["Close to neutral", "Equal to the outside", "Slightly above nine", "Around three units"], 0, "Cytoplasmic enzymes and the ribosome are neutrophilic in every organism, so pumps hold the interior near seven."],
+["cult", "How does Helicobacter pylori survive the stomach?", ["It hydrolyses urea to ammonia", "It forms a resistant endospore", "It hides inside gastric mucus only", "It coats itself in host antibody"], 0, "Urease raises the pH immediately around the cell, buffering it against gastric acid."],
+["cult", "Where does an obligate anaerobe grow in a thioglycolate tube?", ["At the bottom only", "At the surface only", "Evenly throughout", "In a band below the top"], 0, "It lacks superoxide dismutase and catalase, so oxygen at the surface kills it."],
+["cult", "Which organism grows only at 2 to 10 per cent oxygen?", ["A microaerophile", "An aerotolerant anaerobe", "A capnophile", "An obligate aerobe"], 0, "Campylobacter and Helicobacter need oxygen but are damaged by the atmospheric concentration."],
+["cult", "Which test distinguishes Staphylococcus from Streptococcus?", ["The catalase test", "The oxidase strip test", "The coagulase test", "The urease broth test"], 0, "Staphylococcus bubbles in hydrogen peroxide because it makes catalase; Streptococcus does not."],
+["cult", "What does a water activity value of 0.86 tell you?", ["Staphylococcus aureus can still grow", "No microbial growth is possible at all", "The medium is a saturated salt brine", "Only obligate anaerobes will survive"], 0, "Most bacteria need above 0.98, so salting and drying preserve food by lowering water activity."],
+["cult", "Why is MacConkey agar both selective and differential?", ["Bile salts inhibit and lactose reveals", "Salt inhibits and mannitol reveals", "Antibiotic inhibits and blood reveals", "Low pH inhibits and starch reveals"], 0, "Crystal violet and bile salts block Gram-positives, and lactose fermenters turn the colonies pink."],
+["cult", "Why is agar preferred for solidifying media?", ["Almost no microbe can degrade it", "It melts well above body temperature", "It supplies both carbon and nitrogen", "It buffers the medium near neutral"], 0, "It melts near 95 degrees and sets near 40, so the surface survives incubation intact."],
+["cult", "What sets the growth rate of a culture in a chemostat?", ["The dilution rate of the medium", "The starting size of the inoculum", "The volume of the culture vessel", "The temperature of the water bath"], 0, "At steady state the specific growth rate equals the dilution rate, so the experimenter chooses it."],
+["cult", "During which phase are most antibiotics produced?", ["Stationary phase", "Exponential phase", "Lag phase", "Death phase"], 0, "Secondary metabolites appear once growth slows, which is why industrial fermentations are run long."],
+["cult", "A culture goes from 10 cubed to 10 to the ninth in ten hours. What is the generation time?", ["About 30 minutes", "About 45 minutes", "About 15 minutes", "About 60 minutes"], 0, "n is 6 divided by 0.301, roughly 20 generations, and 600 minutes divided by 20 is 30."],
+["cult", "What is a colony-forming unit?", ["One clump or cell that yields a colony", "One cell seen by eye under the microscope", "One genome copy detected by qPCR", "One unit of turbidity at 600 nanometres"], 0, "Clumps count as one, which is why plate counts underestimate the true cell number."],
+["cult", "Why do plate counts fall short in environmental samples?", ["Many cells are viable but non-culturable", "Colonies grow too quickly to be counted", "Agar plates cannot hold enough nutrient", "Environmental cells are all obligate anaerobes"], 0, "The great plate count anomaly is why culture-independent methods took over ecology."],
+["cult", "What are the standard autoclave conditions?", ["121 degrees at 15 psi for 15 minutes", "100 degrees at 1 atmosphere for an hour", "170 degrees in dry air for two hours", "63 degrees in a water bath for 30 minutes"], 0, "Spore strips of Geobacillus stearothermophilus are used to confirm the cycle worked."],
+["cult", "Why does boiling fail to sterilise?", ["Endospores survive 100 degrees", "Water boils below 100 degrees", "Proteins refold as it cools", "Viruses resist heat entirely"], 0, "Only moist heat under pressure, a sporicidal chemical or radiation reliably kills spores."],
+["cult", "What does a D-value describe?", ["Time to kill 90 per cent at a set temperature", "Dose of radiation to kill 90 per cent of spores", "Dilution at which 90 per cent of cells survive", "Depth that ultraviolet reaches in 90 seconds"], 0, "Death is exponential, so a fixed time kills a fixed fraction rather than a fixed number of cells."],
+["cult", "Why is 70 per cent ethanol a better disinfectant than absolute ethanol?", ["Water is needed to denature protein", "Dilute alcohol penetrates spores better", "Absolute alcohol evaporates too slowly", "The dilution raises the surface tension"], 0, "Neither concentration kills endospores, so alcohol disinfects rather than sterilises."],
+["cult", "Which drug target explains why beta-lactams are so selective?", ["Peptidoglycan has no human counterpart", "Bacterial ribosomes are smaller than ours", "Bacteria lack a nuclear envelope", "Bacterial DNA is circular not linear"], 0, "Human cells build no cell wall, so inhibiting transpeptidase harms only the bacterium."],
+["mvp", "Which class of Proteobacteria contains Rhizobium and Rickettsia?", ["Alphaproteobacteria", "Betaproteobacteria", "Gammaproteobacteria", "Deltaproteobacteria"], 0, "The class also contains the closest free-living relatives of the mitochondrion."],
+["mvp", "Where do purple sulfur bacteria store the sulfur they produce?", ["Inside the cell as globules", "Outside the cell in the medium", "In the periplasmic space only", "Bound to the outer membrane"], 0, "Green sulfur bacteria deposit it outside, which is one way to tell the two groups apart."],
+["mvp", "Why do purple sulfur bacteria release no oxygen?", ["They have only a single photosystem", "They fix carbon in the dark only", "They lack any chlorophyll at all", "They respire rather than photosynthesise"], 0, "With one photosystem the electron donor is sulfide, not water, so no oxygen is generated."],
+["mvp", "Which enzyme defines a methanotroph?", ["Methane monooxygenase", "Methanol dehydrogenase", "Formate dehydrogenase", "Carbonic anhydrase"], 0, "It also cooxidises chlorinated solvents, which makes these organisms useful in bioremediation."],
+["mvp", "What makes nitrifiers the bottleneck in a sewage plant?", ["They grow slowly on little energy", "They need an organic carbon source", "They are killed by dissolved oxygen", "They only work below ten degrees"], 0, "Nitrification is lost long before carbon removal when a plant is upset."],
+["mvp", "Which organism carries out comammox?", ["Some Nitrospira strains", "All Nitrosomonas strains", "Anammox planctomycetes", "Ammonia-oxidising archaea"], 0, "Complete ammonia oxidation in one organism was only discovered in 2015."],
+["mvp", "What gives Pseudomonas aeruginosa its blue-green pus?", ["Pyocyanin", "Prodigiosin", "Violacein", "Carotene"], 0, "The pigment is also a virulence factor, generating reactive oxygen species in host tissue."],
+["mvp", "How does Azotobacter protect its nitrogenase from oxygen?", ["By respiring at a very high rate", "By keeping oxygen out with a capsule", "By living only in anoxic sediment", "By binding oxygen to leghaemoglobin"], 0, "Respiratory protection consumes oxygen before it can reach the enzyme."],
+["mvp", "Which cell type lets Anabaena fix nitrogen in daylight?", ["The heterocyst", "The akinete", "The hormogonium", "The bacteroid"], 0, "Photosystem II is shut down inside it, so no oxygen is generated where nitrogenase works."],
+["mvp", "What does leghaemoglobin do in a root nodule?", ["Buffers oxygen down to a low level", "Takes the ammonia out to the plant", "Fixes nitrogen beside the enzyme", "Signals the bacterium to invade"], 0, "It keeps oxygen available for respiration but too low to inactivate nitrogenase."],
+["mvp", "What is the ATP cost of fixing one molecule of dinitrogen?", ["About 16 ATP", "About 8 ATP", "About 32 ATP", "About 4 ATP"], 0, "Eight electrons are also required, which is why fixation is restricted and tightly regulated."],
+["mvp", "Which molecules from a legume root start nodule formation?", ["Root flavonoids", "Siderophores", "Homoserine lactones", "Lipopolysaccharides"], 0, "They induce the bacterial nod genes, and the resulting Nod factors curl the root hair."],
+["mvp", "Which trait do all Enterobacteriaceae share?", ["They are facultative anaerobes", "They are obligate intracellular", "They are always oxidase positive", "They are Gram-positive short rods"], 0, "They are also oxidase negative, catalase positive, glucose fermenting and nitrate reducing."],
+["mvp", "Why are coliforms used to test drinking water?", ["They indicate faecal contamination", "They resist chlorine longest", "They are the deadliest pathogens", "They are the only culturable cells"], 0, "They are abundant in faeces and easy to detect, so they act as a proxy for pathogens."],
+["mvp", "What does Myxococcus xanthus build when it starves?", ["A multicellular fruiting body", "A single resistant endospore", "A biofilm on a host surface", "A filament of linked heterocysts"], 0, "Some cells inside it become myxospores, the most complex development in the bacteria."],
+["mvp", "How does Bdellovibrio attack its prey?", ["It invades the periplasm and eats it", "It secretes a toxin that opens pores", "It injects DNA as a phage would", "It engulfs the prey by phagocytosis"], 0, "It grows inside the periplasm of a Gram-negative cell, then lyses it to escape."],
+["mvp", "Which genus supplies most clinically used antibiotics?", ["Streptomyces", "Pseudomonas", "Bacillus", "Penicillium"], 0, "Streptomycin, tetracycline, erythromycin, vancomycin and chloramphenicol all come from it."],
+["mvp", "What separates Bacillus from Clostridium?", ["Oxygen tolerance", "Spore formation", "Gram reaction", "Cell shape"], 0, "Both are spore-forming Firmicutes, but Clostridium is an obligate anaerobe."],
+["mvp", "Which toxin blocks elongation factor 2 in the host?", ["Diphtheria toxin", "Cholera toxin", "Botulinum toxin", "Tetanus toxin"], 0, "It is phage encoded, so a harmless Corynebacterium becomes a pathogen on infection."],
+["mvp", "What did cyanobacteria cause about 2.4 billion years ago?", ["The Great Oxidation Event", "The Cambrian explosion", "The origin of eukaryotes", "The first ice age on Earth"], 0, "Oxygenic photosynthesis changed the atmosphere and made aerobic respiration possible."],
+["reg", "Why is transcription initiation the commonest control point?", ["Nothing has been synthesised yet", "It responds faster than translation", "It cannot be reversed once started", "It works only in a very rich medium"], 0, "Later control still pays for the mRNA or the protein, so initiation is the cheapest place to act."],
+["reg", "What does swapping the sigma factor change?", ["Which promoters the polymerase reads", "Whether transcripts are translated efficiently", "How long transcripts survive afterwards", "How fast the polymerase elongates transcripts"], 0, "One core enzyme can run separate programmes, which is how heat shock and sporulation work."],
+["reg", "Which sigma factor runs the general stress response?", ["RpoS", "RpoD", "RpoH", "RpoN"], 0, "It takes over in stationary phase and under osmotic, acid and oxidative stress."],
+["reg", "What is the natural inducer of the lac operon?", ["Allolactose", "Lactose itself", "Galactose", "Glucose"], 0, "Beta-galactosidase makes it as a side product; IPTG does the same job and is not metabolised."],
+["reg", "Why is the lac operon silent in glucose even with lactose present?", ["Low cyclic AMP leaves CAP inactive", "High cyclic AMP blocks the repressor", "The repressor cannot be released", "Glucose binds the operator directly"], 0, "Catabolite repression is positive control failing, not the repressor staying bound."],
+["reg", "Under which conditions is lac transcription maximal?", ["Lactose present and glucose absent", "Both sugars present together", "Glucose present and lactose absent", "Neither sugar present at all"], 0, "The repressor is released and CAP with cyclic AMP is active, so both requirements are met."],
+["reg", "What does diauxic growth look like?", ["Two growth phases with a pause in between", "One single long phase at a constant rate", "A curve that never reaches stationary phase", "Growth that stops as soon as sugar is added"], 0, "Glucose is used first, then the cell pauses to induce the operon for the second sugar."],
+["reg", "How does the trp attenuator respond to plentiful tryptophan?", ["A terminator hairpin forms", "An antiterminator hairpin forms", "The repressor is inactivated", "The promoter is methylated"], 0, "The ribosome reads straight through the two tryptophan codons, letting the terminator fold."],
+["reg", "Why does attenuation not work in eukaryotes?", ["Transcription and translation are separated", "Eukaryotic ribosomes never stall on a leader", "Eukaryotic mRNA has no leader region", "Eukaryotic genes lack terminator hairpins"], 0, "The mechanism needs a ribosome on a transcript that is still being made."],
+["reg", "What is a regulon?", ["Every gene under one regulator", "Every gene in one operon", "Every promoter in a genome", "Every gene induced by a heat shock"], 0, "A modulon is several regulons under one global controller, and a stimulon is everything responding to a stimulus."],
+["reg", "What triggers the stringent response?", ["An uncharged tRNA in the A site", "Protein that has unfolded in the cytoplasm", "Broken DNA at the replication fork", "A drop in external osmolarity"], 0, "RelA then makes ppGpp, which shuts down ribosomal RNA and tRNA synthesis."],
+["reg", "Which protein senses DNA damage to launch the SOS response?", ["RecA", "LexA", "RpoH", "DnaK"], 0, "RecA binds single-stranded DNA and promotes cleavage of the LexA repressor."],
+["reg", "What is a riboswitch?", ["An RNA region that binds a metabolite", "A protein that binds an RNA target site", "A promoter that two polymerases can read", "A ribosome that skips over a stop codon"], 0, "Binding changes the fold to expose or hide a terminator or a ribosome binding site, with no protein involved."],
+["reg", "Which chaperone do most small regulatory RNAs need?", ["Hfq", "GroEL", "DnaK", "Lon"], 0, "It helps the short RNA find and pair with its target message."],
+["reg", "How does quorum sensing report population density?", ["Signal builds up as cells accumulate", "Cells count neighbours by contact", "Nutrient levels fall as cells divide", "Oxygen is depleted by the population"], 0, "Each cell makes signal at a steady rate, so its concentration tracks the number of cells."],
+["reg", "Which signal do Gram-negative bacteria use for quorum sensing?", ["Acyl homoserine lactone", "An exported oligopeptide", "A phosphorylated sugar", "A modified fatty acid ester"], 0, "It diffuses across the membrane and binds a cytoplasmic LuxR-type regulator."],
+["reg", "How do Gram-positive bacteria detect their own quorum signal?", ["A sensor kinase reads it outside", "A cytoplasmic receptor binds it", "A porin transports it inward", "A ribosome stalls on the message"], 0, "The autoinducing peptide is exported and never has to re-enter the cell."],
+["reg", "Which residue is phosphorylated first in a two-component system?", ["A histidine on the sensor kinase", "An aspartate on the response regulator", "A serine residue on the sensor kinase", "A tyrosine on the response regulator"], 0, "The phosphate then moves from that histidine to an aspartate on the response regulator."],
+["reg", "What does phospho-CheY do at the flagellar motor?", ["Causes clockwise rotation and a tumble", "Locks the motor in the running state", "Detaches the filament from the hook", "Increases the proton flow through it"], 0, "CheZ dephosphorylates it within a second, so the signal decays quickly."],
+["reg", "How does a bacterium adapt during chemotaxis?", ["Receptors are methylated by CheR", "Receptors are degraded by proteases", "New receptors are made from scratch", "The motor changes its gear ratio"], 0, "Methylation restores kinase activity over seconds, so the cell responds to change rather than absolute level."],
+["bgen", "Why does a mutation show its phenotype at once in a bacterium?", ["The cell is haploid", "The genome is circular", "The genes sit in operons", "The cell divides quickly"], 0, "There is no second allele to mask the change, unlike in a diploid eukaryote."],
+["bgen", "What distinguishes selection from screening?", ["Only the wanted genotype grows", "Every colony must be examined", "Both require a selective agent", "Neither can find a rare mutant"], 0, "Selection can recover one cell in a billion; screening is limited by how many colonies you can inspect."],
+["bgen", "What does replica plating make possible?", ["Finding auxotrophs without selecting them", "Counting colonies faster than by eye alone", "Purifying plasmid DNA from a colony", "Measuring the mutation rate directly"], 0, "Velvet carries the colony pattern to selective plates, so the master plate keeps every genotype."],
+["bgen", "What did the fluctuation test of Luria and Delbrück show?", ["Mutations arise before the selective agent", "Mutations arise in response to the agent", "Phage resistance is always plasmid borne", "Mutation rates rise with population size"], 0, "Huge variance between parallel cultures fits mutations occurring at random times during earlier growth."],
+["bgen", "Which mutagen causes frameshifts?", ["An intercalating agent", "A base analogue drug", "Nitrous acid solution", "Ultraviolet radiation"], 0, "Ethidium and acridines slot between the bases, so a base is added or lost during replication."],
+["bgen", "What does ultraviolet light do to DNA?", ["Forms pyrimidine dimers", "Deaminates cytosine bases", "Breaks both strands at once", "Alkylates the guanine ring"], 0, "Adjacent thymines become covalently joined, which distorts the helix and blocks replication."],
+["bgen", "What is an auxotroph?", ["A strain needing an added growth factor", "A strain growing on a minimal medium", "A strain carrying one resistance gene", "A strain lacking a working plasmid"], 0, "A prototroph grows on minimal medium; the auxotroph needs the supplement its parent did not."],
+["bgen", "What does the Ames test measure?", ["Mutagenicity by reversion to prototrophy", "Carcinogenicity by tumour formation counts", "Toxicity by measuring inhibition zone widths", "Resistance by growth on several antibiotics"], 0, "Histidine auxotrophs of Salmonella are plated with the chemical and a liver extract."],
+["bgen", "Why is liver extract added in the Ames test?", ["To mimic mammalian metabolism of the chemical", "To provide histidine for the tester strain used", "To kill fungal spores in the agar", "To buffer the plate near neutral pH"], 0, "Many compounds are only mutagenic after the liver converts them."],
+["bgen", "Which mechanism moves DNA between cells inside a phage particle?", ["Transduction", "Transformation", "Conjugation", "Transposition"], 0, "Generalised transduction mispackages random host DNA; specialised transduction carries genes flanking the prophage."],
+["bgen", "What does natural competence allow a cell to do?", ["Take up free DNA from the environment", "Form a pilus and transfer a plasmid", "Package host DNA into a phage head", "Excise a prophage from its chromosome"], 0, "Bacillus, Streptococcus, Neisseria and Haemophilus do this, often using a type IV pilus."],
+["bgen", "What is transferred first during conjugation?", ["A single strand of the plasmid", "A single strand of chromosomal DNA", "The entire plasmid as a double strand", "A phage genome sent from the donor"], 0, "Rolling-circle replication sends one strand across, and both cells then make it double stranded."],
+["bgen", "What is an Hfr strain?", ["One with the F plasmid in the chromosome", "One with many copies of the F plasmid", "One that has lost its F plasmid entirely", "One with two chromosomes in each cell"], 0, "It transfers chromosomal genes in a fixed order, which is how the Escherichia coli map was built."],
+["bgen", "How was the Escherichia coli genetic map measured in minutes?", ["By interrupting mating at intervals", "By counting colonies after transduction", "By comparing genome sequences", "By measuring plasmid copy number"], 0, "Blending the culture stops transfer, so gene order follows the time each marker arrives."],
+["bgen", "What does an F prime plasmid create?", ["A partial diploid", "A lysogenic cell", "An auxotroph", "A protoplast"], 0, "Carrying a chromosomal fragment lets two alleles be tested together, which established cis and trans dominance."],
+["bgen", "What does an insertion sequence carry?", ["Only a transposase coding gene", "A transposase and resistance genes", "A complete replication origin", "A set of conjugation genes"], 0, "A composite transposon carries extra genes between two insertion sequences."],
+["bgen", "How is a horizontally acquired island recognised in a genome?", ["Atypical GC content and codon usage", "A higher density of ribosomal genes", "An unusually long open reading frame", "The absence of any promoter sequence"], 0, "They often sit beside tRNA genes and are flanked by insertion sequences."],
+["bgen", "What does an integron do?", ["Captures gene cassettes behind one promoter", "Cuts the chromosome at palindromic target sites", "Copies a plasmid into a phage particle", "Silences imported genes by heavy methylation"], 0, "That is how a single plasmid accumulates resistance to several drugs at once."],
+["bgen", "Why does a restriction enzyme not cut its own host genome?", ["The sites are methylated", "The enzyme sits outside", "The host DNA is coiled", "The sites are all absent"], 0, "A modification methylase protects the host, which is the restriction-modification system."],
+["bgen", "Which vector carries inserts of 100 to 300 kilobases in Escherichia coli?", ["A bacterial artificial chromosome", "A yeast artificial chromosome", "A cosmid with lambda packaging ends", "An inducible expression vector with T7"], 0, "BACs are built on the F plasmid replicon, which keeps large inserts stable at one copy."],
+["gnom", "Which platform gives reads tens of kilobases long?", ["Oxford Nanopore", "Illumina", "Sanger capillary", "Pyrosequencing"], 0, "Long reads span repeats, which is what short reads cannot resolve during assembly."],
+["gnom", "What does coverage mean in a sequencing project?", ["Reads spanning each base on average", "Percentage of the genome annotated", "Fraction of reads passing quality", "Number of contigs in the assembly"], 0, "Thirty to fifty fold is typical for a bacterial draft genome."],
+["gnom", "What usually breaks a short-read assembly?", ["Repeats such as the rRNA operons", "An unusually high GC content overall", "The presence of one small plasmid copy", "A very low mutation rate in the strain"], 0, "Hybrid assemblies with long reads solve it, which is why both platforms are used together."],
+["gnom", "What is a scaffold?", ["Ordered contigs with sized gaps", "A single gapless circular sequence", "A raw read before trimming", "A predicted open reading frame"], 0, "Paired-end or long reads supply the order and spacing between contigs."],
+["gnom", "How is gene function usually assigned during annotation?", ["By homology to known sequences", "By measuring the protein abundance", "By knocking out each gene", "By watching the colony morphology"], 0, "BLAST searches and profile models place genes into COG or KEGG categories."],
+["gnom", "What is a hypothetical protein?", ["A predicted gene with no known function", "A protein that was never actually translated", "A sequence found only in archaeal genomes", "An enzyme that works only in a test tube"], 0, "They are still 20 to 40 per cent of a typical genome, which measures how much remains unknown."],
+["gnom", "Which was the first genome sequenced from a free-living organism?", ["Haemophilus influenzae", "Escherichia coli", "Mycoplasma genitalium", "Saccharomyces cerevisiae"], 0, "It was completed in 1995 by whole genome shotgun sequencing."],
+["gnom", "What can RNA-seq find that a microarray cannot?", ["Small RNAs and antisense transcripts", "Abundance of a known transcript", "Differences between two conditions", "The identity of a labelled probe"], 0, "It requires no prior knowledge of what sequences to look for."],
+["gnom", "Why must ribosomal RNA be depleted before RNA-seq?", ["It is most of the RNA in the cell", "It would use up most of the run itself", "It cannot be reverse transcribed at all", "It sticks to the sequencing adapters"], 0, "Without depletion the run is spent sequencing rRNA rather than the transcripts of interest."],
+["gnom", "What does Tn-seq measure?", ["Which genes are essential under a condition", "Which promoters a given regulator binds tightly", "How many copies of each plasmid exist in a cell", "Which proteins interact with one another directly"], 0, "Genes with no recovered insertions after selection are the ones the cell cannot lose."],
+["gnom", "What does ChIP-seq map?", ["Binding sites of one protein on DNA", "Sites of RNA cleavage by a nuclease", "Positions of methylation in a genome", "Contacts between two chromosomes"], 0, "It turns a proposed regulon into an actual list of targets."],
+["gnom", "What is the core genome of a species?", ["Genes present in every strain", "Genes unique to one strain", "All genes across all strains", "Genes acquired horizontally"], 0, "The accessory genome varies between strains, and the two together make the pan genome."],
+["gnom", "What does an open pan genome mean?", ["Each new strain adds more new genes", "The species has no accessory genes", "All strains share the same genes", "The genome is being reduced over time"], 0, "Escherichia coli is open; Bacillus anthracis is closed because new isolates add almost nothing."],
+["gnom", "How do orthologues differ from paralogues?", ["Orthologues separate by speciation", "Orthologues separate by duplication", "Paralogues occur in different species", "Paralogues are always pseudogenes"], 0, "Paralogues arise by duplication within one genome and often diverge in function."],
+["gnom", "What is synteny?", ["Conserved gene order between genomes", "Shared codon usage between species", "Equal genome size in two strains", "Identical GC content across a genus"], 0, "Loss of synteny suggests rearrangement or horizontal acquisition."],
+["gnom", "Why do amplicon surveys of 16S rRNA have limits?", ["They give taxonomy but not function", "They cannot detect archaea at all", "They need cultivation beforehand", "They only work on marine samples"], 0, "Primer bias and variable copy number also distort the picture, and resolution often stops at genus."],
+["gnom", "What is a metagenome-assembled genome?", ["A draft binned from community sequence", "A genome sequenced from a single pure colony", "A reference assembled from many strains", "A plasmid recovered from an environmental sample"], 0, "Binning uses coverage and composition, and most new phyla are known only this way."],
+["gnom", "How does an ASV differ from an OTU?", ["It is an exact error-corrected sequence", "It is a threshold-based sequence cluster", "It contains only functional gene sequences", "It represents one complete bacterial genome"], 0, "Because ASVs are exact, they can be compared directly between separate studies."],
+["gnom", "What does beta diversity describe?", ["Difference in composition between samples", "Richness and evenness within one sample", "Total number of reads per sample", "Rate of new species discovery"], 0, "UniFrac and Bray-Curtis distances are usually shown as an ordination plot."],
+["gnom", "Why is rarefaction applied to diversity data?", ["To compare samples at equal depth", "To remove chimeric sequences from data", "To correct for primer mismatch bias", "To merge the paired-end reads"], 0, "A sample sequenced more deeply looks more diverse unless libraries are subsampled to match."]
+];
+
+(function(){
+  const $ = id => document.getElementById(id);
+  const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
+
+  let topic = "all", pool = [], at = 0, right = 0, answered = false;
+
+  function start(){
+    pool = shuffle(QB.filter(q => topic === "all" || q[0] === topic));
+    at = 0; right = 0;
+    render();
+  }
+
+  function render(){
+    if(at >= pool.length) return finish();
+    const [, prompt, opts, correct] = pool[at];
+    answered = false;
+    $("qz-progress").textContent = "Question " + (at + 1) + " of " + pool.length;
+    $("qz-score").textContent = "Score: " + right + " / " + at;
+    $("qz-prompt").textContent = prompt;
+    $("qz-expl").hidden = true;
+    $("qz-next").hidden = true;
+    const answer = opts[correct];
+    $("qz-opts").innerHTML = shuffle(opts.slice())
+      .map(o => '<button type="button">' + o.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</button>")
+      .join("");
+    [...$("qz-opts").children].forEach(b => {
+      b.addEventListener("click", () => choose(b, b.textContent === answer, answer));
+    });
+  }
+
+  function choose(btn, correct, answer){
+    if(answered) return;
+    answered = true;
+    if(correct) right++;
+    [...$("qz-opts").children].forEach(b => {
+      b.disabled = true;
+      if(b.textContent === answer) b.classList.add("right");
+      else if(b === btn) b.classList.add("wrong");
+    });
+    const expl = $("qz-expl");
+    expl.textContent = (correct ? "Correct. " : "Not quite. ") + pool[at][4];
+    expl.className = "qz-expl" + (correct ? "" : " miss");
+    expl.hidden = false;
+    $("qz-next").hidden = false;
+    $("qz-next").focus();
+    $("qz-score").textContent = "Score: " + right + " / " + (at + 1);
+  }
+
+  function finish(){
+    const pct = Math.round(100 * right / pool.length);
+    $("qz-progress").textContent = "Finished";
+    $("qz-prompt").innerHTML = '<span class="qz-done">' + right + " correct out of " +
+      pool.length + ", " + pct + " per cent.</span>";
+    $("qz-opts").innerHTML = "";
+    $("qz-expl").hidden = true;
+    $("qz-next").hidden = true;
+  }
+
+  $("qz-topics").innerHTML = ['<button data-t="all" class="on">All topics</button>']
+    .concat(Object.keys(QZ_TOPICS).map(k =>
+      '<button data-t="' + k + '">' + QZ_TOPICS[k] + "</button>")).join("");
+  $("qz-topics").addEventListener("click", e => {
+    if(e.target.tagName !== "BUTTON") return;
+    topic = e.target.dataset.t;
+    [...$("qz-topics").children].forEach(b => b.classList.toggle("on", b === e.target));
+    start();
+  });
+  $("qz-next").addEventListener("click", () => { at++; render(); });
+  $("qz-restart").addEventListener("click", start);
+  start();
+
+  // ponytail: self-check, run by loading the page with #selftest
+  if(location.hash === "#selftest"){
+    QB.forEach(([t, prompt, opts, correct, expl]) => {
+      console.assert(opts.length === 4, "not four options", prompt);
+      console.assert(new Set(opts).size === 4, "duplicate option", prompt);
+      console.assert(typeof opts[correct] === "string", "bad correct index", prompt);
+      console.assert(expl && expl.length > 20, "thin explanation", prompt);
+      const lens = opts.map(o => o.length).sort((a, b) => a - b);
+      const ans = opts[correct].length;
+      console.assert(!(ans === lens[3] && ans - lens[2] > 4), "answer longest by too much", prompt);
+      console.assert(!(ans === lens[0] && lens[1] - ans > 4), "answer shortest by too much", prompt);
+    });
+    console.log("selftest done:", QB.length, "questions");
+  }
+})();
+</script>
+</body>
+</html>
