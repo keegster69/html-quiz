@@ -91,13 +91,17 @@ main{padding:26px 0 60px}
 .links{font-family:var(--sans);font-size:12.5px;margin-top:14px}
 .links a{color:var(--hero-muted);text-decoration:none;margin-right:16px}
 .links a:hover{color:var(--hero-ink);text-decoration:underline}
-.links a.back{color:var(--hero-ink);font-weight:600}
+.home{background:var(--hero);padding:10px 16px}
+.home a{display:inline-block;color:var(--hero-ink);font:600 13px var(--sans);text-decoration:none;
+  padding:8px 14px;border:1px solid #3a454d;border-radius:999px}
+.home a:hover{background:#232c33}
 button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:520px){h1{font-size:27px}.qcard{padding:20px 16px}.stats{gap:24px}}
 </style>
 </head>
 <body>
+<nav class="home"><a href="index.html">&larr; Back to quiz</a></nav>
 <div id="topbar" class="topbar" hidden></div>
 <div id="app"></div>
 
@@ -341,7 +345,7 @@ const QB = [
           '<div class="stat"><b>' + attempted + '/' + keys.length + '</b><span>topics attempted</span></div>' +
           '<div class="stat"><b>' + avg + '</b><span>best average</span></div>' +
         '</div>' +
-        '<p class="links"><a class="back" href="index.html">← Back to the quiz</a>' +
+        '<p class="links">' +
           '<a href="microbiology.html">Microbiology content</a>' +
           '<a href="biology-review.html">Biology review</a></p>' +
       '</div></header>' +
