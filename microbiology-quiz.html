@@ -6,153 +6,100 @@
 <meta name="color-scheme" content="light">
 <title>Microbiology Quiz</title>
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#5c5c5c;
-  --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
-  --shadow:0 10px 30px rgba(0,0,0,.1);
+  --page:#f6f7f4; --ink:#1b2028; --ink-soft:#2c343c; --muted:#5d666e; --faint:#8a9199;
+  --line:#e4e7e2; --card:#fff; --opt:#fbfcfa; --chip:#eef0ed; --chip-ink:#7d8790;
+  --hero:#141a1f; --hero-ink:#eef2f0; --hero-muted:#8fa0a8;
+  --accent:#2563eb; --ok:#16a34a; --ok-ink:#14532d; --ok-bg:#f3faf5; --ok-line:#a7d8ba;
+  --bad:#dc2626; --bad-ink:#7f1d1d; --bad-bg:#fef4f4; --bad-line:#f0a3a3;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
-header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
-h1{color:var(--green);font-size:2.2rem}
-.sub{color:var(--muted);margin-top:.4rem}
-nav{position:sticky;top:0;z-index:50;background:var(--page);padding:.6rem 0;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
-nav .wrap{max-width:1000px;margin:.6rem auto 0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
-  max-height:40vh;overflow-y:auto}
-#jump{max-width:1000px;margin:0 auto}
-#jump summary{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;
-  list-style:none;cursor:pointer;color:var(--green);font-size:13px;font-weight:600;
-  border:1px solid var(--green);border-radius:999px;background:var(--card);padding:0 16px;width:max-content;
-  margin:0 auto;transition:background .18s ease-out,color .18s ease-out}
-#jump summary::-webkit-details-marker{display:none}
-#jump summary:hover{background:var(--green);color:var(--card)}
-#jump summary::after{content:"\25be";font-size:11px;transition:transform .18s ease-out}
-#jump[open] summary::after{transform:rotate(180deg)}
-.jump-count{color:var(--muted);font-weight:400}
-#jump summary:hover .jump-count{color:inherit}
-nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
-  padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;
-  text-decoration:none;transition:background .18s ease-out,color .18s ease-out}
-nav a:hover{background:var(--green);color:white}
-main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
-section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);padding:1.5rem;scroll-margin-top:88px}
-h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
-h3{font-size:1.1rem;margin:1.5rem 0 .5rem;color:var(--ink);border-left:4px solid var(--green);padding-left:.5rem;scroll-margin-top:88px}
-p,li{font-size:1rem;max-width:72ch}
-ul,ol{margin:.5rem 0 .5rem 1.25rem}
-li{margin-bottom:.25rem}
-.tag{display:inline-block;background:var(--green-soft);color:var(--green);border-radius:6px;
-  padding:1px 7px;font-size:.75rem;font-weight:700;margin-left:.35rem}
-.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.5rem 0}
-table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px}
-th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
-th{background:var(--green-soft);color:var(--green);position:sticky;top:0;text-align:left}
-tbody tr:nth-child(even){background:var(--stripe)}
-code{background:var(--stripe);border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:.9em}
-.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.7rem .9rem;border-radius:6px;margin:.7rem 0;font-size:.95rem;max-width:78ch}
-figure{margin:.75rem 0;text-align:center}
-figcaption{color:var(--muted);font-size:.8rem;margin-top:.35rem}
-svg{max-width:100%;height:auto}
-figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:6px}
-.svgtxt{font:12px sans-serif;fill:var(--ink)}
-.svgsm{font:10px sans-serif;fill:var(--muted)}
-.svgbold{font:bold 12px sans-serif;fill:#1c7c3a}
-.codon td,.codon th{text-align:center;padding:3px 5px;font-size:.78rem}
-.stop{background:var(--green-soft);color:var(--danger);font-weight:700}
-.start{background:#e6fff0;color:#1c7c3a;font-weight:700}
-.back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
-.deck{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
-.deck-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
-.deck-title{color:var(--green);font-weight:700;font-size:1.05rem}
-.deck-count{color:var(--muted);font-size:.85rem}
-.card{display:block;width:100%;text-align:left;background:var(--green-soft);border:1px solid var(--green);
-  border-left:5px solid var(--green);border-radius:10px;padding:1rem;min-height:112px;cursor:pointer;
-  font-family:inherit;font-size:1rem;color:var(--ink);line-height:1.5;transition:background .18s ease-out}
-.card:hover{background:var(--card)}
-.card-side{display:block;font-weight:600}
-.card[aria-expanded="true"] .card-side{font-weight:400}
-.card-hint{display:block;margin-top:.6rem;color:var(--muted);font-size:.8rem;font-weight:400}
-.deck-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.6rem}
-.deck-btns button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:8px;
-  min-height:44px;padding:0 18px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;
-  transition:background .18s ease-out,color .18s ease-out}
-.deck-btns button:hover{background:var(--green);color:var(--card)}
-.rc-topics{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0}
-.rc-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
-  padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;
-  transition:background .18s ease-out,color .18s ease-out}
-.rc-topics button.on{background:var(--green);color:white}
-.rc-clue{background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
-  padding:.8rem;font-size:1rem;font-weight:600;margin:.75rem 0}
-#rc-select{width:100%;max-width:560px;min-height:48px;padding:10px 12px;font-size:16px;
-  border:2px solid var(--green);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
-.rc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.75rem}
-.rc-btns button{background:var(--green);color:var(--card);border:none;border-radius:8px;
-  min-height:44px;padding:0 22px;font-size:.95rem;font-weight:600;cursor:pointer;
-  transition:filter .18s ease-out}
-.rc-btns button:hover{filter:brightness(1.08)}
-.rc-btns button.ghost{background:var(--card);color:var(--green);border:1px solid var(--green)}
-.rc-feedback{margin-top:.6rem;font-weight:700;font-size:.95rem;min-height:1.2em}
-.rc-feedback.ok{color:var(--green)}
-.rc-feedback.bad{color:var(--danger)}
-.rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
-a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
-@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
-@media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
-.qz-topics{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 1rem}
-.qz-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
-  padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;
-  transition:background .18s ease-out,color .18s ease-out}
-.qz-topics button:hover{background:var(--green);color:var(--card)}
-.qz-topics button.on{background:var(--green);color:#fff}
-.qz-bar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-  color:var(--muted);font-size:.85rem;margin-bottom:.5rem}
-.qz-prompt{font-size:1.05rem;font-weight:600;margin:.5rem 0 1rem;max-width:72ch}
-.qz-opts{display:flex;flex-direction:column;gap:8px}
-.qz-opts button{display:block;width:100%;text-align:left;background:var(--card);color:var(--ink);
-  border:1px solid var(--line);border-left:5px solid var(--line);border-radius:8px;padding:12px 14px;
-  min-height:48px;font-size:1rem;font-family:inherit;line-height:1.45;cursor:pointer;
-  transition:border-color .18s ease-out,background .18s ease-out}
-.qz-opts button:hover:not(:disabled){border-color:var(--green);background:var(--green-soft)}
-.qz-opts button:disabled{cursor:default}
-.qz-opts button.right{border-color:var(--green);border-left-color:var(--green);background:var(--green-soft);font-weight:600}
-.qz-opts button.wrong{border-color:var(--danger);border-left-color:var(--danger);background:#fdeceb}
-.qz-expl{margin-top:1rem;background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
-  padding:.8rem .9rem;font-size:.95rem;max-width:78ch}
-.qz-expl.miss{background:#fdeceb;border-left-color:var(--danger)}
-.qz-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:1rem}
-.qz-btns button{background:var(--green);color:var(--card);border:none;border-radius:8px;min-height:44px;
-  padding:0 22px;font-size:.95rem;font-weight:600;font-family:inherit;cursor:pointer;transition:filter .18s ease-out}
-.qz-btns button:hover{filter:brightness(1.08)}
-.qz-btns button.ghost{background:var(--card);color:var(--green);border:1px solid var(--green)}
-.qz-done{font-size:1.1rem;font-weight:600;color:var(--green)}
+body{background:var(--page);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+
+header{background:var(--hero);padding:34px 0 30px}
+.kicker{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+h1{font-size:34px;font-weight:400;letter-spacing:-.015em;color:var(--hero-ink);margin:.35rem 0 .5rem}
+.lede{font-family:var(--sans);font-size:13.5px;color:var(--hero-muted);max-width:56ch;line-height:1.6}
+.stats{display:flex;gap:38px;margin-top:22px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--serif);font-size:27px;font-weight:400;color:var(--hero-ink)}
+.stat span{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+
+main{padding:26px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.lead-card{border-left:4px solid var(--accent);display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap}
+.lead-card .label{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.lead-card h2{font-size:21px;font-weight:400;margin:.15rem 0}
+.lead-card .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.btn{font-family:var(--sans);font-size:15px;font-weight:600;color:#fff;background:var(--accent);
+  border:none;border-radius:7px;padding:13px 22px;min-height:44px;cursor:pointer}
+.btn:hover{background:#1d4ed8}
+.btn.ghost{background:var(--card);color:var(--accent);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--chip)}
+.btn.wide{width:100%;border-radius:8px;padding:14px}
+
+.section-title{font-family:var(--sans);font-size:12.5px;color:var(--faint);margin:26px 0 10px}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.unit{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+  border-radius:10px;padding:16px 18px;text-align:left;cursor:pointer;font-family:var(--serif);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%}
+.unit:hover{border-color:var(--accent)}
+.unit h3{font-size:18px;font-weight:400;margin:.1rem 0}
+.unit .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.score-ring{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--chip-ink);
+  border:1px solid var(--line);border-radius:999px;padding:5px 9px;white-space:nowrap}
+.score-ring.done{color:var(--accent);border-color:var(--accent)}
+
+.topbar{background:var(--card);border-bottom:1px solid var(--line);padding:12px 0 0}
+.topbar .row{display:flex;align-items:center;gap:14px}
+.close{font-family:var(--sans);font-size:20px;line-height:1;color:var(--faint);background:none;
+  border:none;cursor:pointer;min-width:44px;min-height:44px}
+.close:hover{color:var(--ink)}
+.crumb{font-family:var(--sans);font-size:12.5px;color:var(--muted);flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.count{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted)}
+.progress{height:2px;background:var(--line);margin-top:10px}
+.progress i{display:block;height:2px;background:var(--accent);transition:width .2s ease-out}
+
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px 22px;margin-top:26px}
+.qtopic{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.qtext{font-size:20px;font-weight:400;margin:.4rem 0 1.1rem;line-height:1.4}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:var(--opt);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-height:48px;cursor:pointer;
+  font-family:var(--serif);font-size:15.5px;line-height:1.45;color:var(--ink-soft)}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt .num{flex:none;width:25px;height:25px;border-radius:6px;background:var(--chip);color:var(--chip-ink);
+  font-family:var(--sans);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.right{border-color:var(--ok);color:var(--ok-ink)}
+.opt.right .num{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);color:var(--bad-ink)}
+.opt.wrong .num{background:var(--bad);color:#fff}
+.opt.dim{color:#a0a8ae}
+.feedback{border:1px solid var(--bad-line);background:var(--bad-bg);border-radius:8px;padding:14px 18px;margin-top:16px}
+.feedback.ok{border-color:var(--ok-line);background:var(--ok-bg)}
+.feedback b{display:block;font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--bad);margin-bottom:.3rem}
+.feedback.ok b{color:var(--ok)}
+.hint{font-family:var(--sans);font-size:11.5px;color:#b3bac0;text-align:center;margin-top:12px}
+.done-score{font-size:40px;font-weight:400}
+.done-meta{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:.3rem}
+.done-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.links{font-family:var(--sans);font-size:12.5px;margin-top:14px}
+.links a{color:var(--hero-muted);text-decoration:none;margin-right:16px}
+.links a:hover{color:var(--hero-ink);text-decoration:underline}
+.links a.back{color:var(--hero-ink);font-weight:600}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){h1{font-size:27px}.qcard{padding:20px 16px}.stats{gap:24px}}
 </style>
 </head>
-<body id="top">
-
-<header>
-  <h1>Microbiology Quiz</h1>
-  <p class="sub">200 multiple choice questions across the ten course topics, with an explanation after every answer.</p>
-  <a class="back" href="microbiology.html">&larr; Microbiology content</a>
-  <a class="back" href="biology-review.html" style="margin-left:1rem">Biology review &rarr;</a>
-</header>
-
-<main>
-<section>
-  <div class="qz-topics" id="qz-topics" role="group" aria-label="Choose a topic"></div>
-  <div class="qz-bar">
-    <span id="qz-progress">Loading…</span>
-    <span id="qz-score" aria-live="polite"></span>
-  </div>
-  <p class="qz-prompt" id="qz-prompt"></p>
-  <div class="qz-opts" id="qz-opts" role="group" aria-label="Answer options"></div>
-  <p class="qz-expl" id="qz-expl" role="status" aria-live="polite" hidden></p>
-  <div class="qz-btns">
-    <button id="qz-next" hidden>Next question</button>
-    <button id="qz-restart" class="ghost">Restart</button>
-  </div>
-</section>
-</main>
+<body>
+<div id="topbar" class="topbar" hidden></div>
+<div id="app"></div>
 
 <script>
 const QZ_TOPICS = {"world": "Microbial world", "bact": "Bacteria", "arch": "Archaea", "euk": "Eukaryal microbes", "virus": "Viruses", "cult": "Cultivation", "mvp": "Bacterial MVPs", "reg": "Gene regulation", "bgen": "Bacterial genetics", "gnom": "Genomics"};
@@ -361,75 +308,154 @@ const QB = [
 ];
 
 (function(){
-  const $ = id => document.getElementById(id);
+  const $ = s => document.querySelector(s);
+  const app = $("#app"), bar = $("#topbar");
   const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
+  const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
-  let topic = "all", pool = [], at = 0, right = 0, answered = false;
+  let pool = [], at = 0, right = 0, chosen = -1, opts = [], label = "";
 
-  function start(){
+  const best = () => { try { return JSON.parse(localStorage.getItem("microQuiz") || "{}"); } catch (e) { return {}; } };
+  const save = (key, pct) => {
+    try {
+      const b = best();
+      if(!(key in b) || pct > b[key]) b[key] = pct;
+      localStorage.setItem("microQuiz", JSON.stringify(b));
+    } catch (e) {}
+  };
+
+  function home(){
+    bar.hidden = true;
+    const b = best(), keys = Object.keys(QZ_TOPICS);
+    const attempted = keys.filter(k => k in b).length;
+    const scores = keys.filter(k => k in b).map(k => b[k]);
+    const avg = scores.length ? Math.round(scores.reduce((x, y) => x + y, 0) / scores.length) + "%" : "\u2014";
+    app.innerHTML =
+      '<header><div class="wrap">' +
+        '<p class="kicker">Microbiology, ten course topics</p>' +
+        '<h1>Microbiology quiz</h1>' +
+        '<p class="lede">Twenty questions sit behind each topic. Options are matched for length and format, ' +
+          'so the answer never gives itself away.</p>' +
+        '<div class="stats">' +
+          '<div class="stat"><b>' + QB.length + '</b><span>questions</span></div>' +
+          '<div class="stat"><b>' + attempted + '/' + keys.length + '</b><span>topics attempted</span></div>' +
+          '<div class="stat"><b>' + avg + '</b><span>best average</span></div>' +
+        '</div>' +
+        '<p class="links"><a class="back" href="index.html">← Back to the quiz</a>' +
+          '<a href="microbiology.html">Microbiology content</a>' +
+          '<a href="biology-review.html">Biology review</a></p>' +
+      '</div></header>' +
+      '<main><div class="wrap">' +
+        '<div class="card lead-card">' +
+          '<div><p class="label">Everything at once</p><h2>All ten topics</h2>' +
+          '<p class="meta">' + QB.length + ' questions, shuffled</p></div>' +
+          '<button class="btn" data-start="all">Start quiz</button>' +
+        '</div>' +
+        '<p class="section-title">Course topics</p>' +
+        '<div class="units">' +
+          keys.map(k => {
+            const n = QB.filter(q => q[0] === k).length;
+            const done = k in b;
+            return '<button class="unit" data-start="' + k + '">' +
+              '<span><span class="meta">' + n + ' questions</span><h3>' + QZ_TOPICS[k] + '</h3></span>' +
+              '<span class="score-ring' + (done ? " done" : "") + '">' + (done ? b[k] + "%" : "new") + '</span>' +
+            '</button>';
+          }).join("") +
+        '</div>' +
+      '</div></main>';
+  }
+
+  function start(topic){
+    label = topic === "all" ? "All ten topics" : QZ_TOPICS[topic];
     pool = shuffle(QB.filter(q => topic === "all" || q[0] === topic));
+    pool.key = topic;
     at = 0; right = 0;
-    render();
+    question();
   }
 
-  function render(){
-    if(at >= pool.length) return finish();
-    const [, prompt, opts, correct] = pool[at];
-    answered = false;
-    $("qz-progress").textContent = "Question " + (at + 1) + " of " + pool.length;
-    $("qz-score").textContent = "Score: " + right + " / " + at;
-    $("qz-prompt").textContent = prompt;
-    $("qz-expl").hidden = true;
-    $("qz-next").hidden = true;
-    const answer = opts[correct];
-    $("qz-opts").innerHTML = shuffle(opts.slice())
-      .map(o => '<button type="button">' + o.replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</button>")
-      .join("");
-    [...$("qz-opts").children].forEach(b => {
-      b.addEventListener("click", () => choose(b, b.textContent === answer, answer));
-    });
+  function question(){
+    chosen = -1;
+    const q = pool[at];
+    opts = shuffle(q[2].slice());
+    bar.hidden = false;
+    bar.innerHTML =
+      '<div class="wrap"><div class="row">' +
+        '<button class="close" aria-label="Leave the quiz">\u00d7</button>' +
+        '<span class="crumb">' + esc(label) + '</span>' +
+        '<span class="count">' + (at + 1) + '/' + pool.length + '</span>' +
+      '</div><div class="progress"><i style="width:' + (100 * at / pool.length) + '%"></i></div></div>';
+    app.innerHTML =
+      '<main><div class="wrap"><div class="qcard">' +
+        '<p class="qtopic">' + esc(QZ_TOPICS[q[0]]) + '</p>' +
+        '<p class="qtext">' + esc(q[1]) + '</p>' +
+        '<div class="opts">' + opts.map((o, i) =>
+          '<button class="opt" data-i="' + i + '"><span class="num">' + (i + 1) + '</span>' +
+          '<span>' + esc(o) + '</span></button>').join("") + '</div>' +
+        '<div id="tail"></div>' +
+        '<p class="hint">Press 1 to 4 to answer, Enter to continue</p>' +
+      '</div></div></main>';
   }
 
-  function choose(btn, correct, answer){
-    if(answered) return;
-    answered = true;
-    if(correct) right++;
-    [...$("qz-opts").children].forEach(b => {
+  function answer(i){
+    if(chosen !== -1 || !opts[i]) return;
+    chosen = i;
+    const q = pool[at], correct = q[2][q[3]], hit = opts[i] === correct;
+    if(hit) right++;
+    document.querySelectorAll(".opt").forEach((b, j) => {
       b.disabled = true;
-      if(b.textContent === answer) b.classList.add("right");
-      else if(b === btn) b.classList.add("wrong");
+      const num = b.querySelector(".num");
+      if(opts[j] === correct){ b.classList.add("right"); num.textContent = "\u2713"; }
+      else if(j === i){ b.classList.add("wrong"); num.textContent = "\u2715"; }
+      else b.classList.add("dim");
     });
-    const expl = $("qz-expl");
-    expl.textContent = (correct ? "Correct. " : "Not quite. ") + pool[at][4];
-    expl.className = "qz-expl" + (correct ? "" : " miss");
-    expl.hidden = false;
-    $("qz-next").hidden = false;
-    $("qz-next").focus();
-    $("qz-score").textContent = "Score: " + right + " / " + (at + 1);
+    $("#tail").innerHTML =
+      '<div class="feedback' + (hit ? " ok" : "") + '"><b>' + (hit ? "Correct" : "Not quite") + '</b>' +
+      esc(q[4]) + '</div>' +
+      '<button class="btn wide" id="next" style="margin-top:16px">' +
+      (at + 1 === pool.length ? "See your score" : "Next question") + '</button>';
+    $("#next").focus();
   }
 
-  function finish(){
+  function next(){
+    if(chosen === -1) return;
+    at++;
+    if(at < pool.length) return question();
     const pct = Math.round(100 * right / pool.length);
-    $("qz-progress").textContent = "Finished";
-    $("qz-prompt").innerHTML = '<span class="qz-done">' + right + " correct out of " +
-      pool.length + ", " + pct + " per cent.</span>";
-    $("qz-opts").innerHTML = "";
-    $("qz-expl").hidden = true;
-    $("qz-next").hidden = true;
+    save(pool.key, pct);
+    bar.hidden = true;
+    app.innerHTML =
+      '<main><div class="wrap"><div class="qcard">' +
+        '<p class="qtopic">' + esc(label) + '</p>' +
+        '<p class="done-score">' + right + ' / ' + pool.length + '</p>' +
+        '<p class="done-meta">' + pct + ' per cent' +
+          (pct === 100 ? ", every one" : pct >= 80 ? ", solid" : pct >= 60 ? ", worth another pass" : ", go back over this topic") +
+        '</p>' +
+        '<div class="done-btns">' +
+          '<button class="btn" id="again">Run it again</button>' +
+          '<button class="btn ghost" id="back">Back to topics</button>' +
+        '</div>' +
+      '</div></div></main>';
+    $("#again").addEventListener("click", () => start(pool.key));
+    $("#back").addEventListener("click", home);
   }
 
-  $("qz-topics").innerHTML = ['<button data-t="all" class="on">All topics</button>']
-    .concat(Object.keys(QZ_TOPICS).map(k =>
-      '<button data-t="' + k + '">' + QZ_TOPICS[k] + "</button>")).join("");
-  $("qz-topics").addEventListener("click", e => {
-    if(e.target.tagName !== "BUTTON") return;
-    topic = e.target.dataset.t;
-    [...$("qz-topics").children].forEach(b => b.classList.toggle("on", b === e.target));
-    start();
+  document.addEventListener("click", e => {
+    const s = e.target.closest("[data-start]");
+    if(s) return start(s.dataset.start);
+    if(e.target.closest(".close")) return home();
+    const o = e.target.closest(".opt");
+    if(o) return answer(+o.dataset.i);
+    if(e.target.id === "next") return next();
   });
-  $("qz-next").addEventListener("click", () => { at++; render(); });
-  $("qz-restart").addEventListener("click", start);
-  start();
+
+  document.addEventListener("keydown", e => {
+    if(!pool.length || bar.hidden) return;
+    if(e.key >= "1" && e.key <= "4") answer(+e.key - 1);
+    else if(e.key === "Enter" && chosen !== -1){ e.preventDefault(); next(); }
+    else if(e.key === "Escape") home();
+  });
+
+  home();
 
   // ponytail: self-check, run by loading the page with #selftest
   if(location.hash === "#selftest"){
@@ -438,6 +464,7 @@ const QB = [
       console.assert(new Set(opts).size === 4, "duplicate option", prompt);
       console.assert(typeof opts[correct] === "string", "bad correct index", prompt);
       console.assert(expl && expl.length > 20, "thin explanation", prompt);
+      console.assert(t in QZ_TOPICS, "unknown topic", t);
       const lens = opts.map(o => o.length).sort((a, b) => a - b);
       const ans = opts[correct].length;
       console.assert(!(ans === lens[3] && ans - lens[2] > 4), "answer longest by too much", prompt);
