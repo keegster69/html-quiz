@@ -1,0 +1,30 @@
+const fs = require('node:fs');
+const vm = require('node:vm');
+const assert = require('node:assert/strict');
+const page = fs.readFileSync('biology-practice-exam.html', 'utf8');
+const start = page.indexOf('const practiceQuestions=') + 'const practiceQuestions='.length;
+const end = page.indexOf(';\n', start);
+const questions = JSON.parse(page.slice(start, end));
+const omitted = [18,19,27,29,38,39,43,51,66,67,68];
+assert.deepEqual(questions.map(q=>q.number), Array.from({length:115},(_,i)=>i+1).filter(n=>!omitted.includes(n)), 'Keep every question except those requiring missing images');
+assert(page.includes('const sourceQuestionCount=115;'));
+assert(page.includes('const missingQuestionNumbers=[];'));
+assert.equal(questions.filter(q=>q.correct).length, 104);
+assert.equal(questions.find(q=>q.number===1).correct,'d');
+assert.equal(questions.find(q=>q.number===56).correct,'b');
+assert.equal(questions.find(q=>q.number===11).options.length, 4, 'Accept parenthesized option letters');
+assert(questions.find(q=>q.number===16).prompt.startsWith('which equation'), 'Accept a lowercase question opening');
+assert(questions.find(q=>q.number===54).prompt.includes('5. RNA synthesis begins.'), 'Keep numbered transcription steps in the prompt');
+for (const number of [70,82,85,86,105,110,114]) {
+  assert(questions.find(q=>q.number===number), `Import question ${number} even without preceding whitespace`);
+}
+const pathway = questions.find(q=>q.number===84);
+assert(pathway.prompt.includes('1. activation of membrane-bound adenylyl cyclase'));
+assert(pathway.prompt.includes('4. Gα subunit exchanges GDP for GTP'));
+assert.equal(pathway.options.length, 5);
+assert(questions.every(q=>q.options.length>=4 && q.options.length<=5));
+assert(questions.every(q=>!q.correct || q.options.some(o=>o.id===q.correct)));
+for (const script of page.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(script[1]);
+assert(questions.filter(q=>!q.correct).every(q=>q.note), 'Every unscored question must explain why');
+assert.deepEqual(questions.filter(q=>!q.correct).map(q=>q.number), []);
+console.log('PASS: 104 scored exam questions; Q1 = D (Hooke), Q56 = B; source coverage and JavaScript syntax valid.');
