@@ -164,6 +164,20 @@ figure.slot .miss code{background:var(--card)}
 
   <div class="key">Bacteria and Archaea are both prokaryotic in organisation, but Archaea share their information processing machinery (replication, transcription, translation, histones) with eukaryotes and their metabolism and bioenergetics with bacteria. That mixture is the central clue to the origin of the eukaryotic cell.</div>
 
+  <h4 id="rrna-practice">Practice: rRNA and evolutionary relationships</h4>
+  <p>Try answering these questions before reading the explanations.</p>
+  <ol>
+    <li><strong>Why can scientists use SSU rRNA genes to compare both close relatives and organisms from different domains?</strong>
+      <p>Small-subunit (SSU) rRNA is shared by all cellular lineages and performs the same essential role in protein synthesis: 16S rRNA in Bacteria and Archaea, and 18S rRNA in the cytoplasmic ribosomes of Eukarya. These molecules are homologous, meaning they derive from a common ancestral molecule. Mutations that disrupt ribosome function are often removed by natural selection, so important regions remain conserved and can be aligned even between distant relatives. Other regions tolerate more change and help distinguish closer relatives. This balance of conserved and variable regions makes SSU rRNA useful for reconstructing evolutionary relationships. Greater sequence similarity generally supports a more recent common ancestor, although some closely related species have nearly identical sequences.</p>
+    </li>
+    <li><strong>Why might an rRNA-based family tree give an incomplete picture of a microbe's history or fail to tell us when two lineages split?</strong>
+      <p>Sequence differences alone do not give an exact divergence date. Substitution rates can vary between lineages and sites, so a molecular clock needs calibration and a suitable model. Also, an rRNA gene traces the history of that gene, not every part of the genome. Horizontal gene transfer can give other genes different histories, so a tree based on rRNA may miss relationships created by gene exchange. Comparing multiple genes or whole genomes provides a fuller picture.</p>
+    </li>
+    <li><strong>A probe discovers cellular life on another planet. What would need to be true before SSU rRNA could help place it on Earth's tree of life?</strong>
+      <p>The organisms would need to contain rRNA homologous to Earth's SSU rRNA, with enough conserved sequence or structure for a meaningful comparison. Merely having a molecule that performs a similar function would not establish common ancestry. Independently evolved life might use a different protein-synthesis system or lack rRNA altogether. In that case, Earth's rRNA-based classification would not apply; scientists would need other characteristics to study and classify it.</p>
+    </li>
+  </ol>
+
   <h4>Scale</h4>
   <p>Size sets the physiology. A small cell has a large surface area to volume ratio, so it exchanges nutrients quickly and grows fast; a large cell must solve transport problems that a small one does not have.</p>
   <div class="scroll">
@@ -1509,6 +1523,9 @@ document.querySelectorAll("figure.slot img").forEach(img => {
 // one flashcard deck per topic section: click the card to turn it over
 const FC = {
 "world": [
+["How do conserved and variable regions make SSU rRNA useful for phylogeny?", "Conserved regions allow homologous sequences to be aligned across distant cellular lineages; variable regions help distinguish closer relatives. Its essential ribosomal role limits harmful changes, but very close species can still have nearly identical sequences."],
+["Why can an rRNA tree neither date a split exactly on its own nor describe every gene's ancestry?", "Dating needs a calibrated substitution rate and an appropriate model. An rRNA tree follows one gene's history, while horizontal gene transfer can give other genes different histories."],
+["What must alien life share with Earth life for SSU rRNA comparisons to reveal ancestry?", "It must have homologous SSU rRNA with enough conserved sequence or structure for meaningful comparison. Similar function alone is insufficient; independently evolved life might lack rRNA or use a different system."],
 ["What did Woese use to split the prokaryotes into two domains?", "Small subunit ribosomal RNA sequence, 16S in prokaryotes. It is universal, functionally constant and slow changing, so it works as a molecular clock."],
 ["Which features of archaea look eukaryotic, and which look bacterial?", "Information processing looks eukaryotic: histones, a multi-subunit RNA polymerase with TBP and TFB, family B polymerases. Metabolism, operons and chemiosmotic energy conservation look bacterial."],
 ["What is chemically unique about archaeal membranes?", "Ether-linked branched isoprenoid chains on glycerol-1-phosphate, the opposite stereoisomer to bacteria and eukaryotes."],
