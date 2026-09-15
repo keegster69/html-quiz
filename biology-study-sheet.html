@@ -6,38 +6,56 @@
 <meta name="color-scheme" content="light">
 <title>Biology Study Sheet</title>
 <style>
-:root{color-scheme:light;font:17px/1.65 system-ui,sans-serif;color:#202c25;background:#edf1ee}*{box-sizing:border-box}body{margin:0}nav,main{max-width:900px;margin:auto}nav{padding:20px 24px;display:flex;gap:12px;flex-wrap:wrap}a{color:#176a36;text-underline-offset:3px}nav a{border:1px solid #aac5b3;border-radius:8px;padding:8px 12px;background:white}main{background:white;padding:32px 40px 64px;border-radius:16px;margin-bottom:32px}h1,h2{line-height:1.25;color:#176a36;scroll-margin-top:20px}h1:not(:first-child){margin-top:56px;border-top:2px solid #caddce;padding-top:24px}h2{margin-top:32px;font-size:1.2rem}h1{font-size:1.8rem}li{margin:8px 0}p{margin:16px 0}code{font-size:.88em;overflow-wrap:anywhere}hr{border:0;border-top:1px solid #d7e3da;margin:32px 0}a:focus-visible{outline:3px solid #176a36;outline-offset:3px}@media(max-width:600px){main{padding:24px 20px;border-radius:0}nav{padding:16px}h1{font-size:1.5rem}}@media print{body{background:white;font-size:11pt}nav{display:none}main{padding:0;margin:0;max-width:none}h1,h2{break-after:avoid}a{color:inherit}li,p{orphans:3;widows:3}}
+:root{color-scheme:light;font:17px/1.7 system-ui,sans-serif;color:#202c25;background:#edf1ee;--green:#176a36;--line:#caddce}
+*{box-sizing:border-box}
+body{margin:0}
+::selection{background:#caddce;color:#202c25}
+nav,main{max-width:880px;margin:auto}
+nav{padding:20px 24px;display:flex;gap:8px;flex-wrap:wrap}
+a{color:var(--green);text-underline-offset:4px}
+nav a{display:inline-flex;align-items:center;min-height:44px;border:1px solid #aac5b3;border-radius:8px;padding:8px 12px;background:white;font-size:.88rem}
+nav a:hover{background:#e2ede5;border-color:var(--green)}
+a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+main{background:white;padding:36px 48px 64px;border-radius:16px;margin-bottom:32px;overflow-wrap:break-word}
+h1,h2,h3{line-height:1.3;scroll-margin-top:24px;text-wrap:balance}
+h1{font-size:2rem;letter-spacing:-.025em;color:var(--green);margin:0 0 12px}
+h2{font-size:1.45rem;color:var(--green);margin:48px 0 20px}
+h3{font-size:1.15rem;color:#202c25;margin:36px 0 12px}
+.part{border-top:1px solid var(--line);padding-top:28px}
+.subtitle{font-size:1.06rem;color:#466050;margin:0 0 20px}
+li{margin:10px 0;padding-left:4px}
+ul,ol{padding-left:24px}
+li::marker{color:var(--green)}
+p{margin:16px 0}
+p:has(>strong:first-child){padding:12px 0;border-bottom:1px solid #e4ebe6}
+code{font-size:.88em;overflow-wrap:anywhere}
+@media(max-width:600px){main{padding:28px 20px;border-radius:0}nav{padding:16px}h1{font-size:1.75rem}h2{font-size:1.3rem}h3{font-size:1.1rem}}
+@media print{body{background:white;font-size:11pt}nav{display:none}main{padding:0;margin:0;max-width:none;border-radius:0}h1,h2,h3{break-after:avoid}a{color:inherit}li,p{orphans:3;widows:3}.part{margin-top:24px;padding-top:16px}}
 </style>
 </head>
 <body>
-<nav aria-label="Study sheet navigation"><a href="content.html">← Back to Content</a><a href="#part-i-concepts-and-questions">Concepts &amp; questions</a><a href="#part-ii-mixed-understanding-questions">Mixed questions</a><a href="#part-iii-answer-key-and-reasoning">Answer key</a></nav>
+<nav aria-label="Study sheet navigation"><a href="content.html">Back to content</a><a href="#part-i-concepts-and-questions">Concepts &amp; questions</a><a href="#part-ii-mixed-understanding-questions">Mixed questions</a><a href="#part-iii-answer-key-and-reasoning">Answer key</a></nav>
 <main><h1 id="biology-study-sheet">Biology study sheet</h1>
-<h2 id="concepts-to-know-48-understanding-questions-explained-answer-key">Concepts to know • 48 understanding questions • Explained answer key</h2>
-<p><strong>Scope:</strong> The 21 topics in <code>biology-review.html</code> and the biology material in <code>content.html</code>. The separate microbiology quiz, NE110 flashcards, and practice midterm/exam are outside this sheet's scope.</p>
+<p class="subtitle" id="concepts-to-know-48-understanding-questions-explained-answer-key">Review 21 topics and work through 48 questions, with explanations in the answer key.</p>
+<p>This sheet covers the 21 topics in <code>biology-review.html</code> and the biology material in <code>content.html</code>. It leaves out the separate microbiology quiz, NE110 flashcards, and practice midterm/exam.</p>
 <h2 id="how-to-use-this-sheet">How to use this sheet</h2>
 <ol>
-<li>Read one concept section, close it, and explain the mechanism in your own words.</li>
+<li>Read one concept section, look away, and explain how it works in your own words.</li>
 <li>Answer its questions without looking at the answer key. Show calculations and label DNA directions.</li>
-<li>Score each question: <strong>2 = correct conclusion and reasoning; 1 = partly correct or missing reasoning; 0 = incorrect or unable to explain.</strong> Revisit every 0 or 1 before another attempt.</li>
-<li>Finish with questions 43–48, which combine topics. For genetics, use the stated assumptions rather than assuming a ratio always applies.</li>
+<li>Finish with questions 43 to 48, which combine topics. For genetics, check the stated assumptions before applying a ratio.</li>
 </ol>
-<hr />
-<h1 id="part-i-concepts-and-questions">Part I — Concepts and questions</h1>
-<h2 id="cells-organelles-and-model-organisms">1. Cells, organelles, and model organisms</h2>
+<h2 class="part" id="part-i-concepts-and-questions">Part I: Concepts and questions</h2>
+<h3 id="cells-organelles-and-model-organisms">1. Cells, organelles, and model organisms</h3>
 <ul>
 <li>Bacteria and archaea lack a membrane-bound nucleus; eukaryotes have one. All cellular life uses membranes, genetic information, and ribosomes. A cell wall alone does not identify a domain.</li>
 <li>Trace a secreted protein: ribosome on rough ER → ER → transport vesicle → Golgi → secretory vesicle → cell surface. Lysosomes digest material; peroxisomes oxidize fatty acids and manage hydrogen peroxide.</li>
 <li>Catalase can use H₂O₂ to oxidize other substances or decompose it: <strong>2 H₂O₂ → 2 H₂O + O₂</strong>.</li>
 <li>A 70S ribosome contains 30S and 50S subunits; an 80S cytosolic ribosome contains 40S and 60S subunits. Svedberg values describe sedimentation and are not additive. Typical motile eukaryotic cilia have nine outer doublets and two central singles: <strong>9 × 2 + 2 = 20 microtubules</strong>.</li>
-<li>
-<ol type="A" start="5">
-<li>coli is useful for rapid growth and simple genetics; yeast adds eukaryotic cell organization. As a cell grows, volume increases faster than surface area, making exchange harder.</li>
-</ol>
-</li>
+<li><i>E. coli</i> is useful for rapid growth and simple genetics; yeast adds eukaryotic cell organization. As a cell grows, volume increases faster than surface area, making exchange harder.</li>
 </ul>
 <p><strong>1.</strong> A cell produces a digestive enzyme but cannot export it. The enzyme accumulates in the ER. Which later steps should you investigate, and why would defective transcription be a poor first explanation?</p>
 <p><strong>2.</strong> A student says, “Peroxisomes use peroxide, so breaking peroxide down would defeat their purpose.” Explain the flaw. Then explain why 30S and 50S subunits can form a 70S ribosome.</p>
-<h2 id="bonds-water-ph-and-buffers">2. Bonds, water, pH, and buffers</h2>
+<h3 id="bonds-water-ph-and-buffers">2. Bonds, water, pH, and buffers</h3>
 <ul>
 <li>Covalent bonds share electrons; unequal sharing creates polarity. Hydrogen bonds and ionic interactions are individually weaker and depend on their environment. Many weak interactions can collectively stabilize a structure.</li>
 <li>The hydrophobic effect favors clustering of nonpolar surfaces in water; it is not a new covalent bond. Very close atoms repel rather than attracting indefinitely.</li>
@@ -46,7 +64,7 @@
 </ul>
 <p><strong>3.</strong> A carboxyl group has pKa 4. At pH 7, is it mostly COOH or COO⁻? Compared with pH 7, how much higher is [H⁺] at pH 5?</p>
 <p><strong>4.</strong> A protein loses its folded shape when heated, but its amino-acid sequence remains intact. Explain how many weak interactions can stabilize a protein yet still be disrupted without breaking its backbone.</p>
-<h2 id="macromolecules-and-membranes">3. Macromolecules and membranes</h2>
+<h3 id="macromolecules-and-membranes">3. Macromolecules and membranes</h3>
 <ul>
 <li>Carbohydrates use glycosidic bonds, proteins peptide bonds, and nucleic acids phosphodiester bonds. Lipids are a diverse class, not generally repeating-unit polymers.</li>
 <li>Condensation joins components with water loss in a simplified chemical description; hydrolysis uses water to split a bond. Actual cellular synthesis often uses activated building blocks.</li>
@@ -55,7 +73,7 @@
 </ul>
 <p><strong>5.</strong> Why can humans digest starch but not cellulose efficiently? Why is “both are made of glucose” insufficient to predict digestibility?</p>
 <p><strong>6.</strong> A membrane replaces many saturated tails with cis-unsaturated tails. Predict its fluidity at the same temperature and explain the molecular cause.</p>
-<h2 id="amino-acids-and-protein-structure">4. Amino acids and protein structure</h2>
+<h3 id="amino-acids-and-protein-structure">4. Amino acids and protein structure</h3>
 <ul>
 <li>Know the side-chain groups: nonpolar <strong>G A V L I M P F W</strong>; polar uncharged <strong>S T C Y N Q</strong>; acidic <strong>D E</strong>; basic <strong>K R H</strong>. Histidine's charge is pH-dependent; it is not fully positive at neutral pH.</li>
 <li>Primary = sequence; secondary = local backbone patterns; tertiary = one chain's overall fold; quaternary = assembly of multiple chains. Backbone hydrogen bonds stabilize α helices and β sheets.</li>
@@ -64,7 +82,7 @@
 </ul>
 <p><strong>7.</strong> Compare replacing a buried valine with aspartate in a soluble protein with making the same change in a membrane-spanning helix. Why might both be disruptive?</p>
 <p><strong>8.</strong> A functional enzyme contains four polypeptide chains. A treatment separates them without unfolding each chain. Which level of structure is directly disrupted? Why might activity still disappear?</p>
-<h2 id="enzymes-free-energy-and-atp">5. Enzymes, free energy, and ATP</h2>
+<h3 id="enzymes-free-energy-and-atp">5. Enzymes, free energy, and ATP</h3>
 <ul>
 <li>Enzymes lower activation energy; they do not change reaction ΔG or equilibrium. A favorable reaction can still be slow. Coupled reactions proceed favorably when their combined ΔG is negative and they are mechanistically linked.</li>
 <li><strong>v = Vmax[S]/(Km + [S])</strong> for Michaelis–Menten behavior. At [S] = Km, v = Vmax/2. Km is not universally identical to a binding dissociation constant.</li>
@@ -73,7 +91,7 @@
 </ul>
 <p><strong>9.</strong> An enzyme has Vmax = 100 units/min and Km = 2 mM. Find v at [S] = 2 mM and 6 mM. An inhibitor raises apparent Km to 8 mM without changing Vmax. What inhibition pattern fits, and how could extra substrate help?</p>
 <p><strong>10.</strong> Reaction A has ΔG = +5 kcal/mol; a directly coupled reaction B has ΔG = −8 kcal/mol. Find the combined ΔG. Would simply adding an enzyme to uncoupled A make A thermodynamically favorable?</p>
-<h2 id="respiration-and-fermentation">6. Respiration and fermentation</h2>
+<h3 id="respiration-and-fermentation">6. Respiration and fermentation</h3>
 <ul>
 <li>Per glucose: glycolysis yields <strong>2 net ATP, 2 NADH, 2 pyruvate</strong>; pyruvate oxidation yields <strong>2 NADH, 2 acetyl-CoA, 2 CO₂</strong>; two Krebs turns yield <strong>6 NADH, 2 FADH₂, 2 GTP/ATP, 4 CO₂</strong>.</li>
 <li>Glycolysis occurs in the cytosol; in eukaryotes, pyruvate oxidation and Krebs occur mainly in the mitochondrial matrix. PFK-1 controls a major committed glycolytic step.</li>
@@ -83,7 +101,7 @@
 </ul>
 <p><strong>11.</strong> A cell can perform glycolysis but suddenly cannot reoxidize NADH by either respiration or fermentation. Why does glycolysis eventually stop even if glucose and ADP remain available?</p>
 <p><strong>12.</strong> Calculate ATP yield if eight NADH yield 2.5 ATP each, two cytosolic NADH yield 1.5 each, two FADH₂ yield 1.5 each, and four ATP are made directly. How many times more glucose would fermentation require for the same ATP output, assuming 2 ATP per glucose?</p>
-<h2 id="chemiosmosis-and-photosynthesis">7. Chemiosmosis and photosynthesis</h2>
+<h3 id="chemiosmosis-and-photosynthesis">7. Chemiosmosis and photosynthesis</h3>
 <ul>
 <li>Mitochondrial complexes I, III, and IV pump protons toward the intermembrane space; ATP synthase permits return to the matrix. Complex II does not pump protons. Proton motive force includes electrical and concentration differences.</li>
 <li>Oxygen accepts electrons at complex IV. Uncouplers dissipate the gradient: ATP yield falls while electron transport can continue or accelerate when fuel and O₂ are available.</li>
@@ -93,7 +111,7 @@
 </ul>
 <p><strong>13.</strong> Compare an ETC inhibitor, an ATP-synthase inhibitor, and an uncoupler. Predict the immediate effects on proton gradient, oxygen consumption, and oxidative ATP production in functioning mitochondria.</p>
 <p><strong>14.</strong> A chloroplast fixes six CO₂. How much ATP and NADPH does the Calvin cycle consume, and how many net G3P result? If water is isotope-labeled, why could that label appear in released O₂?</p>
-<h2 id="dna-structure-and-classic-experiments">8. DNA structure and classic experiments</h2>
+<h3 id="dna-structure-and-classic-experiments">8. DNA structure and classic experiments</h3>
 <ul>
 <li>DNA strands are antiparallel, with bases inside and charged sugar-phosphate backbones outside. A pairs with T, G with C; both hydrogen bonding and base stacking stabilize the duplex.</li>
 <li>For ordinary double-stranded DNA, %A = %T and %G = %C. These equalities need not hold within an isolated single strand.</li>
@@ -102,7 +120,7 @@
 </ul>
 <p><strong>15.</strong> Double-stranded DNA contains 30% adenine. Calculate the other base percentages. Explain why the same calculation is not justified for an arbitrary single-stranded RNA sample.</p>
 <p><strong>16.</strong> After cells grown in heavy nitrogen replicate once in light nitrogen, all DNA has intermediate density. After a second round, half is intermediate and half light. Explain the semiconservative prediction and how the second round distinguishes it from dispersive replication.</p>
-<h2 id="dna-replication">9. DNA replication</h2>
+<h3 id="dna-replication">9. DNA replication</h3>
 <ul>
 <li>DNA polymerase extends an existing <strong>3′-OH</strong>, synthesizing <strong>5′→3′</strong> while reading template <strong>3′→5′</strong>. Leading and lagging strands obey the same chemistry; their continuity differs because templates are antiparallel.</li>
 <li>Helicase separates strands; single-strand binding proteins protect them; topoisomerase relieves twisting; primase supplies primers; polymerase extends; primer removal/replacement and ligase complete the backbone.</li>
@@ -111,7 +129,7 @@
 </ul>
 <p><strong>17.</strong> Why does the lagging strand need repeated primers? Would allowing ligase to work faster remove the need for Okazaki fragments?</p>
 <p><strong>18.</strong> Predict different immediate consequences of inhibiting helicase, ligase, and proofreading. Which defect mainly increases sequence errors rather than directly preventing strand unwinding or fragment joining?</p>
-<h2 id="transcription-translation-and-mutations">10. Transcription, translation, and mutations</h2>
+<h3 id="transcription-translation-and-mutations">10. Transcription, translation, and mutations</h3>
 <ul>
 <li>RNA matches the coding strand's sequence with U replacing T; it is complementary to the template. Always specify 5′/3′ ends. RNA polymerase initiates without a primer.</li>
 <li>Eukaryotic pre-mRNA is capped, spliced, and polyadenylated. Alternative splicing can produce different products. Bacterial transcription and translation can be coupled.</li>
@@ -121,7 +139,7 @@
 </ul>
 <p><strong>19.</strong> The coding DNA is 5′-ATG GAA TTT TGA-3′. Write the mRNA 5′→3′ and the peptide, using AUG = Met, GAA = Glu, UUU = Phe, UGA = stop. What would deleting the first base of GAA do to the downstream reading frame?</p>
 <p><strong>20.</strong> A tRNA with a lysine anticodon is mistakenly charged with alanine. Which amino acid is inserted at the corresponding lysine codon? Explain what the ribosome reads and which earlier step failed.</p>
-<h2 id="alternative-molecular-biology-approaches">11. Alternative molecular-biology approaches</h2>
+<h3 id="alternative-molecular-biology-approaches">11. Alternative molecular-biology approaches</h3>
 <ul>
 <li>Reverse transcriptase copies RNA into DNA; telomerase is an RNA-templated DNA polymerase. Ribozymes show RNA can catalyze reactions; these observations support plausible RNA-based early biology.</li>
 <li>RNA interference uses sequence-guided complexes to reduce target RNA expression through cleavage, destabilization, or translational repression. Noncoding RNA need not be useless RNA.</li>
@@ -130,7 +148,7 @@
 </ul>
 <p><strong>21.</strong> A small RNA lowers protein abundance while the gene's DNA sequence remains unchanged. Give two plausible RNA-mediated mechanisms and one measurement that could help distinguish them.</p>
 <p><strong>22.</strong> Deleting gene X prevents a pathway's final product from appearing. Does this prove that X directly catalyzes the final reaction? Propose a biochemical follow-up and an appropriate control.</p>
-<h2 id="lac-operon-and-gene-regulation">12. Lac operon and gene regulation</h2>
+<h3 id="lac-operon-and-gene-regulation">12. Lac operon and gene regulation</h3>
 <ul>
 <li>lacZ encodes β-galactosidase; lacY encodes permease. LacI repressor binds the operator; allolactose reduces repression. Low glucose favors cAMP–CAP activation. Highest expression requires inducer plus low glucose.</li>
 <li>An operator is <strong>cis-acting</strong>: it affects linked genes. A repressor protein acts <strong>in trans</strong> and can reach another DNA molecule. A partial diploid can distinguish these effects.</li>
@@ -139,7 +157,7 @@
 </ul>
 <p><strong>23.</strong> Rank normal lac expression under: (a) no lactose, low glucose; (b) lactose, high glucose; (c) lactose, low glucose. Explain the repressor and CAP states rather than only giving “on/off.”</p>
 <p><strong>24.</strong> Assume low glucose, functional promoters, and Z⁻ producing no active β-galactosidase. A cell has chromosomal I⁻ O⁺ Z⁺ and plasmid I⁺ O⁺ Z⁻. Is β-galactosidase inducible? What changes if the chromosome instead has Oᶜ? Explain cis versus trans.</p>
-<h2 id="mendel-meiosis-and-probability">13. Mendel, meiosis, and probability</h2>
+<h3 id="mendel-meiosis-and-probability">13. Mendel, meiosis, and probability</h3>
 <ul>
 <li>Segregation separates alleles into gametes. Independent assortment applies to unlinked loci; close linkage changes joint gamete probabilities. Dominance describes phenotype, not allele frequency or fitness.</li>
 <li>Aa × Aa gives 1 AA : 2 Aa : 1 aa; complete dominance gives a 3:1 phenotype ratio. Unlinked AaBb × AaBb with complete dominance at both genes gives 9:3:3:1.</li>
@@ -148,7 +166,7 @@
 </ul>
 <p><strong>25.</strong> For AaBb × AaBb with unlinked genes, calculate P(aabb) and P(A_bb). Show the one-gene probabilities used.</p>
 <p><strong>26.</strong> Aa × Aa produces 100 offspring, 74 with the dominant phenotype and 26 recessive. Does this refute a 3:1 model? Explain. If aa is instead lethal before counting, what ratio of AA:Aa would you expect among survivors?</p>
-<h2 id="linkage-recombination-and-maps">14. Linkage, recombination, and maps</h2>
+<h3 id="linkage-recombination-and-maps">14. Linkage, recombination, and maps</h3>
 <ul>
 <li>In a testcross, offspring report the heterozygote's gametes. Parental classes usually dominate for linked genes; recombinant fraction = recombinants/total.</li>
 <li><strong>RF (%) = recombinant offspring ÷ total offspring × 100.</strong> For short intervals, 1% RF approximates 1 cM. Observed RF cannot exceed 50%; 50% does not prove different chromosomes.</li>
@@ -157,7 +175,7 @@
 </ul>
 <p><strong>27.</strong> A testcross gives AB = 440, ab = 440, Ab = 60, aB = 60. Identify parental classes, RF, and approximate map distance. Would a separate pair with 50% RF necessarily be on different chromosomes?</p>
 <p><strong>28.</strong> In a three-gene testcross, parental classes are ABC and abc, while double-crossover classes are AbC and aBc. Which gene is in the middle? If interval recombination fractions are 0.10 and 0.20 among 1,000 offspring, and 10 DCO offspring are observed, calculate expected DCO, coincidence, and interference.</p>
-<h2 id="pedigrees-penetrance-and-risk">15. Pedigrees, penetrance, and risk</h2>
+<h3 id="pedigrees-penetrance-and-risk">15. Pedigrees, penetrance, and risk</h3>
 <ul>
 <li>Autosomal recessive traits can appear in children of unaffected carriers; autosomal dominant traits often appear in successive generations. Small pedigrees can fit several models; reduced penetrance can obscure a dominant pattern.</li>
 <li>X-linked recessive males are hemizygous. For X-linked loci, fathers give their X to daughters and Y to sons. An affected father does not automatically make every daughter an unaffected carrier; the mother's genotype matters.</li>
@@ -166,7 +184,7 @@
 </ul>
 <p><strong>29.</strong> Two unaffected carriers of an autosomal recessive allele have an unaffected child. What is that child's probability of being a carrier? What is the chance their next child is affected? Explain why these probabilities differ.</p>
 <p><strong>30.</strong> For X-linked recessive inheritance, cross an affected father XᵃY with a carrier mother XᴬXᵃ. What fraction of daughters and sons are affected? Explain why “affected father → all daughters are carriers” fails here.</p>
-<h2 id="biochemical-genetics-and-pathway-logic">16. Biochemical genetics and pathway logic</h2>
+<h3 id="biochemical-genetics-and-pathway-logic">16. Biochemical genetics and pathway logic</h3>
 <ul>
 <li>Auxotrophs require a supplement that a prototroph can synthesize. Nutritional rescue can locate a biochemical block if intermediates enter cells and the pathway is as stated.</li>
 <li>In a standard test of recessive loss-of-function mutations, restoration of wild type usually indicates different genes; failure to complement supports the same gene. This is not a universal rule for every allele or pathway.</li>
@@ -175,7 +193,7 @@
 </ul>
 <p><strong>31.</strong> Two recessive white-flower mutants produce purple offspring when crossed. Under the standard complementation assumptions, what does that suggest? Why would the same test be harder to interpret for dominant mutants?</p>
 <p><strong>32.</strong> In the linear pathway A → B → C → D, all intermediates can enter the cell. Mutant 1 grows when supplied B, C, or D; mutant 2 grows only with D. Locate both blocks. Would the double mutant grow with C or D?</p>
-<h2 id="restriction-enzymes-and-recombinant-dna">17. Restriction enzymes and recombinant DNA</h2>
+<h3 id="restriction-enzymes-and-recombinant-dna">17. Restriction enzymes and recombinant DNA</h3>
 <ul>
 <li>Restriction enzymes recognize specific DNA sequences, often palindromes when both strands are read 5′→3′. Sticky ends base-pair; ligase seals the backbone. Host methylation can protect restriction sites.</li>
 <li>Under independent, equally likely bases, a particular n-base site occurs on average once per <strong>4ⁿ bp</strong>. Real genomes can depart from this model.</li>
@@ -183,7 +201,7 @@
 </ul>
 <p><strong>33.</strong> Show why 5′-GAATTC-3′ is palindromic by writing its complementary strand with directions. Why does matching sticky-end base pairing not complete ligation?</p>
 <p><strong>34.</strong> Estimate average spacing for a specific four-base site and a six-base site in random DNA. State two assumptions that make these estimates approximate.</p>
-<h2 id="cloning-design-and-controls">18. Cloning design and controls</h2>
+<h3 id="cloning-design-and-controls">18. Cloning design and controls</h3>
 <ul>
 <li>A cloning vector needs a host-compatible origin, a selectable marker, and a place to insert DNA. Expression additionally requires suitable regulatory sequences and a correctly configured coding region.</li>
 <li>Two different, noncompatible ends can impose orientation and reduce vector self-ligation. Removing vector phosphates can reduce recircularization. Cloning and expression vectors solve different problems.</li>
@@ -191,7 +209,7 @@
 </ul>
 <p><strong>35.</strong> Many colonies grow on antibiotic and are blue on X-gal/IPTG. Explain what the two observations tell you. Give one design change to reduce empty-vector colonies and one way to verify a white colony.</p>
 <p><strong>36.</strong> A DNA insert is present in a plasmid, but its protein is absent. Give three expression-specific explanations that remain possible despite successful cloning.</p>
-<h2 id="genomic-libraries-and-hybridization">19. Genomic libraries and hybridization</h2>
+<h3 id="genomic-libraries-and-hybridization">19. Genomic libraries and hybridization</h3>
 <ul>
 <li>A genomic library samples coding and noncoding DNA. Partial digestion can produce overlapping inserts and avoid cutting every copy of a gene at the same internal site.</li>
 <li>One genome equivalent is total inserted DNA equal to genome size; random overlap means it does not guarantee every locus is represented. More independent clones improve coverage.</li>
@@ -199,7 +217,7 @@
 </ul>
 <p><strong>37.</strong> A 3 × 10⁹ bp genome is cloned in 20,000 bp inserts. How many clones equal one genome's worth of DNA? Why is that not a guarantee of complete coverage?</p>
 <p><strong>38.</strong> A mouse DNA probe gives no signal against a human library under very stringent washes. Explain one plausible reason, one adjustment, and how you would assess whether a newly recovered signal is the correct homolog.</p>
-<h2 id="cdna-and-expression-libraries">20. cDNA and expression libraries</h2>
+<h3 id="cdna-and-expression-libraries">20. cDNA and expression libraries</h3>
 <ul>
 <li>Reverse transcriptase makes cDNA from RNA. A cDNA library made from mature mRNA lacks the removed introns and reflects tissue, condition, and transcript abundance; it does not represent the entire genome.</li>
 <li>Oligo-dT primes from poly-A tails. A full-length cDNA includes the complete transcript-derived sequence, potentially including untranslated regions; cDNA does not include upstream genomic promoters.</li>
@@ -207,7 +225,7 @@
 </ul>
 <p><strong>39.</strong> Choose genomic or cDNA material for (a) studying an upstream promoter, (b) expressing an intron-containing human gene in bacteria, and (c) finding transcripts enriched in liver versus brain. Explain each choice.</p>
 <p><strong>40.</strong> A verified, full-length human cDNA is transcribed and translated in bacteria, but the protein is inactive. Give two reasons unrelated to intron removal and suggest a way to investigate one.</p>
-<h2 id="gels-sequencing-pcr-and-detection-methods">21. Gels, sequencing, PCR, and detection methods</h2>
+<h3 id="gels-sequencing-pcr-and-detection-methods">21. Gels, sequencing, PCR, and detection methods</h3>
 <ul>
 <li>DNA moves toward the positive electrode. Among linear fragments in a suitable gel, smaller fragments usually migrate farther. Uncut supercoiled, nicked, and linear plasmids can migrate differently despite identical base-pair counts.</li>
 <li>Sanger ddNTPs lack the 3′-OH required for extension. Read shortest-to-longest terminated fragments to obtain the newly synthesized strand 5′→3′.</li>
@@ -216,18 +234,16 @@
 </ul>
 <p><strong>41.</strong> A completely digested circular 5 kb plasmid yields 3 kb and 2 kb linear fragments. How many sites does that enzyme cut? Why can you not apply the same counting rule to an already linear molecule?</p>
 <p><strong>42.</strong> Starting with one amplifiable double-stranded template, estimate the ideal number of DNA copies after 20 PCR cycles. Why is that not a reliable prediction after indefinitely many cycles? Name a control that tests reagent contamination.</p>
-<hr />
-<h1 id="part-ii-mixed-understanding-questions">Part II — Mixed understanding questions</h1>
+<h2 class="part" id="part-ii-mixed-understanding-questions">Part II: Mixed understanding questions</h2>
 <p><strong>43. Trace a defect.</strong> A mutation disrupts a splice donor in a human gene encoding a secreted enzyme. Predict a possible chain of effects from RNA processing to protein activity. Explain why a mutation outside a protein-coding exon can matter and why the exact outcome is not certain without measurements.</p>
 <p><strong>44. Separate carbon from electrons.</strong> For complete oxidation of one glucose, account for its six carbons across pyruvate oxidation and Krebs. Account separately for the four directly produced ATP/GTP. Why should you not add “10 NADH + 2 FADH₂” and call that 12 ATP?</p>
 <p><strong>45. Test chemiosmosis.</strong> Isolated chloroplast membranes in darkness make ATP briefly after an artificial proton gradient is imposed. Identify the energy source, explain why ATP production stops, and predict the effect of adding an uncoupler.</p>
 <p><strong>46. Track a regulatory mutation.</strong> Compare an Iˢ super-repressor with an Oᶜ operator mutation in a partial diploid containing another normal operon. Which can affect an operon on the other DNA molecule? Assume low glucose and explain the response to added lactose.</p>
 <p><strong>47. Design an expression experiment.</strong> You suspect gene X has the same DNA copy number in two cell samples but produces less protein in sample B. Choose measurements that distinguish DNA copy number, RNA abundance, and protein abundance. Give two distinct explanations if DNA and RNA are unchanged but protein is lower.</p>
 <p><strong>48. Avoid a false causal claim.</strong> A mutant strain cannot synthesize D, and introducing a wild-type copy of gene X restores growth without D. Explain what this supports, what it does not yet prove about X's molecular activity, and why an empty-vector control is needed.</p>
-<hr />
-<h1 id="part-iii-answer-key-and-reasoning">Part III — Answer key and reasoning</h1>
-<p>Use this after attempting the questions. A full-credit response includes the mechanism or calculation, not just the final word or number.</p>
-<h2 id="cells-through-enzymes-110">Cells through enzymes: 1–10</h2>
+<h2 class="part" id="part-iii-answer-key-and-reasoning">Part III: Answer key and reasoning</h2>
+<p>Check these explanations after attempting the questions. Compare your reasoning and calculations as well as your final answers.</p>
+<h3 id="cells-through-enzymes-110">Cells through enzymes: 1–10</h3>
 <p><strong>1.</strong> Investigate folding/quality control and ER export, vesicle transport, Golgi processing, and delivery to the surface. Enzyme accumulation shows that transcription and translation have occurred; an export defect or retention of improperly folded enzyme better fits the observation. Accumulation alone does not identify the exact defective step.</p>
 <p><strong>2.</strong> H₂O₂ is both a useful oxidant and potentially damaging. Peroxisomes generate it in some reactions, use it in others, and remove it through catalase. S values measure sedimentation behavior, which depends on shape and mass; joining subunits changes that behavior, so their S values are not summed like masses.</p>
 <p><strong>3.</strong> Mostly <strong>COO⁻</strong>, because pH exceeds pKa by three units. [H⁺] is <strong>100 times higher</strong> at pH 5 than pH 7: 10⁻⁵/10⁻⁷ = 10².</p>
@@ -238,7 +254,7 @@
 <p><strong>8.</strong> <strong>Quaternary structure.</strong> An active site may span subunit interfaces, or assembly may be needed for correct geometry or regulation. Intact tertiary folds do not guarantee an active multimer.</p>
 <p><strong>9.</strong> At 2 mM: 100 × 2/(2 + 2) = <strong>50 units/min</strong>. At 6 mM: 100 × 6/(2 + 6) = <strong>75 units/min</strong>. The changed parameters fit <strong>competitive inhibition</strong>; high substrate competes for active sites and lets velocity approach the same Vmax.</p>
 <p><strong>10.</strong> Combined ΔG = +5 − 8 = <strong>−3 kcal/mol</strong>, favorable under the stated conditions. The coupling must transfer energy through a shared mechanism or intermediate. An enzyme alone changes the barrier, not A's ΔG or equilibrium.</p>
-<h2 id="metabolism-through-molecular-biology-1122">Metabolism through molecular biology: 11–22</h2>
+<h3 id="metabolism-through-molecular-biology-1122">Metabolism through molecular biology: 11–22</h3>
 <p><strong>11.</strong> The finite NAD⁺ pool becomes reduced to NADH. The glyceraldehyde-3-phosphate dehydrogenase step requires NAD⁺, so glycolytic flux stalls when NAD⁺ regeneration fails. Glucose and ADP cannot substitute for the oxidized carrier.</p>
 <p><strong>12.</strong> 8(2.5) + 2(1.5) + 2(1.5) + 4 = <strong>30 ATP</strong>. Fermentation requires <strong>30/2 = 15 times as much glucose</strong> for equal ATP output under these assumptions.</p>
 <p><strong>13.</strong> An effective ETC block lowers electron flow and O₂ consumption; proton pumping stops and the existing gradient dissipates as it is used or leaks, so oxidative ATP falls. ATP-synthase inhibition initially preserves or increases the gradient, stops ATP production through that enzyme, and then slows electron flow/O₂ use through backpressure. An uncoupler lowers the gradient and ATP yield while allowing or stimulating electron flow/O₂ use when substrates are available. These are mitochondrial effects; glycolytic ATP can remain.</p>
@@ -251,7 +267,7 @@
 <p><strong>20.</strong> <strong>Alanine.</strong> Codon–anticodon pairing positions the tRNA, but the attached amino acid is what is transferred. The failure occurred in aminoacyl-tRNA charging/editing, normally handled by the synthetase system.</p>
 <p><strong>21.</strong> The small RNA could promote mRNA cleavage/decay or repress translation. Measure target RNA abundance alongside protein abundance: reduced RNA supports destabilization; relatively unchanged RNA with reduced protein supports translation-level regulation, although further experiments are needed to separate overlapping effects.</p>
 <p><strong>22.</strong> No. X could regulate transcription, transport a substrate, catalyze an earlier step, or stabilize another protein. Test purified X with the candidate substrate and measure product formation. Include a no-X or inactive-X control and suitable assay controls; restoration of product specifically by active X supports direct catalysis.</p>
-<h2 id="regulation-and-genetics-2332">Regulation and genetics: 23–32</h2>
+<h3 id="regulation-and-genetics-2332">Regulation and genetics: 23–32</h3>
 <p><strong>23.</strong> <strong>(c) highest; (b) lower; (a) strongly repressed.</strong> In (a), repressor remains bound despite CAP activation. In (b), inducer relieves repression, but high glucose limits cAMP–CAP activation. In (c), repression is relieved and CAP activation is strong. Basal expression makes a strict binary description incomplete.</p>
 <p><strong>24.</strong> The I⁺ plasmid supplies diffusible functional repressor, so chromosomal O⁺ Z⁺ becomes <strong>inducible</strong>: repressed without inducer and expressed with inducer. With chromosomal Oᶜ, that linked Z⁺ is <strong>constitutive with respect to inducer</strong>, because even functional repressor cannot bind Oᶜ. The operator's effect stays on its own DNA; the repressor can act on both copies.</p>
 <p><strong>25.</strong> P(aabb) = P(aa) × P(bb) = 1/4 × 1/4 = <strong>1/16</strong>. P(A_bb) = P(AA or Aa) × P(bb) = 3/4 × 1/4 = <strong>3/16</strong>. Independence is required for this multiplication of the two locus probabilities.</p>
@@ -262,7 +278,7 @@
 <p><strong>30.</strong> <strong>Half of daughters and half of sons are affected.</strong> Daughters are XᴬXᵃ or XᵃXᵃ; sons are XᴬY or XᵃY, equally likely within each sex. All daughters receive the father's affected X, but daughters receiving the mother's affected X too are affected, not merely unaffected carriers.</p>
 <p><strong>31.</strong> Usually the mutations affect <strong>different genes</strong>: each parent supplies the functional allele missing from the other. A dominant allele may cause a phenotype even in the presence of a normal copy, so failure to restore wild type would not have the same straightforward interpretation.</p>
 <p><strong>32.</strong> Mutant 1 is blocked at <strong>A → B</strong>; mutant 2 at <strong>C → D</strong>. The double mutant grows with <strong>D</strong>, not C, because supplying C does not bypass its C → D block. The result relies on the stated linear pathway and uptake assumptions.</p>
-<h2 id="recombinant-dna-and-methods-3342">Recombinant DNA and methods: 33–42</h2>
+<h3 id="recombinant-dna-and-methods-3342">Recombinant DNA and methods: 33–42</h3>
 <p><strong>33.</strong> The duplex is <strong>5′-GAATTC-3′ / 3′-CTTAAG-5′</strong>. Reading the lower strand from its own 5′ end also gives GAATTC. Sticky ends make noncovalent base pairs; ligase must form phosphodiester bonds between compatible 3′-OH and 5′-phosphate ends.</p>
 <p><strong>34.</strong> Four-base site: <strong>4⁴ = 256 bp</strong>. Six-base site: <strong>4⁶ = 4,096 bp</strong>. These assume equally frequent bases and independent positions; genomic composition, repeats, and site biases can change actual spacing.</p>
 <p><strong>35.</strong> Antibiotic survival indicates the selectable marker is functional, not that the desired insert is present. Blue suggests intact lacZ screening activity, often from empty vector. Use two different cloning ends or vector dephosphorylation to reduce self-ligation. Verify a white colony with insert-specific/colony PCR or diagnostic digestion, then sequence as needed for identity and orientation.</p>
@@ -273,15 +289,14 @@
 <p><strong>40.</strong> Incorrect folding/aggregation, missing modification such as glycosylation, absent partner subunits, or missing cofactors can prevent activity. For example, compare soluble and insoluble protein fractions to test aggregation, or express the same cDNA in an appropriate eukaryotic host to examine processing-dependent activity.</p>
 <p><strong>41.</strong> <strong>Two sites</strong> on the circular molecule, assuming a complete digest and that all fragments are resolved. For a linear molecule, n cuts normally make n + 1 fragments, so two fragments imply <strong>one site</strong>. Fragment lengths must sum to the starting length: 3 + 2 = 5 kb.</p>
 <p><strong>42.</strong> 2²⁰ = <strong>1,048,576</strong>, approximately one million copies under ideal doubling. Reagents become limiting, enzyme activity declines, and products interfere with further amplification. A <strong>no-template control</strong> tests contamination introduced through reagents or setup; it should not produce the target amplicon.</p>
-<h2 id="mixed-questions-4348">Mixed questions: 43–48</h2>
+<h3 id="mixed-questions-4348">Mixed questions: 43–48</h3>
 <p><strong>43.</strong> Altered splice recognition can cause intron retention, exon skipping, or a cryptic splice site. These can change the reading frame, introduce a premature stop, remove an important domain, or reduce RNA abundance through surveillance. The resulting protein may be absent, inactive, unstable, or retained during secretion. Intronic sequences can be essential processing signals. Measure the RNA splice products and protein rather than assuming a single inevitable outcome.</p>
 <p><strong>44.</strong> Two pyruvates lose <strong>2 CO₂ total</strong> during conversion to two acetyl-CoA; two Krebs turns release <strong>4 CO₂ total</strong>, accounting for six carbons overall. Glycolysis provides <strong>2 net ATP</strong>, and Krebs provides <strong>2 GTP/ATP</strong>, for <strong>4 direct ATP equivalents</strong>. NADH/FADH₂ count carrier molecules, not ATP; converting their energy to ATP depends on entry point, coupling, and shuttle assumptions. Individual acetyl carbons need not leave in the first Krebs turn.</p>
 <p><strong>45.</strong> The imposed electrochemical gradient supplies the free energy for ATP synthesis. Production stops as the gradient dissipates without replenishment, or as ADP/phosphate become limiting. An uncoupler allows protons to cross without driving ATP synthase and reduces or abolishes the burst. A no-gradient control helps connect the ATP burst specifically to the gradient.</p>
 <p><strong>46.</strong> <strong>Iˢ acts in trans</strong>: its protein can repress normal O⁺ operons on either molecule and is not inactivated normally by inducer, so lactose does not restore normal induction. <strong>Oᶜ acts only in cis</strong>: its linked operon escapes repressor binding, while a separate normal O⁺ operon can still be regulated by functional LacI. Oᶜ does not make a diffusible activator.</p>
 <p><strong>47.</strong> Measure DNA copy number with a normalized DNA-based assay such as genomic qPCR; RNA with RT-qPCR or Northern; and protein with Western or another validated protein assay. Unchanged DNA/RNA with lower protein can reflect reduced translation or faster protein degradation. Include appropriate reference/loading controls; one layer's measurement cannot substitute for another's.</p>
 <p><strong>48.</strong> Rescue supports a causal role for X in the growth/pathway phenotype, especially with a confirmed mutation and appropriate expression. It does not establish that X directly catalyzes a particular reaction; it could regulate or transport something required. An empty vector tests whether rescue depends on X rather than the vector, selection conditions, or transformation itself. Direct biochemical activity requires a separate assay.</p>
-<hr />
-<h1 id="final-check-explain-these-without-notes">Final check: explain these without notes</h1>
+<h2 class="part" id="final-check-explain-these-without-notes">Final check: explain these without notes</h2>
 <ul>
 <li>Why enzyme speed, thermodynamic favorability, and energy coupling are different ideas.</li>
 <li>Why a ribosome's S value, ciliary “9+2,” and chemical reaction coefficients describe different things.</li>
@@ -293,7 +308,7 @@
 <li>Why a colony, a gel band, an RNA signal, and an active protein provide different kinds of evidence.</li>
 </ul>
 <h2 id="source-notes">Source notes</h2>
-<p>The local biology quiz and content determine coverage; questions here are newly written understanding exercises, not a prediction of exam questions. Some statements are qualified to avoid overgeneralizing introductory shorthand.</p>
+<p>These original practice questions follow the topics in the local biology quiz and content; they do not predict exam questions. The notes spell out where simplified rules have limits.</p>
 <ul>
 <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK9930/">NCBI: peroxisomes</a> supports the two roles of peroxide described in section 1.</li>
 <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK9850/">NCBI: prokaryotic transcription and lac regulation</a> supports the cis/trans and two-input regulation distinctions in section 12.</li>
