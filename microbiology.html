@@ -103,6 +103,14 @@ h4{font-size:1rem;margin:1.2rem 0 .4rem;color:var(--green);font-weight:700}
 figure.slot .miss{border:2px dashed var(--line);border-radius:8px;padding:1.1rem;color:var(--muted);
   font-size:.85rem;background:var(--stripe)}
 figure.slot .miss code{background:var(--card)}
+.term{border-bottom:1px dashed var(--green);cursor:help}
+.term:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
+#gloss-tip{position:fixed;left:0;top:0;z-index:100;width:max-content;max-width:min(340px,88vw);
+  background:var(--card);color:var(--ink);border:1px solid var(--green);border-left:4px solid var(--green);
+  border-radius:8px;padding:.55rem .7rem;font-size:.85rem;line-height:1.45;box-shadow:var(--shadow);
+  pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s ease-out}
+#gloss-tip.on{opacity:1;visibility:visible}
+#gloss-tip b{display:block;color:var(--green);margin-bottom:.15rem}
 </style>
 </head>
 <body id="top">
@@ -2074,5 +2082,320 @@ const RC_Q = [
 })();
 
 </script>
+<script>
+/* Glossary: first mention of a key term in each section gets a hover/tap definition. */
+(function(){
+  const DEFS = {
+    "peptidoglycan": "The bacterial wall polymer of alternating NAG and NAM sugars cross-linked by short peptides; penicillin blocks the cross-linking.",
+    "Gram-positive": "Thick peptidoglycan wall with no outer membrane, so it retains crystal violet and stains purple.",
+    "Gram-negative": "Thin peptidoglycan between an inner and an outer membrane; it loses crystal violet and counterstains pink.",
+    "lipopolysaccharide": "The outer leaflet molecule of the Gram-negative outer membrane; its lipid A is endotoxin.",
+    "teichoic acid": "Anionic glycerol- or ribitol-phosphate polymers threaded through Gram-positive walls; they bind cations and anchor surface proteins.",
+    "periplasm": "The gel-filled space between the inner and outer membranes of a Gram-negative cell, holding transport and degradative enzymes.",
+    "outer membrane": "The Gram-negative bilayer outside the wall, asymmetric with LPS on the outside; it is a permeability barrier breached only by porins.",
+    "porin": "A beta-barrel channel in the outer membrane that lets small hydrophilic molecules diffuse in.",
+    "S-layer": "A paracrystalline protein or glycoprotein sheet covering the cell surface, common in archaea, giving shape and protection.",
+    "capsule": "A tightly attached polysaccharide layer outside the wall that resists phagocytosis and dehydration.",
+    "biofilm": "A surface-attached, matrix-embedded microbial community; cells in it tolerate antibiotics far better than free-swimming ones.",
+    "pilus": "A surface protein fibre used for attachment or, in the case of the sex pilus, for conjugation.",
+    "fimbriae": "Short, numerous attachment fibres distinct from the longer conjugative pilus.",
+    "flagellum": "The rotating helical filament driven by a proton-powered motor that propels a bacterial cell.",
+    "chemotaxis": "Biased movement up or down a chemical gradient, produced by tuning the frequency of tumbles between runs.",
+    "endospore": "A dormant, dehydrated, heat- and chemical-resistant structure formed inside Bacillus and Clostridium cells.",
+    "sporulation": "The developmental programme that converts a growing cell into an endospore when nutrients run out.",
+    "germination": "The return of a dormant spore to active vegetative growth once conditions improve.",
+    "binary fission": "Bacterial division into two equal daughter cells after chromosome replication and septum formation.",
+    "nucleoid": "The membrane-free region where the supercoiled bacterial chromosome sits.",
+    "plasmid": "A small, independently replicating DNA circle carrying accessory genes such as resistance or virulence.",
+    "magnetosome": "A membrane-bound magnetite crystal chain that lets a cell align with the Earth's magnetic field.",
+    "gas vesicle": "A protein-walled, gas-filled compartment that gives buoyancy to aquatic microbes.",
+    "carboxysome": "A protein-shelled compartment that concentrates CO2 around RuBisCO in autotrophic bacteria.",
+    "thylakoid": "Internal photosynthetic membranes, seen in cyanobacteria and in chloroplasts.",
+    "FtsZ": "The tubulin-like protein that forms the Z ring at midcell and recruits the division machinery.",
+    "MreB": "The actin-like protein whose helical arrangement maintains rod shape by directing wall synthesis.",
+    "crescentin": "The intermediate-filament-like protein that gives Caulobacter its curved shape.",
+    "divisome": "The multiprotein complex assembled at the Z ring that builds the septum during division.",
+    "lysozyme": "An enzyme in tears and saliva that cleaves the NAG-NAM backbone, bursting Gram-positive cells.",
+    "penicillin": "A beta-lactam that blocks transpeptidase cross-linking, so growing cells lyse; it does not touch resting cells.",
+    "beta-lactam": "The antibiotic class defined by a four-membered lactam ring that inhibits wall cross-linking.",
+    "beta-lactamase": "A bacterial enzyme that hydrolyses the beta-lactam ring, the commonest route to penicillin resistance.",
+    "antibiotic resistance": "Survival at drug concentrations that would normally inhibit; via enzymes, efflux, target change or reduced uptake.",
+    "efflux pump": "A membrane transporter that exports drugs out of the cell, often giving resistance to several classes at once.",
+    "antibiotic": "A microbial product, or its derivative, that inhibits or kills other microbes.",
+    "minimum inhibitory concentration": "The lowest drug concentration that stops visible growth, the standard measure of susceptibility.",
+    "bacteriostatic": "Stopping growth without killing; the population recovers once the agent is removed.",
+    "bactericidal": "Killing the cells outright, so viable counts fall.",
+    "sterilisation": "Killing or removing every viable organism including spores.",
+    "disinfection": "Reducing the number of viable pathogens on an inanimate surface, without necessarily achieving sterility.",
+    "autoclave": "Steam under pressure, typically 121 C for 15 minutes, which is the standard way to kill spores.",
+    "filtration": "Physical removal of cells by a membrane of defined pore size, used for heat-sensitive liquids.",
+    "D-value": "The time at a given temperature needed to kill 90 percent of a population, one log of decimal reduction.",
+    "thermal death": "The heat exposure needed to kill a population, described by its D-value and z-value.",
+    "water activity": "The available water in an environment, given as a ratio to pure water; low values limit growth.",
+    "quorum sensing": "Cell-density sensing through a diffusible autoinducer, switching on group behaviours only when the population is large.",
+    "autoinducer": "The signal molecule made and detected in quorum sensing; homoserine lactones in many Gram-negatives.",
+    "two-component": "A sensor histidine kinase plus a response regulator, the standard bacterial signal-transduction pair.",
+    "histidine kinase": "The membrane sensor that autophosphorylates on a histidine when it detects a stimulus.",
+    "response regulator": "The partner protein that receives the phosphate and, once phosphorylated, usually alters transcription.",
+    "sigma factor": "The exchangeable RNA polymerase subunit that recognises a promoter class; swapping it reprograms transcription wholesale.",
+    "operon": "A set of genes with one promoter and operator transcribed as a single polycistronic mRNA.",
+    "lac operon": "The lacZ-lacY-lacA cluster; off without lactose and fully on only when lactose is present and glucose is low.",
+    "trp operon": "The tryptophan biosynthesis genes, switched off by tryptophan acting as a corepressor and fine-tuned by attenuation.",
+    "regulon": "All the operons, wherever they sit, controlled by one regulatory protein.",
+    "stimulon": "Every gene whose expression changes in response to one stimulus, however they are controlled.",
+    "repressor": "A protein that blocks transcription, usually by occupying an operator.",
+    "activator": "A protein that raises transcription, usually by recruiting RNA polymerase to a weak promoter.",
+    "inducer": "A small molecule that turns a gene on, typically by inactivating a repressor.",
+    "corepressor": "A small molecule that turns a gene off by activating a repressor, as tryptophan does at trpR.",
+    "constitutive": "Expressed at a steady level regardless of the regulatory signal.",
+    "attenuation": "Premature termination in a leader region, tuned by how fast the ribosome translates it; used by the trp operon.",
+    "antitermination": "Protein-mediated read-through past a terminator, extending the transcript.",
+    "riboswitch": "An mRNA leader that folds around a metabolite and thereby controls its own transcription or translation.",
+    "small RNA": "A short non-coding RNA that base-pairs with an mRNA to block or expose its ribosome-binding site.",
+    "catabolite repression": "Glucose keeps cAMP low, so CAP cannot activate weak promoters and alternative sugar operons stay off.",
+    "stringent response": "The amino-acid-starvation programme that shuts down rRNA and tRNA synthesis via ppGpp.",
+    "ppGpp": "The alarmone made on starved ribosomes that redirects RNA polymerase away from stable RNA promoters.",
+    "transformation": "Uptake of naked DNA from the environment by a competent cell.",
+    "competence": "The physiological state, natural or induced, in which a cell can take up free DNA.",
+    "transduction": "DNA transfer from one bacterium to another inside a phage particle.",
+    "conjugation": "Cell-contact DNA transfer through a pilus, driven by a plasmid such as F.",
+    "F plasmid": "The fertility plasmid encoding the conjugation machinery; its carrier is the donor.",
+    "Hfr": "A strain with F integrated into the chromosome, so conjugation transfers chromosomal genes in a time-ordered way.",
+    "transposon": "A mobile element that moves within or between replicons, often carrying resistance genes with it.",
+    "insertion sequence": "The simplest transposable element, carrying only a transposase between inverted repeats.",
+    "integron": "A site-specific capture system that collects gene cassettes, a major reservoir of resistance genes.",
+    "horizontal gene transfer": "Movement of genes between organisms other than parent to offspring; it blurs bacterial lineages.",
+    "genomic island": "A large block of horizontally acquired DNA with atypical GC content and its own function.",
+    "pathogenicity island": "A genomic island carrying clustered virulence genes, often next to a tRNA gene.",
+    "recombination": "Exchange or rearrangement of DNA sequences to give new combinations.",
+    "homologous recombination": "Exchange between sequences that match, the route by which incoming DNA replaces a chromosomal copy.",
+    "RecA": "The strand-exchange protein central to homologous recombination and to induction of the SOS response.",
+    "restriction enzyme": "A sequence-specific endonuclease that cuts foreign DNA, usually at a palindrome.",
+    "restriction-modification": "The pairing of a restriction enzyme with a methylase that marks self DNA, so only invading DNA is cut.",
+    "vector": "A replicon such as a plasmid or phage used to carry cloned DNA into a host.",
+    "shuttle vector": "A vector with two origins of replication so it propagates in two different hosts.",
+    "cloning": "Inserting a DNA fragment into a vector and propagating it in a host to get many identical copies.",
+    "selectable marker": "A gene, usually antibiotic resistance, that lets only cells carrying the construct grow.",
+    "auxotroph": "A mutant that cannot make one required nutrient and grows only when it is supplied.",
+    "prototroph": "The wild-type state, able to grow on minimal medium without supplements.",
+    "mutant": "A strain whose genotype differs from wild type by one or more mutations.",
+    "point mutation": "A change at a single base pair.",
+    "missense": "A base change that swaps one amino acid for another.",
+    "nonsense": "A base change that creates a stop codon and truncates the protein.",
+    "frameshift": "An insertion or deletion not a multiple of three, which scrambles everything downstream.",
+    "reversion": "A second mutation that restores the wild-type phenotype, either at the original site or elsewhere.",
+    "mutagen": "An agent that raises the mutation rate, chemically or by radiation.",
+    "Ames test": "A reversion assay in auxotrophic Salmonella used to screen chemicals for mutagenicity.",
+    "replica plating": "Stamping a colony pattern onto several media at once to spot mutants that fail on one of them.",
+    "genome": "The complete set of genetic material in a cell or virus.",
+    "core genome": "The genes shared by every strain of a species, as opposed to the variable accessory genes.",
+    "open reading frame": "A stretch running from a start codon to a stop codon in one frame, the signature of a likely gene.",
+    "annotation": "Assigning identity and function to the features found in a sequenced genome.",
+    "orthologue": "The same gene in two species, separated by speciation, usually with the same function.",
+    "paralogue": "A gene copy created by duplication within a genome, free to acquire a new function.",
+    "metagenomics": "Sequencing DNA straight from an environment, so uncultured organisms are included.",
+    "16S rRNA": "The small-subunit rRNA gene whose conserved and variable regions are the standard bar code for bacterial identification.",
+    "shotgun sequencing": "Sequencing many random fragments and assembling them computationally into contigs.",
+    "contig": "A contiguous consensus sequence built from overlapping reads.",
+    "scaffold": "Ordered and oriented contigs, joined with gaps of estimated length.",
+    "microarray": "A grid of immobilised probes hybridised with labelled sample to measure many transcripts at once.",
+    "RNA-seq": "Sequencing the transcriptome directly to count transcripts, without needing predefined probes.",
+    "transcriptome": "The full set of RNA transcripts present under a given condition.",
+    "BLAST": "The search tool that finds sequences similar to a query and scores the significance of each match.",
+    "GC content": "The percentage of G and C bases; an unusual value in a region hints at horizontal acquisition.",
+    "codon usage": "The unequal frequency of synonymous codons in a genome, matched to the tRNA pool.",
+    "archaea": "The third domain: prokaryotic in organisation, but with ether-linked lipids and eukaryote-like information machinery.",
+    "archaeal": "Belonging to the archaea, the domain with ether-linked isoprenoid lipids and no peptidoglycan.",
+    "isoprenoid": "The branched five-carbon-unit chains that make up archaeal membrane lipids instead of fatty acids.",
+    "pseudomurein": "A peptidoglycan-like archaeal wall polymer that lysozyme and penicillin cannot touch.",
+    "halophile": "An organism needing high salt, often balancing osmotic pressure with potassium or compatible solutes.",
+    "thermophile": "An organism growing best at high temperature, roughly 45 to 80 C.",
+    "hyperthermophile": "An organism growing best above about 80 C, with heat-stable proteins and membranes.",
+    "psychrophile": "An organism growing best in the cold, with flexible enzymes and unsaturated membrane lipids.",
+    "mesophile": "An organism growing best at moderate temperature, roughly 20 to 45 C, including most pathogens.",
+    "acidophile": "An organism growing best at low pH while keeping its cytoplasm near neutral.",
+    "alkaliphile": "An organism growing best at high pH, typically using a sodium rather than proton gradient.",
+    "barophile": "An organism that grows best under high hydrostatic pressure, also called a piezophile.",
+    "extremophile": "An organism whose optimum lies in conditions lethal to most life.",
+    "methanogen": "A strictly anaerobic archaeon that makes methane as the end product of its energy metabolism.",
+    "methanogenesis": "Anaerobic energy metabolism producing methane, typically from H2 plus CO2 or from acetate.",
+    "methylotroph": "An organism growing on one-carbon compounds such as methanol or methylamine.",
+    "methanotroph": "A methylotroph that can use methane itself as its carbon and energy source.",
+    "chemolithotroph": "An organism getting energy by oxidising inorganic compounds such as ammonia, sulfide or hydrogen.",
+    "autotroph": "An organism that builds its carbon from CO2.",
+    "heterotroph": "An organism that takes its carbon from preformed organic compounds.",
+    "phototroph": "An organism that gets its energy from light.",
+    "obligate aerobe": "An organism that grows only with oxygen as the terminal electron acceptor.",
+    "obligate anaerobe": "An organism poisoned by oxygen, lacking the enzymes to detoxify its by-products.",
+    "facultative": "Able to grow with oxygen or without it, switching between respiration and fermentation.",
+    "microaerophile": "An organism needing oxygen but only at reduced tension.",
+    "aerotolerant": "Fermenting regardless of oxygen; it is not harmed by O2 but gains nothing from it.",
+    "fermentation": "Energy metabolism with an organic internal electron acceptor and no electron transport chain.",
+    "respiration": "Energy metabolism that passes electrons down a chain to an external acceptor, oxygen or otherwise.",
+    "electron acceptor": "The molecule that takes the electrons at the end of the chain; nitrate, sulfate or CO2 in anaerobes.",
+    "nitrogen fixation": "Reduction of atmospheric N2 to ammonia by nitrogenase, an oxygen-sensitive and energy-costly reaction.",
+    "nitrogenase": "The oxygen-labile enzyme that reduces N2 to ammonia at a heavy ATP cost.",
+    "heterocyst": "The thick-walled, non-photosynthetic cyanobacterial cell that keeps nitrogenase away from oxygen.",
+    "nitrification": "The aerobic oxidation of ammonia to nitrite and then to nitrate by chemolithotrophs.",
+    "denitrification": "Anaerobic reduction of nitrate through to N2 gas, which removes fixed nitrogen from soil.",
+    "proteobacteria": "The largest and most metabolically varied Gram-negative phylum, from E. coli to the purple sulfur bacteria.",
+    "cyanobacteria": "Oxygenic photosynthetic bacteria with thylakoids; the ancestors of chloroplasts.",
+    "actinobacteria": "High-GC Gram-positives, filamentous and the source of most clinical antibiotics.",
+    "firmicutes": "Low-GC Gram-positives, including the spore formers and the lactic acid bacteria.",
+    "enteric": "A member of the Enterobacteriaceae: facultative Gram-negative rods of the gut, such as E. coli.",
+    "pseudomonad": "An aerobic, nutritionally versatile Gram-negative rod, notorious for degrading odd compounds and resisting drugs.",
+    "purple sulfur": "Anoxygenic phototrophs using H2S as electron donor and depositing sulfur granules.",
+    "sulfate reducer": "A strict anaerobe respiring sulfate to sulfide, which is what makes anoxic sediments smell.",
+    "myxobacteria": "Gliding soil deltaproteobacteria that swarm to feed and build multicellular fruiting bodies when starved.",
+    "fruiting body": "The multicellular spore-bearing structure raised by myxobacteria or by fungi.",
+    "mycelium": "The branching mat of hyphae that makes up a fungal or actinomycete colony.",
+    "hypha": "One filament of a mycelium.",
+    "spore": "A differentiated, usually dormant cell for survival or dispersal; heat-resistant in the case of endospores.",
+    "yeast": "A single-celled fungus that usually divides by budding.",
+    "dimorphic": "Able to switch between yeast and hyphal forms, often in step with temperature or host entry.",
+    "algae": "Photosynthetic eukaryotic microbes, from single cells to seaweeds.",
+    "diatom": "A single-celled alga inside a two-part silica frustule; a major contributor of marine photosynthesis.",
+    "ciliate": "A protist swimming with rows of cilia and carrying two kinds of nucleus.",
+    "flagellate": "A protist that swims with one or a few flagella.",
+    "apicomplexan": "An obligate intracellular parasitic protist with an apical invasion complex; Plasmodium and Toxoplasma are examples.",
+    "endosymbiosis": "One cell living inside another; the origin of mitochondria and chloroplasts from bacteria.",
+    "endosymbiotic": "Describing the theory that mitochondria and chloroplasts descend from engulfed bacteria.",
+    "mitochondrion": "The organelle of aerobic ATP production, descended from an alphaproteobacterium.",
+    "chloroplast": "The photosynthetic organelle, descended from a cyanobacterium.",
+    "phagocytosis": "Engulfing particles into a vesicle; the feeding mode of many protists and the defence of immune cells.",
+    "mitosis": "Nuclear division producing two genetically identical nuclei.",
+    "meiosis": "Two divisions halving the chromosome number and reshuffling alleles to make gametes or spores.",
+    "virus": "An obligate intracellular parasite of nucleic acid in a protein coat, with no metabolism of its own.",
+    "virion": "One complete, assembled virus particle outside the cell.",
+    "capsid": "The protein shell built from repeating capsomers that encloses the viral genome.",
+    "nucleocapsid": "The genome plus its capsid, taken together.",
+    "envelope": "A lipid membrane layer; the Gram-negative cell envelope, or the host-derived coat of an enveloped virus.",
+    "bacteriophage": "A virus that infects bacteria.",
+    "phage": "Short for bacteriophage, a virus of bacteria.",
+    "lytic": "The infection cycle that makes progeny at once and bursts the host.",
+    "lysogenic": "The cycle in which the phage genome is maintained quietly in the host rather than making progeny.",
+    "prophage": "A phage genome integrated into, or maintained alongside, the host chromosome during lysogeny.",
+    "temperate": "A phage that can choose lysogeny as well as lysis.",
+    "provirus": "A viral genome integrated into the host chromosome, the eukaryotic counterpart of a prophage.",
+    "latency": "A quiet viral state with little or no particle production, able to reactivate later.",
+    "plaque": "A clear patch of lysed cells in a lawn, each one started by a single infectious particle.",
+    "plaque assay": "Counting plaques on a lawn to measure infectious particles, reported as plaque-forming units.",
+    "one-step growth": "The synchronised single-cycle experiment that reveals the eclipse period, latent period and burst size.",
+    "burst size": "The average number of progeny virions released per infected cell.",
+    "multiplicity of infection": "The ratio of infectious particles to host cells in an experiment.",
+    "tropism": "Which cells or hosts a virus can infect, set largely by receptor availability.",
+    "uncoating": "Release of the viral genome from its capsid once inside the cell.",
+    "budding": "Release of an enveloped virion through the host membrane, or the asymmetric division of a yeast.",
+    "reverse transcriptase": "The enzyme making DNA from an RNA template, carried by retroviruses.",
+    "retrovirus": "An RNA virus that reverse transcribes its genome and integrates it as a provirus.",
+    "segmented genome": "A viral genome split across several nucleic acid molecules, which permits reassortment in mixed infections.",
+    "antigenic drift": "Gradual escape from immunity through point mutations in surface proteins.",
+    "antigenic shift": "Abrupt change from reassortment of genome segments between strains, the source of pandemic influenza.",
+    "viroid": "A small naked circular RNA with no capsid and no protein, infecting plants.",
+    "prion": "A misfolded protein that propagates its own conformation, with no nucleic acid at all.",
+    "virus-like particle": "An empty assembled capsid with no genome, used as a vaccine or a delivery shell.",
+    "satellite virus": "A virus that can only replicate when a helper virus co-infects the same cell.",
+    "vaccine": "A preparation that primes immunity without causing the disease.",
+    "CRISPR": "The bacterial adaptive immune system that stores spacers from past invaders and uses them to guide Cas nucleases.",
+    "enrichment": "Culture conditions chosen to favour one physiological type so it outgrows everything else.",
+    "pure culture": "A population descended from a single cell, with nothing else present.",
+    "colony": "A visible mass of cells on solid medium, usually grown from one founding cell.",
+    "colony-forming unit": "One viable particle able to give rise to a colony; the unit of a plate count.",
+    "turbidity": "Cloudiness of a culture, measured as optical density and used as a quick proxy for biomass.",
+    "generation time": "The time a population takes to double under given conditions.",
+    "growth curve": "The lag, exponential, stationary and death phases of a batch culture plotted over time.",
+    "stationary phase": "The plateau where growth and death balance because a nutrient is exhausted or waste has built up.",
+    "chemostat": "A continuous culture in which fresh medium is added and culture removed at a set dilution rate, holding cells in steady state.",
+    "most probable number": "A statistical viable count from patterns of growth in replicate dilution tubes.",
+    "pathogen": "An organism able to cause disease in a host.",
+    "virulence": "The degree of damage a pathogen causes, measured by dose and severity.",
+    "toxin": "A microbial product that damages the host directly.",
+    "exotoxin": "A secreted protein toxin, often highly potent and specific, and neutralisable as a toxoid.",
+    "endotoxin": "Lipid A of Gram-negative LPS, released on lysis and causing fever, shock and inflammation.",
+    "symbiosis": "A persistent close association between two species, of any benefit balance.",
+    "microbiome": "The full microbial community of a site, with its genes.",
+    "opportunistic": "Causing disease only when the host's defences or normal flora are disturbed.",
+    "zoonosis": "A disease transmitted to humans from an animal reservoir."
+  };
+
+  const SKIP = "a,code,button,select,svg,h1,h2,.deck,.rc-clue,.term";
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const keys = Object.keys(DEFS).sort((a, b) => b.length - a.length);
+  const hit = {};
+
+  document.querySelectorAll("main > section").forEach(sec => {
+    keys.forEach(k => {
+      // acronyms and proper names match case-sensitively, so "cap" is not read as "CAP"
+      const re = new RegExp("(?<![\\w-])" + esc(k) + "s?(?!\\w)", k === k.toLowerCase() ? "i" : "");
+      const walk = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walk.nextNode())) {
+        if (node.parentElement.closest(SKIP)) continue;
+        const m = re.exec(node.nodeValue);
+        if (!m) continue;
+        const word = node.splitText(m.index);
+        word.splitText(m[0].length);
+        const span = document.createElement("span");
+        span.className = "term";
+        span.tabIndex = 0;
+        span.dataset.term = k;
+        span.dataset.def = DEFS[k];
+        span.textContent = word.nodeValue;
+        word.parentNode.replaceChild(span, word);
+        hit[k] = (hit[k] || 0) + 1;
+        break;
+      }
+    });
+  });
+
+  const tip = document.createElement("div");
+  tip.id = "gloss-tip";
+  tip.setAttribute("role", "tooltip");
+  document.body.appendChild(tip);
+  let open = null;
+
+  function show(el){
+    if (open === el) return;
+    hide();
+    open = el;
+    const head = document.createElement("b");
+    head.textContent = el.dataset.term;
+    tip.replaceChildren(head, document.createTextNode(el.dataset.def));
+    tip.classList.add("on");
+    el.setAttribute("aria-describedby", "gloss-tip");
+    const r = el.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    const x = Math.min(r.left, innerWidth - 8 - t.width);
+    let y = r.bottom + 6;
+    if (y + t.height > innerHeight - 8) y = r.top - t.height - 6;
+    tip.style.left = Math.max(8, x) + "px";
+    tip.style.top = Math.max(8, y) + "px";
+  }
+
+  function hide(){
+    if (open) open.removeAttribute("aria-describedby");
+    tip.classList.remove("on");
+    open = null;
+  }
+
+  function track(e){
+    const t = e.target.closest(".term");
+    if (t) show(t); else if (open) hide();
+  }
+  document.addEventListener("mouseover", track);
+  document.addEventListener("focusin", track);
+  document.addEventListener("click", track);
+  addEventListener("scroll", () => { if (open) hide(); }, true);
+  addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+
+  // ponytail: self-check, load the page with #glosstest
+  if (location.hash === "#glosstest") {
+    const missed = keys.filter(k => !hit[k]);
+    console.assert(missed.length === 0, "glossary terms never matched:", missed);
+    console.assert([...document.querySelectorAll(".term")].every(e => e.dataset.def && e.textContent.trim()), "empty term span");
+    console.log("glossary:", keys.length, "terms,", document.querySelectorAll(".term").length, "marked");
+  }
+})();
+</script>
+
 </body>
 </html>

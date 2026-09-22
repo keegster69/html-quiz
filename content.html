@@ -99,6 +99,14 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
+.term{border-bottom:1px dashed var(--green);cursor:help}
+.term:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
+#gloss-tip{position:fixed;left:0;top:0;z-index:100;width:max-content;max-width:min(340px,88vw);
+  background:var(--card);color:var(--ink);border:1px solid var(--green);border-left:4px solid var(--green);
+  border-radius:8px;padding:.55rem .7rem;font-size:.85rem;line-height:1.45;box-shadow:var(--shadow);
+  pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s ease-out}
+#gloss-tip.on{opacity:1;visibility:visible}
+#gloss-tip b{display:block;color:var(--green);margin-bottom:.15rem}
 </style>
 </head>
 <body>
@@ -1337,5 +1345,225 @@ const RC_Q = [
   }
 })();
 </script>
+<script>
+/* Glossary: first mention of a key term in each section gets a hover/tap definition. */
+(function(){
+  const DEFS = {
+    "TATA box": "An AT-rich promoter sequence about 25-30 bp upstream of the start site in eukaryotes; TFIID binds it and positions RNA polymerase II.",
+    "cleavage": "Cutting a covalent bond, e.g. an endonuclease cutting DNA or a protease cutting a polypeptide backbone.",
+    "codon": "A three-nucleotide unit of mRNA read 5' to 3' that specifies one amino acid or a stop signal.",
+    "anticodon": "The three-base loop of a tRNA that base-pairs antiparallel to an mRNA codon.",
+    "operon": "A set of genes transcribed from one promoter into a single mRNA, typical of prokaryotes.",
+    "promoter": "The DNA sequence upstream of a gene where RNA polymerase and its factors bind to start transcription.",
+    "repressor": "A protein that blocks transcription, usually by binding an operator and obstructing polymerase.",
+    "activator": "A protein that increases transcription, usually by recruiting or stabilising RNA polymerase at a weak promoter.",
+    "inducer": "A small molecule that switches a gene on by inactivating a repressor (allolactose for the lac operon).",
+    "catabolite repression": "Glucose keeps cAMP low, so CAP cannot activate the lac promoter; the operon stays weak even with lactose present.",
+    "intron": "A non-coding stretch of a primary transcript that is spliced out before translation.",
+    "exon": "A segment of a transcript retained in the mature mRNA; exons are joined by splicing.",
+    "spliceosome": "The snRNP-and-protein machine that removes introns and joins exons in eukaryotic nuclei.",
+    "splicing": "Removal of introns and joining of exons; alternative splicing lets one gene yield several proteins.",
+    "zwitterion": "A molecule carrying both a positive and a negative charge but no net charge, the form of an amino acid at physiological pH.",
+    "peptide bond": "The amide linkage formed by condensation between the carboxyl of one amino acid and the amino group of the next.",
+    "disulfide": "A covalent S-S bridge between two cysteine side chains that locks tertiary or quaternary structure.",
+    "denaturation": "Loss of a protein's or nucleic acid's folded structure without breaking the backbone, caused by heat, pH or chaotropes.",
+    "allosteric": "Regulation in which a ligand binding away from the active site changes the enzyme's shape and activity.",
+    "competitive inhibitor": "A molecule resembling the substrate that binds the active site; it raises apparent Km and is overcome by more substrate.",
+    "noncompetitive": "Inhibition at a site other than the active site; Vmax falls and adding substrate does not rescue activity.",
+    "substrate": "The molecule an enzyme acts on, bound in the active site.",
+    "substrate-level phosphorylation": "Direct transfer of a phosphate from a high-energy intermediate to ADP, as in glycolysis and the Krebs cycle.",
+    "oxidative phosphorylation": "ATP synthesis driven by the proton gradient that the electron transport chain builds using oxygen as the final acceptor.",
+    "chemiosmosis": "Using a proton gradient across a membrane to drive ATP synthase.",
+    "ATP synthase": "The membrane rotary enzyme that makes ATP as protons flow back down their gradient.",
+    "glycolysis": "The cytosolic 10-step split of glucose into two pyruvate, net 2 ATP and 2 NADH, with no oxygen required.",
+    "fermentation": "Regeneration of NAD+ from NADH without oxygen so glycolysis can continue; yields lactate, or ethanol plus CO2.",
+    "anaerobic": "Occurring without molecular oxygen.",
+    "aerobic": "Requiring molecular oxygen as the final electron acceptor.",
+    "acetyl-CoA": "The two-carbon carrier made from pyruvate that feeds the Krebs cycle; also the entry point for fatty acid carbon.",
+    "citric acid cycle": "Another name for the Krebs or TCA cycle.",
+    "electron transport chain": "The inner-membrane complexes that pass electrons from NADH and FADH2 to O2 while pumping protons.",
+    "cytochrome": "A heme-containing electron carrier that shuttles single electrons through the transport chain.",
+    "prokaryote": "A cell with no nucleus and no membrane-bound organelles; bacteria and archaea.",
+    "eukaryote": "A cell with a nucleus and membrane-bound organelles.",
+    "organelle": "A membrane-bound compartment inside a eukaryotic cell with a specialised job.",
+    "mitochondrion": "The double-membraned organelle where the Krebs cycle and oxidative phosphorylation occur.",
+    "cristae": "The folds of the inner mitochondrial membrane that expand the surface for the electron transport chain.",
+    "chloroplast": "The double-membraned plant organelle holding thylakoids and stroma, where photosynthesis occurs.",
+    "thylakoid": "The internal chloroplast membrane sacs that hold the photosystems and build the proton gradient.",
+    "grana": "Stacks of thylakoid discs inside a chloroplast.",
+    "stroma": "The fluid inside the chloroplast surrounding the thylakoids, where the Calvin cycle runs.",
+    "matrix": "The innermost mitochondrial compartment, site of the Krebs cycle.",
+    "cytosol": "The aqueous fluid of the cytoplasm excluding organelles; site of glycolysis.",
+    "ribosome": "The rRNA-and-protein machine that translates mRNA, 70S in prokaryotes and 80S in eukaryotes.",
+    "lysosome": "An acidic vesicle full of hydrolases that digests macromolecules and worn organelles.",
+    "peroxisome": "An organelle that oxidises fatty acids and detoxifies peroxide using catalase.",
+    "Golgi": "The stack that modifies, sorts and ships proteins and lipids arriving from the ER.",
+    "nucleolus": "The dense nuclear region where rRNA is transcribed and ribosome subunits are assembled.",
+    "cytoskeleton": "The microtubule, microfilament and intermediate filament network giving shape, transport tracks and motility.",
+    "plasma membrane": "The phospholipid bilayer with embedded proteins that bounds the cell and controls what crosses.",
+    "cell wall": "The rigid layer outside the plasma membrane; cellulose in plants, peptidoglycan in bacteria.",
+    "peptidoglycan": "The bacterial cell-wall polymer of sugar chains cross-linked by short peptides; the target of penicillin.",
+    "nucleoid": "The irregular region of a prokaryote holding its circular chromosome; it has no membrane.",
+    "plasmid": "A small circular DNA that replicates independently of the chromosome; the workhorse cloning vector.",
+    "vector": "A DNA molecule such as a plasmid or phage used to carry and replicate a cloned insert in a host.",
+    "restriction enzyme": "A bacterial endonuclease cutting double-stranded DNA at a specific, usually palindromic, recognition site.",
+    "sticky ends": "Short single-stranded overhangs left by a staggered cut that anneal with any complementary overhang.",
+    "blunt ends": "Fully base-paired ends from a straight cut; they ligate to any other blunt end but with low efficiency.",
+    "ligase": "The enzyme sealing a nick by forming a phosphodiester bond between a 3'-OH and a 5'-phosphate.",
+    "helicase": "The enzyme unwinding the DNA double helix at the replication fork.",
+    "topoisomerase": "The enzyme relieving supercoiling ahead of the fork by cutting and resealing the backbone.",
+    "primase": "The RNA polymerase that lays down the short RNA primer DNA polymerase needs to start.",
+    "primer": "A short nucleic acid providing the free 3'-OH that a DNA polymerase extends.",
+    "telomerase": "The reverse transcriptase carrying its own RNA template that extends chromosome ends in germ and stem cells.",
+    "Okazaki fragment": "A short DNA piece synthesised discontinuously on the lagging strand, later joined by ligase.",
+    "leading strand": "The new strand made continuously 5' to 3' toward the moving fork.",
+    "lagging strand": "The new strand made in fragments away from the fork, because polymerase only works 5' to 3'.",
+    "semiconservative": "Each daughter duplex keeps one parental strand and one new strand, as Meselson and Stahl showed.",
+    "missense": "A base change that swaps one amino acid for another.",
+    "frameshift": "An insertion or deletion that is not a multiple of three, shifting the reading frame downstream.",
+    "wobble": "Loose pairing at the third codon position, letting one tRNA read several synonymous codons.",
+    "Shine-Dalgarno": "The prokaryotic ribosome-binding sequence upstream of the start codon that pairs with 16S rRNA.",
+    "Kozak": "The eukaryotic consensus around the AUG that marks it as the true start codon.",
+    "polysome": "Several ribosomes translating one mRNA at the same time.",
+    "peptidyl transferase": "The ribozyme activity of the large subunit rRNA that forms each peptide bond.",
+    "reverse transcriptase": "A retroviral enzyme making DNA from an RNA template; used to build cDNA.",
+    "cDNA": "DNA copied from mature mRNA, so it carries no introns and reflects only expressed genes.",
+    "PCR": "Cycles of melt, anneal and extend with a thermostable polymerase and two primers that amplify a target exponentially.",
+    "Southern blot": "Electrophoresed DNA transferred to a membrane and found with a labelled probe.",
+    "Northern blot": "The same technique run on RNA, used to measure transcript size and abundance.",
+    "Western blot": "Electrophoresed protein transferred to a membrane and found with an antibody.",
+    "electrophoresis": "Separation of DNA, RNA or protein in a gel by size and charge under an electric field.",
+    "hybridization": "Base pairing of a labelled single strand with its complementary sequence in a sample.",
+    "probe": "A labelled nucleic acid used to locate its complementary sequence.",
+    "Sanger sequencing": "Chain termination by dideoxynucleotides, producing a nested ladder of fragments read off by size.",
+    "selectable marker": "A gene, often antibiotic resistance, that lets only transformed cells grow.",
+    "transformation": "Uptake of naked DNA from the surroundings by a cell.",
+    "allele": "One of the alternative versions of a gene at a locus.",
+    "homozygous": "Carrying two identical alleles at a locus.",
+    "heterozygous": "Carrying two different alleles at a locus.",
+    "genotype": "The allele combination an organism carries.",
+    "phenotype": "The observable trait a genotype produces in a given environment.",
+    "dominant": "An allele whose phenotype shows in the heterozygote.",
+    "recessive": "An allele whose phenotype shows only when homozygous.",
+    "codominance": "Both alleles are fully expressed in the heterozygote, as in AB blood type.",
+    "incomplete dominance": "The heterozygote shows an intermediate phenotype, as in pink snapdragons.",
+    "linkage": "Genes close together on one chromosome tend to be inherited together, breaking independent assortment.",
+    "recombination frequency": "Recombinant offspring divided by total offspring; it estimates map distance up to about 50 percent.",
+    "centimorgan": "One map unit, meaning one percent recombination between two loci.",
+    "crossing over": "Reciprocal exchange between homologues in prophase I that generates recombinants.",
+    "pedigree": "A family diagram used to infer whether a trait is dominant or recessive, autosomal or sex-linked.",
+    "autosomal": "Carried on a non-sex chromosome, so males and females are affected equally.",
+    "amphipathic": "Having both a water-loving and a water-hating region, as in phospholipids.",
+    "hydrophobic": "Non-polar and excluded from water; such groups cluster to minimise contact with it.",
+    "phospholipid bilayer": "Two leaflets of phospholipids, tails inward, forming the basic membrane sheet.",
+    "saturated": "A fatty acid with no C=C double bonds, so chains pack tightly and the fat is solid at room temperature.",
+    "unsaturated": "A fatty acid with one or more double bonds; the kinks loosen packing and keep the oil liquid.",
+    "monomer": "The single subunit repeated to build a polymer.",
+    "polymer": "A chain of many covalently joined monomers.",
+    "hydrolysis": "Breaking a bond by adding water; the reverse of condensation.",
+    "van der Waals": "Weak, short-range attractions from transient dipoles between nearby atoms.",
+    "hydrogen bond": "Attraction between a hydrogen on an electronegative atom and a lone pair on another; individually weak, collectively decisive.",
+    "covalent bond": "A bond in which two atoms share an electron pair.",
+    "electronegativity": "How strongly an atom pulls shared electrons, the source of bond polarity.",
+    "entropy": "A measure of how many microstates a system can occupy; total entropy must rise for a process to be spontaneous.",
+    "exergonic": "Releasing free energy, negative delta G, and spontaneous.",
+    "endergonic": "Requiring free energy input, positive delta G, and non-spontaneous unless coupled.",
+    "activation energy": "The energy hill between substrate and transition state; enzymes lower it without changing delta G.",
+    "catalyst": "Something that speeds a reaction by lowering activation energy and is not consumed by it.",
+    "cofactor": "A non-protein helper, usually a metal ion, that an enzyme needs to work.",
+    "coenzyme": "An organic cofactor such as NAD+ or coenzyme A that carries chemical groups between enzymes.",
+    "photolysis": "Splitting water at photosystem II to replace the electron lost by P680, releasing O2 and protons.",
+    "photophosphorylation": "Making ATP with light energy via the thylakoid proton gradient.",
+    "Calvin cycle": "The stromal cycle that fixes CO2 onto RuBP and spends ATP and NADPH to build G3P.",
+    "rubisco": "The Calvin-cycle carboxylase that attaches CO2 to RuBP; slow, abundant, and prone to grabbing O2 instead.",
+    "photorespiration": "RuBisCO fixing O2 instead of CO2, wasting fixed carbon and energy; it worsens when stomata close.",
+    "stomata": "Pores on the leaf that admit CO2 and lose water; closing them conserves water but starves the Calvin cycle.",
+    "chlorophyll": "The magnesium-porphyrin pigment absorbing blue and red light and reflecting green.",
+    "carotenoid": "An accessory pigment that broadens absorption and quenches damaging excess energy.",
+    "reaction center": "The chlorophyll pair in a photosystem that actually donates the excited electron.",
+    "antenna complex": "The surrounding pigments that harvest photons and funnel the energy to the reaction center.",
+    "ferredoxin": "The iron-sulphur carrier passing electrons from photosystem I to NADP+ reductase.",
+    "NADPH": "The reducing power made by photosystem I and spent building sugar in the Calvin cycle."
+  };
+
+  const SKIP = "a,code,button,select,svg,h1,h2,.deck,.rc-clue,.term";
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const keys = Object.keys(DEFS).sort((a, b) => b.length - a.length);
+  const hit = {};
+
+  document.querySelectorAll("main > section").forEach(sec => {
+    keys.forEach(k => {
+      // acronyms and proper names match case-sensitively, so "cap" is not read as "CAP"
+      const re = new RegExp("(?<![\\w-])" + esc(k) + "s?(?!\\w)", k === k.toLowerCase() ? "i" : "");
+      const walk = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walk.nextNode())) {
+        if (node.parentElement.closest(SKIP)) continue;
+        const m = re.exec(node.nodeValue);
+        if (!m) continue;
+        const word = node.splitText(m.index);
+        word.splitText(m[0].length);
+        const span = document.createElement("span");
+        span.className = "term";
+        span.tabIndex = 0;
+        span.dataset.term = k;
+        span.dataset.def = DEFS[k];
+        span.textContent = word.nodeValue;
+        word.parentNode.replaceChild(span, word);
+        hit[k] = (hit[k] || 0) + 1;
+        break;
+      }
+    });
+  });
+
+  const tip = document.createElement("div");
+  tip.id = "gloss-tip";
+  tip.setAttribute("role", "tooltip");
+  document.body.appendChild(tip);
+  let open = null;
+
+  function show(el){
+    if (open === el) return;
+    hide();
+    open = el;
+    const head = document.createElement("b");
+    head.textContent = el.dataset.term;
+    tip.replaceChildren(head, document.createTextNode(el.dataset.def));
+    tip.classList.add("on");
+    el.setAttribute("aria-describedby", "gloss-tip");
+    const r = el.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    const x = Math.min(r.left, innerWidth - 8 - t.width);
+    let y = r.bottom + 6;
+    if (y + t.height > innerHeight - 8) y = r.top - t.height - 6;
+    tip.style.left = Math.max(8, x) + "px";
+    tip.style.top = Math.max(8, y) + "px";
+  }
+
+  function hide(){
+    if (open) open.removeAttribute("aria-describedby");
+    tip.classList.remove("on");
+    open = null;
+  }
+
+  function track(e){
+    const t = e.target.closest(".term");
+    if (t) show(t); else if (open) hide();
+  }
+  document.addEventListener("mouseover", track);
+  document.addEventListener("focusin", track);
+  document.addEventListener("click", track);
+  addEventListener("scroll", () => { if (open) hide(); }, true);
+  addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+
+  // ponytail: self-check, load the page with #glosstest
+  if (location.hash === "#glosstest") {
+    const missed = keys.filter(k => !hit[k]);
+    console.assert(missed.length === 0, "glossary terms never matched:", missed);
+    console.assert([...document.querySelectorAll(".term")].every(e => e.dataset.def && e.textContent.trim()), "empty term span");
+    console.log("glossary:", keys.length, "terms,", document.querySelectorAll(".term").length, "marked");
+  }
+})();
+</script>
+
 </body>
 </html>
