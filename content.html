@@ -107,6 +107,35 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s ease-out}
 #gloss-tip.on{opacity:1;visibility:visible}
 #gloss-tip b{display:block;color:var(--green);margin-bottom:.15rem}
+.aa-fold>summary{display:flex;align-items:center;gap:.6rem;min-height:44px;cursor:pointer;list-style:none}
+.aa-fold>summary::-webkit-details-marker{display:none}
+.aa-fold>summary .deck-title{margin-right:auto}
+.aa-fold>summary::after{content:"\25be";color:var(--green);font-size:11px;transition:transform .18s ease-out}
+.aa-fold[open]>summary::after{transform:rotate(180deg)}
+.aa-fold>summary:hover .deck-title{text-decoration:underline}
+.aa-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:10px;margin-top:.7rem}
+.aa-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:6px;margin-top:.7rem}
+.aa-grid[hidden],.aa-wrap[hidden]{display:none}
+.aa-col-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.4rem}
+.aa-list{display:flex;flex-direction:column;gap:5px}
+.aa-item{display:flex;align-items:center;gap:9px;width:100%;min-height:44px;padding:6px 10px;
+  font:inherit;font-size:.92rem;text-align:left;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:8px;cursor:pointer;
+  transition:background .15s ease-out,border-color .15s ease-out}
+.aa-item:hover:not(:disabled){border-color:var(--green);background:var(--green-soft)}
+.aa-item.on{border-color:var(--green);background:var(--green-soft);box-shadow:0 0 0 2px var(--green)}
+.aa-item.bad{border-color:var(--danger);background:#fdeceb}
+.aa-item:disabled{cursor:default;opacity:.5;border-color:var(--green);background:var(--green-soft)}
+.aa-code{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;
+  border:1px solid var(--green);border-radius:6px;color:var(--green);font-weight:700}
+.aa-name{font-weight:600}
+.aa-prop{display:block;margin-top:2px;color:var(--muted);font-size:.78rem;line-height:1.35}
+.aa-cat{display:inline-block;margin-left:.35rem;padding:1px 7px;border-radius:6px;font-size:.7rem;font-weight:700}
+.aa-nonpolar{background:#fdf1dc;color:#8a5a08}
+.aa-polar{background:#e2f4f3;color:#12645f}
+.aa-acidic{background:#fdeaf1;color:#9b1c47}
+.aa-basic{background:#e8eefc;color:#1f3d8f}
+@media(max-width:640px){.aa-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -202,7 +231,30 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </div>
   <p class="svgsm">* = essential in humans (9 total: His, Ile, Leu, Lys, Met, Phe, Thr, Trp, Val; mnemonic "PVT TIM HaLL").</p>
 
-  <div class="key"><strong>Grouping to memorize:</strong> 9 nonpolar (G A V L I M P F W) · 6 polar uncharged (S T C Y N Q) · 2 acidic/negative (D E) · 3 basic/positive (K R H). Charged + polar face water on the outside; nonpolar bury in the core.</div>
+  <div class="key"><strong>Grouping to memorize:</strong> 9 nonpolar (F I L M V G A W P) · 6 polar uncharged (S T Y C N Q) · 2 acidic/negative (E D) · 3 basic/positive (H R K). Charged + polar face water on the outside; nonpolar bury in the core. Saying: FILM V GAWP girls STYNCQ ED HRK</div>
+
+  <details class="deck aa-fold" id="aa-match">
+    <summary>
+      <span class="deck-title">Drill the 20 amino acids</span>
+      <span class="deck-count" id="aa-score">0 / 20</span>
+    </summary>
+    <div class="rc-topics" id="aa-mode" role="group" aria-label="Choose a drill"></div>
+    <p class="svgsm" id="aa-hint"></p>
+    <div class="rc-clue" id="aa-clue" hidden></div>
+    <div class="rc-feedback" id="aa-feedback" role="status" aria-live="polite"></div>
+    <div class="aa-grid" id="aa-view-match">
+      <div>
+        <div class="aa-col-title" id="aa-codes-label">One-letter code</div>
+        <div class="aa-list" id="aa-codes" role="group" aria-labelledby="aa-codes-label"></div>
+      </div>
+      <div>
+        <div class="aa-col-title" id="aa-names-label">Name and side chain</div>
+        <div class="aa-list" id="aa-names" role="group" aria-labelledby="aa-names-label"></div>
+      </div>
+    </div>
+    <div class="aa-wrap" id="aa-view-class" role="group" aria-labelledby="aa-clue" hidden></div>
+    <div class="deck-btns"><button type="button" id="aa-reset">Shuffle &amp; restart</button></div>
+  </details>
 
   <h3>Peptide bond</h3>
   <figure>
@@ -1475,7 +1527,7 @@ const RC_Q = [
     "photolysis": "Splitting water at photosystem II to replace the electron lost by P680, releasing O2 and protons.",
     "photophosphorylation": "Making ATP with light energy via the thylakoid proton gradient.",
     "Calvin cycle": "The stromal cycle that fixes CO2 onto RuBP and spends ATP and NADPH to build G3P.",
-    "rubisco": "The Calvin-cycle carboxylase that attaches CO2 to RuBP; slow, abundant, and prone to grabbing O2 instead.",
+    "RuBisCO": "The Calvin-cycle carboxylase that attaches CO2 to RuBP; slow, abundant, and prone to grabbing O2 instead.",
     "photorespiration": "RuBisCO fixing O2 instead of CO2, wasting fixed carbon and energy; it worsens when stomata close.",
     "stomata": "Pores on the leaf that admit CO2 and lose water; closing them conserves water but starves the Calvin cycle.",
     "chlorophyll": "The magnesium-porphyrin pigment absorbing blue and red light and reflecting green.",
@@ -1561,6 +1613,222 @@ const RC_Q = [
     console.assert(missed.length === 0, "glossary terms never matched:", missed);
     console.assert([...document.querySelectorAll(".term")].every(e => e.dataset.def && e.textContent.trim()), "empty term span");
     console.log("glossary:", keys.length, "terms,", document.querySelectorAll(".term").length, "marked");
+  }
+})();
+</script>
+
+<script>
+// amino acid matching module: pick a one-letter code, then pick its name
+(function(){
+  const AA = [
+    ["G", "Glycine", "nonpolar", "R = H. Smallest and achiral, so the backbone stays flexible."],
+    ["A", "Alanine", "nonpolar", "R = CH3. Small, hydrophobic, helix friendly."],
+    ["V", "Valine", "nonpolar", "Branched aliphatic. Glu to Val causes sickle cell."],
+    ["L", "Leucine", "nonpolar", "Branched and very common; buried in the hydrophobic core."],
+    ["I", "Isoleucine", "nonpolar", "Branched, with two chiral centers."],
+    ["M", "Methionine", "nonpolar", "Thioether sulfur. Start codon AUG, so it begins every chain."],
+    ["P", "Proline", "nonpolar", "Side chain bonds back to the backbone N. Rigid helix breaker."],
+    ["F", "Phenylalanine", "nonpolar", "Benzene ring; hydrophobic aromatic, ring stacking."],
+    ["W", "Tryptophan", "nonpolar", "Indole ring. Largest residue; absorbs at 280 nm."],
+    ["S", "Serine", "polar", "Primary OH. Phosphorylation site and protease active sites."],
+    ["T", "Threonine", "polar", "Secondary OH plus a methyl. Phosphorylation and O-glycosylation."],
+    ["C", "Cysteine", "polar", "SH thiol. Two cysteines make the only covalent tertiary bond."],
+    ["Y", "Tyrosine", "polar", "Aromatic ring with a phenolic OH; absorbs at 280 nm."],
+    ["N", "Asparagine", "polar", "Amide of aspartate. N-linked glycosylation site."],
+    ["Q", "Glutamine", "polar", "Amide of glutamate; carries nitrogen around the body."],
+    ["D", "Aspartate", "acidic", "Carboxylate, pKa 3.9. Negative at pH 7; salt bridges and catalysis."],
+    ["E", "Glutamate", "acidic", "Carboxylate, pKa 4.3. One CH2 longer than Asp; neurotransmitter."],
+    ["H", "Histidine", "basic", "Imidazole, pKa 6.0. Only side chain that buffers at physiological pH."],
+    ["K", "Lysine", "basic", "Long NH3+ chain, pKa 10.5. Binds DNA; acetylated on histones."],
+    ["R", "Arginine", "basic", "Guanidinium, pKa 12.5. The most basic side chain."]
+  ];
+  const CATS = {nonpolar: "Nonpolar", polar: "Polar uncharged", acidic: "Acidic", basic: "Basic"};
+
+  const MODES = {match: "Match names", sort: "Sort by class"};
+  const HINTS = {
+    match: "Pick a one-letter code, then pick its name. Both lists are shuffled every round.",
+    sort: "One class at a time: tap every amino acid whose side chain belongs to it. Get it right and its one-letter code appears."
+  };
+
+  const $ = id => document.getElementById(id);
+  const codes = $("aa-codes"), names = $("aa-names"), score = $("aa-score"), fb = $("aa-feedback");
+  const clue = $("aa-clue"), board = $("aa-view-class"), grid = $("aa-view-match"), hint = $("aa-hint");
+  const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
+  const of = code => AA.find(aa => aa[0] === code);
+
+  let mode = "match", picked = null, found = 0, order = [], at = 0;
+
+  function button(side, html, aa){
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "aa-item";
+    b.dataset.code = aa[0];
+    b.dataset.side = side;
+    b.innerHTML = html;
+    return b;
+  }
+
+  function render(){
+    picked = null; found = 0;
+    fb.textContent = ""; fb.className = "rc-feedback";
+    score.textContent = "0 / " + AA.length;
+    hint.textContent = HINTS[mode];
+    grid.hidden = mode !== "match";
+    board.hidden = clue.hidden = mode !== "sort";
+    if(mode === "match") renderMatch(); else renderSort();
+  }
+
+  function renderMatch(){
+    codes.replaceChildren(...shuffle(AA).map(aa =>
+      button("code", '<span class="aa-code">' + aa[0] + '</span><span class="aa-name">?</span>', aa)));
+    names.replaceChildren(...shuffle(AA).map(aa =>
+      button("name", '<span><span class="aa-name">' + aa[1] + '</span>' +
+        '<span class="aa-cat aa-' + aa[2] + '">' + CATS[aa[2]] + '</span>' +
+        '<span class="aa-prop">' + aa[3] + '</span></span>', aa)));
+  }
+
+  function renderSort(){
+    order = shuffle(Object.keys(CATS));
+    at = 0;
+    board.replaceChildren(...shuffle(AA).map(aa =>
+      button("sort", '<span class="aa-code">?</span><span class="aa-name">' + aa[1] + '</span>', aa)));
+    askClass();
+  }
+
+  function askClass(){
+    const k = order[at];
+    clue.textContent = "Which of these are " + CATS[k].toLowerCase() + "? (" +
+      AA.filter(aa => aa[2] === k).length + " to find)";
+  }
+
+  function sortPick(btn){
+    if(btn.disabled) return;
+    const aa = of(btn.dataset.code), want = order[at];
+    if(aa[2] === want){
+      btn.disabled = true;
+      btn.classList.remove("bad");
+      btn.querySelector(".aa-code").textContent = aa[0];
+      found++;
+      score.textContent = found + " / " + AA.length;
+      const left = AA.filter(x => x[2] === want).length -
+        [...board.children].filter(el => el.disabled && of(el.dataset.code)[2] === want).length;
+      fb.className = "rc-feedback ok";
+      if(left > 0){
+        fb.textContent = "Yes, " + aa[1] + " (" + aa[0] + ") is " + CATS[want].toLowerCase() +
+          ". " + left + " to go.";
+      } else if(at < order.length - 1){
+        at++;
+        askClass();
+        fb.textContent = CATS[want] + " complete. Now the " + CATS[order[at]].toLowerCase() + " ones.";
+      } else {
+        fb.textContent = "All " + AA.length + " sorted.";
+      }
+    } else {
+      fb.className = "rc-feedback bad";
+      fb.textContent = "No, " + aa[1] + " (" + aa[0] + ") is " + CATS[aa[2]].toLowerCase() + ".";
+      btn.classList.add("bad");
+      setTimeout(() => btn.classList.remove("bad"), 500);
+    }
+  }
+
+  function clearPick(){
+    if(picked){ picked.classList.remove("on"); picked.removeAttribute("aria-pressed"); }
+    picked = null;
+  }
+
+  function pick(btn){
+    if(btn.disabled) return;
+    if(btn === picked){ clearPick(); return; }
+    if(picked && picked.dataset.side === btn.dataset.side){
+      picked.classList.remove("on");
+      picked = null;
+    }
+    if(!picked){
+      picked = btn;
+      btn.classList.add("on");
+      btn.setAttribute("aria-pressed", "true");
+      return;
+    }
+    check(picked, btn);
+  }
+
+  function check(a, b){
+    const aa = AA.find(x => x[0] === a.dataset.code);
+    const other = AA.find(x => x[0] === b.dataset.code);
+    a.classList.remove("on"); a.removeAttribute("aria-pressed");
+    picked = null;
+    if(a.dataset.code === b.dataset.code){
+      [a, b].forEach(el => { el.classList.remove("on", "bad"); el.disabled = true; });
+      (a.dataset.side === "code" ? a : b).querySelector(".aa-name").textContent = aa[1];
+      found++;
+      score.textContent = found + " / " + AA.length;
+      fb.className = "rc-feedback ok";
+      fb.textContent = found === AA.length
+        ? "All " + AA.length + " matched. " + aa[0] + " = " + aa[1] + " was the last one."
+        : "Correct. " + aa[0] + " = " + aa[1] + ", " + CATS[aa[2]].toLowerCase() + ".";
+    } else {
+      const wrong = a.dataset.side === "code" ? aa : other;
+      const guess = a.dataset.side === "code" ? other : aa;
+      fb.className = "rc-feedback bad";
+      fb.textContent = "Not quite. " + wrong[0] + " is " + wrong[1] + ", not " + guess[1] + ".";
+      [a, b].forEach(el => {
+        el.classList.add("bad");
+        setTimeout(() => el.classList.remove("bad"), 500);
+      });
+    }
+  }
+
+  const modes = $("aa-mode");
+  modes.replaceChildren(...Object.entries(MODES).map(([k, label]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.dataset.k = k;
+    b.className = k === mode ? "on" : "";
+    b.setAttribute("aria-pressed", k === mode ? "true" : "false");
+    b.textContent = label;
+    return b;
+  }));
+  modes.addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if(!b || b.dataset.k === mode) return;
+    mode = b.dataset.k;
+    [...modes.children].forEach(x => {
+      x.classList.toggle("on", x === b);
+      x.setAttribute("aria-pressed", x === b ? "true" : "false");
+    });
+    render();
+  });
+
+  [codes, names].forEach(list => list.addEventListener("click", e => {
+    const btn = e.target.closest(".aa-item");
+    if(btn) pick(btn);
+  }));
+  board.addEventListener("click", e => {
+    const btn = e.target.closest(".aa-item");
+    if(btn) sortPick(btn);
+  });
+  $("aa-reset").addEventListener("click", render);
+  render();
+
+  // ponytail: self-check, load the page with #aamatch
+  if(location.hash === "#aamatch"){
+    console.assert(AA.length === 20, "expected 20 amino acids", AA.length);
+    console.assert(new Set(AA.map(a => a[0])).size === 20, "duplicate one-letter code");
+    console.assert(AA.every(a => a[1] && a[3] && CATS[a[2]]), "missing name, class or description");
+    console.assert(codes.children.length === 20 && names.children.length === 20, "wrong card count");
+    const counts = AA.reduce((m, a) => (m[a[2]] = (m[a[2]] || 0) + 1, m), {});
+    console.assert(counts.nonpolar === 9 && counts.polar === 6 && counts.acidic === 2 && counts.basic === 3,
+      "class counts do not match 9/6/2/3", counts);
+    console.assert(Object.keys(CATS).reduce((n, k) => n + AA.filter(a => a[2] === k).length, 0) === AA.length,
+      "a class is missing amino acids");
+    mode = "sort"; render();
+    console.assert(board.children.length === 20, "sort board should hold all 20 letters");
+    console.assert(order.length === 4 && at === 0, "sort round should queue all four classes", order);
+    console.assert(/^Which of these are /.test(clue.textContent), "missing class prompt", clue.textContent);
+    console.assert([...board.children].every(el => el.querySelector(".aa-name").textContent !== "?"),
+      "sort tiles should show names, not letters");
+    mode = "match"; render();
+    console.log("aa-match ok:", AA.length, "pairs, both drills render");
   }
 })();
 </script>
