@@ -10,6 +10,7 @@
   --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#5c5c5c;
   --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
   --shadow:0 10px 30px rgba(0,0,0,.1);
+  --amber:#7a4f00; --amber-soft:#fff6de; --amber-line:#d99a1e;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
@@ -39,6 +40,7 @@ section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);paddi
 h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
 h3{font-size:1.1rem;margin:1.5rem 0 .5rem;color:var(--ink);border-left:4px solid var(--green);padding-left:.5rem;scroll-margin-top:88px}
 p,li{font-size:1rem;max-width:72ch}
+p+p{margin-top:.6rem}
 ul,ol{margin:.5rem 0 .5rem 1.25rem}
 li{margin-bottom:.25rem}
 .tag{display:inline-block;background:var(--green-soft);color:var(--green);border-radius:6px;
@@ -136,6 +138,12 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 .aa-acidic{background:#fdeaf1;color:#9b1c47}
 .aa-basic{background:#e8eefc;color:#1f3d8f}
 @media(max-width:640px){.aa-grid{grid-template-columns:1fr}}
+.hook{background:var(--amber-soft);border-left:4px solid var(--amber-line);padding:.6rem .9rem;border-radius:6px;margin:.7rem 0;font-size:.95rem;max-width:78ch}
+.hook::before{content:"Memory hook";display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin-bottom:.1rem}
+.flow{list-style:none;margin:.7rem 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0;max-width:none}
+.flow li{background:var(--green-soft);color:var(--green);border:1px solid var(--green);border-radius:999px;padding:2px 10px;font-size:.85rem;font-weight:600;margin:0 0 0 22px;max-width:none;position:relative;line-height:1.5}
+.flow li:first-child{margin-left:0}
+.flow li+li::before{content:"\2192";position:absolute;left:-17px;color:var(--muted);font-weight:400}
 </style>
 </head>
 <body>
@@ -147,10 +155,11 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <a class="back" href="index.html">&larr; Back to quiz</a>
 </header>
 
-<nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">26 sections</span></summary><div class="wrap">
+<nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">36 sections</span></summary><div class="wrap">
   <a href="#aminoacids">Amino Acids</a>
   <a href="#code">Genetic Code</a>
   <a href="#dogma">Central Dogma</a>
+  <a href="#beyond-dogma">Beyond the Dogma</a>
   <a href="#macro">Macromolecules</a>
   <a href="#bonds">Bonds &amp; Forces</a>
   <a href="#protein">Protein Structure</a>
@@ -172,7 +181,18 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <a href="#recdna">Recombinant DNA</a>
   <a href="#methods">Methods</a>
   <a href="#classic">Classic Experiments</a>
+  <a href="#biochem-genetics">Biochemical Genetics</a>
   <a href="#organelles">Organelles</a>
+  <a href="#models">Model Organisms</a>
+  <a href="#chromatin">Chromatin</a>
+  <a href="#membranes">Membranes &amp; Transport</a>
+  <a href="#trafficking">Protein Sorting</a>
+  <a href="#signalling">Cell Communication</a>
+  <a href="#transduction">Signal Transduction</a>
+  <a href="#cellcycle">Cell Cycle &amp; Division</a>
+  <a href="#cancer">Cancer &amp; Apoptosis</a>
+  <a href="#cytoskel">Cytoskeleton &amp; Motors</a>
+  <a href="#ecm">Junctions, ECM &amp; Stem Cells</a>
   <a href="#recall">Recall Practice</a>
 </div></details></nav>
 
@@ -200,6 +220,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </svg>
     <figcaption>Generic amino acid at neutral pH exists as a zwitterion: –NH<sub>3</sub><sup>+</sup> and –COO<sup>–</sup>.</figcaption>
   </figure>
+  <p class="svgsm"><strong>Zwitterion, in words:</strong> at pH 7 the α-amino group acts as a <strong>base</strong> and picks up a proton (–NH₃⁺, positive), while the α-carboxyl acts as an acid and loses one (–COO⁻, negative). <strong>Chirality:</strong> the α-carbon carries four different groups, so every amino acid except glycine is chiral. <strong>L</strong> and <strong>D</strong> forms are mirror images — they differ only in how –COOH, –NH₂, –H and R are arranged around the α-carbon — and proteins are built exclusively from <strong>L</strong>-amino acids. Hydrophobicity runs nonpolar &gt; polar uncharged &gt; charged, so for example Leu &gt; Ser &gt; Glu.</p>
 
   <h3>The 20 standard amino acids</h3>
   <div class="scroll">
@@ -221,8 +242,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
       <tr><td>Tyrosine</td><td>Tyr</td><td>Y</td><td>Polar, aromatic</td><td>Neutral (pKa 10.1)</td><td>Aromatic + –OH; phosphorylation target; absorbs at 280 nm.</td></tr>
       <tr><td>Asparagine</td><td>Asn</td><td>N</td><td>Polar uncharged</td><td>Neutral</td><td>Amide of Asp; N-linked glycosylation site.</td></tr>
       <tr><td>Glutamine</td><td>Gln</td><td>Q</td><td>Polar uncharged</td><td>Neutral</td><td>Amide of Glu; nitrogen transport.</td></tr>
-      <tr><td>Aspartate</td><td>Asp</td><td>D</td><td>Acidic</td><td><strong>Negative</strong> (pKa 3.9)</td><td>Carboxylate side chain; salt bridges, metal binding, catalysis.</td></tr>
-      <tr><td>Glutamate</td><td>Glu</td><td>E</td><td>Acidic</td><td><strong>Negative</strong> (pKa 4.3)</td><td>One CH₂ longer than Asp; neurotransmitter.</td></tr>
+      <tr><td>Aspartic acid</td><td>Asp</td><td>D</td><td>Acidic</td><td><strong>Negative</strong> (pKa 3.9)</td><td>Carboxylate side chain; salt bridges, metal binding, catalysis.</td></tr>
+      <tr><td>Glutamic acid</td><td>Glu</td><td>E</td><td>Acidic</td><td><strong>Negative</strong> (pKa 4.3)</td><td>One CH₂ longer than Asp; neurotransmitter.</td></tr>
       <tr><td>Lysine *</td><td>Lys</td><td>K</td><td>Basic</td><td><strong>Positive</strong> (pKa 10.5)</td><td>Long –NH₃⁺ chain; binds DNA backbone; acetylation site on histones.</td></tr>
       <tr><td>Arginine</td><td>Arg</td><td>R</td><td>Basic</td><td><strong>Positive</strong> (pKa 12.5)</td><td>Guanidinium group; the most basic side chain, positive at nearly any pH; DNA binding.</td></tr>
       <tr><td>Histidine *</td><td>His</td><td>H</td><td>Basic, aromatic</td><td>Partly + (pKa 6.0)</td><td>Only side chain that ionizes near physiological pH, so it handles <strong>buffering and acid/base catalysis</strong>; metal coordination.</td></tr>
@@ -273,6 +294,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </svg>
     <figcaption>Chains are always written and synthesized <strong>N-terminus → C-terminus</strong>.</figcaption>
   </figure>
+  <p class="svgsm">A peptide bond is <strong>covalent</strong>, joins the <strong>carboxyl carbon</strong> of one residue to the <strong>amino nitrogen</strong> of the next, and forms by <strong>condensation</strong> (a water is removed). All three statements are true at once, which is how exam questions usually phrase it.</p>
 
   <div class="deck" data-topic="aminoacids"></div>
 </section>
@@ -287,7 +309,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <li><strong>Nearly universal</strong> across all organisms (mitochondria are the exception).</li>
     <li><strong>Non-overlapping,</strong> read continuously from a fixed start, so insertions or deletions cause frameshifts.</li>
     <li><strong>AUG</strong> = start (Met; fMet in bacteria). <strong>UAA, UAG, UGA</strong> = stop (no tRNA; release factors bind).</li>
+    <li><strong>Watch the direction.</strong> Codons are read 5'→3'. If a sequence is written 3'→5', reverse it before translating — e.g. 3'-AGGAGG<u>AUG</u>GUUUCGUAAA-5' is 5'-AAAUGCUUUGGUAGGAGGA-3', which reads AUG·CUU·UGG·UAG = Met–Leu–Trp–stop.</li>
   </ul>
+  <div class="key"><strong>Mature tRNA contains more than the four standard bases.</strong> After transcription, tRNA is heavily processed and its bases are chemically <strong>modified</strong>: <strong>inosine</strong> (I, from adenosine — it sits in the anticodon wobble position and can pair with U, C or A), <strong>pseudouridine</strong> (Ψ), <strong>dihydrouridine</strong> and <strong>ribothymidine</strong> among others. So a mature tRNA does carry bases other than A, G, C and U — while <strong>DNA</strong> in the body sticks to A, G, C and T (uracil in DNA is damage, and is excised).</div>
 
   <h3>Codon table (mRNA 5'→3')</h3>
   <div class="scroll">
@@ -358,6 +382,24 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </figure>
   <div class="key">Direction rules: nucleic acids are always synthesized <strong>5' → 3'</strong>; the template is read 3' → 5'. Proteins are synthesized <strong>N → C</strong>.</div>
 
+  <h3 id="beyond-dogma">Exceptions and extensions to the dogma</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Case</th><th>What it shows</th></tr></thead>
+    <tbody>
+      <tr><td>Reverse transcriptase</td><td>Copies <strong>RNA &rarr; DNA</strong>, so information can flow backwards. In a retrovirus the DNA copy integrates into the host chromosome as a <strong>provirus</strong>, which is then replicated and transcribed along with host DNA.</td></tr>
+      <tr><td>Ribozymes</td><td>RNA itself can catalyse reactions (peptidyl transferase, self-splicing introns). One molecule can both carry information and act on it, the basis of the RNA-world idea.</td></tr>
+      <tr><td>RNA interference</td><td>Small RNAs load into a complex that finds <strong>complementary</strong> mRNA and either cleaves it or blocks its translation, silencing the gene.</td></tr>
+      <tr><td>Non-coding RNA</td><td>tRNA, rRNA, microRNA and many regulatory RNAs are functional <em>as RNA</em> and are never translated into protein.</td></tr>
+      <tr><td>Self-splicing introns, RNase P</td><td><strong>Group I and group II introns</strong> excise themselves with no protein enzyme, and RNase P is a catalytic RNA. Cech and Altman’s work on these established RNA catalysis.</td></tr>
+      <tr><td>Telomerase</td><td>A <strong>reverse transcriptase that carries its own RNA template</strong>, using it to add repeats to chromosome ends.</td></tr>
+      <tr><td>Epigenetic inheritance</td><td>Heritable changes in expression with <strong>no change in DNA sequence</strong> — DNA methylation and chromatin marks that survive division.</td></tr>
+      <tr><td>Tools built from all this</td><td><strong>Knockout / knockdown</strong> inactivates a gene so its function can be read off the phenotype; <strong>antisense oligonucleotides</strong> base pair with a chosen transcript to block it. Both get their specificity from complementarity.</td></tr>
+      <tr><td>Prions</td><td>A misfolded protein templates the misfolding of normal copies: a trait transmitted by <strong>conformation alone, with no nucleic acid</strong>.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
   <div class="deck" data-topic="dogma"></div>
 </section>
 
@@ -375,7 +417,10 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
-  <div class="key">All polymers are built by <strong>dehydration synthesis</strong> (removes H₂O) and broken by <strong>hydrolysis</strong> (adds H₂O).</div>
+  <div class="key">All polymers are built by <strong>dehydration synthesis</strong>, also called condensation (removes H₂O), and broken by <strong>hydrolysis</strong> (adds H₂O).</div>
+  <p class="svgsm"><strong>Naming and detail:</strong> two sugars joined by a glycosidic bond make a <strong>disaccharide</strong> (maltose, sucrose, lactose). The base is joined to the 1' carbon of the sugar by an <strong>N-glycosidic bond</strong>. Sugar + nitrogenous base = a <strong>nucleoside</strong>; add one or more phosphates and it is a <strong>nucleotide</strong>. So adenine + ribose = <strong>adenosine</strong> (a ribonucleoside); add three phosphates and it is ATP (a nucleotide); swap in deoxyribose and it is deoxyadenosine. Polymerases build nucleic acids from <strong>nucleoside triphosphates</strong> (NTPs for RNA, dNTPs for DNA), releasing pyrophosphate as each one is added to the free <strong>3'-OH</strong>. Cellulose and starch are both glucose polymers, and the difference is the <strong>stereochemistry of the glycosidic linkage</strong>: <strong>&beta;-1,4</strong> gives straight, hydrogen-bonded, indigestible fibres, while <strong>&alpha;-1,4</strong> gives a helical, digestible polymer. (&alpha;- and &beta;-glucose are the same sugar differing only in the <strong>orientation of one hydroxyl</strong> on the ring; animals carry the enzymes for &alpha;-1,4 links but not &beta;-1,4, which is why we digest starch and not cellulose.) A nucleic acid strand has <strong>5'&rarr;3' polarity</strong>: the two ends are chemically different, one carrying a free 5' phosphate and the other a free 3'-OH, and synthesis only ever adds to that 3'-OH.</p>
+
+  <p class="svgsm"><strong>Lipids and sugars, a few more details:</strong> a <strong>triglyceride</strong> is glycerol + three fatty acids; swap one fatty acid for a phosphate head group and it is a phospholipid. <strong>Steroids</strong> (cholesterol) are four fused rings, not chains; cholesterol wedges between phospholipids and <strong>moderates fluidity</strong> — it stiffens a warm membrane and stops a cold one packing solid. Membranes are a <strong>fluid mosaic</strong> because lipids and many proteins diffuse laterally in the plane of the sheet while rarely flipping between leaflets. <strong>Chitin</strong> is a glucose polymer whose units carry nitrogen (N-acetylglucosamine). A <strong>glycoprotein</strong> is a protein with covalently attached carbohydrate, common on secreted and cell-surface proteins. A polysaccharide of one repeated sugar cannot store information; nucleic acids can because <strong>four distinguishable subunits</strong> sit in a defined sequence.</p>
 
   <h3>DNA vs RNA</h3>
   <div class="scroll">
@@ -396,6 +441,15 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 <!-- ================= BONDS ================= -->
 <section id="bonds">
   <h2>Bonds and non-covalent forces</h2>
+  <ul>
+    <li><strong>C, H, N and O</strong> make up about <strong>99%</strong> of the atoms in a cell. Chemistry is decided by the <strong>electrons</strong>, specifically the <strong>valence</strong> (outer-shell) ones: sodium <sup>23</sup><sub>11</sub>Na has 11 electrons — 2, 8, then <strong>1</strong> in the outer shell — so it forms one bond or loses one electron.</li>
+    <li><strong>Isotopes</strong> differ only in neutron count: <sup>18</sup>O has two more neutrons than <sup>16</sup>O, same 8 protons, same chemistry — which is what makes isotope labelling possible.</li>
+    <li><strong>Ions</strong> form when an electron moves across: Na hands its valence electron to Cl, leaving Na⁺ (more protons than electrons) and Cl⁻. The two then attract electrostatically.</li>
+    <li><strong>Bond length</strong> is a property of the two atoms involved, and settles where attraction and repulsion balance. Push closer and repulsion rises steeply.</li>
+    <li><strong>Strength ranking</strong> in cells: <strong>covalent &gt; ionic &gt; hydrogen &gt; van der Waals</strong>. A hydrogen bond needs a hydrogen already in a <em>polar covalent</em> bond (on N, O or F) plus a second electronegative atom to accept it — it is <em>non-covalent</em>.</li>
+    <li>Water self-ionizes: <strong>2 H₂O ⇌ H₃O⁺ + OH⁻</strong>. Each pH unit is a factor of ten, so pH 5 has <strong>100×</strong> the H⁺ of pH 7.</li>
+    <li>“<strong>Organic</strong>” in chemistry means carbon-based, nothing to do with farming: sugar is organic, water and sea salt are not.</li>
+  </ul>
   <div class="scroll">
   <table>
     <thead><tr><th>Interaction</th><th>Relative strength</th><th>What it is</th><th>Where it matters</th></tr></thead>
@@ -405,12 +459,16 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
       <tr><td>Disulfide bond</td><td>Strong covalent</td><td>Cys–S–S–Cys</td><td>Locks tertiary structure of secreted proteins</td></tr>
       <tr><td>Ionic / salt bridge</td><td>Moderate (weak in water)</td><td>Full + attracts full –</td><td>Asp/Glu with Lys/Arg; strong when buried, shielded in water</td></tr>
       <tr><td>Hydrogen bond</td><td>Weak (~1-5 kcal/mol), strong in bulk</td><td>H on N/O/F attracted to another N/O</td><td>DNA base pairing, α-helix, β-sheet, water properties</td></tr>
-      <tr><td>Van der Waals</td><td>Weakest</td><td>Transient dipoles, requires close contact</td><td>Tight-packed protein interiors, shape complementarity</td></tr>
+      <tr><td>Van der Waals</td><td>Weakest</td><td>Transient dipoles; attractive at an optimal separation but sharply <strong>repulsive</strong> once atoms are pushed closer than the sum of their van der Waals radii</td><td>Tight-packed protein interiors, shape complementarity</td></tr>
       <tr><td>Hydrophobic effect</td><td>Major driving force</td><td>Nonpolar groups cluster to free ordered water (entropy)</td><td>Protein folding, membrane bilayers</td></tr>
     </tbody>
   </table>
   </div>
   <div class="key"><strong>Water:</strong> polar + H-bonding → cohesion/adhesion, high specific heat, high heat of vaporization, ice floats (less dense), universal solvent for polar/ionic solutes. Weak bonds are individually breakable but collectively decisive. That is what makes binding specific <em>and</em> reversible.</div>
+
+  <p class="svgsm"><strong>Why water behaves as it does:</strong> each molecule has <strong>two hydrogens to donate and two lone pairs on oxygen to accept</strong>, so it can make up to <strong>four</strong> hydrogen bonds at once. That network is what gives water its high boiling point and specific heat, its open (less dense) ice lattice, and its ability to dissolve ions: the partial charges of several water molecules orient around an ion as a <strong>hydration shell</strong>, an <strong>ion–dipole</strong> interaction. Heating breaks hydrogen bonds faster than they reform, which weakens the network. A molecule covered in <strong>hydroxyl</strong> groups donates and accepts hydrogen bonds, so it is hydrophilic.</p>
+
+  <div class="key"><strong>pH, pKa and buffers:</strong> at pH = pKa a group is half protonated; every pH unit above the pKa leaves it ten times more <strong>deprotonated</strong> (2 units above &asymp; 99% deprotonated), and below the pKa it is protonated. A <strong>buffer</strong> is a weak acid together with its <strong>conjugate base</strong>, and it resists pH change best within about 1 unit of the pKa, where both forms are plentiful. The pH scale is <strong>logarithmic</strong>, so pH 2 holds a thousand times the proton concentration of pH 5. Blood is held near pH 7.4 by the <strong>carbonic acid / bicarbonate</strong> pair, which interconverts to soak up added acid or base. At pH 7 a <strong>carboxyl</strong> group (pKa &asymp; 4) is deprotonated and negative, while an <strong>amino</strong> group (pKa &asymp; 10) is protonated and positive.</div>
 
   <h3>Base pairing</h3>
   <figure>
@@ -450,6 +508,11 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+  <p class="svgsm"><strong>Coiled-coil:</strong> an α-helix whose sequence puts nonpolar residues every three or four positions shows a hydrophobic <strong>stripe</strong> running along one face (an <em>amphipathic</em> helix). Two or more such helices wind around each other so the stripes are buried away from water — the coiled-coil motif of keratin, myosin, and many nuclear-transport and structural proteins.</p>
+  <p class="svgsm"><strong>Protein families:</strong> a family is a set of proteins with a <strong>common evolutionary origin</strong>, recognizable from shared sequence and shared <strong>domains</strong>, with related — not necessarily identical — functions. Members need not share a quaternary structure or an exact sequence.</p>
+  <p class="svgsm"><strong>Purifying a protein:</strong> <strong>affinity chromatography</strong> holds the protein on a matrix that binds it specifically; stepping up the <strong>salt</strong> concentration screens charges and competes for <strong>ionic (electrostatic)</strong> contacts, so the protein elutes in a known fraction. <strong>Ion-exchange</strong> separates by charge, <strong>gel filtration</strong> by size, and <strong>SDS-PAGE</strong> reports size on a gel.</p>
+  <p class="svgsm"><strong>Also worth knowing:</strong> a <strong>domain</strong> is a compact, independently folding region of a chain that usually has its own function and recurs across many proteins. <strong>Integral membrane proteins</strong> cross the bilayer through stretches rich in <strong>hydrophobic</strong> residues that match the lipid interior. A mutation in the tightly packed hydrophobic <strong>core</strong> destabilizes far more than one on the surface, because the core has no room for a charged or bulky replacement. <strong>Molecular chaperones</strong> raise folding yield by binding exposed hydrophobic surfaces and preventing aggregation — the sequence still specifies the final structure (Anfinsen). Atomic-resolution structures come from <strong>X-ray crystallography</strong> (and cryo-EM / NMR).</p>
+
   <div class="key"><strong>Denaturation</strong> (heat, extreme pH, urea, detergents, reducing agents) breaks weak bonds and unfolds the protein. Primary structure survives, function does not. Often reversible if the sequence is intact. <strong>Structure determines function</strong> is the recurring exam point.</div>
 
   <div class="deck" data-topic="protein"></div>
@@ -465,6 +528,10 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <li>Specific for substrate and reaction. Named for what they act on: -ase.</li>
     <li>Sensitive to temperature and pH; beyond the optimum, denaturation kills activity.</li>
     <li>Cofactors = inorganic (Mg²⁺, Zn²⁺); coenzymes = organic (NAD⁺, FAD, coenzyme A, often from vitamins).</li>
+    <li><strong>Kinetics:</strong> <strong>V<sub>max</sub></strong> is reached when every active site is <strong>saturated</strong> with substrate; <strong>K<sub>m</sub></strong> is the substrate concentration giving half V<sub>max</sub>, so a low K<sub>m</sub> means high affinity. A competitive inhibitor <strong>raises apparent K<sub>m</sub> and leaves V<sub>max</sub> unchanged</strong>; a noncompetitive one lowers V<sub>max</sub>.</li>
+    <li><strong>Michaelis–Menten</strong> relates velocity to substrate concentration through K<sub>m</sub> and V<sub>max</sub>, giving a hyperbola. The <strong>Lineweaver–Burk</strong> double-reciprocal plot straightens it so K<sub>m</sub> and V<sub>max</sub> can be read off the intercepts and inhibitor types told apart. <strong>Sigmoidal</strong> (S-shaped) kinetics instead signal <strong>cooperative</strong> binding between subunits, the hallmark of an allosterically regulated enzyme.</li>
+    <li><strong>Zymogens</strong> (pepsinogen, trypsinogen) are inactive precursors switched on by cleavage, which keeps digestive enzymes from destroying the cell that makes them.</li>
+    <li><strong>Favourable ≠ fast.</strong> A negative ΔG says nothing about rate: a large activation-energy barrier keeps a favourable reaction immeasurably slow until an enzyme lowers it by <strong>stabilizing the transition state</strong>. An enzyme cannot make a positive-ΔG reaction go; only <strong>coupling</strong> it to a strongly exergonic one (ATP hydrolysis) can, by making the summed ΔG negative.</li>
   </ul>
   <div class="scroll">
   <table>
@@ -487,7 +554,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
       <tr><td>Endergonic (ΔG &gt; 0)</td><td>Requires energy input; anabolism (building)</td></tr>
       <tr><td>Coupled reaction</td><td>ATP hydrolysis drives an endergonic reaction</td></tr>
       <tr><td>ATP structure</td><td>Adenine + ribose + 3 phosphates; energy sits in the repulsion of the negative phosphates</td></tr>
-      <tr><td>ATP → ADP + Pi</td><td>Exergonic, ≈ –7.3 kcal/mol; the molecule cells spend to pay for work, and it is recycled constantly</td></tr>
+      <tr><td>ATP → ADP + Pi</td><td>Exergonic, ≈ –7.3 kcal/mol; the molecule cells spend to pay for work, and it is recycled constantly. The free energy comes from <strong>relief of charge repulsion</strong> between the negative phosphates plus <strong>resonance stabilization of the products</strong> — not from any special "high-energy bond"</td></tr>
       <tr><td>Redox</td><td><strong>OIL RIG</strong>: Oxidation Is Loss of electrons, Reduction Is Gain. NAD⁺/FAD are electron carriers (reduced to NADH/FADH₂).</td></tr>
     </tbody>
   </table>
@@ -499,6 +566,14 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 <!-- ================= CELLS ================= -->
 <section id="cells">
   <h2>Types of organisms and cell composition</h2>
+  <ul>
+    <li><strong>What a cell is made of:</strong> about <strong>70% water by mass</strong>, so water is the most abundant molecule. Of the <strong>dry</strong> weight, <strong>protein is roughly 50%</strong> &mdash; the most abundant macromolecule. C, H, O and N account for ~96% of the atoms; P and S are essential but minor.</li>
+    <li><strong>Three domains:</strong> <strong>Woese</strong> compared small-subunit <strong>rRNA sequences</strong> and found archaea are as distinct from bacteria as they are from eukaryotes. Every cell, in all three domains, translates mRNA on ribosomes; nuclei, mitochondria and histones are eukaryote features.</li>
+    <li>No nucleus + a cell wall + one circular chromosome tells you only that a cell is <strong>prokaryotic</strong>. Separating bacteria from archaea needs membrane-lipid chemistry or sequence data.</li>
+    <li><strong>Archaea vs bacteria, chemically:</strong> archaeal membranes use <strong>ether-linked</strong> lipids and their walls have no peptidoglycan; bacteria use <strong>ester-linked</strong> lipids and peptidoglycan walls.</li>
+    <li><strong>One genome, many cell types:</strong> every cell of a multicellular organism carries the same DNA, so differentiation comes from <strong>differential gene expression</strong> — which in turn needs cell-to-cell signalling and coordinated regulation that a single-celled organism can do without.</li>
+    <li><strong>Why <em>E. coli</em>:</strong> the standard model organism because it divides fast (~20 min), is cheap and easy to culture, and is readily manipulated genetically (plasmids, phage, mutant collections). <strong>Yeast</strong> is the next step up: a single-celled <em>eukaryote</em> with a nucleus and organelles, so eukaryotic cell biology can be studied with microbial-scale genetics and screens.</li>
+  </ul>
   <div class="scroll">
   <table>
     <thead><tr><th>Feature</th><th>Prokaryote (Bacteria, Archaea)</th><th>Eukaryote</th></tr></thead>
@@ -507,6 +582,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
       <tr><td>DNA</td><td>Single circular chromosome + plasmids</td><td>Multiple linear chromosomes with histones</td></tr>
       <tr><td>Organelles</td><td>No membrane-bound organelles</td><td>Mitochondria, ER, Golgi, lysosomes, (chloroplasts)</td></tr>
       <tr><td>Ribosomes</td><td>70S, made of 30S and 50S subunits</td><td>80S, made of 40S and 60S subunits; 70S inside mitochondria</td></tr>
+      <tr><td>Compartments</td><td>One compartment, so every reaction shares the same conditions</td><td>Membrane-bound compartments run incompatible reactions at once, each at its own pH, redox state and enzyme set</td></tr>
       <tr><td>Cell wall</td><td>Peptidoglycan (bacteria)</td><td>Cellulose (plants), chitin (fungi), none in animals</td></tr>
       <tr><td>Size</td><td>~1-10 µm</td><td>~10-100 µm</td></tr>
       <tr><td>Transcription/translation</td><td>Coupled, in the same compartment, with no introns</td><td>Separated by the nuclear envelope; mRNA processed first</td></tr>
@@ -541,7 +617,27 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </div>
   <p class="svgsm"><strong>Endosymbiotic theory:</strong> mitochondria and chloroplasts were once free-living bacteria. They kept double membranes, circular DNA and 70S ribosomes, and they still divide by binary fission.</p>
 
-  <div class="key">Three domains: <strong>Bacteria, Archaea, Eukarya</strong>. Cell theory: all organisms are made of cells; the cell is the basic unit of life; cells come only from pre-existing cells. Viruses are acellular, so they are not alive by these criteria. Elements by mass: C, H, O, N account for ~96% of living matter.</div>
+  <h3 id="models">Model organisms and “omics”</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Organism</th><th>Why it gets used</th></tr></thead>
+    <tbody>
+      <tr><td><em>E. coli</em> (bacterium)</td><td>~20 min doubling, cheap, plasmids and phage, huge mutant collections. Prokaryotic, so no organelles or splicing.</td></tr>
+      <tr><td><em>S. cerevisiae</em> (yeast)</td><td>Single-celled <strong>eukaryote</strong>: nucleus, organelles, splicing — with microbial-scale genetics and screens.</td></tr>
+      <tr><td><em>C. elegans</em> (nematode worm)</td><td>Grows fast, <strong>transparent</strong> body and an invariant cell lineage, so fluorescently tagged proteins can be watched live during <strong>nervous-system development</strong>. RNAi was discovered here.</td></tr>
+      <tr><td><em>Drosophila</em> (fruit fly)</td><td>Short generations, large broods, few chromosomes, deep genetic toolkit; the foundation of linkage mapping and developmental genetics.</td></tr>
+      <tr><td>Mouse, zebrafish</td><td>Vertebrates: closest to human physiology, used when tissue and organ context matters.</td></tr>
+      <tr><td><em>Arabidopsis</em></td><td>The plant equivalent: small genome, fast seed-to-seed cycle.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">Match the organism to the question: for <em>localization and interaction of proteins during nerve development</em>, transparency and live imaging beat convenience — the worm wins, and yeast (no nervous system) does not.</p>
+  <p class="svgsm"><strong>The “omics” layers:</strong> the <strong>genome</strong> is all the DNA, the <strong>transcriptome</strong> is everything actually transcribed in a given cell, and the <strong>proteome</strong> is the proteins present. Comparing genome with transcriptome is how whole classes of <strong>non-coding RNAs</strong> were found: they are transcribed but never appear in the proteome.</p>
+  <p class="svgsm"><strong>Where eukaryotes came from:</strong> beyond endosymbiosis for the organelles, the <strong>inside-out</strong> model proposes that an <strong>archaeal</strong> cell extended <strong>protrusions</strong> around its bacterial partner; fusing those protrusions would generate the nuclear envelope and the ER in one stroke. It is an explanatory hypothesis, not a settled account.</p>
+
+  <p class="svgsm">The 70S/80S difference is why several antibiotics (tetracyclines, aminoglycosides, macrolides) block bacterial translation without touching the host’s own ribosomes. The same logic picks the best drug target in general: hit something bacteria have and we do not — blocking <strong>Shine–Dalgarno</strong> pairing with 16S rRNA stops bacterial initiation, while eukaryotic ribosomes scan from a cap instead and are untouched.</p>
+
+  <div class="key">Every cell, without exception, has a <strong>chromosome</strong> (DNA), <strong>ribosomes</strong> and a <strong>plasma membrane</strong>; cell walls, nuclei, chloroplasts and organelles are all optional extras. <strong>Robert Hooke</strong> built the first useful compound microscope and named the “cell” in 1665. Three domains: <strong>Bacteria, Archaea, Eukarya</strong>. Cell theory: all organisms are made of cells; the cell is the basic unit of life; cells come only from pre-existing cells. Viruses are acellular, so they are not alive by these criteria. Elements by mass: C, H, O, N account for ~96% of living matter.</div>
 
   <div class="deck" data-topic="cells"></div>
 </section>
@@ -554,7 +650,24 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <li>Backbone joined by <strong>phosphodiester bonds</strong> (5' phosphate to 3' OH); negatively charged → runs to the + electrode in a gel.</li>
     <li>Replication is <strong>semiconservative</strong>: each daughter duplex = 1 old + 1 new strand.</li>
     <li>DNA polymerase can only add to a free <strong>3'-OH</strong> → synthesis is strictly 5'→3' and a primer is mandatory.</li>
+    <li>B-DNA makes a full turn every <strong>~10 base pairs</strong> (3.4 nm), leaving a wide <strong>major groove</strong> and a narrow <strong>minor groove</strong>; sequence-specific binding proteins read the edges of the bases, mostly in the major groove.</li>
+    <li>Melting is reversible: heat separates the strands, and slow cooling lets complementary strands <strong>renature (reanneal)</strong> — the principle behind probing, blotting and PCR. Strand separation can be followed as a <strong>hyperchromic shift</strong>, a rise in absorbance at 260 nm as the bases unstack.</li>
+    <li>Eukaryotic DNA is wrapped with <strong>histones</strong>: ~147 bp around a histone octamer makes one <strong>nucleosome</strong>, the repeating packaging unit. <strong>Supercoiling</strong> is the helix coiling on itself, set and relieved by topoisomerases.</li>
+    <li>Replication starts at a defined <strong>origin</strong> and is <strong>bidirectional</strong>: two forks move apart, making a replication bubble. Bacteria use one origin; eukaryotes fire <strong>many</strong> in parallel, because the genomes are far larger and their polymerases slower.</li>
+    <li>Fidelity is layered: base selection, then <strong>3'→5' proofreading</strong>, then <strong>mismatch repair</strong>, which in bacteria tells the new strand from the template because the daughter strand is <strong>transiently unmethylated</strong>. Together they reach roughly <strong>one error per billion</strong> bases; losing proofreading raises the mutation rate by orders of magnitude.</li>
   </ul>
+  <h3 id="chromatin">Chromatin packing</h3>
+  <ul>
+    <li><strong>Least → most compact:</strong> DNA double helix → “<strong>beads on a string</strong>” nucleosomes → <strong>30 nm fibre</strong> → chromatin looped onto a scaffold → the condensed mitotic chromosome.</li>
+    <li>A nucleosome core is <strong>two each of H2A, H2B, H3 and H4</strong> with ~147 bp wrapped round it; counting the linker, one nucleosome <strong>repeat ≈ 200 bp</strong>, so a stretch of 10 nucleosomes is about <strong>2,000 bp</strong>.</li>
+    <li>Histones are rich in <strong>lysine and arginine</strong>, positively charged at cell pH, which is what grips the negatively charged phosphate backbone. Proteins that bind <em>RNA</em> are often basic for exactly the same reason.</li>
+    <li><strong>Euchromatin</strong> is open; <strong>heterochromatin</strong> is compact and largely silent. Ranked by how likely they are to be transcribed: active euchromatin &gt; quiescent euchromatin &gt; <strong>facultative</strong> heterochromatin (silenced in this cell but not always) &gt; <strong>constitutive</strong> heterochromatin (permanently packed, e.g. centromeres and telomeres).</li>
+    <li>For most of interphase chromosomes are decondensed tangled threads, <em>not</em> individually visible by light microscopy; they only resolve once condensed for mitosis.</li>
+  </ul>
+  <p class="svgsm"><strong>Genome counting:</strong> a “genome” is one haploid set. A human diploid cell with 46 chromosomes therefore carries <strong>two genomes</strong>, one from each parent (the amount of DNA also depends on cell-cycle stage). The <strong>mitochondrial</strong> genome is tiny — ~16.6 kb against <em>E. coli</em>’s ~4.6 Mb — because most genes of the bacterial ancestor were lost or <strong>transferred to the nucleus</strong>; the nucleus now encodes most mitochondrial proteins, which are made in the cytosol and imported.</p>
+  <p class="svgsm"><strong>Two details about the fork:</strong> the main replicative helicase in bacteria (DnaB) travels <strong>5'→3' along the lagging-strand template</strong>, while the eukaryotic CMG helicase moves 3'→5' on the leading-strand template. And a proofreading DNA polymerase has <strong>two separate active sites</strong> in one enzyme: the polymerizing site and the 3'→5' exonuclease site, with the mispaired end shuttling between them.</p>
+
+  <p class="svgsm">Historical note: before the 1940s proteins were the favoured candidate for the genetic material, because <strong>20</strong> different amino acids looked capable of carrying complex information while DNA’s four bases seemed monotonous. Chargaff’s varying base ratios killed that <strong>tetranucleotide hypothesis</strong>; Hershey and Chase’s blender mattered because it sheared the empty phage coats off the cells so the two labels could be separated. Without telomerase, ends shorten every division, which acts as a replicative clock and drives <strong>senescence</strong>.</p>
 
   <figure>
     <img src="media/replication-fork.png" alt="Replication fork labelled with topoisomerase, helicase, SSB proteins, primase, RNA primer, sliding clamp, DNA polymerase III, DNA ligase and Okazaki fragments on the lagging strand" loading="lazy">
@@ -590,11 +703,15 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <tbody>
       <tr><td>Initiation</td><td>RNA polymerase binds the <strong>promoter</strong>. Bacteria: sigma factor recognizes –10 (TATAAT, Pribnow) and –35 boxes. Eukaryotes: transcription factors + TATA box recruit RNA pol II.</td></tr>
       <tr><td>Elongation</td><td>Reads template (antisense) strand 3'→5', builds RNA 5'→3'. No primer needed. The coding/sense strand matches the mRNA (with U for T).</td></tr>
-      <tr><td>Termination</td><td>Bacteria: rho-dependent or hairpin (rho-independent). Eukaryotes: poly-A signal, then cleavage.</td></tr>
+      <tr><td>Termination</td><td>Bacteria: rho-dependent, or intrinsic — the RNA folds into a strong <strong>hairpin</strong> followed by a run of <strong>U</strong>s whose weak A–U pairing with the template lets the transcript and polymerase fall off. Eukaryotes: poly-A signal, then cleavage.</td></tr>
       <tr><td>Processing (eukaryotes only)</td><td>5' methyl-guanosine cap, 3' poly-A tail, <strong>splicing</strong> of introns by the spliceosome (snRNPs) leaving exons. Alternative splicing → multiple proteins from one gene.</td></tr>
     </tbody>
   </table>
   </div>
+  <p class="svgsm"><strong>Which strand, and where:</strong> the <strong>orientation of the promoter</strong> is what tells RNA polymerase which strand to use as template — it is positioned to read 3'→5' and build 5'→3', so transcription runs <strong>downstream</strong> of the promoter from +1. Promoter positions are numbered on the <strong>non-template (coding)</strong> strand, which is also the strand whose sequence the mRNA matches (U for T). A bacterial promoter spanning –35 to –7 is upstream of everything transcribed; σ factor binding there licenses initiation downstream, and nothing requires the first bases transcribed to be AUG. Order of events: σ binds RNA polymerase → the holoenzyme binds the promoter → DNA is unwound → RNA synthesis begins → σ is released during elongation.</p>
+  <p class="svgsm"><strong>Not every gene makes a protein.</strong> mRNA, tRNA, rRNA, <strong>telomerase RNA</strong>, snRNA, microRNA and the rest are all transcribed from genes. Four base-pairing events worth being able to name: DNA–RNA during transcription, <strong>rRNA–mRNA</strong> (16S with Shine–Dalgarno) at bacterial initiation, tRNA–mRNA during decoding, and <strong>snRNA–pre-mRNA</strong> during splicing.</p>
+  <p class="svgsm"><strong>The 5' cap</strong> is 7-methylguanosine joined by an unusual <strong>5'-to-5' triphosphate bridge</strong> — backwards relative to every normal 5'→3' phosphodiester link, which is what protects the end from exonucleases. Splicing itself runs through the <strong>branch-point adenine</strong>: its <strong>2'-OH</strong> attacks the 5' splice site, forming the <strong>lariat</strong> that is released when the exons are joined. Capping and poly-A addition are eukaryote-only; so is splicing, and prokaryotes instead translate transcripts <strong>while they are still being made</strong>.</p>
+  <p class="svgsm">The poly-A tail is added <strong>without a template</strong> by <strong>poly-A polymerase</strong> after the transcript is cleaved at the poly-A signal.</p>
   <p class="svgsm">Eukaryotic polymerases: pol I → rRNA, pol II → mRNA, pol III → tRNA + 5S rRNA. Bacteria use a single RNA polymerase.</p>
 
   <h3>Translation</h3>
@@ -611,6 +728,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+  <p class="svgsm"><strong>Accuracy and finishing:</strong> the pairing that actually enforces the code at the ribosome is the <strong>anticodon of a correctly charged aminoacyl-tRNA</strong> against the codon — the ribosome checks that pairing, not the amino acid. Translation ends when a <strong>stop codon, for which no tRNA exists</strong>, reaches the A site and release factors act. <strong>Post-translational</strong> modifications then include proteolytic cleavage, <strong>glycosylation</strong> and <strong>phosphorylation</strong> (Ser/Thr/Tyr) — but <em>not</em> intron removal, which happens to RNA long before.</p>
+
   <div class="key">Bacteria start at a <strong>Shine-Dalgarno</strong> sequence with fMet-tRNA; eukaryotes scan from the 5' cap to the first AUG (Kozak). Many ribosomes on one mRNA = a <strong>polysome</strong>. Chain grows N-terminus → C-terminus.</div>
 
   <div class="deck" data-topic="txn"></div>
@@ -650,6 +769,23 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <div class="key"><strong>Inducer:</strong> allolactose (lab substitute: IPTG) binds the repressor and inactivates it = <em>negative</em> control. <strong>CAP–cAMP</strong> = <em>positive</em> control; glucose lowers cAMP, so glucose is used first (catabolite repression). Inducible operon = normally off, turns on for catabolism (lac). Repressible operon = normally on, turns off when the product accumulates (trp).</div>
+
+  <h3>Reading lac mutants</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Genotype</th><th>Phenotype</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>O<sup>c</sup> — operator mutation</td><td><strong>Constitutive</strong>: transcribed with or without lactose</td><td>The repressor can no longer bind, so nothing holds the operon off. <strong>Cis-acting</strong>: it affects only the genes physically linked to it on the same DNA molecule.</td></tr>
+      <tr><td>I<sup>–</sup> — no functional repressor</td><td>Constitutive</td><td>Nothing binds the operator. <strong>Trans-acting</strong>: lacI makes a diffusible protein, so a good copy anywhere in the cell can rescue it.</td></tr>
+      <tr><td>I<sup>s</sup> — super-repressor</td><td><strong>Off even when inducer is present</strong></td><td>The altered repressor cannot bind allolactose, so it never lets go of the operator. Dominant over I<sup>+</sup>.</td></tr>
+      <tr><td>Merodiploid I<sup>–</sup>Z<sup>+</sup> / F&prime; I<sup>+</sup>Z<sup>–</sup></td><td><strong>Inducible</strong> β-galactosidase</td><td>The wild-type repressor made from the F&prime; plasmid diffuses and controls the chromosomal operon, so I<sup>+</sup> is dominant.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="svgsm">Partial diploids (<strong>merodiploids</strong>, usually made with an F&prime; plasmid) are the classic <strong>cis/trans test</strong>: a site that only controls genes on its own molecule is cis-acting (operator, promoter), while a gene whose product diffuses through the cytoplasm is trans-acting (lacI).</p>
+  <p class="svgsm"><strong>Jacob and Monod</strong> built the operon model exactly this way, from mutant phenotypes in <strong>partial diploids</strong>: whichever elements could be rescued by a copy elsewhere in the cell were diffusible (trans), and the rest acted only where they sat (cis). Even when repressed the operon is slightly <strong>leaky</strong>, because the repressor occasionally falls off the operator — and it has to be, since the cell needs a few permease and β-galactosidase molecules present to notice lactose at all. A mutation in the <strong>promoter</strong> that weakens polymerase binding lowers transcription even under full induction, because the promoter sets the ceiling.</p>
+  <p class="svgsm"><strong>Inducible vs repressible:</strong> lac is <strong>inducible</strong> — the <em>substrate</em> switches it on. trp is <strong>repressible</strong> — the <em>end product</em> tryptophan acts as a <strong>corepressor</strong>, activating its repressor to switch the operon off when tryptophan is plentiful. Catabolic pathways are usually inducible, biosynthetic ones repressible. Ignoring lactose while glucose is around is worth it because glucose is the cheaper fuel, so the lactose enzymes would be wasted protein.</p>
+  <p class="svgsm">Grouping lacZ, lacY and lacA in one operon means a single <strong>polycistronic</strong> mRNA, so the whole lactose-utilization system is switched on and off together.</p>
 
   <div class="deck" data-topic="lac"></div>
 </section>
@@ -749,6 +885,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <figure>
     <img src="media/electron-transport-chain.png" alt="Electron transport chain in the inner mitochondrial membrane: Complexes I to IV with ubiquinone and cytochrome c, H+ pumped into the intermembrane space, oxygen reduced to water, and ATP synthase making ATP" loading="lazy">
   </figure>
+
+  <p class="svgsm"><strong>Overall:</strong> C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O. Label every carbon of glucose with <sup>14</sup>C and the label comes out in <strong>CO₂</strong>; the <strong>water</strong> is made at the end of the <strong>electron transport chain</strong>, where oxygen accepts the electrons. Pyruvate made in the cytosol is carried <strong>into the matrix</strong> and oxidatively decarboxylated there by the pyruvate dehydrogenase complex; <strong>coenzyme A</strong> picks up and activates the resulting two-carbon <strong>acetyl</strong> group for entry into the TCA cycle. After glycolysis and the cycle the carbon is gone as CO₂ but most of the energy is still held as <strong>NADH</strong>, which is why blocking the chain strands it there. Fermentation earns no extra ATP: it hands electrons to an organic acceptor purely to regenerate <strong>NAD⁺</strong>, which keeps glycolysis running and lets tissues work while oxygen is short.</p>
+  <p class="svgsm"><strong>Why the chain runs the way it does:</strong> the complexes are ordered by <strong>increasing electron affinity</strong>, so electrons fall stepwise and release energy in usable amounts; that energy is stored first as a <strong>proton-motive force</strong>, which is both a <strong>pH gradient</strong> and a <strong>membrane voltage</strong>, before ATP synthase spends it. Blocking ATP synthase while the chain still runs lets the gradient build until back-pressure slows electron transport — the two are coupled. NADH donates at complex I; FADH₂ enters at complex II, skipping one pumping site, which is why it yields less ATP.</p>
 
   <h3>ATP tally per glucose</h3>
   <div class="scroll">
@@ -913,6 +1052,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 
   <div class="key">Both C4 and CAM solve the same problem the same way, by <strong>concentrating CO₂ around rubisco</strong> so it cannot grab O₂. They differ only in <em>how</em> they separate the two steps: C4 separates them in <strong>space</strong> (different cells), CAM in <strong>time</strong> (night vs day).</div>
 
+  <p class="svgsm"><strong>Jagendorf’s acid-bath experiment:</strong> isolated chloroplasts soaked at low pH and then shifted into a higher-pH buffer made ATP <em>in the dark</em>. An artificial proton gradient alone drives ATP synthesis, so light is only the means of making the gradient. Photosystems I and II are numbered by <strong>discovery order</strong>, not by pathway order — electrons actually run PSII → PSI.</p>
+
   <h3>Photosynthesis vs respiration</h3>
   <div class="scroll">
   <table>
@@ -953,6 +1094,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
 
+  <div class="key"><strong>Probability rules:</strong> for independent events, multiply (<em>product rule</em>). So aabb from AaBb × AaBb = ¼ × ¼ = <strong>1/16</strong>, and an AaBb parent makes <strong>2ⁿ = 4</strong> gamete types (AB, Ab, aB, ab) in equal proportions. Each conception is independent of the ones before it.</div>
+  <p class="svgsm"><strong>Beyond simple dominance:</strong> <strong>ABO</strong> blood type shows <strong>multiple alleles</strong> in a population (three) with A and B <strong>codominant</strong>. <strong>Pleiotropy</strong> is one gene affecting several unrelated traits (the sickle allele). <strong>Polygenic</strong> traits such as height come from many genes of small effect plus environment, giving <strong>continuous</strong> bell-shaped variation instead of discrete classes. A <strong>recessive lethal</strong> turns the 3:1 into a <strong>2:1</strong> ratio among survivors, since the homozygous class dies; a <strong>dominant lethal</strong> acting before reproduction is eliminated almost at once. Mendel was ignored in his lifetime partly because his statistical, particulate model clashed with the prevailing idea of <strong>blending</strong> inheritance; he chose peas because he could control pollination and follow clearly contrasting traits in true-breeding lines.</p>
+
   <h3>Punnett square: Aa × Aa</h3>
   <figure>
     <svg viewBox="0 0 260 200" role="img" aria-label="Punnett square">
@@ -981,6 +1125,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+  <p class="svgsm"><strong>Pedigree vocabulary:</strong> a <strong>carrier</strong> is an unaffected heterozygote. Males are <strong>hemizygous</strong> for X-linked genes — one X only, so a single recessive allele is expressed, which is why X-linked recessive traits (haemophilia in the European royal families) show up mostly in males. The <strong>proband</strong> is the individual through whom the family came to attention, marked with an arrow. <strong>Reduced penetrance</strong> can make a dominant trait look recessive, with an unaffected carrier sitting between two affected generations. A <strong>founder effect</strong> in an isolated population raises the frequency of whatever alleles the small founding group happened to carry, which is why particular recessive conditions cluster there. Genetic counselling turns a family history into carrier status plus a numerical risk per pregnancy.</p>
   <p class="svgsm">Pedigree symbols: square = male, circle = female, filled = affected, half-filled/dot = carrier, horizontal line = mating, double line = consanguineous.</p>
 
   <div class="deck" data-topic="mendel"></div>
@@ -1006,6 +1151,8 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+
+  <p class="svgsm"><strong>Where this came from:</strong> <strong>Morgan</strong>’s work on <em>Drosophila</em> tied a gene (white eyes) to a specific chromosome and showed linked genes still recombine; <strong>Sturtevant</strong> then turned recombination frequencies into the first genetic map. Flies suit the job because of short generations, huge broods and few chromosomes — and crossing over does not happen in <strong>male</strong> <em>Drosophila</em> at all, a quirk used in mapping crosses. Map distance and physical distance agree only roughly, because recombination is suppressed near <strong>centromeres</strong> and elevated at hotspots. The most informative cross for linkage is a <strong>test cross</strong> of a dihybrid to a homozygous recessive, since the recessive parent contributes nothing but recessive alleles and the offspring phenotypes read out the dihybrid’s gametes directly.</p>
 
   <div class="deck" data-topic="linkage"></div>
 </section>
@@ -1038,6 +1185,36 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <li>Grow up and purify the amplified DNA or expressed protein.</li>
   </ol>
 
+  <h3>Making the ligation work</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Tool or problem</th><th>The point of it</th></tr></thead>
+    <tbody>
+      <tr><td>Sticky vs blunt ends</td><td>Complementary single-stranded overhangs base pair and hold the two ends together while ligase seals the backbone, so sticky-end ligation is far more efficient. Blunt ends have nothing to hold them, so they must meet by chance — more DNA and more ligase — though any blunt end will join any other.</td></tr>
+      <tr><td>What ligase needs</td><td>A free <strong>3'-OH</strong> and a <strong>5' phosphate</strong>, plus <strong>ATP</strong> as the energy source, to make the phosphodiester bond.</td></tr>
+      <tr><td>Mostly empty vector after transformation</td><td>The singly cut vector <strong>re-ligated on itself</strong>. Fix: treat the cut vector with <strong>alkaline phosphatase</strong> to strip its 5' phosphates so it cannot self-ligate.</td></tr>
+      <tr><td>Directional cloning</td><td>Cut vector and insert with <strong>two different</strong> enzymes, giving non-compatible ends, so the insert can only go in one <strong>orientation</strong>.</td></tr>
+      <tr><td>Polylinker = multiple cloning site</td><td>A cluster of closely spaced <strong>unique</strong> restriction sites, so you can choose enzymes to suit any insert.</td></tr>
+      <tr><td>Insert orientation</td><td>Cut with <strong>one</strong> enzyme and the identical overhangs let the insert go in <strong>either way round</strong>, so orientation must be checked (or forced by directional cloning).</td></tr>
+      <tr><td>Checking a colony</td><td>Prepare plasmid DNA and run a <strong>diagnostic restriction digest</strong> (predicted band sizes) or sequence it. A <strong>plasmid map</strong> — sites, markers, origin, cloning site — is what lets you predict those bands.</td></tr>
+      <tr><td>Two markers on one vector</td><td>One antibiotic selects for the plasmid; cloning into the <em>second</em> marker destroys it, so <strong>insertional inactivation</strong> flags the recombinants (grows on one drug, not the other).</td></tr>
+      <tr><td>Adding a site a fragment lacks</td><td>Build the restriction site into the <strong>5' tails of PCR primers</strong>. Tails need not match the template and end up in the product.</td></tr>
+      <tr><td>Ligation conditions</td><td>Run cold and long: low temperature keeps the short overhangs annealed while ligase stays active enough to seal them.</td></tr>
+      <tr><td>Insert-size limits</td><td>Past roughly 10 kb ordinary plasmids transform badly and go unstable. <strong>Cosmid</strong> (λ <em>cos</em> sites, ~40 kb) → <strong>BAC</strong> (over 100 kb, the workhorse of genome projects) → YAC.</td></tr>
+      <tr><td>Shuttle vector</td><td>Two origins and two markers, so the same plasmid can be built in bacteria and then function in yeast or another eukaryote.</td></tr>
+      <tr><td>Expression vector</td><td>Adds a <strong>strong promoter</strong> the host recognizes plus a <strong>ribosome binding site</strong>, so the insert is not just carried but transcribed and translated.</td></tr>
+      <tr><td>Origin copy number</td><td>A <strong>high-copy</strong> origin gives large plasmid yields per culture; toxic inserts are better kept on a low-copy vector.</td></tr>
+      <tr><td>How often an enzyme cuts</td><td>A random recognition site of <em>n</em> bases turns up roughly every 4<sup><em>n</em></sup> bp: a <strong>6-cutter ≈ every 4,100 bp</strong>, a 4-cutter every ~256 bp. Six-cutters give fragment sizes convenient for cloning.</td></tr>
+      <tr><td>Type II enzymes</td><td>The ones used in cloning: they cut at a <strong>fixed position</strong> in or next to their recognition site, so fragments are reproducible and mappable. EcoRI cutting G↓AATTC on both strands leaves four-base <strong>5' overhangs</strong>; other enzymes leave <strong>3' overhangs</strong>, which matters when you go to blunt or extend the end.</td></tr>
+      <tr><td>Compatible ends</td><td>Different enzymes can leave the <strong>same</strong> overhang, so their fragments ligate together even though the sites differ. Two fragments from any two species join fine, because DNA chemistry is identical everywhere — which is the whole basis of recombinant DNA.</td></tr>
+      <tr><td>Rare cutters</td><td>An <strong>8-cutter</strong> hits roughly every 4⁸ ≈ <strong>65 kb</strong>, giving very large fragments for mapping big regions.</td></tr>
+      <tr><td>Getting DNA into cells</td><td><strong>CaCl₂ + heat shock</strong> makes cells competent; <strong>electroporation</strong> uses a brief pulse to permeabilize the membrane and is usually more efficient, especially for large constructs. Phage λ vectors instead <em>infect</em>, which gives far more clones than transformation.</td></tr>
+      <tr><td>Why plasmids work as vectors</td><td>Natural plasmids carry useful-but-dispensable genes (antibiotic resistance), replicate independently and transfer easily — exactly the properties a vector needs.</td></tr>
+      <tr><td>Why the host survives its own enzymes</td><td>Each restriction enzyme is paired with a <strong>modification methylase</strong> that methylates those sites in the host genome; unmethylated invading DNA is cut.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
   <h3>Genomic vs cDNA library</h3>
   <div class="scroll">
   <table>
@@ -1051,7 +1228,23 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
-  <p class="svgsm">An <strong>expression library</strong> puts cDNA behind a bacterial promoter so protein is made. Screen it with an <strong>antibody</strong> instead of a nucleic-acid probe.</p>
+  <p class="svgsm">An <strong>expression library</strong> puts cDNA behind a bacterial promoter so protein is made. Screen it with an <strong>antibody</strong> instead of a nucleic-acid probe. For that to work the insert must sit <strong>downstream of the promoter, in the right orientation and the right reading frame</strong> — only one of six arrangements does, which is why so many clones must be screened.</p>
+
+  <p class="svgsm"><strong>How cDNA is actually made:</strong> oligo-dT primes on the poly-A tail and <strong>reverse transcriptase</strong> copies the mRNA into the first DNA strand; the RNA is then nicked away (<strong>RNase H</strong>) and a polymerase builds the second strand. Because priming starts at the 3' end, an enzyme that falls off early truncates the <strong>5' end</strong> — the usual reason a cDNA clone is incomplete, and why a <strong>full-length</strong> clone is worth having. A rare transcript is rare in the library too, so low-abundance genes mean many more clones to screen. Aligning a cDNA against its genomic sequence maps the <strong>intron/exon structure</strong> directly. Protein made in bacteria can still misbehave: no eukaryotic modifications such as <strong>glycosylation</strong>, and over-expression often dumps it into <strong>inclusion bodies</strong> (insoluble misfolded aggregates), fixed by lowering temperature or expression level. An <strong>affinity tag</strong> (His tag) lets the product be purified in one specific binding-and-elution step.</p>
+
+  <h3>Building and screening a library</h3>
+  <ul>
+    <li><strong>Partial digest:</strong> limit the reaction so only some sites are cut. That gives large, randomly <strong>overlapping</strong> fragments covering the genome without gaps; a complete digest would cut every copy at the same places and destroy anything spanning a site.</li>
+    <li><strong>Complexity:</strong> the number of independent clones needed for a high probability that <em>every</em> sequence is represented. It rises with genome size and falls with insert size, and a low-complexity library is simply missing sequences.</li>
+    <li><strong>Colony hybridization:</strong> the colonies themselves are lifted onto a filter, their DNA is <strong>denatured and bound in place</strong>, and a labeled probe finds the matching clone by <strong>complementary base pairing</strong>.</li>
+    <li><strong>Stringency:</strong> raising the wash temperature or lowering the salt <strong>raises stringency</strong>, so only closely matched duplexes survive. Lower stringency tolerates mismatches and can pull out related genes from other species.</li>
+    <li><strong>Only know the protein sequence?</strong> Work backwards through the code. Because it is degenerate, several DNA sequences could encode the peptide, so you synthesize a mixture of <strong>degenerate oligonucleotides</strong> covering the possible codons.</li>
+    <li><strong>Genome equivalents:</strong> clones needed for one equivalent = genome size ÷ insert size (3 × 10⁹ bp ÷ 20 kb ≈ <strong>150,000</strong>). Because sampling is random, one equivalent leaves real gaps, so several-fold coverage is screened. Libraries are also aliquoted and re-grown as little as possible, since slow-growing clones drop out and skew representation.</li>
+    <li><strong>Plaque hybridization</strong> is the phage version of colony hybridization — each <strong>plaque</strong> on the lawn is one clone, lifted onto a filter the same way. <strong>Duplicate lifts</strong> are taken because a signal appearing on both is far more likely to be real than a one-filter artifact. A positive on the filter is a map back to the plate: pick that colony or plaque and purify it.</li>
+    <li><strong>Chromosome walking:</strong> use the end of a known clone as the probe to pull out the next overlapping clone, and repeat, to reach an adjacent region. Genes with very large introns often span several clones and have to be assembled this way.</li>
+    <li><strong>Subtractive hybridization:</strong> remove the sequences two samples share so the ones unique to one sample are enriched — a way to find tissue-specific transcripts.</li>
+    <li><strong>Screen gives no positives?</strong> Real failure modes are a bad probe, too few clones for the complexity needed, or hybridization conditions that are too stringent — not the gene being present, which is the assumption you started from.</li>
+  </ul>
 
   <div class="deck" data-topic="recdna"></div>
 </section>
@@ -1076,6 +1269,9 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+  <p class="svgsm"><strong>Gels, in more detail:</strong> only a <em>small fraction</em> of ddNTP goes into a sequencing reaction, so chains stop at many different positions and give a nested set; automated machines label each ddNTP with a <strong>different fluorescent dye</strong> and read all four in one lane. <strong>Polyacrylamide</strong> resolves fragments differing by a single base, which agarose cannot. Conformation affects mobility, so a supercoiled, a relaxed-circular and a linear plasmid of the same size run at different rates — which is why DNA is linearized before sizing. A <strong>ladder</strong> of known sizes converts migration distance into base pairs. Digesting with two enzymes separately and then together builds a <strong>restriction map</strong> from the fragment sizes. <strong>Pulsed-field</strong> electrophoresis alternates the field direction so whole chromosomes can be separated.</p>
+  <p class="svgsm"><strong>PCR in practice:</strong> the two primers must point <strong>toward each other</strong> across the target, and the annealing temperature is set from the primers’ <strong>melting temperature</strong> — too low and they prime unintended sites (extra bands), too high and they never bind. Yield <strong>plateaus</strong> once reagents run down and the polymerase tires. Sensitivity cuts both ways: it lets forensics work from trace or degraded DNA, and it makes stray <strong>contaminating</strong> template a real source of false positives. <strong>Taq has no proofreading</strong>, so a high-fidelity polymerase is used when sequence accuracy matters. <strong>Next-generation sequencing</strong> differs from Sanger mainly by reading millions of fragments in parallel.</p>
+  <p class="svgsm"><strong>Reading a Sanger gel:</strong> the shortest fragment is the first base added after the primer, so you read from the <strong>smallest fragments at the bottom upward</strong> and that gives the sequence <strong>5'&rarr;3'</strong>. <strong>Counting cut sites:</strong> a <em>circular</em> plasmid needs <em>n</em> cuts to give <em>n</em> fragments — a single cut just linearizes it into one band — while a <em>linear</em> molecule cut <em>n</em> times gives <em>n</em>+1 fragments. <strong>PCR yield:</strong> product doubles each cycle, so 20 cycles from one template gives 2<sup>20</sup> ≈ a million copies; you only need enough sequence at each end to design the two <strong>flanking primers</strong>.</p>
   <div class="key">Memory hook for blots: <strong>S</strong>outhern = DNA, <strong>N</strong>orthern = RNA, <strong>W</strong>estern = protein ("SNoW DRoP").</div>
 
   <div class="deck" data-topic="methods"></div>
@@ -1101,9 +1297,550 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     </tbody>
   </table>
   </div>
+  <h3 id="biochem-genetics">Biochemical genetics: mutants, pathways and complementation</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Idea</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>Auxotroph</td><td>A mutant that has lost a biosynthetic step and grows only when that specific nutrient is <strong>supplied in the medium</strong>. The wild type (a <strong>prototroph</strong>) makes it itself and grows on minimal medium.</td></tr>
+      <tr><td>Ordering a pathway</td><td>Feed intermediates one at a time. A mutant rescued by <strong>more</strong> of the intermediates is blocked <strong>earlier</strong>; one rescued <strong>only by the end product</strong> is blocked <strong>latest</strong>.</td></tr>
+      <tr><td>Complementation test</td><td>Combine two recessive mutants in one cell. A <strong>wild-type</strong> phenotype means the mutations are in <strong>different genes</strong>, since each supplies what the other lacks. <strong>Failure to complement</strong> means both hit the <strong>same gene</strong>.</td></tr>
+      <tr><td>Why most loss-of-function mutations are recessive</td><td><strong>Haplosufficiency</strong>: one functional copy usually makes enough product for a normal phenotype.</td></tr>
+      <tr><td>Dominant negative</td><td>The mutant product actively <strong>interferes</strong> with the normal protein, typically by poisoning a multi-subunit complex, so one bad subunit spoils the assembly and the allele is dominant.</td></tr>
+      <tr><td>Getting mutants in the first place</td><td>Spontaneous mutation is far too rare, so Beadle and Tatum <strong>irradiated</strong> <em>Neurospora</em> to raise the frequency. <em>Neurospora</em> suits the work because it is <strong>haploid</strong>: a recessive mutation shows its phenotype immediately, with no second allele to mask it.</td></tr>
+      <tr><td>Replica plating</td><td>Press a plate of colonies onto velvet and transfer the same pattern to several media. Comparing rich with minimal plates picks out <strong>auxotrophs</strong>; comparing temperatures picks out conditional mutants.</td></tr>
+      <tr><td>Conditional lethals</td><td>A <strong>temperature-sensitive</strong> allele folds and works at 25 °C but not 37 °C, so an <strong>essential</strong> gene can be studied by shifting cells to the restrictive condition instead of dying outright.</td></tr>
+      <tr><td>Epistasis</td><td>One gene masking or modifying another. In a pathway, a double mutant usually looks like the mutant blocked <strong>earlier</strong>, which is how epistasis orders steps. (Pleiotropy is the opposite idea: one gene, many traits.)</td></tr>
+      <tr><td>Complementation needs recessive alleles</td><td>A <strong>dominant</strong> mutation shows its phenotype even beside a wild-type copy, so the test cannot distinguish same-gene from different-gene. Two white-flowered strains crossing to purple offspring is complementation: the mutations sit in <strong>different</strong> genes of the same pigment pathway.</td></tr>
+      <tr><td>Human examples</td><td><strong>Garrod</strong>’s alkaptonuria: inherited disease = missing enzyme activity. <strong>PKU</strong> is a block in <strong>phenylalanine</strong> metabolism; the accumulated substrate damages the developing nervous system, which dietary restriction prevents.</td></tr>
+      <tr><td>Screen vs selection</td><td>A <strong>screen</strong> inspects many individuals one at a time for a phenotype. A <strong>selection</strong> sets conditions where only the wanted mutants survive, so it can handle enormous numbers — but it needs a phenotype tied to survival. Plating bacteria on an antibiotic is the standard example.</td></tr>
+      <tr><td>Genetic vs biochemical vs computational</td><td><strong>Genetics</strong> disrupts genes and infers function from the resulting phenotypes, which works even when the molecules are unknown, though phenotypes can be indirect. <strong>Biochemistry</strong> purifies components and shows an activity <strong>directly</strong>, in isolation. <strong>Computation</strong> compares sequences and infers function from homology.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
   <a class="back" href="index.html">&larr; Back to quiz</a>
 
   <div class="deck" data-topic="classic"></div>
+</section>
+
+<!-- ================= MEMBRANES ================= -->
+<section id="membranes">
+  <h2>Membranes and transport</h2>
+  <ul>
+    <li><strong>Fluid mosaic:</strong> phospholipids and many proteins <strong>diffuse laterally</strong> within a leaflet, and transmembrane proteins keep their orientation while they do. Spontaneous <strong>flip-flop</strong> between leaflets is rare (it needs flippase enzymes), which is what lets the two leaflets stay different.</li>
+    <li><strong>The two leaflets are not the same.</strong> They carry different phospholipids, and all the <strong>carbohydrate</strong> — the glycolipids and glycoprotein sugars — faces <strong>outward</strong>, never into the cytosol.</li>
+    <li><strong>Fluidity:</strong> more <strong>unsaturated</strong> fatty acids (kinked tails, poor packing) = more fluid, so cold-adapted organisms raise their unsaturated fraction. Shorter tails do the same. <strong>Cholesterol</strong> buffers both ways: it stiffens a warm membrane and stops a cold one packing solid.</li>
+    <li><strong>Transmembrane proteins</strong> stay put because of <em>where</em> their residues sit: a nonpolar stretch spans the bilayer interior while polar and charged residues anchor at the two aqueous faces.</li>
+  </ul>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Route across</th><th>How it works</th></tr></thead>
+    <tbody>
+      <tr><td>Simple diffusion</td><td>Small nonpolar molecules (O₂, CO₂) cross the bilayer unaided, down their gradient.</td></tr>
+      <tr><td><strong>Channel</strong></td><td>A gated pore. Ions flow <strong>down</strong> their electrochemical gradient at very high rates, and a channel does <strong>not saturate</strong> while the gradient lasts.</td></tr>
+      <tr><td><strong>Carrier (transporter)</strong></td><td>Binds its solute and changes conformation, so it is slower and <strong>saturable</strong> — raise the cargo concentration enough and every carrier is occupied, exactly like an enzyme at V<sub>max</sub>.</td></tr>
+      <tr><td>Primary active transport</td><td>Uses ATP directly to pump against a gradient — the <strong>Na⁺/K⁺ pump</strong> (3 Na⁺ out, 2 K⁺ in per ATP).</td></tr>
+      <tr><td><strong>Secondary active transport</strong></td><td>Uses a gradient someone else paid for. Intestinal glucose uptake is a Na⁺/glucose <strong>symport</strong>: glucose rides in against its own gradient on the back of the Na⁺ gradient that the Na⁺/K⁺ pump maintains. An <strong>antiport</strong> runs the two solutes in opposite directions.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Osmosis:</strong> water moves toward the higher solute concentration. An animal cell in a <strong>hypotonic</strong> solution swells and can burst; a bacterial or plant cell does not, because its <strong>cell wall</strong> resists the turgor pressure. <strong>Hypertonic</strong> shrinks a cell, <strong>isotonic</strong> leaves it unchanged.</div>
+
+  <div class="deck" data-topic="membranes"></div>
+</section>
+
+<!-- ================= PROTEIN SORTING ================= -->
+<section id="trafficking">
+  <h2>Protein sorting and the endomembrane system</h2>
+  <ul>
+    <li><strong>Default is the cytosol.</strong> Every protein starts on a ribosome in the cytosol; it goes somewhere else only if it carries a <strong>signal (localization) sequence</strong>. Delete the ER signal sequence and the protein stays in the cytosol. A purely cytosolic enzyme such as <strong>phosphofructokinase</strong> has no localization sequence at all, and so are RNA polymerases made — on <strong>free ribosomes</strong> in the cytosol, then imported into the nucleus.</li>
+    <li><strong>Secretory pathway:</strong> rough <strong>ER → Golgi → plasma membrane</strong> (or lysosome), carried between compartments in vesicles. The <strong>ER</strong> is the largest component of the endomembrane system by membrane area.</li>
+    <li><strong>Exocytosis</strong> fuses a vesicle with the plasma membrane: cargo goes out and the <strong>vesicle membrane becomes part of the plasma membrane</strong>. <strong>Endocytosis</strong> is the reverse, bringing material from outside in.</li>
+    <li><strong>Topology is preserved.</strong> Whichever face of the ER membrane a protein domain protrudes from, it protrudes from the equivalent face all the way along: cytosolic face of the ER → cytosolic face of the Golgi → <strong>cytosolic</strong> face of the plasma membrane. The ER/Golgi <strong>lumen</strong> is topologically the outside of the cell, which is why sugars added on the luminal side end up on the <strong>extracellular</strong> surface.</li>
+    <li><strong>Nuclear pore complexes</strong> let small molecules (and particles smaller than a small protein) diffuse through non-selectively, while anything large needs a nuclear localization signal and active transport. Gold nanoparticles injected into the cytoplasm turn up in the nucleus for exactly this reason.</li>
+  </ul>
+
+  <div class="deck" data-topic="trafficking"></div>
+</section>
+
+<!-- ================= CELL COMMUNICATION ================= -->
+<section id="signalling">
+  <h2>Cell communication and signal molecules</h2>
+  <p>A multicellular body works only if its cells keep telling each other what to do: grow, divide, specialise, change metabolism, or die. Every one of these conversations has the same parts.</p>
+  <ol class="flow" aria-label="Parts of a signalling pathway">
+    <li>Signalling cell</li><li>Signal molecule</li><li>Receptor</li><li>Intracellular signalling proteins</li><li>Effector proteins</li><li>Response</li>
+  </ol>
+  <p>Most cells need a steady mix of signals just to stay alive. Add more signals and the cell grows or divides; add different ones and it differentiates. Take every signal away and the cell kills itself by apoptosis.</p>
+
+  <h3>How far the signal travels</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Mode</th><th>How it gets there</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Endocrine</strong></td><td>A hormone is secreted into the bloodstream and reaches cells all over the body. Long range and slow.</td><td>Insulin, adrenaline (epinephrine), estrogen</td></tr>
+      <tr><td><strong>Paracrine</strong></td><td>A local mediator diffuses to cells nearby and is removed quickly, so it never goes far. When a cell answers its own signal it is called autocrine.</td><td>Growth factors in a healing wound, histamine</td></tr>
+      <tr><td><strong>Contact-dependent</strong></td><td>The signal stays on the sender's surface, so the two cells have to touch.</td><td>Delta and Notch during development</td></tr>
+      <tr><td><strong>Neuronal (synaptic)</strong></td><td>An electrical signal runs down the axon, then a neurotransmitter crosses the tiny synaptic cleft to one target. Long distance, fast, and private.</td><td>Acetylcholine at the nerve-muscle junction</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Endocrine is a radio broadcast: everyone with a receiver hears it. Paracrine is talking to the next desk. Contact-dependent is a handshake. Neuronal is a private phone line that can run a long way but reaches one listener.</div>
+
+  <h3>One signal, three different answers</h3>
+  <p>Acetylcholine tells <strong>heart pacemaker cells</strong> to slow down, <strong>salivary gland cells</strong> to secrete, and <strong>skeletal muscle</strong> to contract. The heart and gland cells carry the same kind of GPCR but different machinery behind it; skeletal muscle uses a completely different receptor, an ion channel. The response is decided by the receptor and the target cell's internal equipment. The signal only says "go".</p>
+  <div class="hook">The signal is a doorbell. What happens when it rings depends on who lives in the house.</div>
+
+  <h3>Two kinds of signal molecule</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Small and hydrophobic</th><th>Hydrophilic (large or charged)</th></tr></thead>
+    <tbody>
+      <tr><td>Examples</td><td>Steroid hormones (cortisol, estrogen, testosterone), thyroid hormone, nitric oxide gas</td><td>Proteins and peptides (insulin, growth factors), acetylcholine, adrenaline</td></tr>
+      <tr><td>Crosses the membrane?</td><td>Yes, it diffuses straight through the lipid bilayer</td><td>No, it stays outside</td></tr>
+      <tr><td>Receptor</td><td>Inside the cell: a <strong>nuclear receptor</strong> in the cytosol or nucleus</td><td>On the <strong>cell surface</strong>, spanning the membrane</td></tr>
+      <tr><td>What the receptor does</td><td>The hormone-receptor complex is itself a <strong>transcription factor</strong>. It binds DNA and turns specific genes on or off.</td><td>It changes shape and starts an intracellular signalling cascade</td></tr>
+      <tr><td>In the blood</td><td>Rides on carrier proteins, since it will not dissolve well</td><td>Dissolves freely</td></tr>
+      <tr><td>Speed</td><td>Slow (hours), because new proteins have to be made; effects last</td><td>Fast (seconds to minutes) when it modifies proteins already there</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Fat-soluble signals walk in and go straight to the DNA. Water-soluble signals ring the bell at the surface and let relay proteins carry the message.</div>
+
+  <h3>Three families of cell-surface receptor</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Receptor</th><th>How it works</th><th>Worth knowing</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ion-channel-coupled</strong></td><td>The ligand opens a channel; ions flow and change the membrane voltage within milliseconds.</td><td>Used mainly by nerve and muscle. The nicotinic acetylcholine receptor on skeletal muscle is one.</td></tr>
+      <tr><td><strong>G-protein-coupled (GPCR)</strong></td><td>A single chain that crosses the membrane <strong>seven times</strong>. It switches on a trimeric G protein on the inside.</td><td>The largest receptor family. About <strong>half of all drugs</strong> act on GPCRs. Adrenaline, glucagon, smell and vision all use them.</td></tr>
+      <tr><td><strong>Enzyme-coupled</strong></td><td>Ligand binding brings two receptors together (<strong>dimerization</strong>). Their cytosolic tails are enzymes, usually kinases, or recruit one.</td><td>Receptor tyrosine kinases bind insulin and most growth factors.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Channel, G protein, enzyme: open a gate, flip a switch, or start a kinase.</div>
+
+  <div class="deck" data-topic="signalling"></div>
+</section>
+
+<!-- ================= SIGNAL TRANSDUCTION ================= -->
+<section id="transduction">
+  <h2>Signal transduction: switches, second messengers and kinases</h2>
+  <p>Inside the cell the message is handed from protein to protein. Each hand-off changes the next protein's shape or activity, the signal gets bigger at several steps, and every step can be switched off again.</p>
+
+  <h3>Two kinds of molecular switch</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Switch</th><th>Turned on by</th><th>Turned off by</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Phosphorylation</strong></td><td>A <strong>protein kinase</strong> moves a phosphate from ATP onto the protein. Serine/threonine kinases (PKA, PKC, Cdks) or tyrosine kinases (RTKs).</td><td>A <strong>protein phosphatase</strong> removes the phosphate.</td></tr>
+      <tr><td><strong>GTP binding</strong></td><td>The protein swaps GDP for GTP, helped by a GEF (guanine nucleotide exchange factor).</td><td>The protein hydrolyses its own GTP to GDP. A GAP (GTPase-activating protein) speeds that up.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>A protein's phosphorylation state is a running balance between the kinases adding phosphate and the phosphatases taking it off, so it can change within seconds. Adding a phosphate turns some proteins on and others off; it depends on the protein.</p>
+  <p>In a <strong>phosphorylation cascade</strong> one kinase phosphorylates the next kinase, which phosphorylates the next. Each active enzyme switches on many copies of the one below it, so a handful of signal molecules can change thousands of target proteins. That is <strong>amplification</strong>.</p>
+  <div class="hook">GTP means Go, GDP means Done. Kinase adds phosphate, phosphatase takes it away.</div>
+
+  <h3>How a GPCR switches on its G protein</h3>
+  <ol class="flow" aria-label="GPCR activation sequence">
+    <li>Ligand binds the GPCR</li><li>Receptor changes shape</li><li>Gα swaps GDP for GTP</li><li>Gα-GTP separates from Gβγ</li><li>Both parts activate targets</li><li>Gα hydrolyses GTP and rejoins Gβγ</li>
+  </ol>
+  <p>The trimeric G protein has α, β and γ subunits held to the inner face of the membrane by lipid tails. At rest α holds GDP and all three sit together. The activated receptor acts as the exchange factor. Because Gα hydrolyses its own GTP, the signal lasts only seconds unless the receptor keeps firing. Gβγ can signal too: in heart pacemaker cells the Gβγ released by the acetylcholine receptor opens K⁺ channels, which is why the heart slows.</p>
+
+  <h3>Toxins that jam the switch</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Toxin</th><th>What it does to Gα</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cholera toxin</strong></td><td>Chemically modifies (ADP-ribosylates) <strong>Gαs</strong> so it can no longer hydrolyse GTP. Gs is stuck <strong>on</strong>.</td><td>cAMP stays high in gut cells, Cl⁻ and water pour into the intestine, and the patient gets severe watery diarrhea.</td></tr>
+      <tr><td><strong>Pertussis toxin</strong> (whooping cough)</td><td>ADP-ribosylates <strong>Gαi</strong> so it cannot exchange GDP for GTP. Gi is stuck <strong>off</strong>.</td><td>Gi can no longer hold adenylyl cyclase back, so cAMP rises in airway cells.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Cholera tapes the accelerator down (Gs stuck on). Pertussis cuts the brake cable (Gi stuck off). Both end with too much cAMP.</div>
+
+  <h3>The cAMP pathway: adrenaline releases glucose</h3>
+  <ol class="flow" aria-label="Adrenaline to glucose pathway">
+    <li>Adrenaline</li><li>β-adrenergic GPCR</li><li>Gαs-GTP</li><li>Adenylyl cyclase</li><li>cAMP</li><li>PKA</li><li>Phosphorylase kinase</li><li>Glycogen phosphorylase</li><li>Glucose released</li>
+  </ol>
+  <p>Adenylyl cyclase makes cAMP from ATP, and cAMP phosphodiesterase breaks it down, so the level rises and falls quickly. cAMP switches on <strong>protein kinase A (PKA)</strong>, a serine/threonine kinase. In liver and muscle PKA sets off a cascade that turns glycogen breakdown on and, at the same time, turns glycogen synthase off, so the cell stops storing glucose and starts releasing it.</p>
+  <p>There is also a slow branch. PKA moves into the nucleus and phosphorylates the transcription factor CREB, which binds <strong>cAMP response elements (CRE)</strong> in DNA and switches on target genes. The fast response modifies enzymes that already exist (seconds to minutes); the slow one makes new proteins (minutes to hours).</p>
+
+  <h3>The phospholipase C pathway and calcium</h3>
+  <ol class="flow" aria-label="Phospholipase C pathway">
+    <li>Ligand binds GPCR</li><li>Gαq</li><li>Phospholipase C</li><li>PIP₂ split into IP₃ and DAG</li><li>IP₃ opens ER Ca²⁺ channels</li><li>DAG and Ca²⁺ switch on PKC</li>
+  </ol>
+  <p>Pumps keep free Ca²⁺ in the cytosol about 10,000 times lower than outside the cell or inside the ER, so opening a few channels makes a huge relative jump. Ca²⁺ triggers muscle contraction, secretion and the egg's response at fertilization. Most of its effects go through <strong>calmodulin</strong>, which binds four Ca²⁺ ions, changes shape, and switches on Ca²⁺/calmodulin-dependent kinases and other targets.</p>
+  <div class="hook">IP₃ is water-soluble, so it floats off to the ER. DAG is a lipid, so it stays in the membrane and waits there for PKC. PKA answers to cAMP (A for adenylyl cyclase); PKC answers to Ca²⁺.</div>
+
+  <h3>Receptor tyrosine kinases and Ras</h3>
+  <ol class="flow" aria-label="RTK to Ras to MAP kinase pathway">
+    <li>Growth factor binds</li><li>Two RTKs dimerize</li><li>They phosphorylate each other's tyrosines</li><li>Adaptor and Ras-GEF dock</li><li>Ras swaps GDP for GTP</li><li>MAP kinase cascade</li><li>Genes for growth and division</li>
+  </ol>
+  <p><strong>Ras</strong> is a <strong>monomeric</strong> (small) G protein held to the inner face of the plasma membrane by a lipid tail. It uses the same GTP/GDP switch as Gα but works alone, downstream of RTKs rather than GPCRs. Ras is the <strong>most commonly mutated gene in human cancer</strong>: about one cancer in three carries a Ras mutation, usually one that stops it hydrolysing GTP, so it keeps signalling "divide".</p>
+  <div class="hook">A Ras that cannot hydrolyse GTP is a car with the accelerator taped to the floor.</div>
+
+  <div class="deck" data-topic="transduction"></div>
+</section>
+
+<!-- ================= CELL CYCLE ================= -->
+<section id="cellcycle">
+  <h2>The cell cycle, mitosis and meiosis</h2>
+  <figure>
+    <svg viewBox="0 0 400 280" role="img" aria-label="Cell cycle wheel: G1, S, G2 and M phases with three checkpoints">
+      <path d="M170,55 A90,90 0 0 1 215,222.9" fill="none" stroke="#cdeccf" stroke-width="28"/>
+      <path d="M215,222.9 A90,90 0 0 1 81.4,160.6" fill="none" stroke="#1c7c3a" stroke-width="28"/>
+      <path d="M81.4,160.6 A90,90 0 0 1 112.1,76.1" fill="none" stroke="#cdeccf" stroke-width="28"/>
+      <path d="M112.1,76.1 A90,90 0 0 1 170,55" fill="none" stroke="#f6c177" stroke-width="28"/>
+      <text class="svgbold" x="256.9" y="126" text-anchor="middle">G1</text>
+      <text x="132" y="231" text-anchor="middle" style="font:bold 12px sans-serif;fill:#fff">S</text>
+      <text class="svgbold" x="85.4" y="118" text-anchor="middle">G2</text>
+      <text x="139.2" y="64" text-anchor="middle" style="font:bold 12px sans-serif;fill:#1e1e1e">M</text>
+      <line x1="207.5" y1="210" x2="222.5" y2="235.9" stroke="#c62828" stroke-width="4"/>
+      <line x1="121.8" y1="87.5" x2="102.5" y2="65.4" stroke="#c62828" stroke-width="4"/>
+      <line x1="150.6" y1="72.6" x2="142.8" y2="43.6" stroke="#c62828" stroke-width="4"/>
+      <text class="svgtxt" x="225" y="255">G1/S checkpoint (Start)</text>
+      <text class="svgsm" x="225" y="268">DNA intact? Conditions right?</text>
+      <text class="svgtxt" x="95" y="30" text-anchor="end">G2/M checkpoint</text>
+      <text class="svgsm" x="95" y="42" text-anchor="end">All DNA replicated?</text>
+      <text class="svgtxt" x="158" y="18">Spindle checkpoint</text>
+      <text class="svgsm" x="158" y="30">Every chromosome attached?</text>
+      <text class="svgsm" x="170" y="140" text-anchor="middle">cyclin-Cdk pairs</text>
+      <text class="svgsm" x="170" y="153" text-anchor="middle">drive each step</text>
+      <text class="svgsm" x="300" y="80">G1: grow, check</text>
+      <text class="svgsm" x="300" y="93">S: copy DNA</text>
+      <text class="svgsm" x="300" y="106">G2: grow, check</text>
+      <text class="svgsm" x="300" y="119">M: divide</text>
+    </svg>
+    <figcaption>Interphase (G1, S, G2) fills most of the cycle; M is short. Red bars mark the checkpoints.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>G0</strong> is a resting state outside the cycle. Some cells sit there for a while and come back (liver cells after injury). <strong>Terminally differentiated</strong> cells such as neurons and skeletal muscle fibres have left the cycle for good.</li>
+    <li>Cycle length varies enormously: about 30 minutes in an early frog embryo (no G1 or G2, just S and M), a couple of hours in yeast, and more than a year in a human liver cell. Almost all the variation is in G1.</li>
+  </ul>
+
+  <h3>Mitosis, stage by stage</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Stage</th><th>What you would see</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Prophase</strong></td><td>Chromosomes condense into visible pairs of sister chromatids. The two centrosomes move apart and start building the spindle.</td></tr>
+      <tr><td><strong>Prometaphase</strong></td><td>The <strong>nuclear envelope breaks down</strong>. Microtubules catch the chromosomes by their kinetochores.</td></tr>
+      <tr><td><strong>Metaphase</strong></td><td>Chromosomes line up on the metaphase plate, halfway between the poles. The spindle checkpoint holds the cell here until every kinetochore is attached.</td></tr>
+      <tr><td><strong>Anaphase</strong></td><td>The cohesin holding sisters together is cut, and <strong>sister chromatids</strong> are pulled to opposite poles.</td></tr>
+      <tr><td><strong>Telophase</strong></td><td>A nuclear envelope re-forms around each set and the chromosomes loosen.</td></tr>
+      <tr><td><strong>Cytokinesis</strong></td><td>Animal cells pinch in two with a ring of actin and myosin (the cleavage furrow). Plant cells build a cell plate from Golgi vesicles between the two nuclei.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Prophase, Prometaphase, Metaphase, Anaphase, Telophase: "Please Pass Me A Towel". Metaphase is the Middle, Anaphase pulls Apart, Telophase makes Two nuclei.</div>
+
+  <h3>Mitosis against meiosis</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Mitosis</th><th>Meiosis</th></tr></thead>
+    <tbody>
+      <tr><td>Purpose</td><td>Growth, repair, asexual reproduction</td><td>Making gametes (eggs and sperm)</td></tr>
+      <tr><td>Divisions</td><td>One</td><td>Two, meiosis I and meiosis II</td></tr>
+      <tr><td>Products</td><td>Two diploid (2n) cells, identical to the parent</td><td>Four haploid (n) cells, all genetically different</td></tr>
+      <tr><td>Homologues pair up?</td><td>No</td><td>Yes, in prophase I, where <strong>crossing over</strong> swaps segments</td></tr>
+      <tr><td>What separates at anaphase</td><td>Sister chromatids</td><td>Anaphase I: <strong>homologous chromosomes</strong>. Anaphase II: <strong>sister chromatids</strong>.</td></tr>
+      <tr><td>Where variation comes from</td><td>Nowhere (only new mutations)</td><td>Crossing over, plus independent assortment of each homologue pair (2²³ combinations in humans)</td></tr>
+      <tr><td>When it goes wrong</td><td>Daughter cells with wrong chromosome numbers, common in cancers</td><td><strong>Nondisjunction</strong> gives gametes with an extra or missing chromosome (trisomy 21)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Counting in a human cell</th><th>Chromosomes</th><th>Chromatids (DNA molecules)</th></tr></thead>
+    <tbody>
+      <tr><td>G1 or G0 somatic cell</td><td>46</td><td>46</td></tr>
+      <tr><td>After S phase (G2)</td><td>46</td><td>92</td></tr>
+      <tr><td>After meiosis I</td><td>23</td><td>46</td></tr>
+      <tr><td>After meiosis II (gamete)</td><td>23</td><td>23</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>So a cell just out of meiosis I has <strong>half the chromosomes</strong> of a G0 cell but the <strong>same amount of DNA</strong>, because each chromosome still has two chromatids.</p>
+  <div class="hook">Meiosis I is the reduction division: it splits the homologues and halves the chromosome number. Meiosis II is a mitosis on a haploid cell.</div>
+
+  <h3>The engine: Cdks and cyclins</h3>
+  <p>The first clue came from frog eggs. Cytoplasm from an egg in M phase, injected into an immature oocyte, drove it into M phase too. The active ingredient was called <strong>MPF</strong> (maturation- or M-phase-promoting factor), and it turned out to be a cyclin bound to a Cdk.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Part</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cdk</strong> (cyclin-dependent kinase)</td><td>The catalytic subunit, a serine/threonine kinase that puts phosphate on target proteins. Its <strong>level stays constant</strong> through the cycle; its <strong>activity</strong> rises and falls.</td></tr>
+      <tr><td><strong>Cyclin</strong></td><td>The regulatory subunit. Its <strong>concentration oscillates</strong>: made, then destroyed. A Cdk with no cyclin is inactive, and the cyclin also chooses which targets the Cdk hits.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Complex</th><th>When</th><th>Job</th></tr></thead>
+    <tbody>
+      <tr><td><strong>G1-Cdk</strong> (cyclin D)</td><td>G1, when mitogens are present</td><td>Pushes the cell toward the restriction point; phosphorylates Rb</td></tr>
+      <tr><td><strong>G1/S-Cdk</strong> (cyclin E)</td><td>Late G1</td><td>Commits the cell to a new cycle and switches on S-Cdk</td></tr>
+      <tr><td><strong>S-Cdk</strong> (cyclin A)</td><td>S phase</td><td>Fires replication origins and stops them re-firing, so DNA is copied once per cycle</td></tr>
+      <tr><td><strong>M-Cdk</strong> (cyclin B), the old MPF</td><td>G2 into M</td><td>Condenses chromosomes, breaks down the nuclear envelope, assembles the spindle</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Four ways to control Cdk activity:</p>
+  <ol>
+    <li><strong>Cyclin level.</strong> No cyclin, no activity.</li>
+    <li><strong>Phosphates on the Cdk.</strong> Wee1 kinase adds an inhibitory phosphate; the Cdc25 phosphatase removes it. Removing it all at once is what fires M-Cdk and launches mitosis.</li>
+    <li><strong>Cdk inhibitor proteins</strong> such as p21, p27 and p16 bind and block cyclin-Cdk complexes.</li>
+    <li><strong>Targeted destruction.</strong> The <strong>APC/C</strong> (anaphase-promoting complex) tags proteins with ubiquitin so the proteasome destroys them. It first destroys securin, which frees separase to cut cohesin and start anaphase, then destroys M-cyclin so the cell can leave mitosis.</li>
+  </ol>
+  <div class="hook">Cdk is the engine that never leaves the car. Cyclin is the key that comes and goes. APC/C lives up to its name: it promotes anaphase by destroying things.</div>
+
+  <h3>Checkpoints: pausing the cycle</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Checkpoint</th><th>Question it asks</th><th>If the answer is no</th></tr></thead>
+    <tbody>
+      <tr><td><strong>G1/S</strong> (restriction point; "Start" in yeast)</td><td>Are there mitogens and nutrients? Is the cell big enough? Is the DNA undamaged?</td><td>The cell waits in G1 or drops into G0. DNA damage makes p53 switch on p21, which blocks G1/S-Cdk.</td></tr>
+      <tr><td><strong>G2/M</strong></td><td>Is all the DNA replicated, and is it undamaged?</td><td>The inhibitory phosphate stays on M-Cdk and the cell waits.</td></tr>
+      <tr><td><strong>Spindle assembly</strong> (metaphase to anaphase)</td><td>Is every chromosome attached to both poles?</td><td>APC/C is held off and anaphase waits. This is what prevents nondisjunction.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Once a cell passes the restriction point it is committed: it finishes the cycle even if the mitogens are taken away.</p>
+
+  <div class="deck" data-topic="cellcycle"></div>
+</section>
+
+<!-- ================= CANCER AND APOPTOSIS ================= -->
+<section id="cancer">
+  <h2>Cancer and apoptosis</h2>
+  <p>Cancer cells divide when they should not and fail to die when they should. The cause is a pile-up of <strong>somatic mutations</strong> (in body cells, not passed to children), sometimes on top of an inherited weak gene. It usually takes several hits in the same cell lineage, which is why cancer risk climbs steeply with age. Once repair genes or checkpoints fail, the cell becomes <strong>genetically unstable</strong> and new mutations pile up faster still.</p>
+
+  <h3>Accelerators and brakes</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Type</th><th>Normal job</th><th>How it goes wrong</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Proto-oncogene</strong></td><td>A normal gene that drives division when the proper signal arrives (growth-factor receptors, Ras).</td><td>A gain-of-function mutation makes it an <strong>oncogene</strong> that is overactive or always on. <strong>Dominant</strong>: one bad copy is enough.</td></tr>
+      <tr><td><strong>Tumour suppressor</strong></td><td>Stops the cycle when DNA is damaged, switches on Cdk inhibitors, or triggers apoptosis.</td><td>Loss of function. <strong>Recessive</strong> in the cell: both copies must be lost. Inheriting one broken copy (p53, Rb, BRCA) predisposes a person to cancer.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">An oncogene is a stuck accelerator: one is enough to crash the car. A tumour suppressor is a brake: the car has two, and both have to fail.</div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Gene</th><th>What it does</th><th>In cancer</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ras</strong></td><td>Small G protein relaying the RTK signal to divide</td><td>Stuck in the GTP-bound "on" state. Mutated in about 1 in 3 cancers.</td></tr>
+      <tr><td><strong>p53</strong></td><td>"Guardian of the genome". Senses DNA damage and switches on <strong>p21</strong> to stop the cycle; if the damage is too great it triggers apoptosis.</td><td>Lost in about 70% of colon cancers, 30 to 50% of breast cancers and 50% of lung cancers.</td></tr>
+      <tr><td><strong>Rb</strong></td><td>Binds the transcription factor <strong>E2F</strong> and keeps it inactive.</td><td>Without Rb, E2F is always free and the cell enters S phase without being told.</td></tr>
+      <tr><td><strong>p21, p27, p16</strong></td><td>Cdk inhibitors. p21 is made on p53's orders after DNA damage; p27 blocks G1/S-Cdk and S-Cdk; p16 blocks G1-Cdk.</td><td>Losing them removes a brake.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ol class="flow" aria-label="Rb and E2F control of S phase entry">
+    <li>Mitogen</li><li>G1-Cdk active</li><li>Rb phosphorylated</li><li>E2F released</li><li>S-phase genes transcribed</li><li>Cell enters S</li>
+  </ol>
+  <div class="hook">Rb keeps E2F on a leash. A phosphate on Rb cuts the leash.</div>
+
+  <h3>Mitogens, growth factors and survival factors</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Signal</th><th>Effect</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Mitogen</strong></td><td>Stimulates <strong>division</strong>: switches on G1-Cdk and lifts the brakes, carrying the cell past the restriction point.</td><td>PDGF from platelets at a wound</td></tr>
+      <tr><td><strong>Growth factor</strong></td><td>Stimulates <strong>growth</strong>: more protein and a bigger cell. Adult muscle fibres cannot divide, so they grow by <strong>hypertrophy</strong>, each fibre getting larger.</td><td>Insulin-like growth factors</td></tr>
+      <tr><td><strong>Survival factor</strong></td><td>Suppresses <strong>apoptosis</strong>, mostly by keeping anti-apoptotic Bcl-2 proteins up.</td><td>Nerve growth factor (NGF) for neurons</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Many real signal proteins do more than one of these jobs; the names describe the effect.</p>
+
+  <h3>How cancer spreads</h3>
+  <ul>
+    <li>A <strong>benign</strong> tumour stays where it started, often inside a capsule. A <strong>malignant</strong> tumour invades the tissue around it.</li>
+    <li><strong>Metastasis</strong>: cells lose their adhesion (fibronectin and cadherin contacts), break through the basal lamina, enter blood or lymph, and settle and grow somewhere else. Most cancer deaths are caused by metastases.</li>
+    <li>Typical cancer cells divide without mitogens, ignore contact with neighbours, escape apoptosis, keep telomeres long with telomerase, are genetically unstable, and recruit their own blood supply.</li>
+  </ul>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Class</th><th>Tissue of origin</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Carcinoma</strong></td><td>Epithelial cells. About 85% of human cancers.</td></tr>
+      <tr><td><strong>Sarcoma</strong></td><td>Connective tissue and muscle</td></tr>
+      <tr><td><strong>Leukemia and lymphoma</strong></td><td>Hematopoietic (blood-forming) cells</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Carcinoma covers (epithelium lines and covers surfaces). Sarcoma supports (bone, muscle, connective tissue). Leukemia is "white blood".</div>
+
+  <h3>Apoptosis: death on purpose</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Apoptosis</th><th>Necrosis</th></tr></thead>
+    <tbody>
+      <tr><td>Cause</td><td>A program switched on by signals or by damage the cell cannot fix</td><td>Injury: trauma, toxins, loss of blood supply</td></tr>
+      <tr><td>What the cell does</td><td>Shrinks, condenses its chromatin, chops its DNA, and breaks into membrane-wrapped fragments</td><td>Swells and bursts</td></tr>
+      <tr><td>Contents</td><td>Stay wrapped; neighbours and macrophages eat the fragments</td><td>Spill out</td></tr>
+      <tr><td>Inflammation</td><td>None</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ol class="flow" aria-label="Intrinsic apoptosis pathway">
+    <li>Damage or no survival signals</li><li>Pro-apoptotic Bcl-2 proteins open the mitochondrion</li><li>Cytochrome c released</li><li>Cytochrome c and an adaptor form the apoptosome</li><li>Initiator caspase</li><li>Executioner caspases</li><li>Cell taken apart</li>
+  </ol>
+  <p><strong>Caspases</strong> are proteases with a cysteine in the active site that cut their targets after an aspartate. They are made as inactive <strong>pro-caspases</strong>. One active caspase cuts and activates many more, so the proteolytic cascade amplifies itself and cannot be reversed. The <strong>Bcl-2 family</strong> decides whether it starts: anti-apoptotic members (Bcl-2 itself) guard the mitochondrion, and pro-apoptotic members (Bax, Bak) punch holes in it. The balance between the two sides decides the cell's fate.</p>
+  <p>Apoptosis sculpts the body (it removes the webbing between fingers), keeps cell numbers steady in adults, and removes damaged or infected cells. In the developing nervous system about half the neurons die: only those that reach their target and receive enough survival factor live, so the number of neurons ends up matched to the number of target cells.</p>
+  <div class="hook">Apoptosis is a tidy demolition with the rubble cleared away. Necrosis is an explosion. Caspase: a Cysteine protease that cuts after ASPartate.</div>
+
+  <div class="deck" data-topic="cancer"></div>
+</section>
+
+<!-- ================= CYTOSKELETON ================= -->
+<section id="cytoskel">
+  <h2>Cytoskeleton and motor proteins</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Microfilaments</th><th>Intermediate filaments</th><th>Microtubules</th></tr></thead>
+    <tbody>
+      <tr><td>Built from</td><td>Actin monomers (bind ATP)</td><td>Many different fibrous proteins</td><td>α/β-tubulin dimers (bind GTP)</td></tr>
+      <tr><td>Width</td><td>About 7 nm, the thinnest</td><td>About 10 nm</td><td>About 25 nm, a hollow tube of 13 protofilaments</td></tr>
+      <tr><td>Polarity (+ and − ends)</td><td>Yes</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Dynamics</td><td>Very dynamic</td><td>The least dynamic and most stable</td><td>Very dynamic (dynamic instability)</td></tr>
+      <tr><td>Motor proteins</td><td>Myosin</td><td>None</td><td>Kinesin and dynein</td></tr>
+      <tr><td>Main jobs</td><td>Cell shape, crawling, microvilli, the contractile ring, muscle contraction</td><td>Resisting stretch; the nuclear lamina</td><td>Tracks for vesicles, the mitotic spindle, cilia and flagella</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Thin, middle, thick: microfilaments are fine threads (7 nm), intermediate filaments sit in the middle (10 nm), microtubules are tubes (25 nm).</div>
+
+  <h3>Microtubules</h3>
+  <ul>
+    <li>They grow out from a <strong>microtubule-organizing centre (MTOC)</strong>. In animal cells that is the <strong>centrosome</strong>: a pair of <strong>centrioles</strong> in a cloud of protein that contains γ-tubulin rings, where new microtubules start.</li>
+    <li>Tubulin dimers stack head to tail into <strong>protofilaments</strong>, so every protofilament, and the whole tube, has a direction. The <strong>minus end</strong> stays anchored at the centrosome; the <strong>plus end</strong> grows and shrinks out toward the cell edge.</li>
+    <li><strong>Dynamic instability</strong>: a plus end keeps growing while it has a cap of GTP-tubulin. If it loses the cap it collapses quickly. <strong>Capping proteins</strong> that bind the end stabilize it.</li>
+    <li><strong>Colchicine</strong> blocks tubulin from polymerizing and <strong>taxol</strong> freezes microtubules so they cannot shrink. Either way the spindle cannot work and dividing cells stall in mitosis, which is why taxol is used against cancer.</li>
+  </ul>
+
+  <h3>Actin microfilaments</h3>
+  <ul>
+    <li>Actin is the most abundant protein in most animal cells, 5 to 10% of all protein, and about half of it is in filaments at any moment. The rest is a pool of free monomers ready to build.</li>
+    <li>Actin does very different jobs in different places because of the many <strong>accessory proteins</strong> that bundle, cross-link, cap or cut the filaments.</li>
+    <li><strong>Cell crawling</strong> happens in three steps. The front <strong>protrudes</strong> as actin polymerizes at the leading edge. The new front <strong>attaches</strong> to the surface through integrins. <strong>Myosin</strong> contracts and pulls the rear forward.</li>
+  </ul>
+
+  <h3>Intermediate filaments</h3>
+  <p>Each monomer has a long central α-helical <strong>rod domain</strong> with globular ends. Two monomers coil into a dimer, and two dimers lie side by side pointing in <strong>opposite</strong> directions, so the finished rope has no polarity and no motor can walk on it. They make cells tough rather than mobile.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Type</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Keratins</strong></td><td>Epithelial cells, hair and nails. They anchor into desmosomes and hemidesmosomes, so a sheet of epithelium resists stretching. Keratin mutations cause skin that blisters easily.</td></tr>
+      <tr><td><strong>Vimentin</strong></td><td>Connective-tissue cells, muscle cells and glial cells</td></tr>
+      <tr><td><strong>Neurofilaments</strong></td><td>Nerve axons</td></tr>
+      <tr><td><strong>Nuclear lamins</strong></td><td>A mesh lining the inside of the nuclear envelope in every nucleated cell. M-Cdk phosphorylates them to take the envelope apart at mitosis.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Motor proteins</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Motor</th><th>Track</th><th>Walks toward</th><th>Jobs</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Myosin</strong></td><td>Actin</td><td>Plus end (most myosins)</td><td>Muscle contraction, cytokinesis, carrying cargo</td></tr>
+      <tr><td><strong>Kinesin</strong></td><td>Microtubule</td><td>Plus end, outward toward the cell edge</td><td>Carries secretory vesicles out to the membrane</td></tr>
+      <tr><td><strong>Dynein</strong></td><td>Microtubule</td><td>Minus end, inward toward the centrosome</td><td>Faster than kinesin. Pulls cargo inward and bends cilia and flagella.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>All three burn <strong>ATP</strong>: the head binds the track and steps along it, and the tail holds the cargo.</p>
+  <div class="hook">Kinesin keeps going out to the plus end. Dynein dives back to the minus end at the centre.</div>
+
+  <h3>Eukaryotic and bacterial flagella</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Eukaryotic flagellum</th><th>Bacterial flagellum</th></tr></thead>
+    <tbody>
+      <tr><td>Made of</td><td>Microtubules (tubulin) in a 9 + 2 arrangement</td><td>The protein <strong>flagellin</strong></td></tr>
+      <tr><td>Motion</td><td>Whips or undulates, as dynein slides neighbouring microtubules past each other</td><td>Spins like a <strong>rotary</strong> propeller</td></tr>
+      <tr><td>Power</td><td>ATP</td><td>The proton-motive force across the membrane</td></tr>
+      <tr><td>Covering</td><td>Wrapped in plasma membrane</td><td>Naked, outside the cell</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">A eukaryotic flagellum is a whip inside a sleeve. A bacterial flagellum is a bare propeller.</div>
+
+  <div class="deck" data-topic="cytoskel"></div>
+</section>
+
+<!-- ================= JUNCTIONS AND ECM ================= -->
+<section id="ecm">
+  <h2>Cell junctions, extracellular matrix, tissues and stem cells</h2>
+
+  <h3>Plant cell walls</h3>
+  <ul>
+    <li>The <strong>primary wall</strong> is laid down while the cell is still growing. It is thin and can stretch: cellulose microfibrils embedded in hemicellulose and <strong>pectin</strong>.</li>
+    <li>The <strong>secondary wall</strong> is added inside the primary wall once growth stops. It is thicker and often stiffened with lignin, which is what wood is.</li>
+    <li>The <strong>middle lamella</strong> is a pectin-rich layer that glues the walls of neighbouring cells together. Pectin is the same stuff that sets jam.</li>
+    <li><strong>Cellulose</strong> is β-1,4-linked glucose: straight chains that hydrogen-bond side by side into strong microfibrils. It is the most abundant organic molecule on Earth. <strong>Cellulose synthase</strong> complexes in the plasma membrane spin it out into the wall, running along tracks set by <strong>microtubules</strong> just under the membrane, so the microtubules decide which way the cell can expand.</li>
+    <li><strong>Turgor pressure</strong>: water enters the cell by osmosis and presses the membrane against the wall, which pushes back. That is what keeps a plant upright. A wilting plant has lost turgor.</li>
+  </ul>
+  <div class="hook">Cellulose is the steel rebar. Pectin is the glue between neighbours. Water pressure inflates the whole structure.</div>
+
+  <h3>Animal tissues and their extracellular matrix</h3>
+  <p>In <strong>connective tissue</strong> (bone, cartilage, tendon, skin dermis) the cells are sparse and the extracellular matrix (ECM) carries the load. In <strong>epithelia</strong> the cells are packed tightly and hold each other up through junctions, with only a thin sheet of ECM, the <strong>basal lamina</strong>, underneath.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>ECM component</th><th>What it is and does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Collagen</strong></td><td>The most abundant protein in mammals. Three chains wind into a triple helix, and many prolines and lysines are converted to <strong>hydroxyproline</strong> and <strong>hydroxylysine</strong>, which let the helices bond together. The enzyme doing that needs <strong>ascorbic acid (vitamin C)</strong>. Without it collagen is weak and the result is <strong>scurvy</strong>: bleeding gums, loose teeth, wounds that will not heal. Collagen resists <strong>stretching</strong>.</td></tr>
+      <tr><td><strong>Proteoglycans and GAGs</strong></td><td>Glycosaminoglycans (GAGs) are long unbranched chains of a repeating disaccharide, heavily negative (often sulfated). They pull in Na⁺ and water and make a gel that resists <strong>squashing</strong>. Examples: <strong>chondroitin sulfate</strong>, <strong>keratan sulfate</strong>, and <strong>hyaluronan</strong> (hyaluronate), a huge GAG that is not sulfated. A proteoglycan is a core protein carrying GAG chains.</td></tr>
+      <tr><td><strong>Fibronectin</strong></td><td>A protein that ties the ECM to cells by binding collagen on one side and integrins on the other. It is reduced around cancer cells, matching their loss of adhesion.</td></tr>
+      <tr><td><strong>Integrins</strong></td><td>Transmembrane receptors made of an α and a β chain; there are at least 24 kinds. Outside they grip fibronectin or laminin; inside they link to actin (or to keratin at hemidesmosomes). They carry signals both ways, so contact with the ECM can change what the cell does.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Collagen is the rope, GAG gel is the water cushion. No vitamin C, no strong collagen: that is why sailors got scurvy.</div>
+
+  <h3>Junctions in an epithelium, top to bottom</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Junction</th><th>Links to</th><th>Job</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tight junction</strong></td><td>Sealing proteins stitched between neighbouring membranes</td><td>A <strong>barrier</strong>: nothing leaks between the cells, so gut contents cannot slip past the lining. Also a <strong>fence</strong> that keeps apical and basal membrane proteins apart.</td></tr>
+      <tr><td><strong>Adherens junction</strong></td><td>Cadherins joined to <strong>actin</strong></td><td>A continuous belt around each cell. When the belts contract, a flat sheet of epithelium bends into a tube, which is how the neural tube forms.</td></tr>
+      <tr><td><strong>Desmosome</strong></td><td>Cadherins joined to <strong>keratin</strong></td><td>A spot weld between cells that spreads mechanical stress. Antibodies against the desmosome cadherin desmoglein cause the blistering disease pemphigus.</td></tr>
+      <tr><td><strong>Gap junction</strong></td><td>Channels built from <strong>connexins</strong> (six make a connexon)</td><td>An open pipe between two cytoplasms for ions and small molecules. It couples heart muscle cells so they contract together.</td></tr>
+      <tr><td><strong>Hemidesmosome</strong></td><td>Integrins joined to <strong>keratin</strong></td><td>Anchors the cell to the basal lamina underneath, cell to ECM rather than cell to cell.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="hook">Top to bottom, Tight, Adherens, Desmosome, Gap, Hemidesmosome: "The Adorable Dog Gets Hugged". Actin goes with adherens, keratin goes with both desmosomes.</div>
+
+  <h3>Plasmodesmata and gap junctions</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Plasmodesmata (plants)</th><th>Gap junctions (animals)</th></tr></thead>
+    <tbody>
+      <tr><td>Lined by</td><td>Plasma membrane that runs continuously from one cell into the next, with a strand of ER through the middle</td><td>Protein channels (connexons)</td></tr>
+      <tr><td>What passes</td><td>Small molecules, and when they dilate, proteins and RNA</td><td>Ions and small molecules only</td></tr>
+      <tr><td>Effect</td><td>The plant's cytoplasm forms one connected <strong>supracellular</strong> network</td><td>Cells stay separate but can share signals</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Differentiation and stem cells</h3>
+  <ul>
+    <li><strong>Differentiation</strong>: cells become specialised by expressing different sets of genes. They keep the same genome.</li>
+    <li>A <strong>stem cell</strong> can do two things: <strong>renew itself</strong> (divide and keep a stem cell) and give rise to differentiated cells.</li>
+    <li>Potency describes how many cell types a stem cell can make. <strong>Embryonic stem cells</strong> (from the inner cell mass) are pluripotent and can make any cell in the body. <strong>Hematopoietic stem cells</strong> in bone marrow are <strong>multipotent</strong>, making every kind of blood cell. A <strong>unipotent</strong> stem cell makes one cell type.</li>
+    <li>Tissues that wear out fast, like the gut lining, skin and blood, rely on stem cells to replace what is lost.</li>
+  </ul>
+  <div class="hook">Stem cell = self-renewal plus making something else. Potency shrinks as development goes on: toti, pluri, multi, uni.</div>
+
+  <div class="deck" data-topic="ecm"></div>
 </section>
 
 <!-- ================= RECALL PRACTICE ================= -->
@@ -1126,7 +1863,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 
 <script>
 // one flashcard deck per topic section: click the card to turn it over
-const FC = {"aminoacids": [["How many standard amino acids, and what differs between them?", "20. Only the R group differs. Every one has an amino group, an alpha carbon, a hydrogen and a carboxyl group."], ["Which amino acid breaks helices, and why?", "Proline. Its side chain bonds back to the backbone nitrogen, so the chain cannot rotate freely."], ["Which amino acids are negatively charged at pH 7?", "Aspartate (pKa 3.9) and glutamate (pKa 4.3)."], ["Which amino acids are positively charged at pH 7?", "Lysine (pKa 10.5) and arginine (pKa 12.5). Histidine (pKa 6.0) is only partly charged."], ["Why does histidine turn up in so many active sites?", "Its side chain pKa is near 6, so it gains or loses a proton at physiological pH. That suits buffering and acid/base catalysis."], ["Which amino acid forms disulfide bonds?", "Cysteine. Two cysteines make the only covalent bond in tertiary structure."], ["Which residues absorb at 280 nm?", "Tryptophan and tyrosine. That absorbance is how protein concentration is measured."], ["Name the nine essential amino acids.", "His, Ile, Leu, Lys, Met, Phe, Thr, Trp, Val. Mnemonic: PVT TIM HaLL."], ["Which amino acid is smallest and most flexible?", "Glycine. Its R group is a single hydrogen, so it is achiral and fits tight turns."], ["In which direction is a polypeptide built?", "From the N terminus to the C terminus."]], "code": [["How many codons are there, and how many encode amino acids?", "64 in total. 61 sense codons plus 3 stop codons."], ["What is the start codon?", "AUG, encoding methionine. Bacteria use formylmethionine."], ["Name the three stop codons.", "UAA, UAG and UGA. No tRNA reads them; release factors do."], ["What does it mean that the code is degenerate?", "Several codons encode the same amino acid, mostly differing at the third base. That is wobble."], ["Silent, missense and nonsense mutations?", "Silent changes the base but not the amino acid. Missense changes the amino acid. Nonsense creates a stop codon."], ["Why is a frameshift usually the most severe mutation?", "An insertion or deletion that is not a multiple of three shifts the reading frame, so everything downstream is garbled."], ["Is the genetic code universal?", "Almost. It is shared by nearly all organisms, with mitochondria as the main exception."], ["What makes a missense mutation conservative?", "The new amino acid has similar chemistry, so function is often kept. Glu to Val is non-conservative and causes sickle cell."]], "dogma": [["State the central dogma.", "DNA is transcribed to RNA, and RNA is translated to protein."], ["Which enzyme carries out transcription?", "RNA polymerase. It needs no primer."], ["What breaks the one way flow?", "Reverse transcriptase, which copies RNA back into DNA in retroviruses and in cDNA synthesis."], ["In which direction are nucleic acids synthesized?", "Always 5 prime to 3 prime, reading the template 3 prime to 5 prime."], ["Where does each step happen in a eukaryote?", "Transcription in the nucleus, translation in the cytoplasm."], ["How do prokaryotes differ?", "Transcription and translation are coupled in the same compartment, and there are no introns to remove."], ["What is replication?", "DNA copied into DNA by DNA polymerase, semiconservatively."], ["What carries amino acids to the ribosome?", "tRNA, charged with its matching amino acid by aminoacyl-tRNA synthetase."]], "macro": [["Name the four classes of macromolecule and their monomers.", "Carbohydrates from monosaccharides, lipids (not true polymers), proteins from amino acids, nucleic acids from nucleotides."], ["Which bond joins each polymer?", "Glycosidic in carbohydrates, ester in lipids, peptide in proteins, phosphodiester in nucleic acids."], ["How are polymers built and broken?", "Built by dehydration synthesis, which removes water. Broken by hydrolysis, which adds it."], ["What are the three parts of a nucleotide?", "A phosphate, a five carbon sugar and a nitrogenous base."], ["Purines and pyrimidines?", "Purines A and G have two rings. Pyrimidines C, T and U have one."], ["Why do phospholipids form bilayers?", "They are amphipathic. Hydrophilic heads face water while hydrophobic tails cluster inward."], ["Saturated against unsaturated fats?", "Saturated has no carbon double bonds and packs solid. Unsaturated has kinks and stays liquid."], ["How do DNA and RNA differ chemically?", "DNA uses deoxyribose with thymine. RNA uses ribose with uracil, and its 2 prime OH makes it less stable."]], "bonds": [["Rank the interactions by strength.", "Covalent, then ionic, then hydrogen bonds, then van der Waals."], ["What holds the two DNA strands together?", "Hydrogen bonds between the base pairs, plus base stacking interactions."], ["How many hydrogen bonds in each base pair?", "Two for A to T and three for G to C, so GC rich DNA melts at a higher temperature."], ["What mainly drives protein folding?", "The hydrophobic effect. Nonpolar side chains cluster inward and release ordered water, which raises entropy."], ["What makes a covalent bond polar?", "A difference in electronegativity between the two bonded atoms."], ["Why does ice float?", "Hydrogen bonds hold the molecules in an open lattice that is less dense than liquid water."], ["What is a salt bridge?", "An electrostatic attraction between oppositely charged side chains. It is strongest when buried away from water."], ["State Chargaff's rules.", "The amount of A equals T and the amount of G equals C, in every species."]], "protein": [["Name the four levels of protein structure.", "Primary sequence, secondary helices and sheets, tertiary fold, quaternary assembly of subunits."], ["What stabilizes secondary structure?", "Hydrogen bonds between backbone carbonyl and amide groups, not between side chains."], ["Which groups hydrogen bond in an alpha helix?", "The backbone carbonyl of one residue and the backbone amide about four residues along."], ["What stabilizes tertiary structure?", "R group interactions: hydrophobic clustering, hydrogen bonds, salt bridges, van der Waals and disulfide bonds."], ["What did Anfinsen's experiment establish?", "That the amino acid sequence contains all the information needed for folding. Denatured ribonuclease refolded on its own."], ["What does denaturation do?", "Heat, extreme pH or urea break the weak bonds and unfold the protein. Primary structure survives, function does not."], ["Give an example of quaternary structure.", "Hemoglobin, built from two alpha and two beta subunits."], ["What is a protein domain?", "A compact, independently folding region that usually has a function of its own."]], "enzymes": [["How does an enzyme speed up a reaction?", "It lowers the activation energy by stabilizing the transition state. It does not change delta G or the equilibrium."], ["What is induced fit?", "Substrate binding reshapes the active site around it, improving catalysis."], ["Competitive against noncompetitive inhibition?", "A competitive inhibitor binds the active site and is beaten by more substrate. A noncompetitive one binds elsewhere and is not."], ["What does Km represent?", "The substrate concentration that gives half maximal velocity. A low Km means high affinity."], ["What is feedback inhibition?", "The end product of a pathway inhibits an enzyme near its start, shutting the pathway down."], ["Cofactor against coenzyme?", "Cofactors are inorganic, such as magnesium or zinc. Coenzymes are organic, such as NAD+, FAD and coenzyme A."], ["Why does activity fall at high temperature?", "The enzyme denatures once it passes its stability limit."], ["Exergonic against endergonic?", "Exergonic has a negative delta G and is spontaneous. Endergonic has a positive delta G and needs energy."], ["Describe ATP and its yield.", "Adenine, ribose and three phosphates. Hydrolysis to ADP releases about 7.3 kcal per mole."], ["What does OIL RIG stand for?", "Oxidation Is Loss of electrons, Reduction Is Gain."]], "cells": [["Give three differences between prokaryotes and eukaryotes.", "No nucleus against a true nucleus, circular against linear chromosomes, 70S against 80S ribosomes."], ["Name the three domains of life.", "Bacteria, Archaea and Eukarya."], ["What does the nucleolus do?", "Makes ribosomal RNA and assembles ribosomal subunits."], ["Rough against smooth ER?", "Rough ER carries ribosomes and folds proteins for secretion. Smooth ER makes lipids, detoxifies and stores calcium."], ["What does the Golgi apparatus do?", "Modifies, sorts, tags and ships proteins to their destinations."], ["Lysosome against peroxisome?", "Lysosomes digest waste with acidic enzymes. Peroxisomes break down fatty acids, producing hydrogen peroxide (H2O2). Catalase can use H2O2 to oxidize other substances or break it down into water and oxygen: 2 H2O2 -> 2 H2O + O2."], ["What supports endosymbiotic theory?", "Mitochondria and chloroplasts have double membranes, circular DNA and 70S ribosomes, and they divide by binary fission."], ["Why must cells stay small?", "The surface area to volume ratio falls as a cell grows, which limits exchange with the environment."], ["Are viruses alive?", "No. They are acellular and cannot reproduce without host machinery."]], "dna": [["What does semiconservative replication mean?", "Each daughter duplex keeps one parental strand and one newly made strand."], ["Which experiment proved it?", "Meselson and Stahl, shifting cells from heavy to light nitrogen and separating the DNA on a caesium chloride gradient."], ["Why is a primer needed?", "DNA polymerase can only extend a free 3 prime hydroxyl, so primase lays down a short RNA primer first."], ["Leading against lagging strand?", "The leading strand is made continuously toward the fork. The lagging strand is made as Okazaki fragments running away from it."], ["What do helicase, SSB and topoisomerase do?", "Helicase unwinds the helix, SSB proteins keep the strands apart, topoisomerase relieves supercoiling ahead of the fork."], ["DNA polymerase I against III in bacteria?", "Pol III does the main elongation. Pol I removes the RNA primers and fills the gaps with DNA."], ["What does ligase do?", "Seals the nicks between Okazaki fragments by forming a phosphodiester bond."], ["How does proofreading work?", "A 3 prime to 5 prime exonuclease activity removes mispaired nucleotides as they are added."], ["Why do chromosomes shorten without telomerase?", "Removing the last RNA primer on the lagging strand leaves a gap that cannot be filled."], ["What does antiparallel mean?", "One strand runs 5 prime to 3 prime while its partner runs 3 prime to 5 prime."]], "txn": [["Name the three stages of transcription.", "Initiation at the promoter, elongation 5 prime to 3 prime, and termination."], ["Which strand does RNA polymerase read?", "The template or antisense strand, read 3 prime to 5 prime. The coding strand matches the mRNA."], ["How is eukaryotic mRNA processed?", "A 5 prime cap is added, a poly-A tail is added, and the spliceosome removes the introns."], ["What marks a bacterial promoter?", "The minus 10 box (TATAAT) and the minus 35 box, recognized by sigma factor."], ["What happens at the ribosomal A, P and E sites?", "A accepts the incoming charged tRNA, P holds the growing chain, and E is where the empty tRNA leaves."], ["What forms the peptide bond?", "Peptidyl transferase, a ribozyme activity of the rRNA in the large subunit."], ["Which enzyme charges tRNA?", "Aminoacyl-tRNA synthetase, one for each amino acid."], ["How does translation end?", "A stop codon enters the A site and release factors cut the finished chain free."], ["What is wobble?", "Flexible pairing at the third codon position, which lets a single tRNA read several codons."], ["Which eukaryotic polymerase makes mRNA?", "RNA polymerase II. Pol I makes rRNA and pol III makes tRNA."]], "lac": [["Name the three structural genes of the lac operon.", "lacZ for beta-galactosidase, lacY for permease, lacA for transacetylase."], ["What does the lac repressor do?", "Made from lacI, it binds the operator and blocks transcription."], ["What is the inducer?", "Allolactose, or IPTG in the laboratory. It binds the repressor and inactivates it."], ["What does CAP do?", "With cAMP bound, it binds upstream of the promoter and increases RNA polymerase binding. That is positive control."], ["Why does glucose shut the operon down?", "Glucose lowers cAMP, so CAP cannot activate the promoter. That is catabolite repression."], ["When is expression at its maximum?", "Lactose present and glucose absent."], ["Inducible against repressible operon?", "Inducible is normally off and switches on for catabolism, like lac. Repressible is normally on and switches off when the product builds up, like trp."], ["Cis against trans acting?", "The operator acts only on genes on its own DNA molecule. The repressor is a diffusible protein and acts on any copy."]], "resp": [["What is the net yield of glycolysis?", "2 ATP, 2 NADH and 2 pyruvate per glucose, in the cytosol, with no oxygen required."], ["Which enzyme limits the rate of glycolysis?", "Phosphofructokinase-1. It is inhibited by ATP and citrate and activated by AMP."], ["What is the link reaction?", "Pyruvate dehydrogenase converts pyruvate to acetyl-CoA in the matrix, releasing CO2 and making NADH."], ["What does one turn of the Krebs cycle yield?", "3 NADH, 1 FADH2, 1 GTP and 2 CO2. The cycle turns twice per glucose."], ["Which complexes pump protons?", "Complexes I, III and IV. Complex II pumps none, which is why FADH2 yields less ATP."], ["What is the final electron acceptor?", "Oxygen, which is reduced to water at complex IV."], ["How much ATP does each carrier give?", "About 2.5 per NADH and 1.5 per FADH2, for roughly 30 to 32 ATP per glucose."], ["What does an uncoupler such as DNP do?", "It lets protons leak back, so electron transport keeps running while ATP synthesis stops and the energy leaves as heat."], ["What does yeast make when fermenting?", "Ethanol and carbon dioxide, with a net of 2 ATP per glucose."], ["Why ferment at all?", "To regenerate NAD+ so that glycolysis can keep running without oxygen. Fermentation itself makes no ATP."], ["Compare aerobic and anaerobic yeast.", "About 30 ATP per glucose with oxygen against 2 without it, roughly a fifteen fold difference."], ["How does lactic acid fermentation differ?", "Pyruvate is reduced straight to lactate in one step, with no carbon dioxide released."]], "photo": [["Give the overall equation.", "6 CO2 plus 6 H2O plus light gives C6H12O6 plus 6 O2."], ["Where does each stage happen?", "Light reactions in the thylakoid membrane, Calvin cycle in the stroma."], ["Where does the released oxygen come from?", "From splitting water at photosystem II, not from carbon dioxide."], ["Which photosystem is P680?", "Photosystem II. P700 is photosystem I, and electrons reach II first despite the numbering."], ["What do the light reactions produce?", "ATP, NADPH and oxygen."], ["What is cyclic photophosphorylation?", "Electrons loop around photosystem I alone, making extra ATP with no NADPH and no oxygen."], ["Name the three phases of the Calvin cycle.", "Carbon fixation by rubisco, reduction to G3P, and regeneration of RuBP."], ["What does one G3P cost?", "3 CO2, 9 ATP and 6 NADPH over three turns. A glucose needs six turns."], ["What is photorespiration?", "Rubisco fixes oxygen instead of carbon dioxide when stomata close, consuming ATP and making no sugar."], ["C4 against CAM?", "C4 separates the two steps in space, using mesophyll and bundle sheath cells. CAM separates them in time, fixing carbon at night."], ["Which enzyme fixes carbon in C4 plants?", "PEP carboxylase, which has no affinity for oxygen."]], "mendel": [["State the law of segregation.", "The two alleles of a gene separate during gamete formation, so each gamete carries only one."], ["State the law of independent assortment.", "Genes on different chromosomes are inherited independently of one another."], ["Give the monohybrid and dihybrid ratios.", "3 to 1 for a monohybrid cross and 9 to 3 to 3 to 1 for a dihybrid cross."], ["What is a test cross for?", "Crossing to a homozygous recessive reveals whether a dominant individual is homozygous or heterozygous."], ["Incomplete dominance against codominance?", "Incomplete dominance blends the two phenotypes. Codominance shows both fully, as in AB blood type."], ["How does autosomal recessive inheritance look?", "It skips generations, affected children come from unaffected carriers, and both sexes are affected equally."], ["How does X linked recessive inheritance look?", "Mostly males are affected, carrier mothers pass it to sons, and an affected father gives every daughter carrier status."], ["What is incomplete penetrance?", "Some individuals carrying the genotype never show the phenotype at all."], ["What is variable expressivity?", "Affected individuals differ in how severe the phenotype turns out to be."], ["Pleiotropy against epistasis?", "Pleiotropy is one gene affecting several traits. Epistasis is one gene masking the effect of another."]], "linkage": [["How is recombination frequency calculated?", "Recombinant offspring divided by total offspring, times 100. One percent equals one map unit."], ["What is the maximum recombination frequency?", "50 percent, which is what unlinked genes give. Anything at that value behaves as unlinked."], ["How do you find the middle gene in a three point cross?", "Compare the rarest double crossover class with the parental class. The gene that has switched sits in the middle."], ["Which offspring classes are most common?", "The parental classes, matching the original chromosome arrangement."], ["Why do distant genes underestimate map distance?", "Double crossovers restore the parental arrangement, so they are never counted."], ["What is interference?", "One crossover reduces the chance of another nearby. It equals one minus the coefficient of coincidence."], ["When does crossing over happen?", "In prophase of meiosis I, between homologous chromosomes."], ["What was Sturtevant's contribution?", "He used recombination frequencies to build the first genetic map."]], "recdna": [["What do restriction enzymes recognize?", "Short palindromic sequences, which they cut to leave either sticky overhangs or blunt ends."], ["Why does the host not cut its own DNA?", "A modification enzyme methylates the recognition sites in the host genome."], ["What three features does a cloning vector need?", "An origin of replication, a selectable marker and a multiple cloning site."], ["Why are sticky ends useful?", "The overhangs base pair with any fragment cut by the same enzyme, holding the ends together while ligase seals them."], ["How does blue white screening work?", "An insert disrupts the lacZ fragment, so recombinant colonies stay white while empty vectors turn blue on X-gal."], ["Genomic against cDNA library?", "A genomic library holds every sequence including introns. A cDNA library is built from mRNA, so the introns are already spliced out."], ["Why use an oligo-dT primer?", "It anneals to the poly-A tail, so only mature messenger RNA gets copied."], ["How do you screen an expression library?", "With an antibody against the protein product, since the insert is transcribed and translated."], ["What is a cosmid?", "A plasmid carrying phage lambda packaging sequences, which lets it accept much larger inserts."], ["What is insertional inactivation?", "Cloning DNA into a marker gene disrupts it, which signals that the insert went in."], ["What did the Asilomar conference address?", "Voluntary safety guidelines for recombinant DNA research."]], "methods": [["Which way does DNA move in a gel?", "Toward the positive electrode, because the phosphate backbone is negative. Small fragments travel fastest."], ["Give the three PCR steps and their temperatures.", "Denature at 94 to 95, anneal primers at 50 to 65, extend at 72 degrees with Taq polymerase."], ["Why is Taq polymerase used?", "It is thermostable, so it survives the repeated high temperature denaturation steps."], ["What terminates the chains in Sanger sequencing?", "Dideoxynucleotides, which have no 3 prime hydroxyl for the next base to attach to."], ["Southern, Northern and Western blots?", "DNA, RNA and protein respectively. Remember SNoW DRoP."], ["What does quantitative PCR measure?", "The amount of starting template, by monitoring product accumulation in real time."], ["How does a labeled probe find its target?", "By complementary base pairing to the target sequence."], ["What is reverse transcriptase used for?", "Converting mRNA into cDNA for cloning and analysis."], ["How does CRISPR-Cas9 work?", "A guide RNA takes Cas9 to a matching sequence, where it cuts so that repair edits the gene."], ["Why run a DNA ladder beside your samples?", "It provides known size standards for estimating the fragment sizes."]], "classic": [["What did Griffith show in 1928?", "Heat killed virulent bacteria could transform live avirulent bacteria, so something was being transferred."], ["What did Avery, MacLeod and McCarty add?", "Destroying DNA abolished transformation while destroying protein or RNA did not, so DNA is the transforming principle."], ["What did Hershey and Chase find?", "Phosphorus labeled DNA entered the bacteria while sulfur labeled protein stayed outside."], ["Why did they use a blender?", "To shear the empty phage coats off the bacterial surface so the two labels could be separated."], ["What did Meselson and Stahl prove?", "Replication is semiconservative, ruling out the conservative and dispersive models."], ["What did Beadle and Tatum conclude?", "One gene, one enzyme, later refined to one gene, one polypeptide."], ["What did Garrod propose?", "That inherited metabolic disorders such as alkaptonuria come from a missing enzyme activity."], ["What did Franklin and Wilkins contribute?", "X-ray diffraction images showing a helix of regular width and repeat spacing."], ["What did Nirenberg and Matthaei do?", "Poly-U RNA in a cell free system made polyphenylalanine, cracking the first codon."], ["Why were proteins once thought to be the genetic material?", "They have twenty different subunits and seemed better able to carry complex information than DNA's four bases."]]};
+const FC = {"aminoacids": [["How many standard amino acids, and what differs between them?", "20. Only the R group differs. Every one has an amino group, an alpha carbon, a hydrogen and a carboxyl group."], ["Which amino acid breaks helices, and why?", "Proline. Its side chain bonds back to the backbone nitrogen, so the chain cannot rotate freely."], ["Which amino acids are negatively charged at pH 7?", "Aspartic acid (pKa 3.9) and glutamic acid (pKa 4.3)."], ["Which amino acids are positively charged at pH 7?", "Lysine (pKa 10.5) and arginine (pKa 12.5). Histidine (pKa 6.0) is only partly charged."], ["Why does histidine turn up in so many active sites?", "Its side chain pKa is near 6, so it gains or loses a proton at physiological pH. That suits buffering and acid/base catalysis."], ["Which amino acid forms disulfide bonds?", "Cysteine. Two cysteines make the only covalent bond in tertiary structure."], ["Which residues absorb at 280 nm?", "Tryptophan and tyrosine. That absorbance is how protein concentration is measured."], ["Name the nine essential amino acids.", "His, Ile, Leu, Lys, Met, Phe, Thr, Trp, Val. Mnemonic: PVT TIM HaLL."], ["Which amino acid is smallest and most flexible?", "Glycine. Its R group is a single hydrogen, so it is achiral and fits tight turns."], ["In which direction is a polypeptide built?", "From the N terminus to the C terminus."]], "code": [["How many codons are there, and how many encode amino acids?", "64 in total. 61 sense codons plus 3 stop codons."], ["What is the start codon?", "AUG, encoding methionine. Bacteria use formylmethionine."], ["Name the three stop codons.", "UAA, UAG and UGA. No tRNA reads them; release factors do."], ["What does it mean that the code is degenerate?", "Several codons encode the same amino acid, mostly differing at the third base. That is wobble."], ["Silent, missense and nonsense mutations?", "Silent changes the base but not the amino acid. Missense changes the amino acid. Nonsense creates a stop codon."], ["Why is a frameshift usually the most severe mutation?", "An insertion or deletion that is not a multiple of three shifts the reading frame, so everything downstream is garbled."], ["Is the genetic code universal?", "Almost. It is shared by nearly all organisms, with mitochondria as the main exception."], ["What makes a missense mutation conservative?", "The new amino acid has similar chemistry, so function is often kept. Glu to Val is non-conservative and causes sickle cell."]], "dogma": [["State the central dogma.", "DNA is transcribed to RNA, and RNA is translated to protein."], ["Which enzyme carries out transcription?", "RNA polymerase. It needs no primer."], ["What breaks the one way flow?", "Reverse transcriptase, which copies RNA back into DNA in retroviruses and in cDNA synthesis."], ["In which direction are nucleic acids synthesized?", "Always 5 prime to 3 prime, reading the template 3 prime to 5 prime."], ["Where does each step happen in a eukaryote?", "Transcription in the nucleus, translation in the cytoplasm."], ["How do prokaryotes differ?", "Transcription and translation are coupled in the same compartment, and there are no introns to remove."], ["What is replication?", "DNA copied into DNA by DNA polymerase, semiconservatively."], ["What carries amino acids to the ribosome?", "tRNA, charged with its matching amino acid by aminoacyl-tRNA synthetase."]], "macro": [["Name the four classes of macromolecule and their monomers.", "Carbohydrates from monosaccharides, lipids (not true polymers), proteins from amino acids, nucleic acids from nucleotides."], ["Which bond joins each polymer?", "Glycosidic in carbohydrates, ester in lipids, peptide in proteins, phosphodiester in nucleic acids."], ["How are polymers built and broken?", "Built by dehydration synthesis, which removes water. Broken by hydrolysis, which adds it."], ["What are the three parts of a nucleotide?", "A phosphate, a five carbon sugar and a nitrogenous base."], ["Purines and pyrimidines?", "Purines A and G have two rings. Pyrimidines C, T and U have one."], ["Why do phospholipids form bilayers?", "They are amphipathic. Hydrophilic heads face water while hydrophobic tails cluster inward."], ["Saturated against unsaturated fats?", "Saturated has no carbon double bonds and packs solid. Unsaturated has kinks and stays liquid."], ["How do DNA and RNA differ chemically?", "DNA uses deoxyribose with thymine. RNA uses ribose with uracil, and its 2 prime OH makes it less stable."]], "bonds": [["Rank the interactions by strength.", "Covalent, then ionic, then hydrogen bonds, then van der Waals."], ["What holds the two DNA strands together?", "Hydrogen bonds between the base pairs, plus base stacking interactions."], ["How many hydrogen bonds in each base pair?", "Two for A to T and three for G to C, so GC rich DNA melts at a higher temperature."], ["What mainly drives protein folding?", "The hydrophobic effect. Nonpolar side chains cluster inward and release ordered water, which raises entropy."], ["What makes a covalent bond polar?", "A difference in electronegativity between the two bonded atoms."], ["Why does ice float?", "Hydrogen bonds hold the molecules in an open lattice that is less dense than liquid water."], ["What is a salt bridge?", "An electrostatic attraction between oppositely charged side chains. It is strongest when buried away from water."], ["State Chargaff's rules.", "The amount of A equals T and the amount of G equals C, in every species."]], "protein": [["Name the four levels of protein structure.", "Primary sequence, secondary helices and sheets, tertiary fold, quaternary assembly of subunits."], ["What stabilizes secondary structure?", "Hydrogen bonds between backbone carbonyl and amide groups, not between side chains."], ["Which groups hydrogen bond in an alpha helix?", "The backbone carbonyl of one residue and the backbone amide about four residues along."], ["What stabilizes tertiary structure?", "R group interactions: hydrophobic clustering, hydrogen bonds, salt bridges, van der Waals and disulfide bonds."], ["What did Anfinsen's experiment establish?", "That the amino acid sequence contains all the information needed for folding. Denatured ribonuclease refolded on its own."], ["What does denaturation do?", "Heat, extreme pH or urea break the weak bonds and unfold the protein. Primary structure survives, function does not."], ["Give an example of quaternary structure.", "Hemoglobin, built from two alpha and two beta subunits."], ["What is a protein domain?", "A compact, independently folding region that usually has a function of its own."]], "enzymes": [["How does an enzyme speed up a reaction?", "It lowers the activation energy by stabilizing the transition state. It does not change delta G or the equilibrium."], ["What is induced fit?", "Substrate binding reshapes the active site around it, improving catalysis."], ["Competitive against noncompetitive inhibition?", "A competitive inhibitor binds the active site and is beaten by more substrate. A noncompetitive one binds elsewhere and is not."], ["What does Km represent?", "The substrate concentration that gives half maximal velocity. A low Km means high affinity."], ["What is feedback inhibition?", "The end product of a pathway inhibits an enzyme near its start, shutting the pathway down."], ["Cofactor against coenzyme?", "Cofactors are inorganic, such as magnesium or zinc. Coenzymes are organic, such as NAD+, FAD and coenzyme A."], ["Why does activity fall at high temperature?", "The enzyme denatures once it passes its stability limit."], ["Exergonic against endergonic?", "Exergonic has a negative delta G and is spontaneous. Endergonic has a positive delta G and needs energy."], ["Describe ATP and its yield.", "Adenine, ribose and three phosphates. Hydrolysis to ADP releases about 7.3 kcal per mole."], ["What does OIL RIG stand for?", "Oxidation Is Loss of electrons, Reduction Is Gain."]], "cells": [["Give three differences between prokaryotes and eukaryotes.", "No nucleus against a true nucleus, circular against linear chromosomes, 70S against 80S ribosomes."], ["Name the three domains of life.", "Bacteria, Archaea and Eukarya."], ["What does the nucleolus do?", "Makes ribosomal RNA and assembles ribosomal subunits."], ["Rough against smooth ER?", "Rough ER carries ribosomes and folds proteins for secretion. Smooth ER makes lipids, detoxifies and stores calcium."], ["What does the Golgi apparatus do?", "Modifies, sorts, tags and ships proteins to their destinations."], ["Lysosome against peroxisome?", "Lysosomes digest waste with acidic enzymes. Peroxisomes break down fatty acids, producing hydrogen peroxide (H2O2). Catalase can use H2O2 to oxidize other substances or break it down into water and oxygen: 2 H2O2 -> 2 H2O + O2."], ["What supports endosymbiotic theory?", "Mitochondria and chloroplasts have double membranes, circular DNA and 70S ribosomes, and they divide by binary fission."], ["Why must cells stay small?", "The surface area to volume ratio falls as a cell grows, which limits exchange with the environment."], ["Are viruses alive?", "No. They are acellular and cannot reproduce without host machinery."]], "dna": [["What does semiconservative replication mean?", "Each daughter duplex keeps one parental strand and one newly made strand."], ["Which experiment proved it?", "Meselson and Stahl, shifting cells from heavy to light nitrogen and separating the DNA on a caesium chloride gradient."], ["Why is a primer needed?", "DNA polymerase can only extend a free 3 prime hydroxyl, so primase lays down a short RNA primer first."], ["Leading against lagging strand?", "The leading strand is made continuously toward the fork. The lagging strand is made as Okazaki fragments running away from it."], ["What do helicase, SSB and topoisomerase do?", "Helicase unwinds the helix, SSB proteins keep the strands apart, topoisomerase relieves supercoiling ahead of the fork."], ["DNA polymerase I against III in bacteria?", "Pol III does the main elongation. Pol I removes the RNA primers and fills the gaps with DNA."], ["What does ligase do?", "Seals the nicks between Okazaki fragments by forming a phosphodiester bond."], ["How does proofreading work?", "A 3 prime to 5 prime exonuclease activity removes mispaired nucleotides as they are added."], ["Why do chromosomes shorten without telomerase?", "Removing the last RNA primer on the lagging strand leaves a gap that cannot be filled."], ["What does antiparallel mean?", "One strand runs 5 prime to 3 prime while its partner runs 3 prime to 5 prime."]], "txn": [["Name the three stages of transcription.", "Initiation at the promoter, elongation 5 prime to 3 prime, and termination."], ["Which strand does RNA polymerase read?", "The template or antisense strand, read 3 prime to 5 prime. The coding strand matches the mRNA."], ["How is eukaryotic mRNA processed?", "A 5 prime cap is added, a poly-A tail is added, and the spliceosome removes the introns."], ["What marks a bacterial promoter?", "The minus 10 box (TATAAT) and the minus 35 box, recognized by sigma factor."], ["What happens at the ribosomal A, P and E sites?", "A accepts the incoming charged tRNA, P holds the growing chain, and E is where the empty tRNA leaves."], ["What forms the peptide bond?", "Peptidyl transferase, a ribozyme activity of the rRNA in the large subunit."], ["Which enzyme charges tRNA?", "Aminoacyl-tRNA synthetase, one for each amino acid."], ["How does translation end?", "A stop codon enters the A site and release factors cut the finished chain free."], ["What is wobble?", "Flexible pairing at the third codon position, which lets a single tRNA read several codons."], ["Which eukaryotic polymerase makes mRNA?", "RNA polymerase II. Pol I makes rRNA and pol III makes tRNA."]], "lac": [["Name the three structural genes of the lac operon.", "lacZ for beta-galactosidase, lacY for permease, lacA for transacetylase."], ["What does the lac repressor do?", "Made from lacI, it binds the operator and blocks transcription."], ["What is the inducer?", "Allolactose, or IPTG in the laboratory. It binds the repressor and inactivates it."], ["What does CAP do?", "With cAMP bound, it binds upstream of the promoter and increases RNA polymerase binding. That is positive control."], ["Why does glucose shut the operon down?", "Glucose lowers cAMP, so CAP cannot activate the promoter. That is catabolite repression."], ["When is expression at its maximum?", "Lactose present and glucose absent."], ["Inducible against repressible operon?", "Inducible is normally off and switches on for catabolism, like lac. Repressible is normally on and switches off when the product builds up, like trp."], ["Cis against trans acting?", "The operator acts only on genes on its own DNA molecule. The repressor is a diffusible protein and acts on any copy."]], "resp": [["What is the net yield of glycolysis?", "2 ATP, 2 NADH and 2 pyruvate per glucose, in the cytosol, with no oxygen required."], ["Which enzyme limits the rate of glycolysis?", "Phosphofructokinase-1. It is inhibited by ATP and citrate and activated by AMP."], ["What is the link reaction?", "Pyruvate dehydrogenase converts pyruvate to acetyl-CoA in the matrix, releasing CO2 and making NADH."], ["What does one turn of the Krebs cycle yield?", "3 NADH, 1 FADH2, 1 GTP and 2 CO2. The cycle turns twice per glucose."], ["Which complexes pump protons?", "Complexes I, III and IV. Complex II pumps none, which is why FADH2 yields less ATP."], ["What is the final electron acceptor?", "Oxygen, which is reduced to water at complex IV."], ["How much ATP does each carrier give?", "About 2.5 per NADH and 1.5 per FADH2, for roughly 30 to 32 ATP per glucose."], ["What does an uncoupler such as DNP do?", "It lets protons leak back, so electron transport keeps running while ATP synthesis stops and the energy leaves as heat."], ["What does yeast make when fermenting?", "Ethanol and carbon dioxide, with a net of 2 ATP per glucose."], ["Why ferment at all?", "To regenerate NAD+ so that glycolysis can keep running without oxygen. Fermentation itself makes no ATP."], ["Compare aerobic and anaerobic yeast.", "About 30 ATP per glucose with oxygen against 2 without it, roughly a fifteen fold difference."], ["How does lactic acid fermentation differ?", "Pyruvate is reduced straight to lactate in one step, with no carbon dioxide released."]], "photo": [["Give the overall equation.", "6 CO2 plus 6 H2O plus light gives C6H12O6 plus 6 O2."], ["Where does each stage happen?", "Light reactions in the thylakoid membrane, Calvin cycle in the stroma."], ["Where does the released oxygen come from?", "From splitting water at photosystem II, not from carbon dioxide."], ["Which photosystem is P680?", "Photosystem II. P700 is photosystem I, and electrons reach II first despite the numbering."], ["What do the light reactions produce?", "ATP, NADPH and oxygen."], ["What is cyclic photophosphorylation?", "Electrons loop around photosystem I alone, making extra ATP with no NADPH and no oxygen."], ["Name the three phases of the Calvin cycle.", "Carbon fixation by rubisco, reduction to G3P, and regeneration of RuBP."], ["What does one G3P cost?", "3 CO2, 9 ATP and 6 NADPH over three turns. A glucose needs six turns."], ["What is photorespiration?", "Rubisco fixes oxygen instead of carbon dioxide when stomata close, consuming ATP and making no sugar."], ["C4 against CAM?", "C4 separates the two steps in space, using mesophyll and bundle sheath cells. CAM separates them in time, fixing carbon at night."], ["Which enzyme fixes carbon in C4 plants?", "PEP carboxylase, which has no affinity for oxygen."]], "mendel": [["State the law of segregation.", "The two alleles of a gene separate during gamete formation, so each gamete carries only one."], ["State the law of independent assortment.", "Genes on different chromosomes are inherited independently of one another."], ["Give the monohybrid and dihybrid ratios.", "3 to 1 for a monohybrid cross and 9 to 3 to 3 to 1 for a dihybrid cross."], ["What is a test cross for?", "Crossing to a homozygous recessive reveals whether a dominant individual is homozygous or heterozygous."], ["Incomplete dominance against codominance?", "Incomplete dominance blends the two phenotypes. Codominance shows both fully, as in AB blood type."], ["How does autosomal recessive inheritance look?", "It skips generations, affected children come from unaffected carriers, and both sexes are affected equally."], ["How does X linked recessive inheritance look?", "Mostly males are affected, carrier mothers pass it to sons, and an affected father gives every daughter carrier status."], ["What is incomplete penetrance?", "Some individuals carrying the genotype never show the phenotype at all."], ["What is variable expressivity?", "Affected individuals differ in how severe the phenotype turns out to be."], ["Pleiotropy against epistasis?", "Pleiotropy is one gene affecting several traits. Epistasis is one gene masking the effect of another."]], "linkage": [["How is recombination frequency calculated?", "Recombinant offspring divided by total offspring, times 100. One percent equals one map unit."], ["What is the maximum recombination frequency?", "50 percent, which is what unlinked genes give. Anything at that value behaves as unlinked."], ["How do you find the middle gene in a three point cross?", "Compare the rarest double crossover class with the parental class. The gene that has switched sits in the middle."], ["Which offspring classes are most common?", "The parental classes, matching the original chromosome arrangement."], ["Why do distant genes underestimate map distance?", "Double crossovers restore the parental arrangement, so they are never counted."], ["What is interference?", "One crossover reduces the chance of another nearby. It equals one minus the coefficient of coincidence."], ["When does crossing over happen?", "In prophase of meiosis I, between homologous chromosomes."], ["What was Sturtevant's contribution?", "He used recombination frequencies to build the first genetic map."]], "recdna": [["What do restriction enzymes recognize?", "Short palindromic sequences, which they cut to leave either sticky overhangs or blunt ends."], ["Why does the host not cut its own DNA?", "A modification enzyme methylates the recognition sites in the host genome."], ["What three features does a cloning vector need?", "An origin of replication, a selectable marker and a multiple cloning site."], ["Why are sticky ends useful?", "The overhangs base pair with any fragment cut by the same enzyme, holding the ends together while ligase seals them."], ["How does blue white screening work?", "An insert disrupts the lacZ fragment, so recombinant colonies stay white while empty vectors turn blue on X-gal."], ["Genomic against cDNA library?", "A genomic library holds every sequence including introns. A cDNA library is built from mRNA, so the introns are already spliced out."], ["Why use an oligo-dT primer?", "It anneals to the poly-A tail, so only mature messenger RNA gets copied."], ["How do you screen an expression library?", "With an antibody against the protein product, since the insert is transcribed and translated."], ["What is a cosmid?", "A plasmid carrying phage lambda packaging sequences, which lets it accept much larger inserts."], ["What is insertional inactivation?", "Cloning DNA into a marker gene disrupts it, which signals that the insert went in."], ["What did the Asilomar conference address?", "Voluntary safety guidelines for recombinant DNA research."]], "methods": [["Which way does DNA move in a gel?", "Toward the positive electrode, because the phosphate backbone is negative. Small fragments travel fastest."], ["Give the three PCR steps and their temperatures.", "Denature at 94 to 95, anneal primers at 50 to 65, extend at 72 degrees with Taq polymerase."], ["Why is Taq polymerase used?", "It is thermostable, so it survives the repeated high temperature denaturation steps."], ["What terminates the chains in Sanger sequencing?", "Dideoxynucleotides, which have no 3 prime hydroxyl for the next base to attach to."], ["Southern, Northern and Western blots?", "DNA, RNA and protein respectively. Remember SNoW DRoP."], ["What does quantitative PCR measure?", "The amount of starting template, by monitoring product accumulation in real time."], ["How does a labeled probe find its target?", "By complementary base pairing to the target sequence."], ["What is reverse transcriptase used for?", "Converting mRNA into cDNA for cloning and analysis."], ["How does CRISPR-Cas9 work?", "A guide RNA takes Cas9 to a matching sequence, where it cuts so that repair edits the gene."], ["Why run a DNA ladder beside your samples?", "It provides known size standards for estimating the fragment sizes."]], "classic": [["What did Griffith show in 1928?", "Heat killed virulent bacteria could transform live avirulent bacteria, so something was being transferred."], ["What did Avery, MacLeod and McCarty add?", "Destroying DNA abolished transformation while destroying protein or RNA did not, so DNA is the transforming principle."], ["What did Hershey and Chase find?", "Phosphorus labeled DNA entered the bacteria while sulfur labeled protein stayed outside."], ["Why did they use a blender?", "To shear the empty phage coats off the bacterial surface so the two labels could be separated."], ["What did Meselson and Stahl prove?", "Replication is semiconservative, ruling out the conservative and dispersive models."], ["What did Beadle and Tatum conclude?", "One gene, one enzyme, later refined to one gene, one polypeptide."], ["What did Garrod propose?", "That inherited metabolic disorders such as alkaptonuria come from a missing enzyme activity."], ["What did Franklin and Wilkins contribute?", "X-ray diffraction images showing a helix of regular width and repeat spacing."], ["What did Nirenberg and Matthaei do?", "Poly-U RNA in a cell free system made polyphenylalanine, cracking the first codon."], ["Why were proteins once thought to be the genetic material?", "They have twenty different subunits and seemed better able to carry complex information than DNA's four bases."]], "membranes": [["What moves in a fluid membrane, and what does not?", "Lipids and proteins diffuse laterally within a leaflet, and transmembrane proteins keep their orientation. Flipping between leaflets is rare."], ["How do the two leaflets differ?", "They carry different phospholipids, and all the carbohydrate faces outward, never into the cytosol."], ["A plant adapted to the cold has membranes with what?", "More unsaturated fatty acids. The kinks stop the tails packing, keeping the membrane fluid."], ["What does cholesterol do to a membrane?", "It buffers fluidity both ways: stiffens it when warm, stops it solidifying when cold."], ["Why do transmembrane proteins stay embedded?", "A nonpolar stretch of residues sits in the lipid interior while polar and charged residues anchor at the two water faces."], ["Carrier against channel?", "A carrier binds its cargo and changes shape, so it saturates like an enzyme. A channel is a gated pore that passes ions very fast while a gradient lasts."], ["Why is intestinal glucose uptake called secondary active transport?", "Glucose is co-transported with Na+ by a symport, so it rides the Na+ gradient that the Na+/K+ pump pays for with ATP."], ["Why do bacteria not burst in a hypotonic solution?", "The cell wall resists the turgor pressure, so the cell cannot lyse."]], "trafficking": [["Where does a protein end up with no signal sequence?", "The cytosol. That is the default, and cytosolic enzymes such as phosphofructokinase carry no localization sequence at all."], ["What happens if the ER signal sequence is deleted?", "The protein stays in the cytosol instead of entering the secretory pathway."], ["Give the secretory pathway in order.", "Endoplasmic reticulum, then Golgi apparatus, then plasma membrane, moving in vesicles."], ["What is the largest part of the endomembrane system?", "The endoplasmic reticulum, by membrane surface area."], ["What happens to a vesicle membrane after exocytosis?", "It fuses with the plasma membrane and becomes part of it."], ["A domain protrudes from the cytosolic face of the ER. Where does it protrude later?", "The cytosolic face of the Golgi, then the cytosolic face of the plasma membrane. Topology is preserved."], ["Why do sugars added in the ER and Golgi end up outside the cell?", "They are added on the luminal side, and the lumen is topologically equivalent to the outside of the cell."], ["How do very small particles get into the nucleus?", "They diffuse non-selectively through the nuclear pore complex. Large cargo needs a signal and active transport."]], "signalling": [["Why do cells in a multicellular body need to signal each other?", "To coordinate growth, division, specialisation, metabolism and death. Most cells even need signals just to stay alive; with none at all they undergo apoptosis."], ["Endocrine against paracrine signalling?", "Endocrine: a hormone travels in the blood to cells all over the body. Paracrine: a local mediator diffuses only to nearby cells and is removed quickly."], ["What makes neuronal signalling different from endocrine?", "It is fast and private. An electrical signal runs down the axon and the neurotransmitter crosses a tiny synaptic cleft to one target, even over long distances."], ["What does contact-dependent signalling need?", "The two cells must touch, because the signal molecule stays bound to the signalling cell's surface (for example Delta and Notch)."], ["Acetylcholine slows the heart, makes salivary glands secrete and makes skeletal muscle contract. How?", "The target cells have different receptors or different internal machinery. The response is set by the receptor and the target cell, not by the signal."], ["Where is the receptor for a steroid hormone, and what does it do?", "Inside the cell. Steroids are small and hydrophobic, so they cross the membrane and bind a nuclear receptor that acts as a transcription factor on specific genes."], ["Why do hydrophilic signals need cell-surface receptors?", "They cannot cross the lipid bilayer, so they bind a transmembrane receptor that relays the message inward."], ["Name the three classes of cell-surface receptor.", "Ion-channel-coupled, G-protein-coupled (GPCR) and enzyme-coupled (such as receptor tyrosine kinases)."], ["What is special about GPCRs?", "They cross the membrane seven times, work through trimeric G proteins, form the largest receptor family, and are the target of about half of all drugs."]], "transduction": [["What are the two main molecular switches in signalling?", "Phosphorylation (kinase on, phosphatase off) and GTP binding (GTP on, hydrolysis to GDP off)."], ["What sets how phosphorylated a protein is?", "The balance between the kinases adding phosphate and the phosphatases removing it."], ["Which amino acids do PKA and PKC phosphorylate?", "Serine and threonine. Receptor tyrosine kinases phosphorylate tyrosine."], ["How does a phosphorylation cascade amplify a signal?", "Each active kinase phosphorylates many copies of the next kinase, so a few signal molecules end up changing thousands of target proteins."], ["Walk through GPCR activation.", "Ligand binds, the receptor changes shape, Gα swaps GDP for GTP, Gα-GTP separates from Gβγ, both halves act on targets, then Gα hydrolyses GTP and the trimer re-forms."], ["Why does a G-protein signal last only seconds?", "Gα hydrolyses its own bound GTP to GDP, switching itself off."], ["What do cholera and pertussis toxins do?", "Cholera toxin locks Gαs on (no GTP hydrolysis). Pertussis toxin locks Gαi off. Both end with too much cAMP."], ["Trace adrenaline to glucose release.", "Adrenaline, GPCR, Gαs, adenylyl cyclase, cAMP, PKA, phosphorylase kinase, glycogen phosphorylase, glucose. PKA also switches glycogen synthase off."], ["What are cAMP response elements?", "DNA sequences bound by CREB after PKA phosphorylates it, switching on target genes. This is the slow branch of cAMP signalling."], ["What does phospholipase C make, and what does each product do?", "It splits PIP2 into IP3 and DAG. IP3 opens Ca2+ channels in the ER; DAG stays in the membrane and, with Ca2+, activates PKC."], ["How does Ca2+ act inside a cell?", "Its cytosolic level is normally very low, so a release is a big signal. Most effects go through calmodulin, which then activates kinases."], ["What is Ras, and why does it matter for cancer?", "A monomeric G protein anchored to the membrane by a lipid tail, acting downstream of RTKs. It is the most commonly mutated gene in human cancer, found in about one third of cancers, usually stuck in the GTP-bound state."]], "cellcycle": [["Name the phases of the cell cycle in order.", "G1, S (DNA synthesis), G2, then M (mitosis and cytokinesis). G1, S and G2 together make interphase."], ["What is G0?", "A resting state outside the cycle. Some cells return from it; terminally differentiated cells like neurons never do."], ["Which phase explains most of the variation in cycle length?", "G1. Early frog embryos skip G1 and G2 and cycle in about 30 minutes."], ["What is the landmark of prometaphase?", "Breakdown of the nuclear envelope, which lets the spindle microtubules capture the chromosomes."], ["What separates at anaphase of mitosis, meiosis I and meiosis II?", "Mitosis: sister chromatids. Meiosis I: homologous chromosomes. Meiosis II: sister chromatids."], ["Compare a human cell after meiosis I with a G0 somatic cell.", "23 chromosomes instead of 46, but the same amount of DNA, because each chromosome still has two chromatids."], ["Where does genetic variation come from in meiosis?", "Crossing over in prophase I and independent assortment of the homologue pairs."], ["What was MPF?", "The factor from M-phase frog egg cytoplasm that pushed an oocyte into M phase. It is M-cyclin bound to Cdk1 (M-Cdk)."], ["Cdk against cyclin?", "Cdk is the catalytic kinase and its level stays constant. Cyclin is the regulatory partner whose level rises and falls, switching the Cdk on."], ["Name the four cyclin-Cdk complexes and their jobs.", "G1-Cdk responds to mitogens; G1/S-Cdk commits the cell to the cycle; S-Cdk starts DNA replication; M-Cdk drives mitosis."], ["How is Cdk activity controlled?", "Cyclin levels, inhibitory and activating phosphates (Wee1 adds, Cdc25 removes), Cdk inhibitor proteins, and cyclin destruction by the APC/C."], ["What does the APC/C do?", "It ubiquitinates securin, freeing separase to cut cohesin and start anaphase, and then M-cyclin, so the cell can leave mitosis."], ["Name the three checkpoints and their questions.", "G1/S: are conditions right and is the DNA intact? G2/M: is all DNA replicated? Spindle: is every chromosome attached to both poles?"], ["What happens once a cell passes the restriction point?", "It is committed and finishes the cycle even if the mitogens are removed."]], "cancer": [["Proto-oncogene against oncogene?", "A proto-oncogene is a normal gene driving division on proper signals. A gain-of-function mutation turns it into an oncogene, which acts dominantly."], ["Why are tumour suppressor mutations recessive at the cell level?", "They are loss-of-function brakes, and one working copy is still enough to brake. Inheriting one broken copy predisposes to cancer."], ["What does p53 do?", "It senses DNA damage and switches on the Cdk inhibitor p21 to halt the cycle, or triggers apoptosis if the damage is too severe."], ["How often is p53 lost in cancers?", "About 70% of colon, 30 to 50% of breast and 50% of lung cancers."], ["How do Rb and E2F control entry into S phase?", "Rb holds E2F inactive. G1-Cdk phosphorylates Rb, E2F is released, and it switches on the genes for S phase."], ["Name three Cdk inhibitors.", "p21 (made on p53's orders), p27 and p16."], ["Mitogen, growth factor, survival factor?", "A mitogen stimulates division, a growth factor stimulates growth in size, a survival factor suppresses apoptosis."], ["How does adult muscle get bigger?", "By hypertrophy: each fibre grows larger, because muscle fibres do not divide."], ["Why does cancer usually need several mutations, and why does risk rise with age?", "Several accelerators and brakes must fail in the same cell lineage, and mutations take time to accumulate. Genetic instability speeds the process up."], ["Benign against malignant?", "A benign tumour stays in place. A malignant tumour invades surrounding tissue and can metastasize."], ["Carcinoma, sarcoma, leukemia?", "Carcinoma arises from epithelium (about 85% of cancers), sarcoma from connective tissue or muscle, leukemia and lymphoma from blood-forming cells."], ["Apoptosis against necrosis?", "Apoptosis: programmed, the cell shrinks and is eaten tidily with no inflammation. Necrosis: injury, the cell swells and bursts, causing inflammation."], ["Trace the mitochondrial route to apoptosis.", "Pro-apoptotic Bcl-2 proteins open the mitochondrion, cytochrome c is released, it joins an adaptor to form the apoptosome, which activates initiator then executioner caspases."], ["What are caspases?", "Cysteine proteases that cut after aspartate. They are made as inactive pro-caspases and activate each other in an amplifying, irreversible cascade."], ["Why do about half the neurons in the developing nervous system die?", "Only those receiving enough survival factor from their targets live, so neuron numbers match the number of target cells."]], "cytoskel": [["Rank the three filaments by width.", "Microfilaments (actin, about 7 nm), intermediate filaments (about 10 nm), microtubules (about 25 nm)."], ["Which filaments have polarity, and which have motors?", "Microfilaments and microtubules have plus and minus ends and motors. Intermediate filaments have neither."], ["What is the MTOC in an animal cell?", "The centrosome: a pair of centrioles surrounded by protein that contains the γ-tubulin rings where microtubules start."], ["Which end of a microtubule is at the centrosome?", "The minus end. The plus end grows and shrinks out toward the cell edge."], ["What is dynamic instability?", "A microtubule plus end grows while it keeps a GTP-tubulin cap and collapses quickly when it loses it. Capping proteins stabilize the end."], ["What do colchicine and taxol do?", "Colchicine blocks tubulin polymerization and taxol stops microtubules shrinking. Both stop the spindle working, so dividing cells stall in mitosis."], ["How much of a cell's protein is actin, and how much is in filaments?", "5 to 10% of total protein, and about half of it is filamentous at any time."], ["Name the three steps of cell crawling.", "Protrusion (actin polymerizes at the front), attachment (integrins grip the surface), traction (myosin pulls the rear forward)."], ["Name four kinds of intermediate filament and where they are.", "Keratins in epithelia, vimentin in connective tissue, muscle and glia, neurofilaments in axons, and nuclear lamins inside the nuclear envelope."], ["Why do intermediate filaments have no polarity?", "Dimers pair up in opposite orientations, so both ends of the filament look the same."], ["Kinesin against dynein?", "Both walk on microtubules using ATP. Kinesin goes to the plus end (outward); dynein goes to the minus end (inward), is faster, and bends cilia and flagella."], ["Eukaryotic against bacterial flagellum?", "Eukaryotic: microtubules and dynein, whip-like, ATP powered, covered by membrane. Bacterial: flagellin, rotary, driven by the proton-motive force, naked."]], "ecm": [["Primary against secondary plant cell wall?", "Primary: thin and stretchy, made while the cell grows. Secondary: added inside it after growth stops, thicker and often lignified."], ["What is the middle lamella?", "A pectin-rich layer that glues neighbouring plant cell walls together."], ["How do microtubules control plant cell shape?", "They guide cellulose synthase in the membrane, so they set the direction of the cellulose microfibrils and therefore the direction the cell can expand."], ["What is turgor pressure?", "Water entering by osmosis pushes the membrane against the wall. It keeps plants upright; wilting is its loss."], ["What is the most abundant protein in mammals, and what does it need to form properly?", "Collagen. Its prolines and lysines must be hydroxylated by an enzyme that needs vitamin C; without it you get scurvy."], ["What do GAGs do in the ECM?", "These long negatively charged polysaccharides pull in water to form a gel that resists compression. Examples: chondroitin sulfate, keratan sulfate, hyaluronan."], ["What do integrins and fibronectin do together?", "Fibronectin binds collagen and integrins; integrins cross the membrane and link to the cytoskeleton, passing signals in both directions."], ["Name the epithelial junctions from top to bottom.", "Tight junction, adherens junction, desmosome, gap junction, hemidesmosome."], ["What are the two jobs of a tight junction?", "A barrier that stops leaks between cells, and a fence that keeps apical and basal membrane proteins apart."], ["Which junctions link to actin and which to keratin?", "Adherens junctions link to actin. Desmosomes and hemidesmosomes link to keratin."], ["Desmosome against hemidesmosome?", "A desmosome joins cell to cell through cadherins. A hemidesmosome anchors the cell to the basal lamina through integrins."], ["Gap junction against plasmodesma?", "Gap junctions are connexin protein channels passing small molecules. Plasmodesmata are membrane-lined channels that can dilate to pass proteins and RNA, making the plant supracellular."], ["What makes a cell a stem cell?", "It can renew itself and also give rise to differentiated cells."], ["Pluripotent, multipotent, unipotent?", "Pluripotent (embryonic stem cells) make any body cell, multipotent (hematopoietic) make a family such as all blood cells, unipotent make one type."]]};
 
 document.querySelectorAll(".deck").forEach(deck => {
   const cards = FC[deck.dataset.topic];
@@ -1181,9 +1918,33 @@ const RC_TOPICS = {
   photo: "Photosynthesis",
   cell: "Cells &amp; organelles",
   mol: "Molecular biology",
-  organ: "Organs &amp; systems"
+  organ: "Organs &amp; systems",
+  cellbio: "Signalling, cycle &amp; cytoskeleton"
 };
 const RC_Q = [
+  // --- cell biology ---
+  {t:"cellbio", q:"Relays a signal from the membrane throughout the cytoplasm; cAMP, IP₃ and Ca²⁺ are examples", a:"Second messenger"},
+  {t:"cellbio", q:"Makes cAMP from ATP once switched on by active Gαs", a:"Adenylyl cyclase"},
+  {t:"cellbio", q:"Serine/threonine kinase switched on by cAMP", a:"Protein kinase A"},
+  {t:"cellbio", q:"Splits PIP₂ into IP₃ and DAG", a:"Phospholipase C"},
+  {t:"cellbio", q:"Binds four Ca²⁺ ions, then activates downstream kinases", a:"Calmodulin"},
+  {t:"cellbio", q:"Seven-pass receptor that activates a trimeric G protein", a:"G-protein-coupled receptor"},
+  {t:"cellbio", q:"Removes phosphate groups, undoing the work of a kinase", a:"Protein phosphatase"},
+  {t:"cellbio", q:"Small lipid-anchored switch downstream of RTKs; mutated in a third of cancers", a:"Ras GTPase"},
+  {t:"cellbio", q:"Catalytic subunit whose level stays constant while its activity oscillates", a:"Cyclin-dependent kinase"},
+  {t:"cellbio", q:"Tags securin and M-cyclin with ubiquitin so the proteasome destroys them", a:"Anaphase-promoting complex"},
+  {t:"cellbio", q:"Holds E2F inactive until G1-Cdk phosphorylates it", a:"Retinoblastoma protein"},
+  {t:"cellbio", q:"Wheel-shaped complex of cytochrome c and an adaptor that activates the first caspase", a:"Apoptosome"},
+  {t:"cellbio", q:"Cysteine protease made as an inactive precursor; cuts after aspartate", a:"Executioner caspase"},
+  {t:"cellbio", q:"Pair of barrel-shaped structures at the heart of the animal centrosome", a:"Centrioles"},
+  {t:"cellbio", q:"Motor protein that walks toward the plus end of a microtubule", a:"Kinesin"},
+  {t:"cellbio", q:"Motor protein that walks toward the minus end and bends cilia", a:"Dynein"},
+  {t:"cellbio", q:"Anchors an epithelial cell to the basal lamina through integrins and keratin", a:"Hemidesmosome"},
+  {t:"cellbio", q:"Seals neighbouring epithelial cells so nothing leaks between them", a:"Tight junction"},
+  {t:"cellbio", q:"Pectin-rich layer that glues the walls of neighbouring plant cells", a:"Middle lamella"},
+  {t:"cellbio", q:"Membrane-lined channels joining the cytoplasm of neighbouring plant cells", a:"Plasmodesmata"},
+  {t:"cellbio", q:"Most abundant protein in mammals; its hydroxylation needs vitamin C", a:"Collagen"},
+  {t:"cellbio", q:"ECM protein that binds collagen and links it to cells through integrins", a:"Fibronectin"},
   // --- respiration ---
   {t:"resp", q:"Phosphorylates glucose the moment it enters the cell, trapping it inside", a:"Hexokinase"},
   {t:"resp", q:"Rate-limiting enzyme of glycolysis; inhibited by ATP and citrate, activated by AMP", a:"Phosphofructokinase-1"},
@@ -1203,6 +1964,8 @@ const RC_Q = [
   {t:"resp", q:"Reduces acetaldehyde to ethanol, regenerating NAD⁺ in yeast", a:"Alcohol dehydrogenase"},
   {t:"resp", q:"Converts pyruvate to lactate in muscle so glycolysis can continue without O₂", a:"Lactate dehydrogenase"},
   {t:"resp", q:"The 2-carbon molecule that actually enters the Krebs cycle", a:"Acetyl-CoA"},
+  {t:"resp", q:"Krebs intermediate converted to succinate, making GTP or ATP by substrate-level phosphorylation", a:"Succinyl-CoA"},
+  {t:"resp", q:"5-carbon Krebs intermediate made when isocitrate is oxidized and loses CO₂", a:"α-ketoglutarate"},
   {t:"resp", q:"The 4-carbon molecule that accepts acetyl-CoA and is regenerated each turn", a:"Oxaloacetate"},
   {t:"resp", q:"Compartment holding the Krebs cycle enzymes", a:"Mitochondrial matrix"},
   // --- photosynthesis ---
@@ -1220,6 +1983,8 @@ const RC_Q = [
   {t:"photo", q:"Accessory pigments that widen light capture and protect against excess energy", a:"Carotenoids"},
   {t:"photo", q:"5-carbon acceptor, abbreviated RuBP, that CO₂ is attached to in carbon fixation", a:"Ribulose bisphosphate"},
   {t:"photo", q:"3-carbon sugar that exits the Calvin cycle and builds glucose", a:"G3P"},
+  {t:"photo", q:"Reaction-center chlorophyll of photosystem II; its lost electron is replaced by splitting water", a:"P680"},
+  {t:"photo", q:"Reaction-center chlorophyll of photosystem I, re-reduced by electrons from plastocyanin", a:"P700"},
   {t:"photo", q:"Pores that close in heat to save water, starving the leaf of CO₂", a:"Stomata"},
   {t:"photo", q:"Cells where rubisco works in C4 plants, kept CO₂-rich and O₂-poor", a:"Bundle-sheath cells"},
   {t:"photo", q:"Wasteful pathway when rubisco fixes O₂ instead of CO₂", a:"Photorespiration"},
@@ -1535,7 +2300,46 @@ const RC_Q = [
     "reaction center": "The chlorophyll pair in a photosystem that actually donates the excited electron.",
     "antenna complex": "The surrounding pigments that harvest photons and funnel the energy to the reaction center.",
     "ferredoxin": "The iron-sulphur carrier passing electrons from photosystem I to NADP+ reductase.",
-    "NADPH": "The reducing power made by photosystem I and spent building sugar in the Calvin cycle."
+    "NADPH": "The reducing power made by photosystem I and spent building sugar in the Calvin cycle.",
+    "second messenger": "A small molecule such as cAMP, IP3, DAG or Ca2+ that carries a signal from the membrane receptor through the cytoplasm.",
+    "GPCR": "G-protein-coupled receptor: a seven-pass membrane receptor that switches on a trimeric G protein. About half of all drugs act on one.",
+    "G protein": "A GTP-binding switch protein: on with GTP bound, off once it hydrolyses GTP to GDP. Trimeric ones work with GPCRs; small ones like Ras work alone.",
+    "adenylyl cyclase": "The membrane enzyme that makes cAMP from ATP when activated by Gαs.",
+    "calmodulin": "A small protein that binds four Ca2+ ions and then activates kinases and other targets; the main way calcium acts inside cells.",
+    "receptor tyrosine kinase": "An enzyme-coupled receptor that dimerizes when its ligand binds and phosphorylates tyrosines on its partner, starting pathways such as Ras.",
+    "Ras": "A small monomeric G protein anchored to the inner membrane, acting downstream of RTKs. Mutated in about a third of human cancers.",
+    "cyclin": "The regulatory partner of a Cdk. Its level rises and falls through the cycle, switching the Cdk on and choosing its targets.",
+    "Cdk": "Cyclin-dependent kinase: the catalytic subunit driving the cell cycle. Its level is constant; its activity depends on cyclin.",
+    "restriction point": "The G1/S checkpoint (Start in yeast). Past it, a cell is committed to finish the cycle even without mitogens.",
+    "nondisjunction": "Failure of chromosomes or chromatids to separate properly, giving cells with an extra or missing chromosome.",
+    "p53": "The tumour suppressor that senses DNA damage and halts the cycle by switching on p21, or triggers apoptosis. Lost in many cancers.",
+    "oncogene": "A mutated, overactive form of a normal growth-promoting gene (a proto-oncogene). One mutant copy is enough.",
+    "tumour suppressor": "A gene whose product brakes division or triggers apoptosis. Both copies must be lost for its effect to disappear.",
+    "mitogen": "An extracellular signal that stimulates cell division, carrying the cell past the restriction point.",
+    "survival factor": "An extracellular signal that keeps a cell alive by suppressing apoptosis.",
+    "apoptosis": "Programmed cell death: the cell shrinks, fragments and is eaten without spilling its contents or causing inflammation.",
+    "necrosis": "Cell death from injury: the cell swells and bursts, spilling its contents and causing inflammation.",
+    "caspase": "A cysteine protease that cuts after aspartate. Caspases activate each other in the irreversible cascade that carries out apoptosis.",
+    "apoptosome": "The wheel-shaped complex of cytochrome c and an adaptor protein that activates the first caspase in mitochondrial apoptosis.",
+    "metastasis": "Spread of cancer cells from the original tumour through blood or lymph to form new tumours elsewhere.",
+    "carcinoma": "A cancer of epithelial cells, about 85% of human cancers.",
+    "centrosome": "The main microtubule-organizing centre of an animal cell: a pair of centrioles in protein that nucleates microtubules.",
+    "microtubule": "A hollow 25 nm tube of α/β-tubulin with plus and minus ends; tracks for kinesin and dynein, and the mitotic spindle.",
+    "intermediate filament": "A 10 nm rope-like filament with no polarity (keratins, vimentin, neurofilaments, lamins) that gives cells tensile strength.",
+    "kinesin": "A microtubule motor that walks toward the plus end, carrying cargo outward, powered by ATP.",
+    "dynein": "A microtubule motor that walks toward the minus end, carrying cargo inward and bending cilia and flagella.",
+    "tight junction": "A seal between epithelial cells that stops leaks between them and keeps apical and basal membrane proteins apart.",
+    "desmosome": "A spot-weld junction joining neighbouring cells through cadherins linked to keratin filaments.",
+    "hemidesmosome": "A junction anchoring an epithelial cell to the basal lamina through integrins linked to keratin.",
+    "gap junction": "A channel of connexins joining two cytoplasms so ions and small molecules pass directly between cells.",
+    "integrin": "A transmembrane receptor linking the extracellular matrix (fibronectin, laminin) to the cytoskeleton and signalling both ways.",
+    "extracellular matrix": "The protein and polysaccharide network secreted around animal cells: collagen, proteoglycans, fibronectin.",
+    "collagen": "The most abundant protein in mammals: a triple helix needing vitamin C for hydroxylation. Resists stretching.",
+    "proteoglycan": "A core protein carrying long negatively charged GAG chains that hold water and resist compression.",
+    "plasmodesmata": "Membrane-lined channels through plant cell walls that join neighbouring cytoplasms and can dilate to pass proteins and RNA.",
+    "turgor pressure": "The pressure of water inside a plant cell pushing the membrane against the wall; it keeps plants rigid.",
+    "middle lamella": "The pectin-rich layer cementing the walls of neighbouring plant cells together.",
+    "stem cell": "A cell that can renew itself and also produce differentiated cells."
   };
 
   const SKIP = "a,code,button,select,svg,h1,h2,.deck,.rc-clue,.term";
@@ -1634,10 +2438,10 @@ const RC_Q = [
     ["T", "Threonine", "polar", "Secondary OH plus a methyl. Phosphorylation and O-glycosylation."],
     ["C", "Cysteine", "polar", "SH thiol. Two cysteines make the only covalent tertiary bond."],
     ["Y", "Tyrosine", "polar", "Aromatic ring with a phenolic OH; absorbs at 280 nm."],
-    ["N", "Asparagine", "polar", "Amide of aspartate. N-linked glycosylation site."],
-    ["Q", "Glutamine", "polar", "Amide of glutamate; carries nitrogen around the body."],
-    ["D", "Aspartate", "acidic", "Carboxylate, pKa 3.9. Negative at pH 7; salt bridges and catalysis."],
-    ["E", "Glutamate", "acidic", "Carboxylate, pKa 4.3. One CH2 longer than Asp; neurotransmitter."],
+    ["N", "Asparagine", "polar", "Amide of aspartic acid. N-linked glycosylation site."],
+    ["Q", "Glutamine", "polar", "Amide of glutamic acid; carries nitrogen around the body."],
+    ["D", "Aspartic acid", "acidic", "Carboxylate, pKa 3.9. Negative at pH 7; salt bridges and catalysis."],
+    ["E", "Glutamic acid", "acidic", "Carboxylate, pKa 4.3. One CH2 longer than Asp; neurotransmitter."],
     ["H", "Histidine", "basic", "Imidazole, pKa 6.0. Only side chain that buffers at physiological pH."],
     ["K", "Lysine", "basic", "Long NH3+ chain, pKa 10.5. Binds DNA; acetylated on histones."],
     ["R", "Arginine", "basic", "Guanidinium, pKa 12.5. The most basic side chain."]
