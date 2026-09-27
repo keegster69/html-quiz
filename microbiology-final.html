@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Microbiology Final Exam</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --page:#f6f7f4; --ink:#1b2028; --ink-soft:#2c343c; --muted:#5d666e; --faint:#8a9199;
+  --line:#e4e7e2; --card:#fff; --opt:#fbfcfa; --chip:#eef0ed; --chip-ink:#7d8790;
+  --hero:#141a1f; --hero-ink:#eef2f0; --hero-muted:#8fa0a8;
+  --accent:#2563eb; --ok:#16a34a; --ok-ink:#14532d; --ok-bg:#f3faf5; --ok-line:#a7d8ba;
+  --bad:#dc2626; --bad-ink:#7f1d1d; --bad-bg:#fef4f4; --bad-line:#f0a3a3;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body{background:var(--page);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+
+header{background:var(--hero);padding:34px 0 30px}
+.kicker{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+h1{font-size:34px;font-weight:400;letter-spacing:-.015em;color:var(--hero-ink);margin:.35rem 0 .5rem}
+.lede{font-family:var(--sans);font-size:13.5px;color:var(--hero-muted);max-width:56ch;line-height:1.6}
+.stats{display:flex;gap:38px;margin-top:22px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--serif);font-size:27px;font-weight:400;color:var(--hero-ink)}
+.stat span{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+
+main{padding:26px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.lead-card{border-left:4px solid var(--accent);display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap}
+.lead-card .label{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.lead-card h2{font-size:21px;font-weight:400;margin:.15rem 0}
+.lead-card .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.btn{font-family:var(--sans);font-size:15px;font-weight:600;color:#fff;background:var(--accent);
+  border:none;border-radius:7px;padding:13px 22px;min-height:44px;cursor:pointer}
+.btn:hover{background:#1d4ed8}
+.btn.ghost{background:var(--card);color:var(--accent);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--chip)}
+.btn.wide{width:100%;border-radius:8px;padding:14px}
+
+.section-title{font-family:var(--sans);font-size:12.5px;color:var(--faint);margin:26px 0 10px}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.unit{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+  border-radius:10px;padding:16px 18px;text-align:left;cursor:pointer;font-family:var(--serif);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%}
+.unit:hover{border-color:var(--accent)}
+.unit h3{font-size:18px;font-weight:400;margin:.1rem 0}
+.unit .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.score-ring{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--chip-ink);
+  border:1px solid var(--line);border-radius:999px;padding:5px 9px;white-space:nowrap}
+.score-ring.done{color:var(--accent);border-color:var(--accent)}
+
+.topbar{background:var(--card);border-bottom:1px solid var(--line);padding:12px 0 0}
+.topbar .row{display:flex;align-items:center;gap:14px}
+.close{font-family:var(--sans);font-size:20px;line-height:1;color:var(--faint);background:none;
+  border:none;cursor:pointer;min-width:44px;min-height:44px}
+.close:hover{color:var(--ink)}
+.crumb{font-family:var(--sans);font-size:12.5px;color:var(--muted);flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.count{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted)}
+.progress{height:2px;background:var(--line);margin-top:10px}
+.progress i{display:block;height:2px;background:var(--accent);transition:width .2s ease-out}
+
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px 22px;margin-top:26px}
+.qtopic{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.qtext{font-size:20px;font-weight:400;margin:.4rem 0 1.1rem;line-height:1.4}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:var(--opt);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-height:48px;cursor:pointer;
+  font-family:var(--serif);font-size:15.5px;line-height:1.45;color:var(--ink-soft)}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt .num{flex:none;width:25px;height:25px;border-radius:6px;background:var(--chip);color:var(--chip-ink);
+  font-family:var(--sans);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.right{border-color:var(--ok);color:var(--ok-ink)}
+.opt.right .num{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);color:var(--bad-ink)}
+.opt.wrong .num{background:var(--bad);color:#fff}
+.opt.dim{color:#a0a8ae}
+.feedback{border:1px solid var(--bad-line);background:var(--bad-bg);border-radius:8px;padding:14px 18px;margin-top:16px}
+.feedback.ok{border-color:var(--ok-line);background:var(--ok-bg)}
+.feedback b{display:block;font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--bad);margin-bottom:.3rem}
+.feedback.ok b{color:var(--ok)}
+.hint{font-family:var(--sans);font-size:11.5px;color:#b3bac0;text-align:center;margin-top:12px}
+.done-score{font-size:40px;font-weight:400}
+.done-meta{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:.3rem}
+.done-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.links{font-family:var(--sans);font-size:12.5px;margin-top:14px}
+.links a{color:var(--hero-muted);text-decoration:none;margin-right:16px}
+.links a:hover{color:var(--hero-ink);text-decoration:underline}
+.home{background:var(--hero);padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px}
+.home a{display:inline-block;color:var(--hero-ink);font:600 13px var(--sans);text-decoration:none;
+  padding:8px 14px;border:1px solid #3a454d;border-radius:999px}
+.home a:hover{background:#232c33}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){h1{font-size:27px}.qcard{padding:20px 16px}.stats{gap:24px}}
+.stem{font-family:var(--sans);font-size:14px;color:var(--muted);background:var(--chip);border-radius:8px;padding:12px 14px;margin:.5rem 0 0;line-height:1.55}
+.note{font-family:var(--sans);font-size:12px;color:#875c16;margin-top:12px}
+textarea{width:100%;min-height:200px;font:15.5px/1.5 var(--serif);color:var(--ink-soft);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px;background:var(--opt);resize:vertical}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+textarea:disabled{color:var(--muted)}
+.points{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.points label{display:flex;gap:12px;align-items:flex-start;background:var(--opt);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px;cursor:pointer;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.points input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--ok)}
+.points label:has(input:checked){border-color:var(--ok);background:var(--ok-bg)}
+</style>
+</head>
+<body>
+<nav class="home" aria-label="Study navigation"><a href="microbiology-quiz.html">&larr; Microbiology quiz</a><a href="microbiology.html">Microbiology content &rarr;</a></nav>
+<div id="topbar" class="topbar" hidden></div>
+<div id="app"></div>
+
+<script>
+const STEM1 = "A researcher is performing a diagnostic series on a new isolate from a clinical skin sample. The isolate is a spherical bacterium that forms clusters. The researcher performs a Gram stain using crystal violet, iodine, alcohol, and safranin. Observation under the microscope at 1000x magnification shows purple, cluster-forming cells. Following this, the researcher suspects the presence of endospores due to the culture's age and performs a Malachite green stain with heat, followed by a safranin counterstain. The resulting slide shows red vegetative cells with no green structures visible.";
+
+// Multiple choice: {n, stem?, q, o: [A-D], a: correct index, why, note?}. 2 marks each.
+// Long answer: {n, q, pts: [key points]}. 1 mark per key point.
+const MC = [
+  {n:"1a", stem:STEM1, q:"Based on the results described, what is the most likely composition of the isolate's cell wall?",
+   o:["A cell wall composed primarily of pseudomurein with L-amino acids.","A thin layer of peptidoglycan with an outer membrane containing lipopolysaccharide (LPS).","A thick layer of peptidoglycan containing teichoic acids.","A membrane rich in sterols but lacking a traditional peptidoglycan wall."],
+   a:2, why:"Purple cells after the Gram stain mean the crystal violet–iodine complex stayed trapped, which is what a thick, dehydrated peptidoglycan wall does. Thick peptidoglycan with teichoic acids is the Gram-positive wall (a staphylococcus-like coccus in clusters)."},
+  {n:"1b", stem:STEM1, q:"Which conclusion can be drawn regarding the isolate's ability to produce survival structures based on the second experiment?",
+   o:["The isolate is an acid-fast organism that resisted the malachite green dye.","The isolate is a Gram-negative organism, and thus cannot produce spores.","The isolate does not form endospores under the conditions provided.","The isolate is a member of the genus Bacillus but was too young to sporulate."],
+   a:2, why:"Heat drives malachite green into endospores, which then stay green. Only red vegetative cells means no endospores formed. The culture was old, so 'too young' doesn't fit, and the Gram stain showed it's Gram-positive."},
+  {n:2, q:"Who is credited with disproving the theory of spontaneous generation using a swan-neck flask experiment?",
+   o:["Louis Pasteur","John Tyndall","Robert Koch","Antonie van Leeuwenhoek"],
+   a:0, why:"Pasteur's swan-neck flasks let air in but trapped dust and microbes in the bend, so boiled broth stayed sterile until the neck was broken or tipped.",
+   note:"Options A and B were missing from the source and have been reconstructed."},
+  {n:3, q:"In the three-domain system of life, which characteristic is unique to the domain Archaea compared to Bacteria?",
+   o:["Ether-linked lipids in the cytoplasmic membrane.","The ability to fix atmospheric nitrogen into ammonia.","The presence of 16S ribosomal RNA genes.","The use of binary fission for cellular division."],
+   a:0, why:"Archaeal membranes use isoprenoid chains ether-linked to glycerol. Bacteria use ester-linked fatty acids. Both domains have 16S rRNA, divide by binary fission and include nitrogen fixers."},
+  {n:4, q:"The endosymbiotic theory suggests that mitochondria originated from which group of microorganisms?",
+   o:["Euryarchaeota","Cyanobacteria","Proteobacteria","Methanogens"],
+   a:2, why:"Mitochondria descend from an Alphaproteobacterium. Cyanobacteria gave rise to chloroplasts."},
+  {n:5, q:"Which Baltimore Classification class describes viruses that possess a double-stranded DNA genome?",
+   o:["Class IV","Class VII","Class VI","Class I"],
+   a:3, why:"Class I is dsDNA. Class IV is (+)ssRNA, Class VI is ssRNA retroviruses and Class VII is gapped dsDNA that replicates through an RNA intermediate (hepadnaviruses)."},
+  {n:6, q:"A microorganism that has an optimal growth temperature of 15°C and cannot grow above 20°C is classified as a:",
+   o:["Psychrophile","Mesophile","Psychrotolerant","Hyperthermophile"],
+   a:0, why:"Psychrophiles have an optimum of 15°C or lower and a maximum near 20°C. Psychrotolerant organisms grow at 0°C but have optima of 20–40°C.",
+   note:"The optimum temperature was garbled in the source. 15°C is the textbook psychrophile optimum."},
+  {n:7, q:"Which group of Proteobacteria is characterized by the ability to oxidize methane as its sole source of carbon and energy?",
+   o:["Methanotrophs","Nitrifiers","Pseudomonads","Enterics"],
+   a:0, why:"Methanotrophs oxidize CH4 using methane monooxygenase. Nitrifiers oxidize ammonia or nitrite."},
+  {n:8, q:"In the regulation of the tryptophan operon in E. coli, what occurs when there is an excess of tryptophan?",
+   o:["The ribosome stalls at the leader sequence, preventing the formation of a terminator hairpin.","The LexA repressor is cleaved by RecA, inducing the expression of the operon.","The activator protein binds to the promoter to increase RNA polymerase affinity.","A terminator hairpin loop forms in the mRNA, causing early termination of transcription."],
+   a:3, why:"This is attenuation. With plenty of Trp-tRNA the ribosome moves quickly through the leader's Trp codons, so regions 3 and 4 pair into a terminator hairpin and transcription stops early. Ribosome stalling (A) happens when tryptophan is scarce."},
+  {n:9, q:"What is the primary function of the enzyme Transposase?",
+   o:["To replicate the F plasmid during conjugation.","To recognize inverted repeats and mediate the movement of transposable elements.","To methylate host DNA to protect it from restriction endonucleases.","To repair double-strand breaks through homologous recombination."],
+   a:1, why:"Transposase binds the inverted repeats at the ends of an insertion sequence or transposon, cuts the element out and inserts it at a new target site.",
+   note:"Option D was missing from the source and has been reconstructed."},
+  {n:10, q:"Which genomic method involves pooling DNA from an entire microbial community without prior cultivation?",
+   o:["Metagenomics","Shotgun sequencing of a pure culture","DNA-DNA hybridization","Microarray analysis"],
+   a:0, why:"Metagenomics sequences DNA taken straight from an environmental sample, so it captures organisms that have never been cultured."},
+  {n:11, q:"The protein FtsZ, which is essential for bacterial cell division, is a homologue of which eukaryotic cytoskeleton protein?",
+   o:["Myosin","Actin","Tubulin","Intermediate filaments"],
+   a:2, why:"FtsZ is a GTPase that forms the Z-ring at the division site, and it's related to tubulin. MreB is the actin homologue and crescentin is the intermediate filament homologue."},
+  {n:12, q:"Which of the following is a characteristic of Halobacterium species found in extreme salt environments?",
+   o:["They maintain water balance by accumulating high intracellular concentrations of Potassium","They are obligate anaerobes that produce methane.","They use chlorophyll a for oxygenic photosynthesis.","They possess cell walls made of thick peptidoglycan."],
+   a:0, why:"Halobacterium pumps in K+ until it matches the external salt, which keeps water from leaving the cell. Its wall is a glycoprotein S-layer, and it makes light-driven ATP with bacteriorhodopsin, not chlorophyll."},
+  {n:13, q:"A 'plaque' in a viral plaque assay represents:",
+   o:["A single viral particle that has successfully attached to a red blood cell.","The accumulation of viral proteins on the surface of an agar plate.","A colony of bacteria that has developed resistance to a bacteriophage.","A zone of cell lysis caused by the infection and replication of a single virus particle."],
+   a:3, why:"One virion infects one cell, and its progeny infect and lyse the neighbouring cells, which leaves a clear zone in the lawn. Counting plaques gives plaque-forming units."},
+  {n:14, q:"In bacterial chemotaxis, which protein acts as the sensor kinase that becomes phosphorylated in the absence of an attractant?",
+   o:["CheR","CheA","CheY","CheW"],
+   a:1, why:"CheA autophosphorylates when there's no attractant and passes the phosphate to CheY. CheY-P makes the flagellar motor tumble. CheW couples CheA to the MCPs, and CheR methylates the MCPs."},
+  {n:15, q:"Which mechanism of horizontal gene transfer requires the direct contact between a donor and a recipient cell via a pilus?",
+   o:["Generalized Transduction","Conjugation","Transformation","Specialized Transduction"],
+   a:1, why:"In conjugation, the F (sex) pilus brings donor and recipient into contact. Transduction uses a phage, and transformation takes up free DNA."},
+  {n:16, q:"Standard autoclave conditions for sterilization are generally:",
+   o:["72°C for 15 seconds (High-Temperature Short-Time).","160°C for 2 hours in a dry oven.","121°C for 15 minutes at 15 psi.","100°C for 10 minutes at atmospheric pressure."],
+   a:2, why:"Steam at 15 psi reaches 121°C, and 15 minutes at that temperature kills endospores. 72°C for 15 seconds is pasteurization, and 160°C for 2 hours is dry-heat sterilization."},
+  {n:17, q:"Which of Koch's postulates is specifically addressed by growing a suspected pathogen in a 'pure culture'?",
+   o:["Postulate 3","Postulate 2","Postulate 4","Postulate 1"],
+   a:1, why:"1: the agent is present in diseased hosts. 2: it's isolated and grown in pure culture. 3: the culture causes the disease in a healthy host. 4: the same agent is re-isolated."},
+  {n:18, q:"Cyanobacteria use specialized cells called heterocysts primarily for:",
+   o:["Nitrogen fixation in an oxygen-free environment.","Storage of elemental sulfur granules.","Protection against viral infection (CRISPR).","Buoyancy control in water columns."],
+   a:0, why:"Heterocysts lack photosystem II and have thick walls, which keeps oxygen away from the O2-sensitive nitrogenase. Gas vesicles control buoyancy."},
+  {n:19, q:"The cell walls of fungi are primarily composed of which polymer?",
+   o:["Cellulose","Chitin","Peptidoglycan","Pseudomurein"],
+   a:1, why:"Fungal walls are mostly chitin, with glucans. Cellulose is found in plants and some algae, peptidoglycan in Bacteria and pseudomurein in some methanogens."}
+];
+
+const LA = [
+  {n:20, q:"Explain the underlying biochemical and structural differences that cause Gram-positive and Gram-negative bacteria to appear different colors following the Gram stain procedure.",
+   pts:["Gram-positive cells have a thick, multilayered peptidoglycan wall (up to ~90% of the wall). Gram-negative cells have a thin peptidoglycan layer in the periplasm.",
+     "Gram-negative cells have an outer membrane of LPS, phospholipid and proteins. Gram-positive cells have no outer membrane but have teichoic and lipoteichoic acids.",
+     "Crystal violet (primary stain) enters and stains every cell purple.",
+     "Iodine acts as a mordant and forms a large, insoluble crystal violet–iodine complex inside the cell.",
+     "Alcohol dehydrates the thick Gram-positive peptidoglycan and closes its pores, which traps the CV–I complex so the cells stay purple.",
+     "Alcohol dissolves the Gram-negative outer membrane, and the thin peptidoglycan can't hold the complex, so the cells decolourize.",
+     "Safranin (counterstain) turns the colourless Gram-negative cells pink/red. In Gram-positive cells the purple masks it."]},
+  {n:21, q:"Describe the mechanism of Quorum Sensing in bacteria. How do molecules like Acylated homoserine lactones (AHLs) facilitate this process?",
+   pts:["Quorum sensing lets cells detect population density and change gene expression only when enough cells are present.",
+     "Each cell constantly makes a small signalling molecule (autoinducer) at a low rate. In Gram-negatives, the AHL synthase is a LuxI-type protein.",
+     "AHLs diffuse freely across the membrane. At low cell density they diffuse away and stay dilute.",
+     "As the population grows in a confined space, the AHL concentration rises past a threshold (the quorum).",
+     "Above the threshold, AHL binds a cytoplasmic LuxR-type receptor/transcriptional activator.",
+     "The AHL–LuxR complex activates target genes, including luxI itself. This positive feedback is why it's called autoinduction.",
+     "Example: Vibrio fischeri bioluminescence (lux genes) in the squid light organ, or biofilms and virulence factors. AHL acyl chains are species-specific, and Gram-positives use peptides instead."]},
+  {n:22, q:"Compare and contrast the Lytic and Lysogenic replication cycles of bacteriophages. What triggers a temperate phage to transition from lysogeny to the lytic phase?",
+   pts:["Both cycles start the same way: attachment to specific host receptors, then injection of the phage genome.",
+     "Lytic cycle (virulent phages): the phage takes over the host, replicates its genome, makes capsid proteins, assembles virions and lyses the cell to release progeny.",
+     "Lysogenic cycle (temperate phages): the phage genome integrates into the host chromosome as a prophage (λ uses integrase at the att site), and no virions are made.",
+     "The prophage is copied along with the host chromosome and passed to daughter cells. The host is now a lysogen.",
+     "A phage repressor (λ cI) keeps the lytic genes off and makes the lysogen immune to superinfection by the same phage.",
+     "The trigger is DNA damage (e.g. UV or mutagens), which switches on the SOS response. Activated RecA stimulates self-cleavage of the cI repressor (as with LexA).",
+     "Once the repressor is gone, lytic genes (cro) are expressed, the prophage is excised and the lytic cycle runs, ending in lysis."]},
+  {n:23, q:"Explain the process of natural genetic engineering performed by Agrobacterium tumefaciens on plant cells. Include the role of the Ti plasmid and opines.",
+   pts:["A. tumefaciens is a Gram-negative soil Alphaproteobacterium that causes crown gall disease in plants.",
+     "Wounded plant cells release phenolic compounds (e.g. acetosyringone), which attract the bacterium and help it attach to the plant cell.",
+     "The phenolics are sensed by the VirA/VirG two-component system, which switches on the vir genes of the Ti (tumour-inducing) plasmid.",
+     "The Ti plasmid carries T-DNA flanked by border repeats. VirD1/VirD2 nick the borders to make a single-stranded T-strand, which is coated by VirE2.",
+     "The T-strand passes into the plant cell through a type IV secretion system (VirB), much like conjugation, and then enters the nucleus and integrates into the plant chromosome.",
+     "T-DNA genes make the plant cell produce auxin and cytokinin, and the resulting uncontrolled division forms the tumour (crown gall).",
+     "T-DNA also directs the plant cells to make opines (amino acid–sugar compounds such as octopine or nopaline). Only the Agrobacterium can use them, because the Ti plasmid carries the genes to break them down, so they feed the bacterium. Disarmed Ti plasmids are used as vectors in plant genetic engineering."]},
+  {n:24, q:"Compare 'Viable Cell Count' (using serial dilutions) and 'Turbidity' (using spectrophotometry) as methods for measuring microbial growth. List two advantages and two disadvantages for each method.",
+   pts:["Viable count method: serially dilute the sample, spread- or pour-plate it, count colonies on plates with 30–300, and multiply by the dilution factor to get CFU/mL.",
+     "Viable count advantage: only living cells that can reproduce are counted.",
+     "Viable count advantage: it's sensitive enough for very low cell numbers, and selective or differential media can target specific organisms.",
+     "Viable count disadvantage: it's slow (a day or more of incubation) and labour-intensive.",
+     "Viable count disadvantage: it underestimates cell numbers. Clumps or chains give one colony, and cells that can't grow on that medium or under those conditions are missed (great plate count anomaly).",
+     "Turbidity method: a spectrophotometer measures optical density (e.g. OD600) from light scattered by the cells. OD is proportional to cell mass and is converted to cell number with a standard curve.",
+     "Turbidity advantages: it's fast and non-destructive, so the same culture can be measured repeatedly to follow a growth curve. It's also simple and cheap.",
+     "Turbidity disadvantages: it can't tell live cells from dead cells or debris, and it's insensitive at low densities (needs roughly 10^7 cells/mL). It also needs a standard curve and is thrown off by clumping or coloured media."]},
+  {n:25, q:"Discuss the importance of the Metagenomic approach in modern microbiology. How does it overcome the limitations of traditional cultivation-based research?",
+   pts:["Great plate count anomaly: most microbes in nature (over 99%) can't be grown with standard lab methods, and microscope counts far exceed plate counts.",
+     "Cultivation is biased toward fast-growing organisms suited to lab media. It misses slow growers, syntrophs and organisms with unknown requirements.",
+     "Metagenomics extracts total DNA directly from an environmental sample (soil, ocean, gut) with no culturing step.",
+     "The DNA is shotgun sequenced and assembled, or 16S rRNA genes are amplified and sequenced, to identify which organisms are present and how diverse the community is.",
+     "It reveals the community's functional genes and metabolic potential, such as proteorhodopsin found in ocean metagenomes, and it's a source of new enzymes and antibiotics.",
+     "It has uncovered new lineages (e.g. Asgard archaea, the candidate phyla radiation), and whole genomes can be reconstructed from the data (metagenome-assembled genomes).",
+     "Applications include the human microbiome, showing how communities change with health, disease and the environment, and microbial ecology generally.",
+     "Related methods (metatranscriptomics, metaproteomics) show which genes are actually active. Metagenomics can't show phenotype directly, so cultivation is still needed to confirm function."]},
+  {n:26, q:"Describe the structural and functional differences between the Bacterial and Eukaryotic cytoskeletons. Name one homologue for each system.",
+   pts:["Bacteria were once thought to lack a cytoskeleton, but they have homologues of all three eukaryotic filament types.",
+     "The eukaryotic cytoskeleton has three types of filaments: microtubules (tubulin), microfilaments (actin) and intermediate filaments. It also has motor proteins (kinesin, dynein, myosin), which bacteria largely lack.",
+     "Eukaryotic functions include cell shape, vesicle and organelle transport, chromosome segregation by the mitotic spindle, cilia and flagella, cytokinesis and phagocytosis.",
+     "FtsZ is the tubulin homologue. It's a GTPase that forms the Z-ring at midcell and recruits the divisome to build the septum during division.",
+     "MreB is the actin homologue. It's an ATPase that forms filaments under the membrane in rod-shaped cells and directs peptidoglycan synthesis to keep the rod shape (cocci lack it).",
+     "Crescentin is the intermediate filament homologue. It gives Caulobacter crescentus its curved shape.",
+     "Structurally, the bacterial proteins share their eukaryotic counterparts' 3D fold but have little sequence similarity. They're often simpler and membrane-associated, and some, like ParM (actin-like), segregate plasmids.",
+     "Functionally, the bacterial cytoskeleton mainly handles shape, division and DNA segregation. The eukaryotic cytoskeleton also drives large-scale internal organization and transport."]},
+  {n:27, q:"Compare 'Generalized Transduction' and 'Specialized Transduction'. Explain how they differ in terms of the DNA packaged and the type of bacteriophage involved.",
+   pts:["Transduction is phage-mediated transfer of bacterial DNA from a donor to a recipient. It needs no cell contact, and the DNA is protected inside the capsid.",
+     "Generalized transduction can transfer any part of the host chromosome.",
+     "Generalized transduction happens during the lytic cycle: the host DNA is broken into fragments, and headful packaging sometimes packs host DNA by mistake, forming a transducing particle (e.g. P22 in Salmonella, P1 in E. coli).",
+     "A generalized transducing particle carries only host DNA and no phage genes, so it can't replicate. The donor DNA has to recombine into the recipient chromosome by homologous recombination, or the transduction is abortive.",
+     "Specialized transduction transfers only the specific genes next to the prophage integration site.",
+     "Specialized transduction needs a temperate phage that integrates at a specific site, e.g. λ at att between the gal and bio genes.",
+     "The transducing phage comes from imprecise excision of the prophage on induction. The excised phage DNA carries neighbouring host genes (gal or bio) and loses some phage genes, so it's often defective (λdgal).",
+     "Generalized transduction moves any gene at low frequency. Specialized transduction moves only a few genes, but at high frequency, and the recipient can become a lysogen carrying the phage together with those genes."]}
+];
+
+(function(){
+  const $ = s => document.querySelector(s);
+  const app = $("#app"), bar = $("#topbar");
+  const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const KEY = "microFinal", L = "ABCD";
+  const Q = [...MC.map(q => ({...q, t:"mc"})), ...LA.map(q => ({...q, t:"la"}))];
+  const MC_MAX = MC.length * 2, LA_MAX = LA.reduce((s, q) => s + q.pts.length, 0);
+
+  let at = 0, mc = 0, la = 0, done = false;
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } };
+  const save = pct => {
+    try {
+      const p = load() || {best:0, attempts:0};
+      localStorage.setItem(KEY, JSON.stringify({last:pct, best:Math.max(p.best, pct), attempts:p.attempts + 1}));
+    } catch (e) {}
+  };
+
+  function home(){
+    bar.hidden = true;
+    const p = load();
+    app.innerHTML =
+      '<header><div class="wrap">' +
+        '<p class="kicker">Microbiology, practice final exam</p>' +
+        '<h1>Microbiology final exam</h1>' +
+        '<p class="lede">Multiple choice is marked for you. For long answers, write your answer, then compare it ' +
+          'against the key points and tick off each one you covered.</p>' +
+        '<div class="stats">' +
+          '<div class="stat"><b>' + MC.length + '</b><span>multiple choice</span></div>' +
+          '<div class="stat"><b>' + LA.length + '</b><span>long answer</span></div>' +
+          '<div class="stat"><b>' + (p ? p.best + "%" : "—") + '</b><span>best score</span></div>' +
+        '</div>' +
+      '</div></header>' +
+      '<main><div class="wrap">' +
+        '<div class="card lead-card">' +
+          '<div><p class="label">Section 1 then Section 2</p><h2>Full final exam</h2>' +
+          '<p class="meta">' + MC_MAX + ' marks multiple choice, ' + LA_MAX + ' marks long answer' +
+          (p ? ' · last ' + p.last + '%, ' + p.attempts + ' attempts' : '') + '</p></div>' +
+          '<button class="btn" id="start">' + (p ? "Retake final exam" : "Start final exam") + '</button>' +
+        '</div>' +
+        '<p class="note">No official answer key was given, so the answers and key points are inferred from the course material. ' +
+          'Questions 2, 6 and 9 had gaps in the source text; the filled-in parts are flagged on those questions.</p>' +
+      '</div></main>';
+  }
+
+  function start(){ at = 0; mc = 0; la = 0; question(); }
+
+  function question(){
+    done = false;
+    const q = Q[at];
+    bar.hidden = false;
+    bar.innerHTML =
+      '<div class="wrap"><div class="row">' +
+        '<button class="close" aria-label="Leave the final exam">×</button>' +
+        '<span class="crumb">' + (q.t === "mc" ? "Section 1 · Multiple choice" : "Section 2 · Long answer") + '</span>' +
+        '<span class="count">' + (at + 1) + '/' + Q.length + '</span>' +
+      '</div><div class="progress"><i style="width:' + (100 * at / Q.length) + '%"></i></div></div>';
+    const head =
+      '<p class="qtopic">Question ' + q.n + ' · ' + (q.t === "mc" ? 2 : q.pts.length) + ' marks</p>' +
+      (q.stem ? '<p class="stem">' + esc(q.stem) + '</p>' : '') +
+      '<p class="qtext">' + esc(q.q) + '</p>';
+    const body = q.t === "mc"
+      ? '<div class="opts">' + q.o.map((o, i) =>
+          '<button class="opt" data-i="' + i + '"><span class="num">' + L[i] + '</span><span>' + esc(o) + '</span></button>').join("") + '</div>' +
+        '<div id="tail"></div><p class="hint">Press A to D to answer, Enter to continue</p>'
+      : '<textarea id="ans" placeholder="Write your answer here" aria-label="Your answer"></textarea>' +
+        '<div id="tail"><button class="btn wide" id="submit" style="margin-top:14px">Submit and compare</button></div>';
+    app.innerHTML = '<main><div class="wrap"><div class="qcard">' + head + body + '</div></div></main>';
+    if(q.t === "la") $("#ans").focus();
+  }
+
+  const nextBtn = () => '<button class="btn wide" id="next" style="margin-top:16px">' +
+    (at + 1 === Q.length ? "See your score" : "Next question") + '</button>';
+
+  function answer(i){
+    const q = Q[at];
+    if(done || q.t !== "mc" || !q.o[i]) return;
+    done = true;
+    const hit = i === q.a;
+    if(hit) mc += 2;
+    document.querySelectorAll(".opt").forEach((b, j) => {
+      b.disabled = true;
+      const num = b.querySelector(".num");
+      if(j === q.a){ b.classList.add("right"); num.textContent = "✓"; }
+      else if(j === i){ b.classList.add("wrong"); num.textContent = "✕"; }
+      else b.classList.add("dim");
+    });
+    $("#tail").innerHTML =
+      '<div class="feedback' + (hit ? " ok" : "") + '"><b>' + (hit ? "Correct" : "Not quite, the answer is " + L[q.a]) + '</b>' +
+      esc(q.why) + '</div>' + (q.note ? '<p class="note">' + esc(q.note) + '</p>' : '') + nextBtn();
+    $("#next").focus();
+  }
+
+  function submit(){
+    const q = Q[at];
+    done = true;
+    $("#ans").disabled = true;
+    $("#tail").innerHTML =
+      '<p class="section-title">Key points. Tick each one your answer covered (1 mark each)</p>' +
+      '<ul class="points">' + q.pts.map((p, i) =>
+        '<li><label><input type="checkbox" data-p="' + i + '"><span>' + esc(p) + '</span></label></li>').join("") + '</ul>' +
+      nextBtn();
+  }
+
+  function next(){
+    if(!done) return;
+    if(Q[at].t === "la") la += document.querySelectorAll(".points input:checked").length;
+    at++;
+    if(at < Q.length) return question();
+    const pct = Math.round(100 * (mc + la) / (MC_MAX + LA_MAX));
+    save(pct);
+    bar.hidden = true;
+    app.innerHTML =
+      '<main><div class="wrap"><div class="qcard">' +
+        '<p class="qtopic">Microbiology final exam</p>' +
+        '<p class="done-score">' + (mc + la) + ' / ' + (MC_MAX + LA_MAX) + '</p>' +
+        '<p class="done-meta">' + pct + ' per cent · multiple choice ' + mc + '/' + MC_MAX +
+          ' · long answer ' + la + '/' + LA_MAX + ' (self-marked)</p>' +
+        '<div class="done-btns">' +
+          '<button class="btn" id="again">Run it again</button>' +
+          '<button class="btn ghost" id="back">Back</button>' +
+        '</div>' +
+      '</div></div></main>';
+  }
+
+  document.addEventListener("click", e => {
+    const t = e.target;
+    if(t.closest("#start") || t.closest("#again")) return start();
+    if(t.closest(".close") || t.closest("#back")) return home();
+    if(t.closest("#submit")) return submit();
+    if(t.closest("#next")) return next();
+    const o = t.closest(".opt");
+    if(o) answer(+o.dataset.i);
+  });
+  document.addEventListener("keydown", e => {
+    if(e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT" || bar.hidden) return;
+    const i = L.indexOf(e.key.toUpperCase());
+    if(i !== -1 && e.key.length === 1) answer(i);
+    else if(e.key === "Enter" && done && e.target.id !== "next"){ e.preventDefault(); next(); }
+  });
+
+  home();
+
+  // ponytail: self-check, run by loading the page with #selftest
+  if(location.hash === "#selftest"){
+    MC.forEach(q => {
+      console.assert(q.o.length === 4 && new Set(q.o).size === 4, "options", q.n);
+      console.assert(q.a >= 0 && q.a < 4, "bad answer index", q.n);
+      console.assert(q.why && q.why.length > 20, "thin explanation", q.n);
+    });
+    LA.forEach(q => console.assert(q.pts.length >= 3, "too few key points", q.n));
+    console.assert(MC_MAX === 40, "section 1 should total 40 marks", MC_MAX);
+    console.assert(LA_MAX === 60, "section 2 should total 60 marks", LA_MAX);
+    console.log("selftest done:", MC.length, "MC,", LA.length, "LA");
+  }
+})();
+</script>
+</body>
+</html>

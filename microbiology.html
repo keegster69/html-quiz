@@ -128,6 +128,7 @@ figure.slot .miss code{background:var(--card)}
   <p class="sub">Reference tables, diagrams, flashcards and recall practice for the ten course topics.</p>
   <a class="back" href="biology-review.html">&larr; Back to the quiz</a>
   <a class="back" href="microbiology-quiz.html" style="margin-left:1rem">Microbiology quiz &rarr;</a>
+  <a class="back" href="microbiology-final.html" style="margin-left:1rem">Microbiology final exam &rarr;</a>
   <a class="back" href="content.html" style="margin-left:1rem">General biology content &rarr;</a>
 </header>
 
@@ -150,7 +151,7 @@ figure.slot .miss code{background:var(--card)}
 <!-- ================= TOPIC 1: MICROBIAL WORLD ================= -->
 <section id="world">
   <h2>Topic 1: the microbial world</h2>
-  <p>Microbiology is defined by size rather than by ancestry. The organisms in this course sit in all three domains of life and include agents that are not organisms at all. What unites them is that they are studied as populations of cells (or particles) rather than as individuals, and that almost every one of them was invisible until Hooke and Leeuwenhoek built lenses good enough to resolve them in the 1670s.</p>
+  <p>Microbiology is defined by size rather than by ancestry. The organisms in this course sit in all three domains of life and include agents that are not organisms at all. What unites them is that they are studied as populations of cells (or particles) rather than as individuals, and that almost every one of them was invisible until Hooke and Leeuwenhoek built lenses good enough to resolve them in the 1670s. Two centuries later Louis Pasteur settled whether microbes arise by spontaneous generation: boiled broth in a swan-neck flask stays sterile because the curved neck lets air in but traps dust and microbes, and it only spoils once the neck is broken or tipped so trapped material reaches the broth.</p>
 
   <figure class="slot">
     <img src="media/micro-tree-of-life.png" alt="Universal phylogenetic tree showing Bacteria, Archaea and Eukarya diverging from a common root">
@@ -404,7 +405,7 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
-  <p>The Gram stain works on that architecture. Crystal violet and iodine form a large complex in the cytoplasm; the alcohol decolouriser dehydrates and shrinks thick peptidoglycan so the complex is trapped, while it dissolves the outer membrane of a Gram-negative cell and lets the complex wash out. Old cultures give false negatives as the wall degrades, so the stain is run on fresh growth.</p>
+  <p>The Gram stain works on that architecture. Crystal violet and iodine form a large complex in the cytoplasm; the alcohol decolouriser dehydrates and shrinks thick peptidoglycan so the complex is trapped, while it dissolves the outer membrane of a Gram-negative cell and lets the complex wash out. Old cultures give false negatives as the wall degrades, so the stain is run on fresh growth. The endospore (Schaeffer-Fulton) stain uses heat to drive malachite green into the tough spore coat, then water decolourises the vegetative cells and safranin counterstains them: spores show green, vegetative cells red, and a slide with only red cells means no endospores were formed.</p>
 
   <h4>Lipopolysaccharide</h4>
   <p>LPS has three parts. Lipid A anchors it in the outer membrane and is the endotoxin. The core polysaccharide is conserved. The O antigen is a repeating sugar chain that is highly variable and is used for serotyping, as in <em>E. coli</em> O157:H7. LPS is stabilised by Mg<sup>2+</sup> and Ca<sup>2+</sup> bridges, which is why EDTA and polymyxins destabilise the outer membrane.</p>
@@ -930,7 +931,7 @@ figure.slot .miss code{background:var(--card)}
   <table>
     <thead><tr><th>Method</th><th>Counts</th><th>Strengths and limits</th></tr></thead>
     <tbody>
-      <tr><td>Viable plate count</td><td>Colony-forming units per millilitre</td><td>The standard for live cells. Needs 30 to 300 colonies per plate to be statistically sound; clumps count as one; misses cells that will not grow on that medium</td></tr>
+      <tr><td>Viable plate count</td><td>Colony-forming units per millilitre</td><td>Serial tenfold dilutions are spread or pour plated; CFU per millilitre is colonies divided by (dilution times volume plated). The standard for live cells, but slow, since plates need a day or more of incubation. Needs 30 to 300 colonies per plate to be statistically sound; clumps count as one; misses cells that will not grow on that medium</td></tr>
       <tr><td>Direct microscopic count</td><td>Total cells, in a haemocytometer or Petroff-Hausser chamber</td><td>Fast, no incubation, but cannot separate live from dead without a stain and needs about 10<sup>6</sup> cells per millilitre</td></tr>
       <tr><td>Turbidity (OD<sub>600</sub>)</td><td>Light scattering, a proxy for biomass</td><td>Non-destructive and continuous; must be calibrated against plate counts, and dead cells still scatter</td></tr>
       <tr><td>Dry weight</td><td>Biomass</td><td>Best for filamentous fungi, where counting cells is meaningless</td></tr>
@@ -1403,6 +1404,7 @@ figure.slot .miss code{background:var(--card)}
   </div>
   <div class="key"><strong>Hfr mapping.</strong> When the F plasmid integrates into the chromosome the cell becomes Hfr and transfers chromosomal genes in a fixed order starting from <em>oriT</em>. Interrupting mating at intervals, by blending the culture, shows which genes have arrived by which minute, and the whole 100 minute <em>E. coli</em> map was built that way. F<sup>+</sup> by itself transfers only the plasmid; an F' plasmid that has excised imprecisely carries a piece of chromosome and creates a partial diploid, which is how cis and trans dominance in the lac operon was worked out.</div>
   <p>Horizontal transfer is visible in genomes as regions with atypical GC content and codon usage, flanked by insertion sequences or tRNA genes: genomic islands, including pathogenicity islands such as the <em>Salmonella</em> SPI-1 locus and the phage-borne cholera toxin genes. Integrons capture resistance cassettes in series downstream of one promoter, which is how a plasmid accumulates resistance to five drugs at once.</p>
+  <div class="key"><strong>Natural genetic engineering: <em>Agrobacterium tumefaciens</em>.</strong> This Gram-negative soil alphaproteobacterium causes crown gall by moving its own DNA into plant cells. Phenolics such as acetosyringone released from a plant wound attract it and are sensed by the VirA/VirG two-component system, which switches on the <em>vir</em> genes of the Ti (tumour-inducing) plasmid. VirD1/VirD2 nick the border repeats flanking the T-DNA, and the single-stranded T-strand, coated by VirE2, is exported through a VirB type IV secretion system, a process resembling conjugation. In the plant nucleus the T-DNA integrates into a chromosome. Its genes make auxin and cytokinin, so the cells proliferate into a tumour, and they make opines, amino acid and sugar conjugates such as octopine and nopaline that the plant cannot use but the bacterium can catabolise with Ti plasmid genes. The bacterium has engineered the plant into a factory that feeds it. Disarmed Ti plasmids, with the tumour genes replaced by a gene of interest, are the standard vector for making transgenic plants.</div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="bgen"></div>
 </section>
@@ -1539,6 +1541,7 @@ document.querySelectorAll("figure.slot img").forEach(img => {
 // one flashcard deck per topic section: click the card to turn it over
 const FC = {
 "world": [
+["How did Pasteur disprove spontaneous generation?", "Boiled broth in a swan-neck flask stayed sterile because the curved neck let air in but trapped dust and microbes. It spoiled only when the neck was broken or tipped."],
 ["How do conserved and variable regions make SSU rRNA useful for phylogeny?", "Conserved regions allow homologous sequences to be aligned across distant cellular lineages; variable regions help distinguish closer relatives. Its essential ribosomal role limits harmful changes, but very close species can still have nearly identical sequences."],
 ["Why can an rRNA tree neither date a split exactly on its own nor describe every gene's ancestry?", "Dating needs a calibrated substitution rate and an appropriate model. An rRNA tree follows one gene's history, while horizontal gene transfer can give other genes different histories."],
 ["What must alien life share with Earth life for SSU rRNA comparisons to reveal ancestry?", "It must have homologous SSU rRNA with enough conserved sequence or structure for meaningful comparison. Similar function alone is insufficient; independently evolved life might lack rRNA or use a different system."],
@@ -1562,6 +1565,7 @@ const FC = {
 ["Describe the chemistry of peptidoglycan.", "Alternating N-acetylglucosamine and N-acetylmuramic acid joined beta-1,4, with peptide stems on NAM cross-linked into one covalent sacculus. D-amino acids resist host proteases."],
 ["How do lysozyme, penicillin and vancomycin each attack the wall?", "Lysozyme hydrolyses the beta-1,4 glycan bond. Penicillin inhibits the transpeptidases that cross-link. Vancomycin binds the D-Ala-D-Ala terminus and blocks the same step from the substrate side."],
 ["Give four differences between Gram-positive and Gram-negative envelopes.", "Thick against thin peptidoglycan, no outer membrane against an outer membrane with LPS, teichoic acids against none, minimal periplasm against a distinct one."],
+["How does the endospore stain work?", "Heat drives malachite green into the spore coat, water decolourises vegetative cells, and safranin counterstains them. Spores are green, vegetative cells red."],
 ["Why does a Gram-positive cell keep the crystal violet?", "Alcohol dehydrates and shrinks the thick peptidoglycan so the dye and iodine complex is trapped, while it dissolves the Gram-negative outer membrane and lets the complex wash out."],
 ["Name the three parts of lipopolysaccharide.", "Lipid A, which is the endotoxin, the conserved core polysaccharide, and the variable O antigen used for serotyping."],
 ["Why are mycobacteria acid-fast and slow growing?", "A mycolic acid layer over arabinogalactan makes the surface waxy, which holds carbolfuchsin, excludes drugs, resists drying and slows nutrient uptake."],
@@ -1703,6 +1707,7 @@ const FC = {
 ["Why does blue and white screening work?", "An insert disrupts the lacZ alpha fragment, so recombinant colonies cannot cleave X-gal and stay white while empty vectors turn blue."],
 ["What does RecA do?", "It loads onto single-stranded DNA and invades a homologous duplex to begin strand exchange, forming a Holliday junction that RuvABC resolves."],
 ["Compare the three modes of horizontal gene transfer.", "Transformation takes up free DNA and needs competence. Transduction moves DNA inside a phage particle. Conjugation needs cell contact through a pilus and a conjugative plasmid."],
+["How does Agrobacterium tumefaciens engineer plant cells?", "Wound phenolics induce the Ti plasmid vir genes; T-DNA is nicked out, exported by a type IV system and integrated into the plant genome, where it makes auxin and cytokinin (crown gall tumour) and opines only the bacterium can use."],
 ["How do generalised and specialised transduction differ?", "Generalised transduction mispackages any random host fragment during a lytic infection. Specialised transduction carries only genes flanking a prophage's integration site."],
 ["What is an Hfr strain, and what is it used for?", "One with the F plasmid integrated into the chromosome. It transfers chromosomal genes in a fixed order from oriT, so interrupted mating maps gene positions in minutes."],
 ["What is an F prime plasmid useful for?", "It carries a piece of chromosome after imprecise excision, creating a partial diploid. That is how cis and trans dominance in the lac operon was established."],
