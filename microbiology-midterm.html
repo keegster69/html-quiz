@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Microbiology Midterm Exam</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --page:#f6f7f4; --ink:#1b2028; --ink-soft:#2c343c; --muted:#5d666e; --faint:#8a9199;
+  --line:#e4e7e2; --card:#fff; --opt:#fbfcfa; --chip:#eef0ed; --chip-ink:#7d8790;
+  --hero:#141a1f; --hero-ink:#eef2f0; --hero-muted:#8fa0a8;
+  --accent:#2563eb; --ok:#16a34a; --ok-ink:#14532d; --ok-bg:#f3faf5; --ok-line:#a7d8ba;
+  --bad:#dc2626; --bad-ink:#7f1d1d; --bad-bg:#fef4f4; --bad-line:#f0a3a3;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body{background:var(--page);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+
+header{background:var(--hero);padding:34px 0 30px}
+.kicker{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+h1{font-size:34px;font-weight:400;letter-spacing:-.015em;color:var(--hero-ink);margin:.35rem 0 .5rem}
+.lede{font-family:var(--sans);font-size:13.5px;color:var(--hero-muted);max-width:56ch;line-height:1.6}
+.stats{display:flex;gap:38px;margin-top:22px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--serif);font-size:27px;font-weight:400;color:var(--hero-ink)}
+.stat span{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+
+main{padding:26px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.lead-card{border-left:4px solid var(--accent);display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap}
+.lead-card .label{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.lead-card h2{font-size:21px;font-weight:400;margin:.15rem 0}
+.lead-card .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.btn{font-family:var(--sans);font-size:15px;font-weight:600;color:#fff;background:var(--accent);
+  border:none;border-radius:7px;padding:13px 22px;min-height:44px;cursor:pointer}
+.btn:hover{background:#1d4ed8}
+.btn.ghost{background:var(--card);color:var(--accent);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--chip)}
+.btn.wide{width:100%;border-radius:8px;padding:14px}
+
+.section-title{font-family:var(--sans);font-size:12.5px;color:var(--faint);margin:26px 0 10px}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.unit{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+  border-radius:10px;padding:16px 18px;text-align:left;cursor:pointer;font-family:var(--serif);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%}
+.unit:hover{border-color:var(--accent)}
+.unit h3{font-size:18px;font-weight:400;margin:.1rem 0}
+.unit .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.score-ring{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--chip-ink);
+  border:1px solid var(--line);border-radius:999px;padding:5px 9px;white-space:nowrap}
+.score-ring.done{color:var(--accent);border-color:var(--accent)}
+
+.topbar{background:var(--card);border-bottom:1px solid var(--line);padding:12px 0 0}
+.topbar .row{display:flex;align-items:center;gap:14px}
+.close{font-family:var(--sans);font-size:20px;line-height:1;color:var(--faint);background:none;
+  border:none;cursor:pointer;min-width:44px;min-height:44px}
+.close:hover{color:var(--ink)}
+.crumb{font-family:var(--sans);font-size:12.5px;color:var(--muted);flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.count{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted)}
+.progress{height:2px;background:var(--line);margin-top:10px}
+.progress i{display:block;height:2px;background:var(--accent);transition:width .2s ease-out}
+
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px 22px;margin-top:26px}
+.qtopic{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.qtext{font-size:20px;font-weight:400;margin:.4rem 0 1.1rem;line-height:1.4}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:var(--opt);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-height:48px;cursor:pointer;
+  font-family:var(--serif);font-size:15.5px;line-height:1.45;color:var(--ink-soft)}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt .num{flex:none;width:25px;height:25px;border-radius:6px;background:var(--chip);color:var(--chip-ink);
+  font-family:var(--sans);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.right{border-color:var(--ok);color:var(--ok-ink)}
+.opt.right .num{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);color:var(--bad-ink)}
+.opt.wrong .num{background:var(--bad);color:#fff}
+.opt.dim{color:#a0a8ae}
+.feedback{border:1px solid var(--bad-line);background:var(--bad-bg);border-radius:8px;padding:14px 18px;margin-top:16px}
+.feedback.ok{border-color:var(--ok-line);background:var(--ok-bg)}
+.feedback b{display:block;font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--bad);margin-bottom:.3rem}
+.feedback.ok b{color:var(--ok)}
+.hint{font-family:var(--sans);font-size:11.5px;color:#b3bac0;text-align:center;margin-top:12px}
+.done-score{font-size:40px;font-weight:400}
+.done-meta{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:.3rem}
+.done-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.links{font-family:var(--sans);font-size:12.5px;margin-top:14px}
+.links a{color:var(--hero-muted);text-decoration:none;margin-right:16px}
+.links a:hover{color:var(--hero-ink);text-decoration:underline}
+.home{background:var(--hero);padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px}
+.home a{display:inline-block;color:var(--hero-ink);font:600 13px var(--sans);text-decoration:none;
+  padding:8px 14px;border:1px solid #3a454d;border-radius:999px}
+.home a:hover{background:#232c33}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){h1{font-size:27px}.qcard{padding:20px 16px}.stats{gap:24px}}
+.stem{font-family:var(--sans);font-size:14px;color:var(--muted);background:var(--chip);border-radius:8px;padding:12px 14px;margin:.5rem 0 0;line-height:1.55}
+.note{font-family:var(--sans);font-size:12px;color:#875c16;margin-top:12px}
+textarea{width:100%;min-height:200px;font:15.5px/1.5 var(--serif);color:var(--ink-soft);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px;background:var(--opt);resize:vertical}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+textarea:disabled{color:var(--muted)}
+.points{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.points label{display:flex;gap:12px;align-items:flex-start;background:var(--opt);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px;cursor:pointer;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.points input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--ok)}
+.points label:has(input:checked){border-color:var(--ok);background:var(--ok-bg)}
+</style>
+</head>
+<body>
+<nav class="home" aria-label="Study navigation"><a href="microbiology-quiz.html">&larr; Microbiology quiz</a><a href="microbiology.html">Microbiology content &rarr;</a><a href="microbiology-final.html">Practice final exam &rarr;</a></nav>
+<div id="topbar" class="topbar" hidden></div>
+<div id="app"></div>
+
+<script>
+const STEM1 = "A student samples a pink-red evaporation pond that is about 25 per cent salt. The cells isolated are flat, square archaea. They stay intact in the brine, and analysis shows a very high internal K+ concentration. When the culture is lit under low oxygen it keeps making ATP, yet no chlorophyll can be detected.";
+
+// Multiple choice: {n, stem?, q, o: [A-D], a: correct index, why}. 2 marks each.
+// Long answer: {n, q, pts: [key points]}. 1 mark per key point.
+const MC = [
+  {n:"1a", stem:STEM1, q:"How do these cells avoid losing water to the brine?",
+   o:["They pump Na+ out and make glycerol as a compatible solute.","They accumulate very high internal K+ to balance the external Na+.","They thicken their peptidoglycan wall to resist osmotic pressure.","They close their aquaporins and stop all transport."],
+   a:1, why:"This is Halobacterium's salt-in strategy: high internal K+ offsets external Na+, so water doesn't rush out. Archaea have no peptidoglycan, and glycerol accumulation is the strategy of the alga Dunaliella, not halophilic archaea."},
+  {n:"1b", stem:STEM1, q:"What lets these cells make ATP from light without chlorophyll?",
+   o:["Carotenoids pass excited electrons to photosystem II.","Bacteriochlorophyll in chlorosomes drives an electron transport chain.","Bacteriorhodopsin uses light to pump protons, and the resulting PMF drives ATP synthase.","They ferment their carotenoid pigments in the light."],
+   a:2, why:"Bacteriorhodopsin is a light-driven proton pump. Its retinal switches between trans and cis forms as it absorbs light, pushing H+ out to build a proton motive force. No chlorophyll or electron transport chain is involved. The square cells fit Haloquadratum walsbyi."},
+  {n:2, q:"Whose improved lenses gave the first description of bacteria?",
+   o:["Robert Hooke","Louis Pasteur","Robert Koch","Antonie van Leeuwenhoek"],
+   a:3, why:"Van Leeuwenhoek (1632 to 1723) built better lenses and first described bacteria. Hooke's earlier microscope gave the first description of microbes, the fruiting structures of moulds."},
+  {n:3, q:"Which of the following is NOT one of Koch's postulates?",
+   o:["The microbe must be visible under a light microscope.","The microbe is found in every host with the disease but not in healthy hosts.","The microbe can be grown in pure culture.","The pure culture causes the same disease when inoculated into a healthy host."],
+   a:0, why:"The four postulates are: present in every case, isolated in pure culture, causes the disease in a healthy host, and re-isolated from that host. Visibility isn't one of them; viruses, for example, can't be seen with a light microscope."},
+  {n:4, q:"Why is RNA thought to have been the first genetic molecule?",
+   o:["RNA is chemically more stable than DNA.","RNA can store genetic information and also catalyse reactions as ribozymes.","RNA was made directly in the Miller–Urey experiment.","RNA is the only molecule that can form micelles."],
+   a:1, why:"Ribozymes show RNA can be both genome and enzyme, so RNA-only life could copy itself before DNA and proteins existed. DNA is actually the more stable molecule, which is why it later took over information storage."},
+  {n:5, q:"What changed Earth's atmosphere from anoxic and reducing to oxic?",
+   o:["Volcanic outgassing of O2","UV light splitting water in the upper atmosphere","Respiration by the first eukaryotes","Oxygenic photosynthesis by cyanobacteria"],
+   a:3, why:"The ancestors of cyanobacteria split water as an electron donor and released O2 as a by-product. It accumulated over time and made aerobic metabolism and animals possible. Respiration consumes O2 rather than producing it."},
+  {n:6, q:"Which class of macromolecule makes up the largest share of a microbial cell's dry weight?",
+   o:["Polypeptides (protein)","Nucleic acids","Lipids","Polysaccharides"],
+   a:0, why:"Protein is about half or more of the dry weight. RNA, mostly in ribosomes, comes second; lipids and polysaccharides are smaller fractions."},
+  {n:7, q:"Which statement about the terms 'microorganism' and 'microbe' is correct?",
+   o:["They are interchangeable in every context.","'Microorganism' includes viruses, but 'microbe' does not.","'Microbe' also covers viruses, which are not organisms.","Both terms exclude the Archaea."],
+   a:2, why:"Microorganism covers microscopic Bacteria, Archaea and Eukarya. Microbe is the broader term that also includes viruses, which replicate only inside a host and aren't considered alive."},
+  {n:8, q:"Why does being small benefit most bacteria?",
+   o:["Small cells don't need a cytoskeleton.","A high surface-to-volume ratio gives faster exchange of nutrients and wastes, so metabolism and growth are faster.","Small cells can't be infected by bacteriophages.","Small cells never need to divide."],
+   a:1, why:"A higher surface-to-volume ratio means more membrane per unit of cytoplasm, so exchange per volume is faster. That supports a higher metabolic rate, faster growth and faster evolution."},
+  {n:9, q:"Which bacterial protein is the homologue of eukaryotic actin?",
+   o:["FtsZ","Crescentin","MinC","MreB"],
+   a:3, why:"MreB is the actin homologue; it directs wall synthesis and keeps rods rod-shaped. FtsZ is the tubulin homologue, crescentin is an intermediate filament homologue, and MinC is a division inhibitor with no eukaryotic counterpart."},
+  {n:10, q:"How do beta-lactam antibiotics such as penicillin kill bacteria?",
+   o:["They prevent the cross-linking of peptidoglycan.","They hydrolyse the beta-1,4 bond between NAM and NAG.","They dissolve the outer membrane.","They block the 80S ribosome."],
+   a:0, why:"Beta-lactams inhibit the transpeptidases (penicillin binding proteins) that cross-link the peptide stems, so the weakened wall bursts under osmotic pressure. Cutting the beta-1,4 bond is what lysozyme does."},
+  {n:11, q:"Which structure is found in Gram-negative envelopes but not in Gram-positive ones?",
+   o:["Teichoic acids","A thick, multilayered peptidoglycan wall","An S-layer","An outer membrane containing LPS"],
+   a:3, why:"Only Gram-negatives have an outer membrane carrying LPS. Teichoic acids and thick peptidoglycan are Gram-positive features, and S-layers occur in both groups and in archaea."},
+  {n:12, q:"What powers the rotation of the bacterial flagellum?",
+   o:["ATP hydrolysis, as in the archaellum","The proton motive force across the cytoplasmic membrane","GTP hydrolysis by FtsZ","Polymerisation of host actin"],
+   a:1, why:"The flagellar motor runs on the PMF, about 1,000 H+ per rotation. The archaellum is the one that uses ATP, and host actin polymerisation is how Listeria and Shigella move inside host cells."},
+  {n:13, q:"How does pseudomurein differ from peptidoglycan?",
+   o:["It is NAG and NAM joined by beta-1,3 bonds.","It is NAG and NAT joined by beta-1,3 bonds, so lysozyme can't cut it.","It is NAG alone joined by beta-1,4 bonds.","It is glucose joined by beta-1,4 bonds."],
+   a:1, why:"Pseudomurein swaps NAM for N-acetyltalosaminuronic acid (NAT) and uses beta-1,3 links with L-amino acids. Lysozyme cuts only beta-1,4 bonds. NAG alone is chitin, and glucose with beta-1,4 bonds is cellulose."},
+  {n:14, q:"Which feature do archaea share with eukaryotes but not with bacteria?",
+   o:["Ether-linked membrane lipids","A membrane-bound nucleus","DNA wrapped around histones","A peptidoglycan cell wall"],
+   a:2, why:"Archaea and eukaryotes package DNA with histones, though the proteins differ. Ether lipids are unique to archaea, the nucleus is unique to eukaryotes, and peptidoglycan is bacterial."},
+  {n:15, q:"Why is the relationship between Nanoarchaeum equitans and Ignicoccus hospitalis called bizarre?",
+   o:["A 0.4 µm archaeon with a 0.49 Mbp genome and no metabolic genes lives as an obligate parasite on another archaeon.","A bacterium lives inside an archaeon and supplies its ATP.","Ignicoccus lives inside Nanoarchaeum and makes its lipids.","Both are mesophiles that live only in the human gut."],
+   a:0, why:"Nanoarchaeum keeps only the genes for replication, transcription and translation, so it must take nutrients from its crenarchaeote host. Ignicoccus is itself odd for an archaeon, with an outer membrane that holds its ATP synthase."},
+  {n:16, q:"In which habitat would you be LEAST likely to find active methanogens?",
+   o:["The rumen of a cow","Rice paddy sediment","A sewage sludge digester","Well-mixed, fully oxygenated surface seawater"],
+   a:3, why:"Methanogens are strict anaerobes that need H2 and CO2 from fermenters, so they live in anoxic sediments, animal guts and digesters. Oxygenated surface water is the opposite."},
+  {n:17, q:"Why does Giardia lamblia lack conventional mitochondria?",
+   o:["It branched off before mitochondria were acquired.","It relies on chloroplasts for ATP instead.","It lost them secondarily and retains mitosomes.","It carries hydrogenosomes with their own genomes."],
+   a:2, why:"Giardia is amitochondriate through secondary reduction. Its mitosomes are highly reduced organelles derived from mitochondria, which shows its ancestors once had them."},
+  {n:18, q:"What happens when diploid Saccharomyces cerevisiae cells are starved?",
+   o:["They bud asymmetrically into a smaller daughter cell.","Gametes fuse to form a resistant zygospore.","They undergo meiosis and form four haploid spores in an ascus, two of mating type a and two of type alpha.","They aggregate into a multicellular slug."],
+   a:2, why:"Starvation triggers meiosis and sporulation, giving an ascus of four haploid spores. Budding is ordinary asexual growth, the zygospore belongs to Chlamydomonas, and the slug to Dictyostelium."},
+  {n:19, q:"Which observation supports the endosymbiotic theory?",
+   o:["Mitochondrial and chloroplast ribosomes are blocked by antibiotics that target bacterial ribosomes.","Mitochondria are assembled from the endoplasmic reticulum.","Organelle chromosomes are linear and wrapped in histones.","Mitochondria cannot divide on their own."],
+   a:0, why:"Organelle ribosomes are 70S and bacterial in type, so drugs such as chloramphenicol inhibit them but not cytoplasmic 80S ribosomes. Organelles also have circular genomes and divide by binary fission."}
+];
+
+const LA = [
+  {n:20, q:"Describe Louis Pasteur's swan-neck flask experiment and explain how it disproved spontaneous generation. Name two other contributions Pasteur made to microbiology.",
+   pts:["Spontaneous generation was the idea that microbes arise from non-living matter, for example when broth spoils.",
+     "Broth was boiled in a flask with a long, curved swan neck, which killed any microbes already present.",
+     "The open neck let air in, so the 'air is needed' objection was answered, but dust and microbes were trapped in the bend.",
+     "The broth stayed sterile for as long as the neck was intact.",
+     "When the neck was broken, or the flask tipped so the broth touched the trapped material, microbes grew. So microbes come from other microbes carried on dust, not from the broth.",
+     "Another contribution, for example: showing that alcoholic fermentation is biological, or inventing pasteurisation.",
+     "Another contribution, for example: vaccines for anthrax, fowl cholera and rabies; showing that living things discriminate between optical isomers; or introducing hospital sanitation."]},
+  {n:21, q:"List Koch's postulates. Explain how they were used to show that Helicobacter pylori causes stomach ulcers, and give one situation in which the postulates fail.",
+   pts:["Postulate 1: the suspected microbe is found in every host with the disease, but not in healthy hosts.",
+     "Postulate 2: the microbe can be isolated and grown in pure culture.",
+     "Postulate 3: inoculating the pure culture into a healthy host causes the same disease.",
+     "Postulate 4: the same microbe is recovered from the experimentally infected host.",
+     "Koch used this logic to show that Bacillus anthracis causes anthrax and Mycobacterium tuberculosis causes tuberculosis.",
+     "Ulcers were long blamed on excess stomach acid. In the 1980s H. pylori was isolated from ulcerated tissue, cultured, shown to cause the disease in a healthy host, and recovered again, which identified it as the cause.",
+     "The postulates fail for microbes that can't be grown in pure culture (Treponema pallidum, Mycobacterium leprae), for asymptomatic carriers, for diseases with no animal model, and for disease caused by several microbes together. Molecular Koch's postulates test virulence genes instead."]},
+  {n:22, q:"Describe conditions on early Earth and explain the RNA world hypothesis. How did microbes change the planet so that multicellular life could evolve?",
+   pts:["Earth is about 4.6 billion years old, and microbes have been present for at least 3.8 billion years; multicellular fossils appear only about 0.5 billion years ago.",
+     "Early Earth had little or no O2 (a reducing atmosphere); plenty of H2O and CO2 with CH4, NH3, H2 and HCN; temperatures above 100 °C with volcanic and hydrothermal activity; and energy from UV, lightning and geothermal heat.",
+     "Miller and Urey passed sparks through a similar gas mixture and made amino acids, showing that organic building blocks can form without life.",
+     "Early life needed a way to store information, a way to catalyse reactions, and a boundary such as micelles or membranes.",
+     "RNA world: ribozymes are RNA molecules that both carry information and catalyse reactions, so early life may have run on RNA alone, before DNA, proteins and LUCA.",
+     "Proteins later took over catalysis, and double-stranded DNA took over storage because it is more stable and keeps a backup copy. RNA kept central roles as mRNA, tRNA and rRNA.",
+     "The ancestors of cyanobacteria evolved oxygenic photosynthesis, releasing O2 that turned the atmosphere oxic. This allowed aerobic metabolism and, eventually, animals. Stromatolites (such as the 2.7-billion-year-old ones at Steep Rock Lake, Ontario) record these microbial mats."]},
+  {n:23, q:"Compare the life cycles of Saccharomyces cerevisiae and Chlamydomonas reinhardtii.",
+   pts:["Both switch between haploid and diploid states: meiosis halves the chromosome number, fertilisation restores it, and asexual reproduction uses mitosis.",
+     "S. cerevisiae grows asexually by budding with mitosis, as either a haploid or a diploid; some yeasts divide by fission instead.",
+     "Starved diploid yeast cells undergo meiosis and sporulation, giving four haploid spores in a sac called an ascus.",
+     "Usually two spores are mating type a and two are type alpha. After germinating, haploids bud, or mate with the opposite type to form a diploid again.",
+     "Chlamydomonas vegetative cells are motile haploids with two flagella that divide by mitosis when conditions are good.",
+     "Under nitrogen starvation, haploid cells become gametes; gametes of opposite mating types fuse to form a diploid zygote that matures into a resistant zygospore.",
+     "When conditions improve, the zygospore undergoes meiosis and releases four haploid cells. In contrast with yeast, the diploid stage of Chlamydomonas is only the dormant zygospore, while diploid yeast can grow and bud."]},
+  {n:24, q:"Compare the cell envelopes of Gram-positive bacteria, Gram-negative bacteria and archaea. Include what each wall polymer is made of and one practical consequence of the differences.",
+   pts:["All have a plasma membrane. Bacteria use fatty acids ester-linked to glycerol-3-phosphate; archaea use isoprenoid (phytanyl) chains ether-linked to glycerol-1-phosphate, and some thermophiles have a tetraether monolayer.",
+     "Peptidoglycan is NAG and NAM joined by beta-1,4 bonds, with peptide stems (including D-amino acids) on NAM that are cross-linked into one sacculus.",
+     "Gram-positive walls have thick, multilayered peptidoglycan (about 20 to 80 nm) with negatively charged teichoic and lipoteichoic acids, and no outer membrane.",
+     "Gram-negative walls have a thin peptidoglycan layer in the periplasm, plus an outer membrane whose outer face is LPS (lipid A, core and O side chain), crossed by porins and TonB-dependent transporters.",
+     "This architecture explains the Gram stain: thick, dehydrated peptidoglycan traps crystal violet so Gram-positives stay purple, while alcohol strips the Gram-negative outer membrane so those cells take up the pink safranin.",
+     "Archaea have no peptidoglycan. Some have pseudomurein (NAG and NAT, beta-1,3, L-amino acids), many have only an S-layer, and Thermoplasma has no wall.",
+     "Most archaea lack an outer membrane; Ignicoccus is the exception, with an outer membrane and periplasm.",
+     "Consequence: lysozyme cuts only beta-1,4 bonds and beta-lactams block peptidoglycan cross-linking, so archaea are immune to both, and the Gram-negative outer membrane keeps out many drugs."]},
+  {n:25, q:"Explain how Halobacterium salinarum tolerates very high salt and how it makes ATP without chlorophyll.",
+   pts:["Halobacterium is an extreme halophile in the Euryarchaeota that needs more than 1.5 M NaCl; it lives in salt lakes such as the Dead Sea and the Great Salt Lake and in salterns (5 to 34 per cent salt, against 3.5 per cent for seawater).",
+     "The problem: water flows toward the higher solute concentration, so in brine the cell risks losing water and going into osmotic shock.",
+     "Its solution is to accumulate a very high internal K+ concentration that offsets the external Na+, with K+ acting as a compatible solute.",
+     "That much internal salt would denature ordinary proteins, so its proteins are highly acidic and remain stable, and even need salt to stay folded.",
+     "High salt also tends to separate double-stranded DNA, so its DNA has a high GC content with stronger base pairing.",
+     "It is phototrophic without chlorophyll or a photosynthetic electron transport chain, using bacteriorhodopsin in its membrane.",
+     "Bacteriorhodopsin's retinal absorbs light and switches between trans and cis forms, pumping H+ out of the cell. The resulting proton motive force drives ATP synthase, which is useful when oxygen (and carbon) is low.",
+     "Bacteriorhodopsin and carotenoids give the cells, and the salt ponds they live in, their reddish colour."]},
+  {n:26, q:"Where would you expect to find methanogens, and why? Describe the metabolism that defines them.",
+   pts:["Methanogens are archaea in the Euryarchaeota; they were the first archaea discovered, through the rRNA comparisons of Woese and Fox.",
+     "They reduce CO2 with H2 to make CH4 and water (some use acetate or methyl compounds), and use the energy released to make ATP and fix carbon. They are the only organisms that make methane.",
+     "They are strict anaerobes, so they can live only where O2 is absent.",
+     "They depend on fermenting organisms to supply H2 and CO2, so they are found wherever organic matter is broken down anaerobically.",
+     "Anoxic sediments: marshes, swamps, lake sediments, rice paddies and moist landfill.",
+     "Animal digestive tracts: the rumen of cattle, sheep, deer and camels; the cecum of horses and rabbits; and the large intestine of humans (Methanobrevibacter smithii), pigs and dogs.",
+     "Other habitats: hydrothermal vents with geothermal H2 and CO2, sewage sludge digesters, and inside anaerobic protozoa, including those in the termite gut.",
+     "The methane escapes as intestinal gas and as flammable swamp gas; Volta showed it burns by trapping gas from freshwater sediments under a funnel and lighting it."]},
+  {n:27, q:"Explain the endosymbiotic theory for the origin of mitochondria and chloroplasts, and give the evidence that supports it.",
+   pts:["The theory holds that mitochondria and chloroplasts descend from free-living bacteria that were engulfed by a host cell and kept as symbionts. Lynn Margulis established it.",
+     "The host was an archaeal lineage, and the mitochondrion came from an alphaproteobacterium. Eukaryotes appear about 2.1 to 1.6 billion years ago.",
+     "Later, in the lineage leading to algae and plants, a eukaryote engulfed a cyanobacterium that became the chloroplast, so at least two endosymbiotic events are needed.",
+     "Evidence: the organelles resemble bacteria in size and shape and have a double membrane, the inner one from the bacterium and the outer one from the host.",
+     "Evidence: each has its own circular DNA, ribosomes and transcription machinery, and divides by binary fission (with FtsZ in chloroplasts).",
+     "Evidence: their ribosomes are bacterial (70S) and are inhibited by antibiotics that target bacterial ribosomes, but not eukaryotic ones.",
+     "Evidence: their rRNA is more similar to bacterial rRNA, grouping with Alphaproteobacteria (mitochondria) and Cyanobacteria (chloroplasts).",
+     "Most organelle proteins are now encoded in the nucleus after gene transfer, so organelles are semi-autonomous. Amitochondriate eukaryotes such as Giardia lost their mitochondria secondarily and keep mitosomes, and endosymbiosis still occurs today, for example in Paramecium carrying algae."]}
+];
+
+(function(){
+  const $ = s => document.querySelector(s);
+  const app = $("#app"), bar = $("#topbar");
+  const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const KEY = "microMidterm", L = "ABCD";
+  const Q = [...MC.map(q => ({...q, t:"mc"})), ...LA.map(q => ({...q, t:"la"}))];
+  const MC_MAX = MC.length * 2, LA_MAX = LA.reduce((s, q) => s + q.pts.length, 0);
+
+  let at = 0, mc = 0, la = 0, done = false;
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } };
+  const save = pct => {
+    try {
+      const p = load() || {best:0, attempts:0};
+      localStorage.setItem(KEY, JSON.stringify({last:pct, best:Math.max(p.best, pct), attempts:p.attempts + 1}));
+    } catch (e) {}
+  };
+
+  function home(){
+    bar.hidden = true;
+    const p = load();
+    app.innerHTML =
+      '<header><div class="wrap">' +
+        '<p class="kicker">Microbiology, practice midterm, Topics 1 to 4</p>' +
+        '<h1>Microbiology midterm exam</h1>' +
+        '<p class="lede">Multiple choice is marked for you. For long answers, write your answer, then compare it ' +
+          'against the key points and tick off each one you covered.</p>' +
+        '<div class="stats">' +
+          '<div class="stat"><b>' + MC.length + '</b><span>multiple choice</span></div>' +
+          '<div class="stat"><b>' + LA.length + '</b><span>long answer</span></div>' +
+          '<div class="stat"><b>' + (p ? p.best + "%" : "—") + '</b><span>best score</span></div>' +
+        '</div>' +
+      '</div></header>' +
+      '<main><div class="wrap">' +
+        '<div class="card lead-card">' +
+          '<div><p class="label">Section 1 then Section 2</p><h2>Full midterm exam</h2>' +
+          '<p class="meta">' + MC_MAX + ' marks multiple choice, ' + LA_MAX + ' marks long answer' +
+          (p ? ' · last ' + p.last + '%, ' + p.attempts + ' attempts' : '') + '</p></div>' +
+          '<button class="btn" id="start">' + (p ? "Retake midterm exam" : "Start midterm exam") + '</button>' +
+        '</div>' +
+        '<p class="note">Written from the Topic 1 to 4 course notes and lecture slides. It is a practice paper, not a past exam.</p>' +
+      '</div></main>';
+  }
+
+  function start(){ at = 0; mc = 0; la = 0; question(); }
+
+  function question(){
+    done = false;
+    const q = Q[at];
+    bar.hidden = false;
+    bar.innerHTML =
+      '<div class="wrap"><div class="row">' +
+        '<button class="close" aria-label="Leave the midterm exam">×</button>' +
+        '<span class="crumb">' + (q.t === "mc" ? "Section 1 · Multiple choice" : "Section 2 · Long answer") + '</span>' +
+        '<span class="count">' + (at + 1) + '/' + Q.length + '</span>' +
+      '</div><div class="progress"><i style="width:' + (100 * at / Q.length) + '%"></i></div></div>';
+    const head =
+      '<p class="qtopic">Question ' + q.n + ' · ' + (q.t === "mc" ? 2 : q.pts.length) + ' marks</p>' +
+      (q.stem ? '<p class="stem">' + esc(q.stem) + '</p>' : '') +
+      '<p class="qtext">' + esc(q.q) + '</p>';
+    const body = q.t === "mc"
+      ? '<div class="opts">' + q.o.map((o, i) =>
+          '<button class="opt" data-i="' + i + '"><span class="num">' + L[i] + '</span><span>' + esc(o) + '</span></button>').join("") + '</div>' +
+        '<div id="tail"></div><p class="hint">Press A to D to answer, Enter to continue</p>'
+      : '<textarea id="ans" placeholder="Write your answer here" aria-label="Your answer"></textarea>' +
+        '<div id="tail"><button class="btn wide" id="submit" style="margin-top:14px">Submit and compare</button></div>';
+    app.innerHTML = '<main><div class="wrap"><div class="qcard">' + head + body + '</div></div></main>';
+    if(q.t === "la") $("#ans").focus();
+  }
+
+  const nextBtn = () => '<button class="btn wide" id="next" style="margin-top:16px">' +
+    (at + 1 === Q.length ? "See your score" : "Next question") + '</button>';
+
+  function answer(i){
+    const q = Q[at];
+    if(done || q.t !== "mc" || !q.o[i]) return;
+    done = true;
+    const hit = i === q.a;
+    if(hit) mc += 2;
+    document.querySelectorAll(".opt").forEach((b, j) => {
+      b.disabled = true;
+      const num = b.querySelector(".num");
+      if(j === q.a){ b.classList.add("right"); num.textContent = "✓"; }
+      else if(j === i){ b.classList.add("wrong"); num.textContent = "✕"; }
+      else b.classList.add("dim");
+    });
+    $("#tail").innerHTML =
+      '<div class="feedback' + (hit ? " ok" : "") + '"><b>' + (hit ? "Correct" : "Not quite, the answer is " + L[q.a]) + '</b>' +
+      esc(q.why) + '</div>' + (q.note ? '<p class="note">' + esc(q.note) + '</p>' : '') + nextBtn();
+    $("#next").focus();
+  }
+
+  function submit(){
+    const q = Q[at];
+    done = true;
+    $("#ans").disabled = true;
+    $("#tail").innerHTML =
+      '<p class="section-title">Key points. Tick each one your answer covered (1 mark each)</p>' +
+      '<ul class="points">' + q.pts.map((p, i) =>
+        '<li><label><input type="checkbox" data-p="' + i + '"><span>' + esc(p) + '</span></label></li>').join("") + '</ul>' +
+      nextBtn();
+  }
+
+  function next(){
+    if(!done) return;
+    if(Q[at].t === "la") la += document.querySelectorAll(".points input:checked").length;
+    at++;
+    if(at < Q.length) return question();
+    const pct = Math.round(100 * (mc + la) / (MC_MAX + LA_MAX));
+    save(pct);
+    bar.hidden = true;
+    app.innerHTML =
+      '<main><div class="wrap"><div class="qcard">' +
+        '<p class="qtopic">Microbiology midterm exam</p>' +
+        '<p class="done-score">' + (mc + la) + ' / ' + (MC_MAX + LA_MAX) + '</p>' +
+        '<p class="done-meta">' + pct + ' per cent · multiple choice ' + mc + '/' + MC_MAX +
+          ' · long answer ' + la + '/' + LA_MAX + ' (self-marked)</p>' +
+        '<div class="done-btns">' +
+          '<button class="btn" id="again">Run it again</button>' +
+          '<button class="btn ghost" id="back">Back</button>' +
+        '</div>' +
+      '</div></div></main>';
+  }
+
+  document.addEventListener("click", e => {
+    const t = e.target;
+    if(t.closest("#start") || t.closest("#again")) return start();
+    if(t.closest(".close") || t.closest("#back")) return home();
+    if(t.closest("#submit")) return submit();
+    if(t.closest("#next")) return next();
+    const o = t.closest(".opt");
+    if(o) answer(+o.dataset.i);
+  });
+  document.addEventListener("keydown", e => {
+    if(e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT" || bar.hidden) return;
+    const i = L.indexOf(e.key.toUpperCase());
+    if(i !== -1 && e.key.length === 1) answer(i);
+    else if(e.key === "Enter" && done && e.target.id !== "next"){ e.preventDefault(); next(); }
+  });
+
+  home();
+
+  // ponytail: self-check, run by loading the page with #selftest
+  if(location.hash === "#selftest"){
+    MC.forEach(q => {
+      console.assert(q.o.length === 4 && new Set(q.o).size === 4, "options", q.n);
+      console.assert(q.a >= 0 && q.a < 4, "bad answer index", q.n);
+      console.assert(!q.note, "unexpected source note", q.n);
+      console.assert(q.why && q.why.length > 20, "thin explanation", q.n);
+    });
+    LA.forEach(q => console.assert(q.pts.length >= 3, "too few key points", q.n));
+    console.assert(MC_MAX === 40, "section 1 should total 40 marks", MC_MAX);
+    console.assert(LA_MAX === 60, "section 2 should total 60 marks", LA_MAX);
+    console.log("selftest done:", MC.length, "MC,", LA.length, "LA");
+  }
+})();
+</script>
+</body>
+</html>
