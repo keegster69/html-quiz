@@ -102,6 +102,16 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 .mem-intro{color:var(--muted);font-size:.9rem}
 .memory .card-side svg{display:block;width:100%;max-width:200px;margin:.4rem 0;color:var(--ink)}
 .mem-note{display:block;margin-top:.5rem;color:var(--muted);font-size:.9rem}
+.deck-btns button[aria-pressed="true"]{background:var(--green);color:var(--card)}
+.mem-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:.75rem}
+.mem-card{min-height:96px;padding:.6rem;border:1px solid var(--green);border-radius:10px;background:var(--card);
+  color:var(--ink);font-family:inherit;font-size:.85rem;line-height:1.35;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;text-align:center;transition:background .18s ease-out}
+.mem-card.up{background:var(--green-soft);border-width:2px}
+.mem-card.done{background:var(--green-soft);border-style:dashed;opacity:.6;cursor:default}
+.mem-card.bad{border-color:var(--danger);background:#fdecea}
+.mem-card svg{width:100%;max-width:170px;color:var(--ink)}
+.mem-status{min-height:1.4em;margin-top:.6rem;font-size:.9rem}
 a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
@@ -1967,7 +1977,7 @@ document.querySelectorAll(".deck").forEach(deck => {
 </script>
 
 <script>
-// topic flashcard sets (cell walls, archaea, eukaryotic microbes); unlike FC these allow HTML and SVG on the cards
+// topic card sets (cell walls, archaea, eukaryotic microbes), played as flashcards or match columns; unlike FC these allow HTML and SVG
 // ring(): pyranose ring drawn flat with groups pointing outward. ponytail: no up/down stereo, the gluco/talo tag in the middle stands in for it
 function ring(sub, hi, tag){
   const deg = {O: -30, 1: 30, 2: 90, 3: 150, 4: 210, 5: 270, 6: 270};
@@ -1994,7 +2004,7 @@ function ring(sub, hi, tag){
 
 // [front, back, extra note shown under the back]
 const MEM = {
-"walls": {title: "Cell wall flashcards", intro: "Each card names a sugar or envelope part; turn it over for its structure or description. In the drawings Ac = acetyl (CO-CH3), lactyl = CH(CH3)-COOH, the small numbers are ring carbons, and the group that sets each sugar apart is in green.", pairs: [
+"walls": {title: "Cell wall cards", intro: "Each card names a sugar or envelope part; the answer side gives its structure or description. In the drawings Ac = acetyl (CO-CH3), lactyl = CH(CH3)-COOH, the small numbers are ring carbons, and the group that sets each sugar apart is in green.", pairs: [
 ["NAG (N-acetylglucosamine)", ring({1: "OH", 2: "NHAc", 3: "OH", 4: "OH", 6: "CH₂OH"}, 2, "gluco"), "Glucose with an N-acetyl at C2. Shared by peptidoglycan, pseudomurein and chitin"],
 ["NAM (N-acetylmuramic acid)", ring({1: "OH", 2: "NHAc", 3: "O-lactyl", 4: "OH", 6: "CH₂OH"}, 3, "gluco"), "NAG plus a lactyl ether at C3; the peptide stem joins the lactyl carboxyl. Bacteria only"],
 ["NAT (N-acetyltalosaminuronic acid)", ring({1: "OH", 2: "NHAc", 3: "OH", 4: "OH", 6: "COOH"}, 6, "talo"), "A talose-based uronic acid: C6 is a carboxyl, and the peptide joins it there. Archaeal pseudomurein only"],
@@ -2020,7 +2030,7 @@ const MEM = {
 ["S-layer", "Crystalline protein array that guards against phages and predators"],
 ["Capsule", "Thick polysaccharide coat for adhesion, immune evasion and biofilms"]
 ]},
-"arch": {title: "Archaea flashcards", intro: "Archaeal groups, organisms and features.", pairs: [
+"arch": {title: "Archaea cards", intro: "Archaeal groups, organisms and features.", pairs: [
 ["Woese and Fox", "Compared rRNA genes in the 1970s and split off the archaea"],
 ["Methanogens", "First archaea discovered; reduce CO<sub>2</sub> with H<sub>2</sub> to make CH<sub>4</sub>"],
 ["Volta's experiment", "Gas trapped under a funnel over swamp sediment, then lit"],
@@ -2046,7 +2056,7 @@ const MEM = {
 ["Archaellum", "Motility organ that grows from the base and runs on ATP"],
 ["Cannulae", "Hollow glycoprotein tubes linking cells into a network"]
 ]},
-"fungi": {title: "Eukaryotic microbe flashcards", intro: "Fungi, other eukaryotic microbes and key terms.", pairs: [
+"fungi": {title: "Eukaryotic microbe cards", intro: "Fungi, other eukaryotic microbes and key terms.", pairs: [
 ["Chytridiomycota", "Early-branching fungi with flagellated zoospores"],
 ["Zygomycota", "<em>Rhizopus</em> bread mould, a common lab contaminant"],
 ["Glomeromycota", "Mycorrhizal fungi vital to plants and trees"],
@@ -2076,23 +2086,27 @@ const MEM = {
 
 document.querySelectorAll(".memory").forEach(box => {
   const set = MEM[box.dataset.set];
-  let order = [], at = 0, shown = false;
+  const shuf = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
   box.innerHTML =
     '<div class="deck-head"><span class="deck-title"></span><span class="deck-count"></span></div>' +
     '<p class="mem-intro"></p>' +
-    '<button class="card" type="button" aria-expanded="false"><span class="card-side"></span><span class="card-hint"></span></button>' +
+    '<div class="deck-btns"><button type="button" data-m="cards" aria-pressed="true">Flashcards</button>' +
+    '<button type="button" data-m="cols" aria-pressed="false">Match columns</button></div>' +
+    '<div class="mem-cards"><button class="card" type="button" aria-expanded="false" style="margin-top:.6rem"><span class="card-side"></span><span class="card-hint"></span></button>' +
     '<div class="deck-btns"><button type="button" data-a="prev">Previous</button>' +
     '<button type="button" data-a="next">Next</button>' +
-    '<button type="button" data-a="shuffle">Shuffle</button></div>';
+    '<button type="button" data-a="shuffle">Shuffle</button></div></div>' +
+    '<div class="mem-cols" hidden><div class="mem-grid"></div><p class="mem-status" aria-live="polite"></p>' +
+    '<div class="deck-btns"><button type="button" data-a="new">New game</button></div></div>';
   box.querySelector(".deck-title").textContent = set.title;
   box.querySelector(".mem-intro").textContent = set.intro;
-  const card = box.querySelector(".card"), side = box.querySelector(".card-side"),
-        hint = box.querySelector(".card-hint"), count = box.querySelector(".deck-count");
+  const count = box.querySelector(".deck-count"), paneCards = box.querySelector(".mem-cards"), paneCols = box.querySelector(".mem-cols");
+  let mode = "cards";
 
-  function shuffle(){
-    order = set.pairs.map((_, i) => [Math.random(), i]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
-    at = 0; shown = false;
-  }
+  // flashcards: Next past the last card reshuffles, so nothing repeats until every card has been seen
+  const card = box.querySelector(".card"), side = box.querySelector(".card-side"), hint = box.querySelector(".card-hint");
+  let order = [], at = 0, shown = false;
+  const reshuffle = () => { order = shuf(set.pairs.map((_, i) => i)); at = 0; shown = false; };
   function draw(){
     const c = set.pairs[order[at]];
     side.innerHTML = shown ? c[1] + (c[2] ? '<span class="mem-note">' + c[2] + '.</span>' : "") : c[0];
@@ -2100,18 +2114,58 @@ document.querySelectorAll(".memory").forEach(box => {
     card.setAttribute("aria-expanded", shown ? "true" : "false");
     count.textContent = (at + 1) + " of " + order.length;
   }
-
   card.addEventListener("click", () => { shown = !shown; draw(); });
-  box.querySelector(".deck-btns").addEventListener("click", e => {
-    const act = e.target.dataset.a;
-    if(!act) return;
-    // ponytail: Next past the last card reshuffles, so nothing repeats until every card has been seen
-    if(act === "next"){ if(at === order.length - 1) shuffle(); else { at++; shown = false; } }
-    else if(act === "prev"){ at = Math.max(0, at - 1); shown = false; }
-    else shuffle();
-    draw();
+
+  // match columns: names on the left, shuffled answers on the right.
+  // ponytail: 24 pairs = 3 rounds of 8 with no repeats; after round 3 the whole set is reshuffled
+  const grid = box.querySelector(".mem-grid"), status = box.querySelector(".mem-status");
+  const rounds = Math.ceil(set.pairs.length / 8);
+  let mOrder = [], round = 0, ids = [], picks = [], moves = 0, left = 0, lock = false;
+  const tally = () => count.textContent = "Round " + round + " of " + rounds + ", " + (ids.length - left) + " of " + ids.length + " pairs, " + moves + " moves";
+  function deal(){
+    if(round * 8 >= mOrder.length){ mOrder = shuf(set.pairs.map((_, i) => i)); round = 0; }
+    ids = mOrder.slice(round * 8, round * 8 + 8);
+    round++;
+    const right = shuf(ids);
+    grid.innerHTML = ids.flatMap((i, k) => [[i, 0], [right[k], 1]]).map(([i, sd]) =>
+      '<button type="button" class="mem-card" data-i="' + i + '" data-s="' + sd + '"><span>' + set.pairs[i][sd] + '</span></button>').join("");
+    picks = []; moves = 0; left = ids.length; lock = false; status.textContent = ""; tally();
+  }
+  grid.addEventListener("click", e => {
+    const b = e.target.closest(".mem-card");
+    if(!b || lock || b.classList.contains("done") || picks.includes(b)) return;
+    // a second click in the same column just moves the selection
+    if(picks[0] && picks[0].dataset.s === b.dataset.s){ picks[0].classList.remove("up"); picks = []; }
+    b.classList.add("up"); picks.push(b);
+    if(picks.length < 2) return;
+    moves++;
+    const [x, y] = picks;
+    if(x.dataset.i === y.dataset.i){
+      x.classList.add("done"); y.classList.add("done"); picks = []; left--;
+      const p = set.pairs[x.dataset.i];
+      status.innerHTML = "Match: " + p[0] + (p[2] ? ". " + p[2] + "." : ".") +
+        (left ? "" : " All matched in " + moves + " moves. " + (round < rounds ? "New game deals 8 cards you have not seen." : "That was every card; New game reshuffles the whole set."));
+    } else {
+      x.classList.add("bad"); y.classList.add("bad"); lock = true;
+      setTimeout(() => { x.classList.remove("up", "bad"); y.classList.remove("up", "bad"); picks = []; lock = false; }, 500);
+    }
+    tally();
   });
-  shuffle(); draw();
+
+  box.addEventListener("click", e => {
+    const m = e.target.dataset.m, act = e.target.dataset.a;
+    if(m){
+      mode = m;
+      box.querySelectorAll("[data-m]").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
+      paneCards.hidden = m !== "cards"; paneCols.hidden = m !== "cols";
+      if(m === "cards") draw(); else tally();
+    }
+    else if(act === "next"){ if(at === order.length - 1) reshuffle(); else { at++; shown = false; } draw(); }
+    else if(act === "prev"){ at = Math.max(0, at - 1); shown = false; draw(); }
+    else if(act === "shuffle"){ reshuffle(); draw(); }
+    else if(act === "new") deal();
+  });
+  reshuffle(); deal(); draw();
 });
 
 // ponytail: self-check, load the page with #memtest
@@ -2122,11 +2176,26 @@ if(location.hash === "#memtest"){
     console.assert(document.querySelector('.memory[data-set="' + k + '"]'), "no deck box:", k);
   });
   document.querySelectorAll(".memory").forEach(box => {
+    const cnt = () => box.querySelector(".deck-count").textContent;
+    // flashcards: 24 distinct fronts, then a reshuffle
     const side = box.querySelector(".card-side"), next = box.querySelector("[data-a=next]"), seen = new Set();
     for(let i = 0; i < 24; i++){ seen.add(side.innerHTML); if(i < 23) next.click(); }
-    console.assert(seen.size === 24 && /24 of 24/.test(box.querySelector(".deck-count").textContent), "deck repeats cards:", box.dataset.set, seen.size);
+    console.assert(seen.size === 24 && /24 of 24/.test(cnt()), "flashcards repeat:", box.dataset.set, seen.size);
     next.click();
-    console.assert(/^1 of 24/.test(box.querySelector(".deck-count").textContent), "no reshuffle after the last card:", box.dataset.set);
+    console.assert(/^1 of 24/.test(cnt()), "no reshuffle after the last card:", box.dataset.set);
+    // match columns: play round 1, then rounds 2 and 3 must show the other 16 pairs
+    box.querySelector("[data-m=cols]").click();
+    const grid = box.querySelector(".mem-grid"), dealt = new Set();
+    [...new Set([...grid.children].map(b => b.dataset.i))].forEach(i => grid.querySelectorAll('[data-i="' + i + '"]').forEach(b => b.click()));
+    console.assert(grid.querySelectorAll(".done").length === 16 && /All matched/.test(box.querySelector(".mem-status").textContent), "match play-through failed:", box.dataset.set);
+    [...grid.children].forEach(b => dealt.add(b.dataset.i));
+    const nw = box.querySelector("[data-a=new]");
+    nw.click(); [...grid.children].forEach(b => dealt.add(b.dataset.i));
+    nw.click(); [...grid.children].forEach(b => dealt.add(b.dataset.i));
+    console.assert(dealt.size === 24 && /Round 3 of 3/.test(cnt()), "match rounds repeat:", box.dataset.set, dealt.size);
+    nw.click();
+    console.assert(/Round 1 of 3/.test(cnt()), "no match reshuffle after round 3:", box.dataset.set);
+    box.querySelector("[data-m=cards]").click();
   });
   const nag = document.querySelector('.memory[data-set="walls"]');
   MEM.walls.pairs.forEach(() => { if(!/^NAG/.test(nag.querySelector(".card-side").textContent)) nag.querySelector("[data-a=next]").click(); });
