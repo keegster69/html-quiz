@@ -99,6 +99,13 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 .rc-feedback.bad{color:var(--danger)}
 .rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
 .memory{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
+#fc-only{display:block;margin:.9rem auto 0;min-height:44px;padding:0 22px;border:1px solid var(--green);border-radius:999px;
+  background:var(--card);color:var(--green);font:600 .9rem sans-serif;cursor:pointer}
+#fc-only[aria-pressed="true"]{background:var(--green);color:var(--card)}
+/* flashcards-only view: each topic keeps its heading and card decks, everything else hides */
+body.fc-only section > :not(h2):not(.deck):not(.memory){display:none}
+body.fc-only section:not(:has(.deck, .memory)){display:none}
+body.fc-only .deck, body.fc-only .memory{border-top:0;margin-top:.5rem}
 .mem-intro{color:var(--muted);font-size:.9rem}
 .memory .card-side svg{display:block;width:100%;max-width:200px;margin:.4rem 0;color:var(--ink)}
 .mem-note{display:block;margin-top:.5rem;color:var(--muted);font-size:.9rem}
@@ -145,7 +152,16 @@ figure.slot .miss code{background:var(--card)}
   <a class="back" href="microbiology-midterm.html" style="margin-left:1rem">Microbiology midterm &rarr;</a>
   <a class="back" href="microbiology-final.html" style="margin-left:1rem">Microbiology final exam &rarr;</a>
   <a class="back" href="content.html" style="margin-left:1rem">General biology content &rarr;</a>
+  <button type="button" id="fc-only" aria-pressed="false">Flashcards only</button>
 </header>
+<script>
+document.getElementById("fc-only").addEventListener("click", e => {
+  const on = document.body.classList.toggle("fc-only");
+  e.currentTarget.setAttribute("aria-pressed", on);
+  e.currentTarget.textContent = on ? "Show full notes" : "Flashcards only";
+  scrollTo(0, 0);
+});
+</script>
 
 <nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">11 sections</span></summary><div class="wrap">
   <a href="#world">Microbial world</a>
@@ -1729,6 +1745,8 @@ const FC = {
 ["Roughly how gene dense is a bacterial genome?", "About 88 per cent of the E. coli chromosome codes for protein, against a few per cent of the human genome."]
 ],
 "bact": [
+["How do you tell true motility from Brownian motion in a wet mount?", "No set distance counts. Motile cells move independently and with direction across several body lengths, changing course and passing each other (E. coli swims about 20 to 30 µm/s). Brownian motion is random jiggling in place by about a body length, seen in dead cells and debris too, and drift carries everything the same way."],
+["How else can bacterial motility be tested?", "Stab soft (0.3 to 0.5 per cent) motility agar: cloudy growth spreading out from the stab means motile, growth only along the line means non-motile. A flagella stain shows flagella number and arrangement. Always compare with known motile and non-motile controls."],
 ["What is each wall polymer made of?", "Peptidoglycan: NAG + NAM, beta-1,4 (bacteria). Pseudomurein: NAG + NAT, beta-1,3 (archaea). Chitin: NAG only, beta-1,4 (fungi). Cellulose: glucose only, beta-1,4 (algae, plants)."],
 ["Why are most bacteria small?", "A high surface-to-volume ratio gives faster nutrient and waste exchange per volume, a higher metabolic rate, faster growth and faster evolution."],
 ["How is the bacterial chromosome compacted?", "Cations shield the phosphate backbone, small positive proteins hold it condensed, and topoisomerases supercoil it. No membrane and no histones."],
