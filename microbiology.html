@@ -100,20 +100,8 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 .rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
 .memory{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
 .mem-intro{color:var(--muted);font-size:.9rem}
-.deck-btns button[aria-pressed="true"]{background:var(--green);color:var(--card)}
-.mem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:.75rem}
-.mem-grid.cols{grid-template-columns:1fr 1fr}
-.mem-card{min-height:110px;padding:.6rem;border:1px solid var(--green);border-radius:10px;background:var(--card);
-  color:var(--ink);font-family:inherit;font-size:.85rem;line-height:1.35;cursor:pointer;display:flex;
-  align-items:center;justify-content:center;text-align:center;transition:background .18s ease-out}
-.mem-grid:not(.cols) .mem-card:not(.up):not(.done){background:var(--green)}
-.mem-grid:not(.cols) .mem-card:not(.up):not(.done) .mem-face{display:none}
-.mem-grid:not(.cols) .mem-card:not(.up):not(.done)::before{content:"?";color:var(--card);font-size:1.6rem;font-weight:700}
-.mem-card.up{background:var(--green-soft);border-width:2px}
-.mem-card.done{background:var(--green-soft);border-style:dashed;opacity:.6;cursor:default}
-.mem-card.bad{border-color:var(--danger);background:#fdecea}
-.mem-face svg{width:100%;max-width:170px;color:var(--ink)}
-.mem-status{min-height:1.4em;margin-top:.6rem;font-size:.9rem}
+.memory .card-side svg{display:block;width:100%;max-width:200px;margin:.4rem 0;color:var(--ink)}
+.mem-note{display:block;margin-top:.5rem;color:var(--muted);font-size:.9rem}
 a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
@@ -167,7 +155,9 @@ figure.slot .miss code{background:var(--card)}
 <!-- ================= TOPIC 1: MICROBIAL WORLD ================= -->
 <section id="world">
   <h2>Topic 1: the microbial world</h2>
-  <p>Microbiology is defined by size rather than by ancestry. The organisms in this course sit in all three domains of life and include agents that are not organisms at all. What unites them is that they are studied as populations of cells (or particles) rather than as individuals, and that almost every one of them was invisible until Hooke and Leeuwenhoek built lenses good enough to resolve them in the 1670s. Two centuries later Louis Pasteur settled whether microbes arise by spontaneous generation: boiled broth in a swan-neck flask stays sterile because the curved neck lets air in but traps dust and microbes, and it only spoils once the neck is broken or tipped so trapped material reaches the broth.</p>
+  <p>Microbiology is defined by size rather than by ancestry. The organisms in this course sit in all three domains of life and include agents that are not organisms at all. What unites them is that they are studied as populations of cells (or particles) rather than as individuals, and that almost every one of them was invisible until Robert Hooke (1635 to 1703), whose early microscope gave the first description of microbes (the fruiting structures of moulds), and Antonie van Leeuwenhoek (1632 to 1723), whose better lenses gave the first description of bacteria, opened that world in the 1660s and 1670s. Two centuries later Louis Pasteur settled whether microbes arise by spontaneous generation: boiled broth in a swan-neck flask stays sterile because the curved neck lets air in but traps dust and microbes, and it only spoils once the neck is broken or tipped so trapped material reaches the broth.</p>
+  <div class="key"><strong>Words to use precisely.</strong> A <em>microorganism</em> is a microscopic member of the Bacteria, Archaea or Eukarya; <em>microbe</em> is the broader term that also covers viruses, which are not organisms. Viruses replicate and evolve because they carry nucleic acid, but only inside a host; outside one they are inert particles with little or no biochemical activity, so they are not considered alive. "Prokaryote" (Greek <em>pro</em>, before, and <em>karyon</em>, kernel) says only that a cell lacks a nucleus, and many microbiologists prefer to say "Bacteria and Archaea"; "eukaryote" (<em>eu</em>, true) means a nucleus is present.</div>
+  <p>Life on Earth shares a set of core features: metabolism, growth, reproduction, genetic variation and evolution, response and adaptation to the environment, and homeostasis, which means keeping internal order by spending energy. Microbes are worth studying because they were the first life, they built the oxygenated biosphere that let multicellular organisms evolve (and those organisms evolved from them), they make up a large share of Earth's biomass (the lecture puts it above 50 per cent), and they will be here long after us. They are also fast, cheap and easy to grow, have few genes and are easy to manipulate genetically, which is why most of what we know about metabolism, biochemistry and genetics was worked out in microbes, and why they are used to mass-produce enzymes and drugs. Microbes get energy either by taking in preformed organic molecules (heterotrophs) or by making their own from CO<sub>2</sub> (autotrophs), and break organic molecules down to ATP by fermentation or respiration. They live as populations within communities, and through those communities they drive the biogeochemical cycles that move elements between inorganic and organic forms.</p>
 
   <figure class="slot">
     <img src="media/micro-tree-of-life.png" alt="Universal phylogenetic tree showing Bacteria, Archaea and Eukarya diverging from a common root">
@@ -196,6 +186,20 @@ figure.slot .miss code{background:var(--card)}
   </div>
 
   <div class="key">Bacteria and Archaea are both prokaryotic in organisation, but Archaea share their information processing machinery (replication, transcription, translation, histones) with eukaryotes and their metabolism and bioenergetics with bacteria. That mixture is the central clue to the origin of the eukaryotic cell.</div>
+
+  <h4>What a cell is made of</h4>
+  <p>All cells are built from four kinds of macromolecule. Know the rough proportions; these are approximate values for <em>E. coli</em> as per cent of dry weight (water is about 70 per cent of the wet weight), so check them against Table 1.1 in the textbook.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Macromolecule</th><th>Approximate share of dry weight</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Polypeptides (protein)</td><td>About 55 per cent</td><td>The largest fraction: enzymes, structure, transport</td></tr>
+      <tr><td>Nucleic acids</td><td>About 24 per cent</td><td>Mostly RNA (about 20 per cent, much of it in ribosomes); DNA only about 3 per cent</td></tr>
+      <tr><td>Lipids</td><td>About 9 per cent, plus about 3 per cent LPS</td><td>Membranes</td></tr>
+      <tr><td>Polysaccharides</td><td>About 5 per cent</td><td>Peptidoglycan and glycogen</td></tr>
+    </tbody>
+  </table>
+  </div>
 
   <h4 id="rrna-practice">Practice: rRNA and evolutionary relationships</h4>
   <p>Try answering these questions before reading the explanations.</p>
@@ -290,7 +294,9 @@ figure.slot .miss code{background:var(--card)}
 
   <h3>1.4 Microbes and disease</h3>
   <p>Most microbes are harmless or useful. The human microbiome contains roughly as many bacterial cells as human cells, and it trains the immune system, excludes pathogens and supplies vitamins. Disease is the exception, and proving that a given microbe causes a given disease took a formal argument.</p>
+  <p>Before microbes were known, disease was blamed on bad air or angry gods, and once microbes were seen many assumed they formed spontaneously from non-living matter. Louis Pasteur (1822 to 1895) disproved spontaneous generation and did much more: he showed that living things discriminate between optical isomers, explained the biological nature of alcoholic fermentation, developed vaccines for anthrax, fowl cholera and rabies, invented pasteurisation, introduced sanitation in hospitals, and developed methods for controlling microbial growth. Robert Koch (1843 to 1910) showed that <em>Bacillus anthracis</em> causes anthrax and <em>Mycobacterium tuberculosis</em> causes tuberculosis, and set out the rules for proving which microbe causes which disease.</p>
   <div class="key"><strong>Koch's postulates.</strong> 1) The organism is found in every case of the disease and not in healthy hosts. 2) It can be isolated in pure culture. 3) Inoculating that culture into a healthy host reproduces the disease. 4) The organism is re-isolated from the new host and matches the original.</div>
+  <p>A modern case: stomach ulcers were blamed on excess acid until the 1980s, when researchers isolated <em>Helicobacter pylori</em> from ulcerated tissue and used Koch's postulates to show that it causes them.</p>
   <p>The postulates fail for organisms that cannot be grown in pure culture (<em>Treponema pallidum</em>, <em>Mycobacterium leprae</em>), for asymptomatic carriers who violate the first postulate, for diseases with no animal model, and for polymicrobial disease such as periodontitis. Molecular Koch's postulates replace the organism with the gene: inactivating a candidate virulence gene should reduce virulence, and restoring it should restore virulence.</p>
   <div class="scroll">
   <table>
@@ -323,6 +329,21 @@ figure.slot .miss code{background:var(--card)}
   </table>
   </div>
   <p>Exotoxins and endotoxin are worth separating carefully. An exotoxin is a protein, is secreted, is specific in its target, is often lethal in nanogram amounts, and can be inactivated into a toxoid for vaccination. Endotoxin is the lipid A part of lipopolysaccharide, is a structural component released when the cell lyses, is heat stable, acts through the innate immune system rather than on a specific target, and cannot be made into a toxoid.</p>
+  <p>Infectious disease has shaped history: bubonic plague (the Black Death) in the 1300s, European diseases carried to the Indigenous peoples of the Americas in the 1500s and 1600s, and the H1N1 Spanish flu of 1918. Comparing causes of death in North America in 1900 and 2000 shows how sharply deaths from infection fell in the twentieth century, thanks to antiseptics, sanitation, safe food and water, personal hygiene, vaccination and antibiotics. Despite all of that, infectious disease still takes a heavy toll worldwide.</p>
+
+  <h3>1.5 Origin of life and early Earth</h3>
+  <p>Earth formed about 4.6 billion years ago and microbes have been here for at least 3.8 billion of them. Multicellular fossils appear only about 0.5 billion years ago, so microbes had the planet to themselves for roughly 3.5 billion years, and animals (metazoans) are a late addition. The early atmosphere was nothing like today's, and it was microbial physiology that changed it.</p>
+  <ul>
+    <li>Little or no O<sub>2</sub>: a reducing atmosphere</li>
+    <li>Abundant H<sub>2</sub>O and CO<sub>2</sub>, plus reduced gases such as CH<sub>4</sub>, HCN, N<sub>2</sub>, H<sub>2</sub> and NH<sub>3</sub></li>
+    <li>High temperatures, above 100 °C, with extensive volcanic and hydrothermal activity</li>
+    <li>Large energy inputs from UV radiation, lightning and geothermal heat</li>
+  </ul>
+  <p>In the 1950s Stanley Miller, a graduate student working with Harold Urey, passed electric sparks through a mixture of such gases and recovered amino acids and other organic molecules, and UV irradiation of similar mixtures does the same. The building blocks of life can therefore form without life. Early life then needed three things: a way to store genetic information, a way to catalyse reactions, and a boundary separating inside from outside. Micelles, which form spontaneously from lipid-like molecules, are a candidate for the first membranes.</p>
+  <div class="key"><strong>RNA world.</strong> Ribozymes are RNA molecules that act as enzymes, so RNA can both store information and catalyse its own copying. The hypothesis, which Carl Woese helped develop, is that early life ran on RNA alone, with no DNA or protein. Peptides made under RNA direction later took over most catalysis, and double-stranded DNA took over storage because it is more stable and the second strand is a backup copy. RNA kept its central role as mRNA, tRNA and rRNA. All of this happened before the last universal common ancestor (LUCA).</div>
+  <p>Reconstructions of LUCA describe a membrane-bound, anaerobic thermophile that used ATP as its energy currency, ran DNA to RNA to protein, fixed CO<sub>2</sub> and N<sub>2</sub>, and probably lived at hydrothermal vents where reduced chemicals were plentiful. Away from vents, readily oxidised electron donors were scarce. The first phototrophs were anoxygenic, but the ancestors of the cyanobacteria solved the problem by splitting water and released O<sub>2</sub> as a toxic by-product (oxygenic photosynthesis). Oxygen built up until the atmosphere turned from anoxic and reducing to oxic, which made aerobic metabolism, and eventually animals, possible.</p>
+  <p>The fossil record of early microbes is mostly stromatolites: layered carbonate pedestals topped by a photosynthetic microbial mat. Stromatolites 2.7 billion years old are found in the Steep Rock Lake belt of northwestern Ontario, and living ones still grow today.</p>
+  <p>Eukaryotes arose from an archaeal lineage that took up an alphaproteobacterium, which became the mitochondrion; later, in the line leading to algae and plants, a eukaryote took up an oxygenic cyanobacterium that became the chloroplast. Among the evidence: eukaryotes without these organelles sit near the root of the tree, the organelles divide by binary fission, their rRNA is closest to Alphaproteobacteria and Cyanobacteria, and their ribosomes are bacterial, blocked by antibiotics that spare eukaryotic ribosomes (more in section 4.4).</p>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="world"></div>
 </section>
@@ -355,6 +376,9 @@ figure.slot .miss code{background:var(--card)}
   </div>
   <p>Arrangement follows the geometry of division. Cocci that divide in one plane and stay attached give diplococci and chains (strepto-); division in several planes gives grape-like clusters (staphylo-); packets of eight give sarcinae. Rods give diplobacilli, chains, or palisades. The arrangement is diagnostic because it reports how the division plane is placed, and the division plane is set by the cytoskeleton.</p>
   <p>Shape is genetically determined and maintained against turgor pressure by the peptidoglycan sacculus. Remove the wall with lysozyme in an isotonic medium and a rod becomes a sphere (a protoplast), which shows that the wall, not the membrane, holds the form.</p>
+  <p>Shape is a poor guide to physiology, ecology or phylogeny, but selection does shape it: small or thin cells gain surface area for nutrient uptake, spirals swim efficiently in viscous or turbulent fluids near surfaces, and filaments suit gliding. Some bacteria form multicellular arrangements: hyphae (branching filaments of cells), mycelia (tufts of hyphae) and trichomes (smooth unbranched chains of cells).</p>
+  <h4>Cell size</h4>
+  <p>Prokaryotes range from about 0.2 µm to over 700 µm; most rods are 0.5 to 4 µm wide and 1 to 15 µm long, against 10 to over 200 µm for eukaryotic cells. Small size means a high surface-to-volume ratio, so faster exchange of nutrients and wastes per unit volume, a higher metabolic rate, faster growth and faster evolution. The lower limit, around 0.15 µm across, is set by the space a genome, proteins and ribosomes need; cells of 0.2 to 0.4 µm are common in the open ocean. The giants are exceptions: <em>Thiomargarita namibiensis</em> reaches about 700 µm across, and <em>Epulopiscium fishelsoni</em> ("guest at a banquet of a fish"), an uncultured relative of <em>Clostridium</em> from the gut of surgeonfish that was identified by its 16S rRNA, is 200 to 700 µm long, longer than a typical <em>Paramecium</em>.</p>
 
   <h3>2.2 The cytoplasm</h3>
   <p>Bacterial cytoplasm is crowded, roughly 300 to 400 mg of macromolecule per millilitre, and it is organised without membranes.</p>
@@ -373,6 +397,7 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
+  <p>The chromosome is far longer than the cell, and it is compacted with no membrane and no histones: cations (Mg<sup>2+</sup>, K<sup>+</sup>, Na<sup>+</sup>) shield the negative phosphate backbone, small positively charged proteins hold it condensed, and topoisomerases supercoil it. The rest of the cytoplasm is a crowded mix of RNA, proteins and ribosomes. Its inclusions are named by content: sulfur globules store sulfur for energy and polyhydroxybutyrate (PHB) granules store carbon.</p>
   <div class="key">Endospores are the most resistant biological structures known. They survive boiling, desiccation, radiation and most disinfectants, which is why autoclaving at 121 °C rather than boiling is the standard for sterilisation. Only <em>Bacillus</em>, <em>Clostridium</em> and their relatives (Firmicutes) make them, and one cell makes exactly one spore, so sporulation is survival rather than multiplication.</div>
 
   <h3>2.3 The bacterial cytoskeleton</h3>
@@ -400,8 +425,24 @@ figure.slot .miss code{background:var(--card)}
     <figcaption>Gram-positive envelope: thick peptidoglycan with teichoic acids. Gram-negative: thin peptidoglycan in a periplasm, plus an outer membrane carrying LPS and porins.</figcaption>
   </figure>
 
+  <h4>The plasma membrane</h4>
+  <p>Every cell has one. It is a phospholipid bilayer with embedded proteins, a hydrophobic core between hydrophilic faces, with fatty acids joined to glycerol by ester links; many bacteria add hopanoids, sterol-like molecules that keep it stable across temperatures. It is the permeability barrier but not a structural support, it holds the electron transport chains that build the proton motive force (PMF) for respiration, photosynthesis and flagellar rotation, and its embedded sensors detect change and adjust gene expression.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Route across the membrane</th><th>What happens</th><th>Energy</th></tr></thead>
+    <tbody>
+      <tr><td>Simple diffusion</td><td>Small gases such as O<sub>2</sub> and CO<sub>2</sub> cross unaided</td><td>None</td></tr>
+      <tr><td>Osmosis through aquaporins</td><td>Water passes through protein channels</td><td>None</td></tr>
+      <tr><td>Facilitated diffusion</td><td>A channel or carrier moves a solute down its concentration gradient</td><td>None</td></tr>
+      <tr><td>Co-transport</td><td>An ion gradient (often H<sup>+</sup>) drives another solute against its gradient; a form of active transport</td><td>Indirect, from the ion gradient</td></tr>
+      <tr><td>ABC transporter</td><td>ATP-binding cassette protein pumps a solute against its gradient</td><td>ATP</td></tr>
+      <tr><td>Protein secretion</td><td>Toxins, siderophores and degradative enzymes are shipped out of the cell</td><td>ATP</td></tr>
+    </tbody>
+  </table>
+  </div>
+
   <h4>Peptidoglycan</h4>
-  <p>The wall polymer is a mesh of glycan chains of alternating N-acetylglucosamine and N-acetylmuramic acid, joined by beta-1,4 bonds, with a short peptide stem on each NAM. Cross-links between stems make the whole sacculus one covalently bonded molecule. In <em>E. coli</em> the link is direct, from D-alanine to diaminopimelic acid; in <em>S. aureus</em> it runs through a pentaglycine bridge to lysine. D-amino acids appear here and almost nowhere else in biology, and they resist host proteases.</p>
+  <p>The wall polymer is a mesh of glycan chains of alternating N-acetylglucosamine and N-acetylmuramic acid, joined by beta-1,4 bonds, with a short peptide stem on each NAM. Cross-links between stems make the whole sacculus one covalently bonded molecule. In <em>E. coli</em> the link is direct, from D-alanine to diaminopimelic acid; in <em>S. aureus</em> it runs through a pentaglycine bridge to lysine. D-amino acids (stereoisomers, mirror images of the usual L forms) appear here and almost nowhere else in biology, and they resist host proteases. New wall is built in two steps: transglycosylation adds the sugar subunits onto glycan strands, then transpeptidation (by FtsI and other penicillin binding proteins, in the FtsZ-organised divisome at the septum) cross-links the peptides. Without its wall a cell cannot resist osmotic pressure: water flows toward the side with more solute, so it swells and bursts.</p>
   <div class="key">Two drug targets in one structure. Lysozyme hydrolyses the beta-1,4 glycan bond. Penicillin and other beta-lactams inhibit the transpeptidases (penicillin binding proteins) that make the cross-links, so the cell keeps building glycan strands it cannot knit together and lyses under its own turgor. Vancomycin binds the D-Ala-D-Ala terminus instead, blocking the same step from the substrate side, and is too large to cross a Gram-negative outer membrane.</div>
 
   <h4>Gram-positive against Gram-negative</h4>
@@ -421,10 +462,11 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
-  <p>The Gram stain works on that architecture. Crystal violet and iodine form a large complex in the cytoplasm; the alcohol decolouriser dehydrates and shrinks thick peptidoglycan so the complex is trapped, while it dissolves the outer membrane of a Gram-negative cell and lets the complex wash out. Old cultures give false negatives as the wall degrades, so the stain is run on fresh growth. The endospore (Schaeffer-Fulton) stain uses heat to drive malachite green into the tough spore coat, then water decolourises the vegetative cells and safranin counterstains them: spores show green, vegetative cells red, and a slide with only red cells means no endospores were formed.</p>
+  <p>Hans Christian Gram devised the stain in 1884, and it works on that architecture. Crystal violet and iodine form a large complex in the cytoplasm; the alcohol decolouriser dehydrates and shrinks thick peptidoglycan so the complex is trapped, while it dissolves the outer membrane of a Gram-negative cell and lets the complex wash out. Old cultures give false negatives as the wall degrades, so the stain is run on fresh growth. The endospore (Schaeffer-Fulton) stain uses heat to drive malachite green into the tough spore coat, then water decolourises the vegetative cells and safranin counterstains them: spores show green, vegetative cells red, and a slide with only red cells means no endospores were formed.</p>
 
   <h4>Lipopolysaccharide</h4>
   <p>LPS has three parts. Lipid A anchors it in the outer membrane and is the endotoxin. The core polysaccharide is conserved. The O antigen is a repeating sugar chain that is highly variable and is used for serotyping, as in <em>E. coli</em> O157:H7. LPS is stabilised by Mg<sup>2+</sup> and Ca<sup>2+</sup> bridges, which is why EDTA and polymyxins destabilise the outer membrane.</p>
+  <p>The O side chain varies dramatically, and bacteria change it to evade the host immune response. Getting nutrients in: the Gram-positive wall has large pores, while Gram-negative cells use porins and TonB-dependent transporters in the outer membrane to move molecules into the periplasm, with TonB drawing on the PMF across the cytoplasmic membrane. Getting proteins out: a few, the autotransporters, cross from the periplasm to the outside on their own (rare), and others use single-step systems that span both membranes and never enter the periplasm.</p>
 
   <h4>Walls that do not fit the pattern</h4>
   <div class="scroll">
@@ -457,9 +499,11 @@ figure.slot .miss code{background:var(--card)}
   </div>
   <p>The flagellum is a rotary motor, not a whip. Stator units (MotA and MotB) conduct protons across the membrane and turn the rotor at up to 100,000 rpm; the filament acts as a rigid helical propeller. Reversing the direction of rotation switches a smooth run into a tumble, which is the mechanical basis of chemotaxis in Topic 8.7. Arrangements are named: monotrichous (one pole), lophotrichous (a tuft at one pole), amphitrichous (both poles) and peritrichous (all over, as in <em>E. coli</em>).</p>
   <p>Note that the H antigen of a serotype is flagellar protein, the O antigen is LPS sugar, and the K antigen is capsular. That is the whole logic of a name such as O157:H7.</p>
+  <p>The flagellum has three parts: a filament of flagellin 5 to 10 µm long, a hook, and the disc-like basal body that turns it. Rotation is expensive, about 1,000 H<sup>+</sup> per turn. Chemoreceptors sense changes in attractant or repellent concentration over time and bias the runs and tumbles. Other ways to move: gliding, a smooth slide over surfaces that is still poorly understood (myxobacteria, cyanobacteria); twitching, a slow jerky pull by pili that extend, attach and retract (<em>Pseudomonas aeruginosa</em>); and hijacking host actin, which <em>Shigella</em> and <em>Listeria monocytogenes</em> polymerise behind themselves to push into neighbouring cells. <em>Caulobacter</em> and <em>Hyphomonas</em> grow a stalk, an extension of the envelope tipped by a polysaccharide holdfast, which anchors the cell and adds surface for nutrient uptake. Capsules help cells form biofilms that protect them in harsh environments, and S-layers, crystalline arrays of interlocking protein found in Gram-positives, Gram-negatives and archaea, guard against predators and bacteriophages.</p>
 
   <h3>2.6 Diversity of bacteria</h3>
   <p>Bacterial taxonomy is built on genome sequence, with 16S rRNA identity as the working proxy: roughly 97 per cent identity for a species-level grouping, though average nucleotide identity above about 95 per cent across whole genomes is the modern criterion. Phenotype (Gram reaction, oxygen tolerance, metabolism) still drives clinical identification because it is fast.</p>
+  <p>Most microbes still cannot be cultured; only about 1 per cent have been. Those that can are named by the binomial system: a species is a group of strains sharing common features and differing considerably from other strains, and a genus is a group of closely related species. Above genus come family, order, class, phylum and domain (from phylum down to species: Prince Charles Orders Fishy Green Soup). Classification uses DNA sequence, size and shape, Gram type, colony morphology, structures such as capsules or endospores, and physiology. Once named, a species is deposited in at least two culture collections, and the reference specimen is the type strain; the World Federation for Culture Collections lists more than 500 collections in over 60 countries.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Phylum</th><th>Character</th><th>Representatives</th></tr></thead>
@@ -488,7 +532,7 @@ figure.slot .miss code{background:var(--card)}
   <p>Archaea were separated from bacteria in 1977 on rRNA sequence, and every discovery since has widened the gap. They are prokaryotic in cell plan, bacterial in bioenergetics, eukaryotic in how they handle information, and chemically unique in their membranes.</p>
 
   <h3>3.1 Evolution of archaea</h3>
-  <p>Woese and Fox noticed that methanogen 16S rRNA sequences were as different from <em>E. coli</em> as from yeast. Since ribosomal RNA is universal and functionally constant, that difference had to be ancient, and it justified a third domain rather than a subdivision of bacteria. Later work split archaeal genes into two classes and made the picture sharper: informational genes (replication, transcription, translation) group archaea with eukaryotes, while operational genes (metabolism, transport, biosynthesis) group them with bacteria.</p>
+  <p>Woese and Fox noticed that methanogen 16S rRNA sequences were as different from <em>E. coli</em> as from yeast. Since ribosomal RNA is universal and functionally constant, that difference had to be ancient, and it justified a third domain rather than a subdivision of bacteria. They began in the 1970s, and methanogens were the first archaea recognised. The group was first called Archaebacteria ("ancient bacteria"), with Eubacteria ("true bacteria") for the rest; both names are now historical, and the domains are simply Archaea and Bacteria (capitalised as taxa, lower case for the organisms). Later work split archaeal genes into two classes and made the picture sharper: informational genes (replication, transcription, translation) group archaea with eukaryotes, while operational genes (metabolism, transport, biosynthesis) group them with bacteria.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Archaeal feature</th><th>Resembles</th></tr></thead>
@@ -504,7 +548,7 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
-  <div class="key">Two-domain against three-domain. The classical three-domain tree has Archaea and Eukarya as sister groups. Phylogenomics of the Asgard archaea (Lokiarchaeota and relatives), which carry actin, profilin, ESCRT and small GTPase homologues, instead places eukaryotes <em>inside</em> the archaea, as a branch within the Asgard lineage. On that two-domain (eocyte) model the host of the mitochondrial endosymbiont was an archaeon, and there are only two primary domains.</div>
+  <div class="key">Two-domain against three-domain. The classical three-domain tree has Archaea and Eukarya as sister groups. Phylogenomics of the Asgard archaea (Loki-, Thor-, Odin- and Heimdallarchaeota, proposed as a superphylum in 2017), which carry actin, profilin, ESCRT and small GTPase homologues, instead places eukaryotes <em>inside</em> the archaea, as a branch within the Asgard lineage. On that two-domain (eocyte) model the host of the mitochondrial endosymbiont was an archaeon, and there are only two primary domains.</div>
   <p>Named superphyla worth recognising: TACK (Thaumarchaeota, Aigarchaeota, Crenarchaeota, Korarchaeota), Euryarchaeota, DPANN (small genomes, mostly symbionts), and Asgard.</p>
 
   <h3>3.2 Archaeal cell structure</h3>
@@ -512,13 +556,16 @@ figure.slot .miss code{background:var(--card)}
     <img src="media/micro-archaeal-lipids.png" alt="Comparison of bacterial ester-linked bilayer lipids with archaeal ether-linked isoprenoid bilayer and tetraether monolayer">
     <figcaption>Archaeal lipids: ether bonds, branched isoprenoid chains, glycerol-1-phosphate stereochemistry, and in thermophiles a tetraether monolayer.</figcaption>
   </figure>
-  <p>The membrane is the defining difference. Bacterial and eukaryotic lipids are straight-chain fatty acids joined to glycerol-3-phosphate by ester bonds. Archaeal lipids are branched isoprenoid chains joined to glycerol-1-phosphate (the opposite stereoisomer) by ether bonds. Ether bonds resist hydrolysis at high temperature and low pH, and methyl branches restrict the packing of the chains. In hyperthermophiles the chains of the two leaflets are fused into a single tetraether span, so the membrane is a monolayer that cannot be pulled apart by heat.</p>
+  <p>Archaea look like bacteria under the microscope. They are usually 0.5 to 5 µm across, with extremes from 0.4 µm (<em>Nanoarchaeum equitans</em>) to <em>Thermoproteus</em> rods 100 µm long. Shapes include rods, cocci and spirals as in bacteria, irregular lobed cells (<em>Sulfolobus</em>), rectangles (<em>Thermoproteus</em>) and flat squares (<em>Haloquadratum walsbyi</em>). The cytoplasm resembles a bacterium's, and some species have microcompartments and inclusions such as carbon stores and gas vacuoles. The DNA replication enzymes look eukaryotic, and archaeal histones (which differ from eukaryotic ones) may mark an early branch point shared by Archaea and Eukarya.</p>
+  <p>The membrane is the defining difference. Bacterial and eukaryotic lipids are straight-chain fatty acids joined to glycerol-3-phosphate by ester bonds. Archaeal lipids are branched isoprenoid (phytanyl) chains joined to glycerol-1-phosphate (the opposite stereoisomer) by ether bonds. Ether bonds resist hydrolysis at high temperature and low pH, and methyl branches restrict the packing of the chains. In hyperthermophiles the chains of the two leaflets are fused into a single tetraether span, so the membrane is a monolayer, with a phosphoglycerol head at each end, that cannot be pulled apart by heat.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Structure</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td>Cell wall</td><td>No true peptidoglycan. <em>Methanobacterium</em> has pseudomurein (NAG plus N-acetyltalosaminuronic acid, beta-1,3 links, L-amino acids); many others have only a paracrystalline S-layer; <em>Methanosarcina</em> has methanochondroitin; <em>Thermoplasma</em> has no wall at all</td></tr>
+      <tr><td>Cell wall</td><td>No true peptidoglycan. <em>Methanobacterium</em> has pseudomurein, also called pseudopeptidoglycan (NAG plus N-acetyltalosaminuronic acid, beta-1,3 links that make it lysozyme insensitive, L-amino acids); many others have only a paracrystalline S-layer; <em>Methanosarcina</em> has methanochondroitin; <em>Thermoplasma</em> has no wall at all</td></tr>
       <tr><td>Motility</td><td>The archaellum: superficially like a flagellum, but built from type IV pilus components, ATP driven rather than proton driven, and assembled from the base</td></tr>
+      <tr><td>Outer membrane</td><td>Absent in almost all archaea. <em>Ignicoccus</em> is the exception: an outer membrane and periplasm arranged like a Gram-negative cell's, with its ATP synthase in the outer membrane</td></tr>
+      <tr><td>Cell surface</td><td>S-layers protect against predation and viruses and mediate adhesion; cannulae, hollow glycoprotein tubes, link cells into a network</td></tr>
       <tr><td>Chromosome</td><td>Circular, packed with histones in most lineages, replicated from one to three origins</td></tr>
       <tr><td>Division</td><td>FtsZ in Euryarchaeota, but Crenarchaeota use the Cdv system, which is homologous to eukaryotic ESCRT-III</td></tr>
       <tr><td>Ribosome</td><td>70S, insensitive to streptomycin and chloramphenicol, sensitive to anisomycin and diphtheria toxin</td></tr>
@@ -535,6 +582,7 @@ figure.slot .miss code{background:var(--card)}
       <tr><td>CetZ</td><td>Tubulin</td><td>Unique to archaea; controls rod shape and motility in <em>Haloferax volcanii</em>, not division</td></tr>
       <tr><td>CdvA, CdvB, CdvC</td><td>ESCRT-III and Vps4</td><td>Crenarchaeota, which lack FtsZ; CdvB forms a ring that pinches the cell in two, and CdvC (an ATPase) disassembles it</td></tr>
       <tr><td>Crenactin</td><td>Actin</td><td>Crenarchaeota such as <em>Pyrobaculum</em>; helical filaments linked to cell shape. MreB is absent from most archaea</td></tr>
+      <tr><td>Ta0583</td><td>Actin</td><td><em>Thermoplasma acidophilum</em>; resembles eukaryotic actin, whereas the cytoskeletal proteins of <em>Methanobacterium thermoautotrophicum</em> and <em>Methanopyrus kandleri</em> look more like bacterial MreB</td></tr>
       <tr><td>Actin, profilin, gelsolin, tubulin</td><td>Eukaryotic cytoskeleton</td><td>Asgard archaea; actin fills the long cell protrusions of cultured Lokiarchaeota, supporting an Asgard-like host for the first eukaryote</td></tr>
     </tbody>
   </table>
@@ -573,6 +621,8 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
+  <p><strong>Halophiles</strong> need more than 1.5 M NaCl. They live in the Great Salt Lake, the Dead Sea and evaporating salt ponds, at 5 to 34 per cent salinity against 3.5 per cent (about 0.6 M) for seawater. Water flows toward the higher solute concentration, so the danger is losing water to osmotic shock. <em>Halobacterium salinarum</em> answers by holding a very high internal K<sup>+</sup> concentration that offsets the external Na<sup>+</sup>, with K<sup>+</sup> acting as a compatible solute. That much salt inside would denature ordinary proteins and split double-stranded DNA, so its proteins are highly acidic and stay stable in salt, and its DNA has a high GC content with stronger pairing. <em>Halobacterium</em> is phototrophic without chlorophyll or an electron transport chain: bacteriorhodopsin, a light-driven proton pump whose retinal switches between trans and cis forms, builds a PMF for making ATP when oxygen is low, and gives the cells their reddish colour.</p>
+  <p><strong>Methanogens</strong> reduce CO<sub>2</sub> with H<sub>2</sub> to CH<sub>4</sub> and water, using the energy released to fix carbon. They are strict anaerobes and live wherever O<sub>2</sub> is absent and fermenters supply H<sub>2</sub> and CO<sub>2</sub>: anoxic sediments of marshes, swamps, lakes, rice paddies and moist landfill; the rumen of cattle, sheep, elk, deer and camels, the cecum of horses and rabbits, and the large intestine of humans, pigs and dogs; geothermal H<sub>2</sub>/CO<sub>2</sub> sources such as hydrothermal vents; sewage sludge digesters; and as endosymbionts of anaerobic protozoa, including those of the termite gut. The methane makes gas in people and combustible air over swamps: in the 1770s Alessandro Volta trapped the gas bubbling from freshwater sediment under an inverted funnel and lit it.</p>
 
   <h3>3.5 Crenarchaeota</h3>
   <p>The classic hyperthermophiles, and the phylum closest to the original idea of archaea as extremophiles. Cultured members are mostly thermophiles or hyperthermophiles from hot springs and hydrothermal vents, many of them acidophiles, and most rely on sulfur: they oxidise H<sub>2</sub> or S<sup>0</sup> aerobically, or use S<sup>0</sup> as an electron acceptor anaerobically. Membranes are dominated by tetraether monolayers. Unlike Euryarchaeota they lack FtsZ and divide with the Cdv system, which is homologous to eukaryotic ESCRT-III, and many lack histones.</p>
@@ -588,13 +638,17 @@ figure.slot .miss code{background:var(--card)}
   </table>
   </div>
 
+  <p>Life at high temperature takes several adaptations: tetraether lipid monolayers; proteins with more alpha-helix, more salt bridges and side-chain interactions, more arginine and tyrosine and less cysteine and serine; strong chaperone complexes that refold denatured proteins; thermostable DNA-binding proteins; and reverse DNA gyrase, which increases supercoiling to stabilise the DNA. Many crenarchaeotes are also acidophiles, thriving at low pH as in acid mine drainage, and some are barophiles, adapted to the high pressures at the bottom of the ocean.</p>
+
   <h3>3.6 Thaumarchaeota</h3>
   <p>Split off from the Crenarchaeota in 2008, once genomes showed they were a separate lineage. They are mesophilic, not extremophiles, and were found first by 16S rRNA sequencing of seawater rather than by culture, which is why they were overlooked for so long. They are chemolithoautotrophic ammonia oxidisers: ammonia monooxygenase turns NH<sub>3</sub> into nitrite, and a unique hydroxypropionate/hydroxybutyrate cycle fixes CO<sub>2</sub>. Their affinity for ammonia is far higher than that of ammonia-oxidising bacteria, so they dominate nitrification in the nutrient-poor open ocean and in many soils. They make up a large fraction of all marine plankton cells.</p>
+  <p>The phylum has since been renamed Nitrososphaerota. Its members are mesophiles (15 to 40 °C) and psychrophiles (below 15 °C) that matter for carbon and nitrogen cycling in the ocean; <em>Cenarchaeum symbiosum</em> lives inside a marine sponge. Ammonia-oxidising archaea have also been found in, and eventually cultured from, wastewater treatment systems and aquarium filters.</p>
   <div class="key"><em>Nitrosopumilus maritimus</em>, the first cultured ammonia-oxidising archaeon (2005), grows at nanomolar ammonia. The discovery changed the textbook picture of the nitrogen cycle, where nitrification had been credited to bacteria alone.</div>
 
   <h3>3.7 Nanoarchaeota</h3>
-  <p>A DPANN phylum of extremely small cells, about 400 nm across, with some of the smallest genomes of any cellular organism (<em>Nanoarchaeum equitans</em>, about 490 kb). They lack genes for most biosynthesis, including lipids, amino acids and nucleotides, and cannot make their own ATP efficiently, so they live as obligate symbionts or parasites attached to the surface of another archaeon and take metabolites from it. <em>N. equitans</em> was found in 2002 riding on the crenarchaeote <em>Ignicoccus hospitalis</em> at about 90 °C in a submarine vent. Metagenomics has since found many related DPANN lineages, which suggests host-dependent lifestyles are common in archaea.</p>
-  <div class="key">Other phyla to recognise by name: Korarchaeota (hot springs, known mostly from genomes, sits deep in the TACK group) and the Asgard archaea (closest living relatives of eukaryotes, section 3.1).</div>
+  <p>A DPANN phylum of extremely small cells, about 400 nm across, with some of the smallest genomes of any cellular organism (<em>Nanoarchaeum equitans</em>, about 490 kb). They lack genes for most biosynthesis, including lipids, amino acids and nucleotides, and cannot make their own ATP efficiently, so they live as obligate symbionts or parasites attached to the surface of another archaeon and take metabolites from it. <em>N. equitans</em> was found in 2002 riding on the crenarchaeote <em>Ignicoccus hospitalis</em> at about 90 °C in a hydrothermal vent north of Iceland. At 0.4 µm it has about 1 per cent of the volume of <em>E. coli</em>, and its 0.49 Mbp genome has no metabolic genes, only those for replication, transcription and translation. It is still the only isolated member of the phylum, although two other genomes are known. Metagenomics has since found many related DPANN lineages, which suggests host-dependent lifestyles are common in archaea.</p>
+  <p>The DPANN superphylum shares the same traits: cells under 1 µm, genomes around 1 Mb or less, restricted metabolisms that cannot make basic building blocks, and dependence on other species, whether as mutualists or parasites. ARMAN, ultrasmall archaea from acidic mine environments, associate with Thermoplasmatales.</p>
+  <div class="key">Other phyla to recognise by name: Korarchaeota (distinct 16S rRNA sequences from hydrothermal environments, nothing cultivated, one genome available, deep in the TACK group), Aigarchaeota (also uncultivated, one genome, the thermophile <em>Candidatus</em> Caldiarchaeum subterraneum) and the Asgard archaea (closest prokaryotic relatives of eukaryotes, section 3.1). Lokiarchaeota and Thorarchaeota are thermophiles distinct from the Crenarchaeota whose genomes carry eukaryote-like proteins for compartmentalising the cell, a possible early stage of complex cell evolution.</div>
   <div class="memory" data-set="arch"></div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="arch"></div>
@@ -631,10 +685,11 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
+  <p>Proteins bound for secretion, membranes or certain organelles enter the secretory pathway at the rough ER and travel in vesicles to the Golgi for further modification and sorting. Mitochondria and chloroplasts both make ATP by chemiosmosis, driven by a PMF across the inner mitochondrial membrane or the thylakoid membrane, and chloroplasts use that ATP to fix carbon. Both are semi-autonomous: each has its own DNA, ribosomes and transcription machinery and divides independently, yet most of their proteins are encoded in the nucleus. Cellulose and chitin walls both rely on beta-1,4 glycosidic bonds for strength and rigidity. The cytoskeleton also moves cargo, drives division through the spindle, and can be hijacked by pathogens such as herpes simplex virus and <em>Listeria</em>.</p>
   <div class="key">Because fungal cells are eukaryotic, few antibacterial drugs touch them and antifungals must exploit the differences that do exist: ergosterol instead of cholesterol in the membrane (azoles, amphotericin B) and chitin or beta-glucan in the wall (echinocandins). The same shared biochemistry is why antifungals and antiparasitics are more toxic to patients than most antibacterials.</div>
 
   <h3>4.2 Diversity of eukaryal microbes</h3>
-  <p>The old kingdom Protista has been abandoned. Eukaryotes are now organised into a handful of supergroups defined by molecular phylogeny, and microbial forms appear in all of them.</p>
+  <p>The old kingdom Protista has been abandoned. Eukaryotes are now organised into a handful of supergroups defined by molecular phylogeny, and microbial forms appear in all of them.</p> Eukaryotic phylogeny is built from SSU rRNA and other highly conserved genes such as tubulins and heat shock proteins, and fungi are identified by the internal transcribed spacer (ITS) region of nuclear rDNA, the standard fungal DNA barcode.
   <div class="scroll">
   <table>
     <thead><tr><th>Supergroup</th><th>Microbial members</th><th>Notes</th></tr></thead>
@@ -650,20 +705,34 @@ figure.slot .miss code{background:var(--card)}
   </table>
   </div>
 
+  <p>The course uses four traditional categories, which are not all true evolutionary lineages, each with a model organism.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Category</th><th>Model organism</th><th>Why it is used and key features</th></tr></thead>
+    <tbody>
+      <tr><td>Fungi</td><td><em>Saccharomyces cerevisiae</em></td><td>Heterotroph with a chitin wall, used for bread, beer and wine; an easy, cheap tool for studying eukaryotic structure and gene expression</td></tr>
+      <tr><td>Protozoa</td><td><em>Giardia lamblia</em></td><td>Intestinal pathogen causing giardiasis ("beaver fever"), spread in contaminated food or water. It is amitochondriate but has mitosomes, a sign of secondary loss of mitochondria rather than branching off before they arose</td></tr>
+      <tr><td>Slime moulds</td><td><em>Dictyostelium discoideum</em></td><td>Cellular slime mould; a model for ecology, cell motility and cell-cell communication</td></tr>
+      <tr><td>Algae</td><td><em>Chlamydomonas reinhardtii</em></td><td>Two flagella, durable and easy to grow; a model for how eukaryotic flagella are built and work</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Protozoa ("protists" when photosynthetic and mixotrophic forms are included) are mostly unicellular heterotrophs with very varied motility and reproduction, and most lack a wall. Slime moulds are heterotrophs: plasmodial slime moulds such as <em>Physarum</em> fuse into one giant multinucleate cell, a plasmodium, while cellular slime moulds such as <em>Dictyostelium</em> aggregate into a multicellular mass whose cells stay distinct. Algae are primarily photosynthetic, with cellulose walls, and range from single cells to colonies and multicellular bodies.</p>
+
   <h4>Fungi</h4>
   <div class="scroll">
   <table>
     <thead><tr><th>Phylum</th><th>Character</th><th>Examples</th></tr></thead>
     <tbody>
-      <tr><td>Chytridiomycota</td><td>Flagellated zoospores, aquatic</td><td><em>Batrachochytrium</em>, which is killing amphibians worldwide</td></tr>
-      <tr><td>Zygomycota</td><td>Coenocytic hyphae, zygospores</td><td><em>Rhizopus</em> bread mould</td></tr>
-      <tr><td>Glomeromycota</td><td>Obligate arbuscular mycorrhizal symbionts</td><td><em>Glomus</em></td></tr>
-      <tr><td>Ascomycota</td><td>Sexual spores in a sac (ascus); the largest phylum</td><td><em>Saccharomyces</em>, <em>Aspergillus</em>, <em>Penicillium</em>, <em>Neurospora</em>, <em>Candida</em></td></tr>
-      <tr><td>Basidiomycota</td><td>Spores on a basidium; mushrooms, rusts, smuts</td><td><em>Agaricus</em>, <em>Cryptococcus</em>, <em>Ustilago</em></td></tr>
+      <tr><td>Chytridiomycota</td><td>Early branching; flagellated zoospores, aquatic ("water moulds" in lecture)</td><td><em>Batrachochytrium</em>, which is killing amphibians worldwide</td></tr>
+      <tr><td>Zygomycota</td><td>Coenocytic hyphae, zygospores</td><td><em>Rhizopus</em> bread mould, a common lab contaminant</td></tr>
+      <tr><td>Glomeromycota</td><td>Obligate arbuscular mycorrhizal symbionts, extremely important for plants and trees</td><td><em>Glomus</em></td></tr>
+      <tr><td>Ascomycota</td><td>"Spore shooters": sexual spores in a sac (ascus); cup and sac fungi and yeasts; the largest phylum</td><td><em>Saccharomyces</em>, <em>Aspergillus</em>, <em>Penicillium</em>, <em>Neurospora</em>, <em>Candida</em></td></tr>
+      <tr><td>Basidiomycota</td><td>"Spore droppers": spores on a club-shaped basidium; the traditional mushroom formers, plus rusts and smuts</td><td><em>Agaricus</em>, <em>Cryptococcus</em>, <em>Ustilago</em></td></tr>
     </tbody>
   </table>
   </div>
-  <p>Fungal vocabulary is worth fixing. A hypha is one filament; septate hyphae have cross walls, coenocytic hyphae do not. A mycelium is a mass of hyphae. A yeast is a single-celled fungus; a mould grows as hyphae; a dimorphic fungus switches between the two with temperature, which matters clinically because <em>Histoplasma</em> and <em>Blastomyces</em> are moulds in soil at 25 °C and yeasts in tissue at 37 °C. Fungi are absorptive heterotrophs: they secrete hydrolases and take up the products, which makes them the main decomposers of lignin and cellulose.</p>
+  <p>Fungal vocabulary is worth fixing. A hypha is one filament; septate hyphae have cross walls, coenocytic hyphae do not. A mycelium is a mass of hyphae. A yeast is a single-celled fungus; a mould grows as hyphae; a dimorphic fungus switches between the two with temperature, which matters clinically because <em>Histoplasma</em> and <em>Blastomyces</em> are moulds in soil at 25 °C and yeasts in tissue at 37 °C. Fungi are absorptive heterotrophs: they secrete hydrolases and take up the products, which makes them the main decomposers of lignin and cellulose. Most fungal walls contain chitin and glucans. Mushroom-forming fungi can be saprotrophs (decomposers of dead organic matter), parasites, or mycorrhizal mutualists on plant roots. Two parasites from lecture: <em>Cordyceps</em>, which infects insects and sprouts from their bodies, and the ascomycete <em>Rhytisma</em>, which causes tar spot on maples and sycamores in late summer.</p>
 
   <div class="memory" data-set="fungi"></div>
 
@@ -685,7 +754,17 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
-  <p>Mitosis conserves chromosome number and produces genetically identical nuclei; meiosis halves it and generates diversity by independent assortment and crossing over. Yeast is a convenient genetic system precisely because it can be held as a stable haploid, mated to give a diploid, and then forced into meiosis by starvation, so all four products of a single meiosis can be recovered and scored.</p>
+  <p>Eukaryotic microbes can be haploid or diploid at different stages, and can reproduce sexually or asexually. Mitosis conserves chromosome number and produces two identical cells; meiosis is one round of DNA replication followed by two divisions, giving four haploid cells, and it generates diversity by segregating maternal and paternal chromosomes and by crossing over beforehand, so each haploid cell is genetically distinct. Fertilisation restores the diploid state. Yeast is a convenient genetic system precisely because it can be held as a stable haploid, mated to give a diploid, and then forced into meiosis by starvation, so all four products of a single meiosis can be recovered and scored.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Model organism</th><th>Life cycle</th></tr></thead>
+    <tbody>
+      <tr><td><em>Saccharomyces cerevisiae</em> (fungus)</td><td>Buds by mitosis as either a haploid or a diploid; some divide by fission into equal cells instead. Starved diploids undergo meiosis and sporulate, giving four haploid spores in an ascus, usually two of mating type <em>a</em> and two of type alpha. After germination, haploids bud or mate with the opposite type to form a diploid again</td></tr>
+      <tr><td><em>Chlamydomonas reinhardtii</em> (alga)</td><td>Motile haploid cells divide by mitosis while conditions are good. Under nitrogen starvation they become gametes; opposite mating types fuse into a diploid zygote that matures into a resistant zygospore. When conditions improve, the zygospore undergoes meiosis and releases four haploid cells</td></tr>
+      <tr><td><em>Dictyostelium discoideum</em> (slime mould)</td><td>Haploid amoebae feed singly. When conditions worsen they aggregate into a multicellular slug that forms a stalk and a fruiting body, whose spores restart the haploid cycle. Alternatively two haploid cells fuse into a diploid macrocyst, which undergoes meiosis to give new haploid cells</td></tr>
+    </tbody>
+  </table>
+  </div>
   <p>The malaria life cycle is the standard example of a multi-stage parasite: sporozoites from mosquito saliva infect liver cells, merozoites are released and invade erythrocytes, some develop into gametocytes, and gametes fuse in the mosquito midgut where the only meiosis in the cycle takes place. The mosquito is therefore the definitive host and the human the intermediate host.</p>
 
   <h3>4.4 The origin of eukaryal cells</h3>
@@ -694,6 +773,7 @@ figure.slot .miss code{background:var(--card)}
     <figcaption>Endosymbiosis. A host cell engulfed an alphaproteobacterium to give the mitochondrion and a cyanobacterium to give the primary plastid; a second round of engulfment produced the plastids of many algal groups.</figcaption>
   </figure>
   <p>Lynn Margulis revived and established the endosymbiotic theory. The evidence for it is consistent across several independent lines.</p>
+  <p>Life began 4.5 to 4 billion years ago, but eukaryotes appear only about 2.1 to 1.6 billion years ago. In the lecture model a primitive archaeal cell engulfed a bacterium and kept it as a symbiont, and at least two such events are needed, one for mitochondria and one for chloroplasts.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Observation</th><th>What it implies</th></tr></thead>
@@ -708,6 +788,7 @@ figure.slot .miss code{background:var(--card)}
   </table>
   </div>
   <p>Primary endosymbiosis produced mitochondria in the ancestor of all eukaryotes and plastids in the ancestor of Archaeplastida. Secondary endosymbiosis, in which a eukaryote engulfed an already photosynthetic eukaryote, explains the three or four membranes around the plastids of diatoms, dinoflagellates and euglenids, and the vestigial nucleus (nucleomorph) still present in cryptophytes. The apicoplast of <em>Plasmodium</em> is a non-photosynthetic relic of that process, and it is a useful drug target for exactly that reason.</p>
+  <p>Amitochondriate eukaryotes such as <em>Giardia</em> are not a counter-example: they lost their mitochondria secondarily and kept mitosomes. Endosymbiosis still happens, for example when <em>Paramecium</em> takes in algae and uses their photosynthesis. Open questions remain: why organelle endosymbiosis has become stable only twice in history when it can be reproduced experimentally, what exactly was engulfed first, how engulfment worked if the partner had a cell wall, and whether other organelles, such as the double-membraned nucleus, also began this way.</p>
   <p>The rest of the cell is less settled. The autogenous model derives the nucleus and endomembrane system from infolding of the plasma membrane. The hydrogen hypothesis proposes a metabolic partnership in which a methanogenic archaeon depended on H<sub>2</sub> from a bacterium that became the mitochondrion. Asgard archaeal genomes support the second family of models, since they already contain actin, ESCRT and membrane-trafficking machinery. Whether mitochondria came early (and drove eukaryogenesis) or late remains the open question; the last eukaryotic common ancestor already had them.</p>
 
   <h3>4.5 Interactions with animals, plants and the environment</h3>
@@ -732,14 +813,14 @@ figure.slot .miss code{background:var(--card)}
     <tbody>
       <tr><td>Superficial mycosis</td><td><em>Trichophyton</em>, <em>Malassezia</em></td><td>Skin, hair and nail only, as in ringworm and athlete's foot</td></tr>
       <tr><td>Systemic mycosis</td><td><em>Histoplasma</em>, <em>Coccidioides</em>, <em>Blastomyces</em></td><td>Inhaled from soil, dimorphic, can infect healthy hosts</td></tr>
-      <tr><td>Opportunistic mycosis</td><td><em>Candida albicans</em>, <em>Aspergillus fumigatus</em>, <em>Pneumocystis jirovecii</em>, <em>Cryptococcus neoformans</em></td><td>Requires immune compromise; the main cause of fungal mortality</td></tr>
-      <tr><td>Protozoan disease</td><td><em>Plasmodium</em>, <em>Trypanosoma</em>, <em>Leishmania</em>, <em>Giardia</em>, <em>Entamoeba</em>, <em>Toxoplasma</em></td><td>Vector-borne or waterborne; malaria alone causes hundreds of thousands of deaths a year</td></tr>
-      <tr><td>Plant pathogens</td><td><em>Phytophthora infestans</em>, <em>Magnaporthe oryzae</em>, rusts and smuts</td><td>Potato blight and rice blast; historically the cause of famine</td></tr>
+      <tr><td>Opportunistic mycosis</td><td><em>Candida albicans</em>, <em>Aspergillus fumigatus</em>, <em>Pneumocystis jirovecii</em>, <em>Cryptococcus neoformans</em></td><td>Fungi seldom harm healthy people; these need immune compromise and are the main cause of fungal mortality</td></tr>
+      <tr><td>Protozoan disease</td><td><em>Plasmodium</em>, <em>Trypanosoma</em>, <em>Leishmania</em>, <em>Giardia</em>, <em>Entamoeba</em>, <em>Toxoplasma</em></td><td>Vector-borne or waterborne; malaria (several <em>Plasmodium</em> species, including <em>P. falciparum</em>) alone causes hundreds of thousands of deaths a year, and <em>Trypanosoma brucei</em> causes African sleeping sickness. Drugs are hard to find because these pathogens are built like host cells</td></tr>
+      <tr><td>Plant pathogens</td><td><em>Phytophthora infestans</em>, <em>Magnaporthe oryzae</em>, rusts and smuts</td><td>Potato blight (the Irish famine of the mid-1800s) and rice blast; protozoa and fungi are both major plant pathogens</td></tr>
       <tr><td>Mycotoxins</td><td><em>Aspergillus flavus</em> aflatoxin, <em>Claviceps purpurea</em> ergot</td><td>Poisoning and carcinogenesis through contaminated grain</td></tr>
     </tbody>
   </table>
   </div>
-  <p>The same organisms are industrially indispensable: <em>S. cerevisiae</em> for bread, beer, wine and recombinant protein, <em>Aspergillus</em> for citric acid and soy fermentation, <em>Penicillium</em> for penicillin and cheese, and algae for agar, carrageenan and biofuel feedstock.</p>
+  <p>The same organisms are industrially indispensable: <em>S. cerevisiae</em> for bread, beer, wine and recombinant protein, <em>Aspergillus</em> for citric acid and soy fermentation, <em>Penicillium</em> for penicillin and cheese, and algae for agar, carrageenan and biofuel feedstock. Ecologically, algae are major primary producers that release much of the ocean's oxygen, and eukaryotic microbes such as the protozoa of the termite gut recycle plant matter by degrading cellulose, which animals cannot do well on their own.</p>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="euk"></div>
 </section>
@@ -1611,6 +1692,14 @@ document.querySelectorAll("figure.slot img").forEach(img => {
 // one flashcard deck per topic section: click the card to turn it over
 const FC = {
 "world": [
+["Contrast Hooke and van Leeuwenhoek.", "Hooke's early microscope gave the first description of microbes, the fruiting structures of moulds. Van Leeuwenhoek's better lenses gave the first description of bacteria."],
+["Distinguish microorganism from microbe.", "Microorganism covers microscopic Bacteria, Archaea and Eukarya. Microbe also includes viruses, which are not organisms and are inert outside a host."],
+["List Pasteur's contributions besides disproving spontaneous generation.", "Optical isomers, the biological nature of alcoholic fermentation, vaccines for anthrax, fowl cholera and rabies, pasteurisation, and hospital sanitation."],
+["How did H. pylori show Koch's postulates still work?", "In the 1980s it was isolated from ulcerated stomach tissue and shown by the postulates to cause ulcers, which had been blamed on excess acid."],
+["What did the Miller-Urey experiment show?", "Sparks through a reducing mix of early-Earth gases made amino acids and other organic molecules, so life's building blocks can form without life."],
+["What is the RNA world hypothesis?", "Early life used RNA for both information and catalysis, since ribozymes act as enzymes. Proteins later took over catalysis and the more stable double-stranded DNA took over storage."],
+["How did microbes change Earth's atmosphere?", "Cyanobacterial oxygenic photosynthesis released O2 as a by-product, turning the anoxic, reducing atmosphere oxic and allowing aerobic life and animals."],
+["What are stromatolites?", "Layered carbonate pedestals topped by photosynthetic microbial mats; the main fossil record of early microbes, such as 2.7-billion-year-old ones at Steep Rock Lake, Ontario."],
 ["How did Pasteur disprove spontaneous generation?", "Boiled broth in a swan-neck flask stayed sterile because the curved neck let air in but trapped dust and microbes. It spoiled only when the neck was broken or tipped."],
 ["How do conserved and variable regions make SSU rRNA useful for phylogeny?", "Conserved regions allow homologous sequences to be aligned across distant cellular lineages; variable regions help distinguish closer relatives. Its essential ribosomal role limits harmful changes, but very close species can still have nearly identical sequences."],
 ["Why can an rRNA tree neither date a split exactly on its own nor describe every gene's ancestry?", "Dating needs a calibrated substitution rate and an appropriate model. An rRNA tree follows one gene's history, while horizontal gene transfer can give other genes different histories."],
@@ -1629,6 +1718,12 @@ const FC = {
 ["Roughly how gene dense is a bacterial genome?", "About 88 per cent of the E. coli chromosome codes for protein, against a few per cent of the human genome."]
 ],
 "bact": [
+["What is each wall polymer made of?", "Peptidoglycan: NAG + NAM, beta-1,4 (bacteria). Pseudomurein: NAG + NAT, beta-1,3 (archaea). Chitin: NAG only, beta-1,4 (fungi). Cellulose: glucose only, beta-1,4 (algae, plants)."],
+["Why are most bacteria small?", "A high surface-to-volume ratio gives faster nutrient and waste exchange per volume, a higher metabolic rate, faster growth and faster evolution."],
+["How is the bacterial chromosome compacted?", "Cations shield the phosphate backbone, small positive proteins hold it condensed, and topoisomerases supercoil it. No membrane and no histones."],
+["Name the two steps of wall synthesis.", "Transglycosylation links sugar subunits into glycan strands; transpeptidation (FtsI and other PBPs) cross-links the peptides. Beta-lactams block the second."],
+["What does TonB do?", "Uses the PMF across the cytoplasmic membrane to drive transport of molecules through the Gram-negative outer membrane into the periplasm."],
+["Contrast gliding and twitching motility.", "Gliding is a smooth slide over surfaces, still poorly understood (myxobacteria, cyanobacteria). Twitching is a slow jerky pull by extending and retracting pili (Pseudomonas aeruginosa)."],
 ["Which protein marks the division plane in a bacterium, and what is its eukaryotic counterpart?", "FtsZ, a tubulin homologue. It forms the Z ring at midcell and recruits the divisome."],
 ["What does MreB do?", "It is the actin homologue. Helical filaments under the membrane direct wall synthesis and maintain rod shape, and it is absent from cocci."],
 ["Why is midcell the only place the Z ring forms?", "The MinCDE system oscillates from pole to pole as an inhibitor, leaving midcell as the only permissive site."],
@@ -1646,6 +1741,10 @@ const FC = {
 ["What is the modern criterion for a bacterial species?", "Average nucleotide identity above roughly 95 per cent across whole genomes; the older working proxy was 97 per cent 16S rRNA identity."]
 ],
 "arch": [
+["How does Halobacterium survive high salt?", "It keeps a very high internal K+ concentration to offset external Na+, with highly acidic proteins and high-GC DNA that stay stable in that salt."],
+["Where do methanogens live?", "Anywhere anoxic with H2 and CO2: marsh, lake and rice paddy sediments, landfill, the rumen, cecum and large intestine, hydrothermal vents, sewage digesters, and inside anaerobic protozoa such as those of the termite gut."],
+["List the adaptations of hyperthermophiles.", "Tetraether monolayers, proteins with more helix, salt bridges, arginine and tyrosine, strong chaperones, thermostable DNA-binding proteins, and reverse DNA gyrase."],
+["Why is the Nanoarchaeum and Ignicoccus relationship bizarre?", "Nanoarchaeum is a 0.4 µm obligate parasite with a 0.49 Mbp genome and no metabolic genes, living on another archaeon, Ignicoccus, which itself has an unusual outer membrane holding its ATP synthase."],
 ["What is the two-domain hypothesis?", "That eukaryotes arose from within the archaea, specifically within the Asgard lineage, so there are only two primary domains rather than three."],
 ["What is the evidence for it?", "Asgard archaeal genomes carry eukaryotic signature proteins: actin, profilin, ESCRT components and small GTPases."],
 ["Why do ether lipids suit a hyperthermophile?", "Ether bonds resist hydrolysis at high temperature and low pH, and tetraether monolayers cannot be pulled apart by heat."],
@@ -1667,6 +1766,10 @@ const FC = {
 ["Why was it once thought that archaea lived only in extremes?", "Because cultivation methods and sampling favoured thermophiles. Sequencing found Thaumarchaeota throughout the ocean and methanogens in every anoxic habitat."]
 ],
 "euk": [
+["Give the model organism for each eukaryotic category.", "Fungi: Saccharomyces cerevisiae. Protozoa: Giardia lamblia. Slime moulds: Dictyostelium discoideum. Algae: Chlamydomonas reinhardtii."],
+["Describe the Chlamydomonas life cycle.", "Motile haploid cells divide by mitosis; nitrogen starvation makes gametes that fuse into a diploid zygote, which matures into a resistant zygospore and later undergoes meiosis to release four haploid cells."],
+["What is the ITS region used for?", "The internal transcribed spacer of nuclear rDNA is the standard DNA barcode for identifying fungi."],
+["Why is Giardia amitochondriate, and what does it keep?", "It lost its mitochondria secondarily and keeps mitosomes, highly reduced organelles derived from mitochondria."],
 ["Name the eukaryotic supergroup that contains the fungi.", "Opisthokonta, which also contains animals and microsporidia."],
 ["Which supergroup contains Plasmodium, ciliates and dinoflagellates?", "Alveolata, part of SAR. Apicomplexans in it are all parasites and carry an apicoplast."],
 ["What is a hydrogenosome, and what is a mitosome?", "Both are reduced mitochondria. A hydrogenosome makes hydrogen and ATP anaerobically in Trichomonas; a mitosome retains only iron-sulfur cluster assembly, as in Giardia."],
@@ -1863,7 +1966,7 @@ document.querySelectorAll(".deck").forEach(deck => {
 </script>
 
 <script>
-// memory game: flip pairs face down, or match two visible columns; same pairs either way
+// topic flashcard sets (cell walls, archaea, eukaryotic microbes); unlike FC these allow HTML and SVG on the cards
 // ring(): pyranose ring drawn flat with groups pointing outward. ponytail: no up/down stereo, the gluco/talo tag in the middle stands in for it
 function ring(sub, hi, tag){
   const deg = {O: -30, 1: 30, 2: 90, 3: 150, 4: 210, 5: 270, 6: 270};
@@ -1888,176 +1991,146 @@ function ring(sub, hi, tag){
   return s + '</svg>';
 }
 
-// [card, its partner, note shown on a match]
+// [front, back, extra note shown under the back]
 const MEM = {
-"walls": {intro: "Match each sugar drawing or wall type to its name. In the drawings Ac = acetyl (CO-CH3), lactyl = CH(CH3)-COOH, the small numbers are ring carbons, and the group that sets each sugar apart is in green.", pairs: [
+"walls": {title: "Cell wall flashcards", intro: "Each card names a sugar or envelope part; turn it over for its structure or description. In the drawings Ac = acetyl (CO-CH3), lactyl = CH(CH3)-COOH, the small numbers are ring carbons, and the group that sets each sugar apart is in green.", pairs: [
 ["NAG (N-acetylglucosamine)", ring({1: "OH", 2: "NHAc", 3: "OH", 4: "OH", 6: "CH₂OH"}, 2, "gluco"), "Glucose with an N-acetyl at C2. Shared by peptidoglycan, pseudomurein and chitin"],
 ["NAM (N-acetylmuramic acid)", ring({1: "OH", 2: "NHAc", 3: "O-lactyl", 4: "OH", 6: "CH₂OH"}, 3, "gluco"), "NAG plus a lactyl ether at C3; the peptide stem joins the lactyl carboxyl. Bacteria only"],
 ["NAT (N-acetyltalosaminuronic acid)", ring({1: "OH", 2: "NHAc", 3: "OH", 4: "OH", 6: "COOH"}, 6, "talo"), "A talose-based uronic acid: C6 is a carboxyl, and the peptide joins it there. Archaeal pseudomurein only"],
-["Peptidoglycan", "Glycan chains cross-linked by peptides into one bacterial sacculus"],
-["Pseudomurein", "Archaeal look-alike with beta-1,3 links and L-amino acids; <em>Methanobacterium</em>"],
-["Chitin", "Fungal wall polymer, also in insect exoskeletons"],
-["Lysozyme", "Enzyme in tears that hydrolyses the beta-1,4 glycan bond"],
-["Penicillin", "Blocks the transpeptidases that cross-link peptide stems"],
-["Vancomycin", "Binds the D-Ala-D-Ala stem ends; too big to cross an outer membrane"],
-["D-amino acids", "Make the peptide stem resist host proteases"],
-["Diaminopimelic acid", "Stem amino acid that <em>E. coli</em> cross-links directly to D-alanine"],
-["Pentaglycine bridge", "Interpeptide bridge of <em>Staphylococcus aureus</em>"],
-["Teichoic acids", "Anionic polymers threaded through Gram-positive walls"],
-["Lipid A", "Endotoxin anchor of LPS"],
-["O antigen", "Variable outer sugar chain of LPS used for serotyping"],
-["Porins", "Outer-membrane channels for small hydrophilic solutes"],
-["Periplasm", "Compartment between the two Gram-negative membranes"],
-["Crystal violet", "Primary stain trapped by thick peptidoglycan"],
-["Alcohol decolouriser", "Washes the dye out of cells with an outer membrane"],
-["Safranin", "Counterstain that turns Gram-negatives pink"],
-["Mycolic acid layer", "Waxy lipid layer of mycobacteria behind acid-fast staining"],
-["<em>Mycoplasma</em>", "No wall at all; sterols stiffen the membrane"],
-["S-layer", "Paracrystalline protein lattice; the only wall of many archaea"],
-["Methanochondroitin", "Chondroitin-like wall polymer of <em>Methanosarcina</em>"]
+["Peptidoglycan", "NAG + NAM, beta-1,4, peptide cross-links; bacteria"],
+["Pseudomurein", "NAG + NAT, beta-1,3, L-amino acid peptides; archaea"],
+["Chitin", "NAG only, beta-1,4; fungi"],
+["Cellulose", "Glucose only, beta-1,4; algae and plants"],
+["Lysozyme", "Enzyme in tears and secretions that cuts the beta-1,4 glycan bond"],
+["Transglycosylation", "Joins new sugar subunits onto growing glycan strands"],
+["Beta-lactam antibiotics", "Prevent peptidoglycan cross-linking"],
+["Beta-lactamase", "Resistance enzyme that destroys the beta-lactam ring"],
+["D-amino acids", "Mirror-image stereoisomers found in the wall peptide"],
+["Teichoic acids", "Negatively charged polymers in Gram-positive peptidoglycan"],
+["Lipid A", "Toxic membrane anchor of LPS"],
+["O side chain", "Variable LPS polysaccharide, changed to evade host immunity"],
+["Porins", "Outer-membrane channels into the periplasm"],
+["TonB", "Uses the cytoplasmic membrane PMF to pull molecules across the outer membrane"],
+["Periplasm", "Space between the inner and outer membranes"],
+["Hopanoids", "Sterol-like molecules that stabilise bacterial membranes across temperatures"],
+["Crystal violet", "Purple primary stain of the Gram stain"],
+["Alcohol decolouriser", "Shrinks Gram-positive pores, strips Gram-negative outer-membrane lipids"],
+["Safranin", "Red counterstain picked up by Gram-negatives"],
+["S-layer", "Crystalline protein array that guards against phages and predators"],
+["Capsule", "Thick polysaccharide coat for adhesion, immune evasion and biofilms"]
 ]},
-"arch": {intro: "Match each archaeal group or organism to its defining features.", pairs: [
-["Extreme halophiles", "Need 1.5 to 5 M NaCl and pump in KCl to balance it (salt-in)"],
-["Bacteriorhodopsin", "Light-driven proton pump of halophiles"],
-["Methanogens", "Strict anaerobes that make CH<sub>4</sub> using coenzyme M and F<sub>420</sub>"],
-["Euryarchaeota", "Largest phylum: methanogens and halophiles; FtsZ division, histones"],
-["Crenarchaeota", "Sulfur-using hyperthermophiles that divide with Cdv (ESCRT-III)"],
-["Thaumarchaeota", "Mesophilic ammonia oxidisers of the open ocean and soil"],
-["Nanoarchaeota", "Tiny obligate symbionts with genomes of about 490 kb"],
-["Korarchaeota", "Hot-spring phylum known mostly from genomes, deep in TACK"],
-["Asgard archaea", "Carry eukaryotic signature proteins; closest relatives of eukaryotes"],
-["ANME", "Oxidise methane anaerobically, partnered with sulfate reducers"],
-["Carl Woese", "Split off archaea after comparing methanogen 16S rRNA"],
-["Archaeal membrane lipids", "Isoprenoid chains ether-linked to glycerol-1-phosphate"],
-["Tetraether monolayer", "Membrane-spanning lipid layer of thermophiles"],
-["Archaellum", "Motility organ built from type IV pilus parts, ATP driven"],
-["CetZ", "Tubulin homologue that sets rod shape in <em>Haloferax volcanii</em>"],
-["<em>Thermoplasma</em>", "Wall-less thermoacidophile found in coal refuse"],
-["<em>Picrophilus torridus</em>", "Grows at pH 0"],
-["<em>Pyrolobus fumarii</em>", "Grows at up to 113 °C in black smoker walls"],
-["<em>Sulfolobus</em>", "Aerobic, 80 °C and pH 2 to 3, oxidises S<sup>0</sup> to sulfuric acid"],
-["<em>Pyrococcus furiosus</em>", "Ferments peptides, reduces S<sup>0</sup> to H<sub>2</sub>S; source of Pfu polymerase"],
-["<em>Archaeoglobus fulgidus</em>", "Hyperthermophile that reduces sulfate"],
-["<em>Nitrosopumilus maritimus</em>", "First cultured ammonia-oxidising archaeon (2005)"],
-["<em>Ignicoccus</em>", "Crenarchaeote host of <em>Nanoarchaeum</em>, with an outer membrane"],
-["<em>Methanobrevibacter smithii</em>", "Main archaeon of the human gut"]
+"arch": {title: "Archaea flashcards", intro: "Archaeal groups, organisms and features.", pairs: [
+["Woese and Fox", "Compared rRNA genes in the 1970s and split off the archaea"],
+["Methanogens", "First archaea discovered; reduce CO<sub>2</sub> with H<sub>2</sub> to make CH<sub>4</sub>"],
+["Volta's experiment", "Gas trapped under a funnel over swamp sediment, then lit"],
+["Euryarchaeota", "One of the first two phyla recognised; salt-lovers and methane-makers"],
+["Crenarchaeota", "Phylum of mostly thermophiles and hyperthermophiles, many acidophiles"],
+["Thaumarchaeota", "Low-temperature former crenarchaeotes, many oxidise ammonia; now Nitrososphaerota"],
+["Nanoarchaeota", "Phylum with only one isolated member so far"],
+["Korarchaeota", "Emerging phylum from hydrothermal rRNA sequences; nothing cultivated"],
+["TACK", "Superphylum of Thaum-, Aig-, Cren- and Korarchaeota"],
+["DPANN", "Superphylum of tiny cells with small genomes and restricted metabolisms"],
+["Asgard", "Lokiarchaeota and relatives; closest prokaryotic relatives of eukaryotes"],
+["<em>Nanoarchaeum equitans</em>", "0.4 µm obligate parasite with a 0.49 Mbp genome and no metabolic genes"],
+["<em>Ignicoccus hospitalis</em>", "Host whose outer membrane holds its ATP synthase"],
+["Extreme halophiles", "Need over 1.5 M NaCl; Dead Sea, Great Salt Lake, salterns"],
+["<em>Halobacterium salinarum</em>", "Keeps high internal K<sup>+</sup> to offset external Na<sup>+</sup>"],
+["Highly acidic proteins", "Stay folded despite very high internal salt"],
+["Bacteriorhodopsin", "Makes a PMF from light without chlorophyll; reddish colour"],
+["<em>Haloquadratum walsbyi</em>", "Square archaeon"],
+["<em>Thermoproteus</em>", "Rectangular rods up to 100 µm long"],
+["Ether linkage", "Lipid bond of archaea, more stable than the bacterial ester bond"],
+["Tetraether monolayer", "Single lipid layer with phosphoglycerol at both ends, for high heat"],
+["Reverse DNA gyrase", "Adds supercoils to protect DNA at high temperature"],
+["Archaellum", "Motility organ that grows from the base and runs on ATP"],
+["Cannulae", "Hollow glycoprotein tubes linking cells into a network"]
 ]},
-"fungi": {intro: "Match each fungal phylum or term to its defining feature.", pairs: [
-["Chytridiomycota", "Flagellated zoospores; mostly aquatic"],
-["Zygomycota", "Thick-walled zygospores from fusing hyphae"],
-["Glomeromycota", "Obligate arbuscular mycorrhizal symbionts of plant roots"],
-["Ascomycota", "Sexual spores in a sac (ascus); the largest phylum"],
-["Basidiomycota", "Sexual spores on a club-shaped basidium"],
-["Microsporidia", "Obligate intracellular parasites with mitosomes instead of mitochondria"],
-["Hypha", "A single fungal filament"],
-["Mycelium", "A mass of hyphae"],
-["Septate hypha", "Hypha divided by cross walls"],
-["Coenocytic hypha", "No cross walls, so the cytoplasm is continuous"],
-["Yeast", "A single-celled fungus"],
-["Mould", "A fungus that grows as hyphae"],
-["Dimorphic fungus", "Changes growth form between 25 °C soil and 37 °C tissue"],
-["Budding", "Asymmetric division that leaves a scar on the mother cell"],
-["Absorptive heterotrophy", "Secrete hydrolases, then take up the products"],
-["Ergosterol", "Fungal membrane sterol in place of cholesterol"],
-["Azoles", "Antifungals that block ergosterol synthesis"],
-["Echinocandins", "Antifungals that block beta-glucan synthesis in the wall"],
-["<em>Batrachochytrium</em>", "Pathogen behind amphibian declines worldwide"],
-["<em>Rhizopus</em>", "Fast-growing black bread spoiler"],
-["<em>Saccharomyces cerevisiae</em>", "Bakers' and brewers' fungus; the eukaryotic model organism"],
-["<em>Penicillium</em>", "Source of the first beta-lactam antibiotic"],
-["<em>Candida albicans</em>", "Opportunistic cause of thrush"],
-["<em>Cryptococcus neoformans</em>", "Encapsulated cause of meningitis in AIDS"]
+"fungi": {title: "Eukaryotic microbe flashcards", intro: "Fungi, other eukaryotic microbes and key terms.", pairs: [
+["Chytridiomycota", "Early-branching fungi with flagellated zoospores"],
+["Zygomycota", "<em>Rhizopus</em> bread mould, a common lab contaminant"],
+["Glomeromycota", "Mycorrhizal fungi vital to plants and trees"],
+["Ascomycota", "'Spore shooters': cup and sac fungi, and yeast"],
+["Basidiomycota", "'Spore droppers': club fungi that make mushrooms"],
+["<em>Saccharomyces cerevisiae</em>", "Fungal model organism used for bread, beer and wine"],
+["Ascus", "Sac of four haploid spores, two mating type a and two alpha"],
+["Budding", "Asexual mitotic division that pinches off a smaller cell"],
+["Fungal cell wall", "Chitin plus glucans"],
+["ITS region", "DNA barcode for identifying fungi"],
+["<em>Rhytisma</em>", "Plant parasite causing tar spot on maples and sycamores"],
+["<em>Cordyceps</em>", "Parasitic fungus that grows out of infected insects"],
+["<em>Giardia lamblia</em>", "Protozoan intestinal parasite behind beaver fever"],
+["Mitosome", "Highly reduced organelle derived from mitochondria"],
+["Plasmodial slime mould", "One giant multinucleate cell, e.g. <em>Physarum</em>"],
+["<em>Dictyostelium discoideum</em>", "Cellular slime mould that forms a slug and a fruiting body"],
+["Macrocyst", "Diploid fused-cell stage of a cellular slime mould, which undergoes meiosis"],
+["<em>Chlamydomonas reinhardtii</em>", "Two-flagella alga used to study flagella"],
+["Zygospore", "Resistant diploid stage formed under nitrogen starvation"],
+["Axoneme", "9 + 2 microtubule core of a eukaryotic flagellum"],
+["<em>Plasmodium falciparum</em>", "Protozoan that causes malaria"],
+["<em>Phytophthora infestans</em>", "Cause of potato blight and the Irish famine"],
+["Endosymbiotic theory", "Mitochondria and chloroplasts came from engulfed bacteria"],
+["Meiosis", "One DNA replication, two divisions, four haploid cells"]
 ]}
 };
 
 document.querySelectorAll(".memory").forEach(box => {
   const set = MEM[box.dataset.set];
-  const rounds = Math.ceil(set.pairs.length / 8);
-  let mode = "flip", order = [], round = 0, ids = [], picks = [], moves = 0, left = 0, lock = false;
+  let order = [], at = 0, shown = false;
   box.innerHTML =
-    '<div class="deck-head"><span class="deck-title">Memory game</span><span class="deck-count"></span></div>' +
+    '<div class="deck-head"><span class="deck-title"></span><span class="deck-count"></span></div>' +
     '<p class="mem-intro"></p>' +
-    '<div class="deck-btns"><button type="button" data-m="flip" aria-pressed="true">Flip pairs</button>' +
-    '<button type="button" data-m="cols" aria-pressed="false">Match columns</button>' +
-    '<button type="button" data-m="new">New game</button></div>' +
-    '<div class="mem-grid"></div><p class="mem-status" aria-live="polite"></p>';
+    '<button class="card" type="button" aria-expanded="false"><span class="card-side"></span><span class="card-hint"></span></button>' +
+    '<div class="deck-btns"><button type="button" data-a="prev">Previous</button>' +
+    '<button type="button" data-a="next">Next</button>' +
+    '<button type="button" data-a="shuffle">Shuffle</button></div>';
+  box.querySelector(".deck-title").textContent = set.title;
   box.querySelector(".mem-intro").textContent = set.intro;
-  const grid = box.querySelector(".mem-grid"), status = box.querySelector(".mem-status"), count = box.querySelector(".deck-count");
-  const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
-  const tally = () => count.textContent = "Round " + round + " of " + rounds + ", " + (ids.length - left) + " of " + ids.length + " pairs, " + moves + " moves";
+  const card = box.querySelector(".card"), side = box.querySelector(".card-side"),
+        hint = box.querySelector(".card-hint"), count = box.querySelector(".deck-count");
 
-  // next = true deals the next 8 unseen pairs; false re-lays the current round (mode switch)
-  function deal(next){
-    // ponytail: 24 pairs = 3 rounds of 8 with no repeats; once all are used the whole set is reshuffled
-    if(next){
-      if(round * 8 >= order.length){ order = shuffle(set.pairs.map((_, i) => i)); round = 0; }
-      ids = order.slice(round * 8, round * 8 + 8);
-      round++;
-    }
-    const right = shuffle(ids);
-    const cards = mode === "flip"
-      ? shuffle(ids.flatMap(i => [[i, 0], [i, 1]]))
-      : ids.flatMap((i, k) => [[i, 0], [right[k], 1]]);  // left column names, right column shuffled partners
-    grid.className = "mem-grid" + (mode === "cols" ? " cols" : "");
-    grid.innerHTML = cards.map(([i, s]) =>
-      '<button type="button" class="mem-card" data-i="' + i + '" data-s="' + s + '"><span class="mem-face">' + set.pairs[i][s] + '</span></button>').join("");
-    picks = []; moves = 0; left = ids.length; lock = false; status.textContent = ""; tally();
+  function shuffle(){
+    order = set.pairs.map((_, i) => [Math.random(), i]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
+    at = 0; shown = false;
+  }
+  function draw(){
+    const c = set.pairs[order[at]];
+    side.innerHTML = shown ? c[1] + (c[2] ? '<span class="mem-note">' + c[2] + '.</span>' : "") : c[0];
+    hint.textContent = shown ? "Click to see the front" : "Click to reveal the answer";
+    card.setAttribute("aria-expanded", shown ? "true" : "false");
+    count.textContent = (at + 1) + " of " + order.length;
   }
 
-  grid.addEventListener("click", e => {
-    const b = e.target.closest(".mem-card");
-    if(!b || lock || b.classList.contains("done") || picks.includes(b)) return;
-    // columns mode: a second click in the same column just moves the selection
-    if(mode === "cols" && picks[0] && picks[0].dataset.s === b.dataset.s){ picks[0].classList.remove("up"); picks = []; }
-    b.classList.add("up"); picks.push(b);
-    if(picks.length < 2) return;
-    moves++;
-    const [x, y] = picks;
-    if(x.dataset.i === y.dataset.i){
-      x.classList.add("done"); y.classList.add("done"); picks = []; left--;
-      const p = set.pairs[x.dataset.i];
-      status.innerHTML = "Match: " + p[0] + (p[2] ? ". " + p[2] + "." : ".") +
-        (left ? "" : " All matched in " + moves + " moves. " + (round < rounds ? "New game deals 8 cards you have not seen." : "That was every card; New game reshuffles the whole set."));
-    } else {
-      x.classList.add("bad"); y.classList.add("bad"); lock = true;
-      setTimeout(() => { x.classList.remove("up", "bad"); y.classList.remove("up", "bad"); picks = []; lock = false; }, mode === "flip" ? 1000 : 500);
-    }
-    tally();
-  });
-
+  card.addEventListener("click", () => { shown = !shown; draw(); });
   box.querySelector(".deck-btns").addEventListener("click", e => {
-    const m = e.target.dataset.m;
-    if(!m) return;
-    if(m !== "new"){
-      mode = m;
-      box.querySelectorAll("[data-m=flip],[data-m=cols]").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
-    }
-    deal(m === "new");
+    const act = e.target.dataset.a;
+    if(!act) return;
+    // ponytail: Next past the last card reshuffles, so nothing repeats until every card has been seen
+    if(act === "next"){ if(at === order.length - 1) shuffle(); else { at++; shown = false; } }
+    else if(act === "prev"){ at = Math.max(0, at - 1); shown = false; }
+    else shuffle();
+    draw();
   });
-  deal(true);
+  shuffle(); draw();
 });
 
 // ponytail: self-check, load the page with #memtest
 if(location.hash === "#memtest"){
   Object.entries(MEM).forEach(([k, v]) => {
-    console.assert(v.pairs.length === 24, "want 24 pairs (3 rounds of 8):", k, v.pairs.length);
+    console.assert(v.title && v.pairs.length === 24, "want a title and 24 cards:", k, v.pairs.length);
     console.assert(new Set(v.pairs.map(p => p[0])).size === v.pairs.length && new Set(v.pairs.map(p => p[1])).size === v.pairs.length, "duplicate card:", k);
-    console.assert(document.querySelector('.memory[data-set="' + k + '"]'), "no game box:", k);
+    console.assert(document.querySelector('.memory[data-set="' + k + '"]'), "no deck box:", k);
   });
   document.querySelectorAll(".memory").forEach(box => {
-    const grid = box.querySelector(".mem-grid");
-    [...new Set([...grid.children].map(b => b.dataset.i))].forEach(i => grid.querySelectorAll('[data-i="' + i + '"]').forEach(b => b.click()));
-    console.assert(grid.querySelectorAll(".done").length === 16 && /All matched/.test(box.querySelector(".mem-status").textContent), "play-through failed:", box.dataset.set);
-    // three New games after round 1 must show all 24 pairs once, then the fourth starts a fresh cycle
-    const seen = new Set([...grid.children].map(b => b.dataset.i)), newBtn = box.querySelector("[data-m=new]");
-    newBtn.click(); [...grid.children].forEach(b => seen.add(b.dataset.i));
-    box.querySelector("[data-m=cols]").click();  // mode switch keeps the same round
-    newBtn.click(); [...grid.children].forEach(b => seen.add(b.dataset.i));
-    console.assert(seen.size === 24 && /Round 3 of 3/.test(box.querySelector(".deck-count").textContent), "rounds repeat cards:", box.dataset.set, seen.size);
-    newBtn.click();
-    console.assert(/Round 1 of 3/.test(box.querySelector(".deck-count").textContent), "no reshuffle after round 3:", box.dataset.set);
-    box.querySelector("[data-m=flip]").click();
+    const side = box.querySelector(".card-side"), next = box.querySelector("[data-a=next]"), seen = new Set();
+    for(let i = 0; i < 24; i++){ seen.add(side.innerHTML); if(i < 23) next.click(); }
+    console.assert(seen.size === 24 && /24 of 24/.test(box.querySelector(".deck-count").textContent), "deck repeats cards:", box.dataset.set, seen.size);
+    next.click();
+    console.assert(/^1 of 24/.test(box.querySelector(".deck-count").textContent), "no reshuffle after the last card:", box.dataset.set);
   });
+  const nag = document.querySelector('.memory[data-set="walls"]');
+  MEM.walls.pairs.forEach(() => { if(!/^NAG/.test(nag.querySelector(".card-side").textContent)) nag.querySelector("[data-a=next]").click(); });
+  nag.querySelector(".card").click();
+  console.assert(nag.querySelector(".card-side svg"), "sugar drawing missing on the back of NAG");
   console.log("memtest done:", Object.keys(MEM).map(k => k + " " + MEM[k].pairs.length).join(", "));
 }
 </script>
