@@ -98,6 +98,22 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 .rc-feedback.ok{color:var(--green)}
 .rc-feedback.bad{color:var(--danger)}
 .rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+.memory{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
+.mem-intro{color:var(--muted);font-size:.9rem}
+.deck-btns button[aria-pressed="true"]{background:var(--green);color:var(--card)}
+.mem-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:.75rem}
+.mem-grid.cols{grid-template-columns:1fr 1fr}
+.mem-card{min-height:110px;padding:.6rem;border:1px solid var(--green);border-radius:10px;background:var(--card);
+  color:var(--ink);font-family:inherit;font-size:.85rem;line-height:1.35;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;text-align:center;transition:background .18s ease-out}
+.mem-grid:not(.cols) .mem-card:not(.up):not(.done){background:var(--green)}
+.mem-grid:not(.cols) .mem-card:not(.up):not(.done) .mem-face{display:none}
+.mem-grid:not(.cols) .mem-card:not(.up):not(.done)::before{content:"?";color:var(--card);font-size:1.6rem;font-weight:700}
+.mem-card.up{background:var(--green-soft);border-width:2px}
+.mem-card.done{background:var(--green-soft);border-style:dashed;opacity:.6;cursor:default}
+.mem-card.bad{border-color:var(--danger);background:#fdecea}
+.mem-face svg{width:100%;max-width:170px;color:var(--ink)}
+.mem-status{min-height:1.4em;margin-top:.6rem;font-size:.9rem}
 a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
@@ -422,6 +438,7 @@ figure.slot .miss code{background:var(--card)}
     </tbody>
   </table>
   </div>
+  <div class="memory" data-set="walls"></div>
 
   <h3>2.5 The bacterial cell surface</h3>
   <div class="scroll">
@@ -578,6 +595,7 @@ figure.slot .miss code{background:var(--card)}
   <h3>3.7 Nanoarchaeota</h3>
   <p>A DPANN phylum of extremely small cells, about 400 nm across, with some of the smallest genomes of any cellular organism (<em>Nanoarchaeum equitans</em>, about 490 kb). They lack genes for most biosynthesis, including lipids, amino acids and nucleotides, and cannot make their own ATP efficiently, so they live as obligate symbionts or parasites attached to the surface of another archaeon and take metabolites from it. <em>N. equitans</em> was found in 2002 riding on the crenarchaeote <em>Ignicoccus hospitalis</em> at about 90 °C in a submarine vent. Metagenomics has since found many related DPANN lineages, which suggests host-dependent lifestyles are common in archaea.</p>
   <div class="key">Other phyla to recognise by name: Korarchaeota (hot springs, known mostly from genomes, sits deep in the TACK group) and the Asgard archaea (closest living relatives of eukaryotes, section 3.1).</div>
+  <div class="memory" data-set="arch"></div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="arch"></div>
 </section>
@@ -646,6 +664,8 @@ figure.slot .miss code{background:var(--card)}
   </table>
   </div>
   <p>Fungal vocabulary is worth fixing. A hypha is one filament; septate hyphae have cross walls, coenocytic hyphae do not. A mycelium is a mass of hyphae. A yeast is a single-celled fungus; a mould grows as hyphae; a dimorphic fungus switches between the two with temperature, which matters clinically because <em>Histoplasma</em> and <em>Blastomyces</em> are moulds in soil at 25 °C and yeasts in tissue at 37 °C. Fungi are absorptive heterotrophs: they secrete hydrolases and take up the products, which makes them the main decomposers of lignin and cellulose.</p>
+
+  <div class="memory" data-set="fungi"></div>
 
   <h4>Protozoa and algae</h4>
   <p>Protozoa are grouped informally by locomotion: flagellates (<em>Trypanosoma</em>, <em>Giardia</em>), amoebae (<em>Entamoeba</em>), ciliates (<em>Paramecium</em>, <em>Balantidium</em>) and apicomplexans, which are non-motile as adults and all parasitic. Algae are grouped by pigment and storage product: green algae store starch and use chlorophyll a and b, red algae use phycobilins, diatoms and brown algae use chlorophyll c and fucoxanthin. Marine phytoplankton, mostly diatoms, dinoflagellates and cyanobacteria, carry out about half of all photosynthesis on Earth.</p>
@@ -1843,6 +1863,206 @@ document.querySelectorAll(".deck").forEach(deck => {
 </script>
 
 <script>
+// memory game: flip pairs face down, or match two visible columns; same pairs either way
+// ring(): pyranose ring drawn flat with groups pointing outward. ponytail: no up/down stereo, the gluco/talo tag in the middle stands in for it
+function ring(sub, hi, tag){
+  const deg = {O: -30, 1: 30, 2: 90, 3: 150, 4: 210, 5: 270, 6: 270};
+  const at = (k, r) => [90 + r * Math.cos(deg[k] * Math.PI / 180), 70 + r * Math.sin(deg[k] * Math.PI / 180)].map(v => v.toFixed(1));
+  const pts = ["O", 1, 2, 3, 4, 5].map(k => at(k, 26));
+  let s = '<svg viewBox="0 0 180 140" role="img" aria-label="sugar ring with ' + Object.values(sub).join(", ") + '">' +
+    '<polygon points="' + pts.map(p => p.join(",")).join(" ") + '" fill="none" stroke="currentColor" stroke-width="2"/>' +
+    '<circle cx="' + pts[0][0] + '" cy="' + pts[0][1] + '" r="7" fill="var(--card)"/>' +
+    '<text class="svgtxt" x="' + pts[0][0] + '" y="' + pts[0][1] + '" dy="4" text-anchor="middle">O</text>' +
+    '<text class="svgsm" x="90" y="73" text-anchor="middle">' + tag + '</text>';
+  [1, 2, 3, 4, 5].forEach(k => {
+    const [x, y] = at(k, 18);
+    s += '<text class="svgsm" style="font-size:8px" x="' + x + '" y="' + y + '" dy="3" text-anchor="middle">' + k + '</text>';
+  });
+  Object.entries(sub).forEach(([k, lab]) => {
+    const [x1, y1] = at(k, 26), [x2, y2] = at(k, 40), [lx, ly] = at(k, 46);
+    const c = Math.cos(deg[k] * Math.PI / 180), sn = Math.sin(deg[k] * Math.PI / 180);
+    s += '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="currentColor" stroke-width="1.5"/>' +
+      '<text class="' + (k == hi ? "svgbold" : "svgtxt") + '" x="' + lx + '" y="' + ly + '" dy="' + (sn > .5 ? 10 : sn < -.5 ? -2 : 4) +
+      '" text-anchor="' + (c > .3 ? "start" : c < -.3 ? "end" : "middle") + '">' + lab + '</text>';
+  });
+  return s + '</svg>';
+}
+
+// [card, its partner, note shown on a match]
+const MEM = {
+"walls": {intro: "Match each sugar drawing or wall type to its name. In the drawings Ac = acetyl (CO-CH3), lactyl = CH(CH3)-COOH, the small numbers are ring carbons, and the group that sets each sugar apart is in green.", pairs: [
+["NAG (N-acetylglucosamine)", ring({1: "OH", 2: "NHAc", 3: "OH", 4: "OH", 6: "CH₂OH"}, 2, "gluco"), "Glucose with an N-acetyl at C2. Shared by peptidoglycan, pseudomurein and chitin"],
+["NAM (N-acetylmuramic acid)", ring({1: "OH", 2: "NHAc", 3: "O-lactyl", 4: "OH", 6: "CH₂OH"}, 3, "gluco"), "NAG plus a lactyl ether at C3; the peptide stem joins the lactyl carboxyl. Bacteria only"],
+["NAT (N-acetyltalosaminuronic acid)", ring({1: "OH", 2: "NHAc", 3: "OH", 4: "OH", 6: "COOH"}, 6, "talo"), "A talose-based uronic acid: C6 is a carboxyl, and the peptide joins it there. Archaeal pseudomurein only"],
+["Peptidoglycan", "Glycan chains cross-linked by peptides into one bacterial sacculus"],
+["Pseudomurein", "Archaeal look-alike with beta-1,3 links and L-amino acids; <em>Methanobacterium</em>"],
+["Chitin", "Fungal wall polymer, also in insect exoskeletons"],
+["Lysozyme", "Enzyme in tears that hydrolyses the beta-1,4 glycan bond"],
+["Penicillin", "Blocks the transpeptidases that cross-link peptide stems"],
+["Vancomycin", "Binds the D-Ala-D-Ala stem ends; too big to cross an outer membrane"],
+["D-amino acids", "Make the peptide stem resist host proteases"],
+["Diaminopimelic acid", "Stem amino acid that <em>E. coli</em> cross-links directly to D-alanine"],
+["Pentaglycine bridge", "Interpeptide bridge of <em>Staphylococcus aureus</em>"],
+["Teichoic acids", "Anionic polymers threaded through Gram-positive walls"],
+["Lipid A", "Endotoxin anchor of LPS"],
+["O antigen", "Variable outer sugar chain of LPS used for serotyping"],
+["Porins", "Outer-membrane channels for small hydrophilic solutes"],
+["Periplasm", "Compartment between the two Gram-negative membranes"],
+["Crystal violet", "Primary stain trapped by thick peptidoglycan"],
+["Alcohol decolouriser", "Washes the dye out of cells with an outer membrane"],
+["Safranin", "Counterstain that turns Gram-negatives pink"],
+["Mycolic acid layer", "Waxy lipid layer of mycobacteria behind acid-fast staining"],
+["<em>Mycoplasma</em>", "No wall at all; sterols stiffen the membrane"],
+["S-layer", "Paracrystalline protein lattice; the only wall of many archaea"],
+["Methanochondroitin", "Chondroitin-like wall polymer of <em>Methanosarcina</em>"]
+]},
+"arch": {intro: "Match each archaeal group or organism to its defining features.", pairs: [
+["Extreme halophiles", "Need 1.5 to 5 M NaCl and pump in KCl to balance it (salt-in)"],
+["Bacteriorhodopsin", "Light-driven proton pump of halophiles"],
+["Methanogens", "Strict anaerobes that make CH<sub>4</sub> using coenzyme M and F<sub>420</sub>"],
+["Euryarchaeota", "Largest phylum: methanogens and halophiles; FtsZ division, histones"],
+["Crenarchaeota", "Sulfur-using hyperthermophiles that divide with Cdv (ESCRT-III)"],
+["Thaumarchaeota", "Mesophilic ammonia oxidisers of the open ocean and soil"],
+["Nanoarchaeota", "Tiny obligate symbionts with genomes of about 490 kb"],
+["Korarchaeota", "Hot-spring phylum known mostly from genomes, deep in TACK"],
+["Asgard archaea", "Carry eukaryotic signature proteins; closest relatives of eukaryotes"],
+["ANME", "Oxidise methane anaerobically, partnered with sulfate reducers"],
+["Carl Woese", "Split off archaea after comparing methanogen 16S rRNA"],
+["Archaeal membrane lipids", "Isoprenoid chains ether-linked to glycerol-1-phosphate"],
+["Tetraether monolayer", "Membrane-spanning lipid layer of thermophiles"],
+["Archaellum", "Motility organ built from type IV pilus parts, ATP driven"],
+["CetZ", "Tubulin homologue that sets rod shape in <em>Haloferax volcanii</em>"],
+["<em>Thermoplasma</em>", "Wall-less thermoacidophile found in coal refuse"],
+["<em>Picrophilus torridus</em>", "Grows at pH 0"],
+["<em>Pyrolobus fumarii</em>", "Grows at up to 113 °C in black smoker walls"],
+["<em>Sulfolobus</em>", "Aerobic, 80 °C and pH 2 to 3, oxidises S<sup>0</sup> to sulfuric acid"],
+["<em>Pyrococcus furiosus</em>", "Ferments peptides, reduces S<sup>0</sup> to H<sub>2</sub>S; source of Pfu polymerase"],
+["<em>Archaeoglobus fulgidus</em>", "Hyperthermophile that reduces sulfate"],
+["<em>Nitrosopumilus maritimus</em>", "First cultured ammonia-oxidising archaeon (2005)"],
+["<em>Ignicoccus</em>", "Crenarchaeote host of <em>Nanoarchaeum</em>, with an outer membrane"],
+["<em>Methanobrevibacter smithii</em>", "Main archaeon of the human gut"]
+]},
+"fungi": {intro: "Match each fungal phylum or term to its defining feature.", pairs: [
+["Chytridiomycota", "Flagellated zoospores; mostly aquatic"],
+["Zygomycota", "Thick-walled zygospores from fusing hyphae"],
+["Glomeromycota", "Obligate arbuscular mycorrhizal symbionts of plant roots"],
+["Ascomycota", "Sexual spores in a sac (ascus); the largest phylum"],
+["Basidiomycota", "Sexual spores on a club-shaped basidium"],
+["Microsporidia", "Obligate intracellular parasites with mitosomes instead of mitochondria"],
+["Hypha", "A single fungal filament"],
+["Mycelium", "A mass of hyphae"],
+["Septate hypha", "Hypha divided by cross walls"],
+["Coenocytic hypha", "No cross walls, so the cytoplasm is continuous"],
+["Yeast", "A single-celled fungus"],
+["Mould", "A fungus that grows as hyphae"],
+["Dimorphic fungus", "Changes growth form between 25 °C soil and 37 °C tissue"],
+["Budding", "Asymmetric division that leaves a scar on the mother cell"],
+["Absorptive heterotrophy", "Secrete hydrolases, then take up the products"],
+["Ergosterol", "Fungal membrane sterol in place of cholesterol"],
+["Azoles", "Antifungals that block ergosterol synthesis"],
+["Echinocandins", "Antifungals that block beta-glucan synthesis in the wall"],
+["<em>Batrachochytrium</em>", "Pathogen behind amphibian declines worldwide"],
+["<em>Rhizopus</em>", "Fast-growing black bread spoiler"],
+["<em>Saccharomyces cerevisiae</em>", "Bakers' and brewers' fungus; the eukaryotic model organism"],
+["<em>Penicillium</em>", "Source of the first beta-lactam antibiotic"],
+["<em>Candida albicans</em>", "Opportunistic cause of thrush"],
+["<em>Cryptococcus neoformans</em>", "Encapsulated cause of meningitis in AIDS"]
+]}
+};
+
+document.querySelectorAll(".memory").forEach(box => {
+  const set = MEM[box.dataset.set];
+  const rounds = Math.ceil(set.pairs.length / 8);
+  let mode = "flip", order = [], round = 0, ids = [], picks = [], moves = 0, left = 0, lock = false;
+  box.innerHTML =
+    '<div class="deck-head"><span class="deck-title">Memory game</span><span class="deck-count"></span></div>' +
+    '<p class="mem-intro"></p>' +
+    '<div class="deck-btns"><button type="button" data-m="flip" aria-pressed="true">Flip pairs</button>' +
+    '<button type="button" data-m="cols" aria-pressed="false">Match columns</button>' +
+    '<button type="button" data-m="new">New game</button></div>' +
+    '<div class="mem-grid"></div><p class="mem-status" aria-live="polite"></p>';
+  box.querySelector(".mem-intro").textContent = set.intro;
+  const grid = box.querySelector(".mem-grid"), status = box.querySelector(".mem-status"), count = box.querySelector(".deck-count");
+  const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
+  const tally = () => count.textContent = "Round " + round + " of " + rounds + ", " + (ids.length - left) + " of " + ids.length + " pairs, " + moves + " moves";
+
+  // next = true deals the next 8 unseen pairs; false re-lays the current round (mode switch)
+  function deal(next){
+    // ponytail: 24 pairs = 3 rounds of 8 with no repeats; once all are used the whole set is reshuffled
+    if(next){
+      if(round * 8 >= order.length){ order = shuffle(set.pairs.map((_, i) => i)); round = 0; }
+      ids = order.slice(round * 8, round * 8 + 8);
+      round++;
+    }
+    const right = shuffle(ids);
+    const cards = mode === "flip"
+      ? shuffle(ids.flatMap(i => [[i, 0], [i, 1]]))
+      : ids.flatMap((i, k) => [[i, 0], [right[k], 1]]);  // left column names, right column shuffled partners
+    grid.className = "mem-grid" + (mode === "cols" ? " cols" : "");
+    grid.innerHTML = cards.map(([i, s]) =>
+      '<button type="button" class="mem-card" data-i="' + i + '" data-s="' + s + '"><span class="mem-face">' + set.pairs[i][s] + '</span></button>').join("");
+    picks = []; moves = 0; left = ids.length; lock = false; status.textContent = ""; tally();
+  }
+
+  grid.addEventListener("click", e => {
+    const b = e.target.closest(".mem-card");
+    if(!b || lock || b.classList.contains("done") || picks.includes(b)) return;
+    // columns mode: a second click in the same column just moves the selection
+    if(mode === "cols" && picks[0] && picks[0].dataset.s === b.dataset.s){ picks[0].classList.remove("up"); picks = []; }
+    b.classList.add("up"); picks.push(b);
+    if(picks.length < 2) return;
+    moves++;
+    const [x, y] = picks;
+    if(x.dataset.i === y.dataset.i){
+      x.classList.add("done"); y.classList.add("done"); picks = []; left--;
+      const p = set.pairs[x.dataset.i];
+      status.innerHTML = "Match: " + p[0] + (p[2] ? ". " + p[2] + "." : ".") +
+        (left ? "" : " All matched in " + moves + " moves. " + (round < rounds ? "New game deals 8 cards you have not seen." : "That was every card; New game reshuffles the whole set."));
+    } else {
+      x.classList.add("bad"); y.classList.add("bad"); lock = true;
+      setTimeout(() => { x.classList.remove("up", "bad"); y.classList.remove("up", "bad"); picks = []; lock = false; }, mode === "flip" ? 1000 : 500);
+    }
+    tally();
+  });
+
+  box.querySelector(".deck-btns").addEventListener("click", e => {
+    const m = e.target.dataset.m;
+    if(!m) return;
+    if(m !== "new"){
+      mode = m;
+      box.querySelectorAll("[data-m=flip],[data-m=cols]").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
+    }
+    deal(m === "new");
+  });
+  deal(true);
+});
+
+// ponytail: self-check, load the page with #memtest
+if(location.hash === "#memtest"){
+  Object.entries(MEM).forEach(([k, v]) => {
+    console.assert(v.pairs.length === 24, "want 24 pairs (3 rounds of 8):", k, v.pairs.length);
+    console.assert(new Set(v.pairs.map(p => p[0])).size === v.pairs.length && new Set(v.pairs.map(p => p[1])).size === v.pairs.length, "duplicate card:", k);
+    console.assert(document.querySelector('.memory[data-set="' + k + '"]'), "no game box:", k);
+  });
+  document.querySelectorAll(".memory").forEach(box => {
+    const grid = box.querySelector(".mem-grid");
+    [...new Set([...grid.children].map(b => b.dataset.i))].forEach(i => grid.querySelectorAll('[data-i="' + i + '"]').forEach(b => b.click()));
+    console.assert(grid.querySelectorAll(".done").length === 16 && /All matched/.test(box.querySelector(".mem-status").textContent), "play-through failed:", box.dataset.set);
+    // three New games after round 1 must show all 24 pairs once, then the fourth starts a fresh cycle
+    const seen = new Set([...grid.children].map(b => b.dataset.i)), newBtn = box.querySelector("[data-m=new]");
+    newBtn.click(); [...grid.children].forEach(b => seen.add(b.dataset.i));
+    box.querySelector("[data-m=cols]").click();  // mode switch keeps the same round
+    newBtn.click(); [...grid.children].forEach(b => seen.add(b.dataset.i));
+    console.assert(seen.size === 24 && /Round 3 of 3/.test(box.querySelector(".deck-count").textContent), "rounds repeat cards:", box.dataset.set, seen.size);
+    newBtn.click();
+    console.assert(/Round 1 of 3/.test(box.querySelector(".deck-count").textContent), "no reshuffle after round 3:", box.dataset.set);
+    box.querySelector("[data-m=flip]").click();
+  });
+  console.log("memtest done:", Object.keys(MEM).map(k => k + " " + MEM[k].pairs.length).join(", "));
+}
+</script>
+
+<script>
 // question bank: t = topic, q = clue (the function), a = the name to recall
 const RC_TOPICS = {
   struct: "Cell structures",
@@ -2387,7 +2607,7 @@ const RC_Q = [
     "zoonosis": "A disease transmitted to humans from an animal reservoir."
   };
 
-  const SKIP = "a,code,button,select,svg,h1,h2,.deck,.rc-clue,.term";
+  const SKIP = "a,code,button,select,svg,h1,h2,.deck,.memory,.rc-clue,.term";
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const keys = Object.keys(DEFS).sort((a, b) => b.length - a.length);
   const hit = {};
