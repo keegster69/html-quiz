@@ -60,21 +60,21 @@ const quizQuestions= [
         ]
     },
     {
-        question:"What drink does Keegan carry in a flask?",
+        question:"What drink is involved for Keegan's Halloween Tradition",
         answers: [
             {text:"Pink Whitney", correct:false},
-            {text:"Fireball", correct:true},
+            {text:"Jagermeister", correct:true},
             {text:"Milk", correct:false},
             {text:"Vodka",correct:false},
         ],
     },
     {
-        question:"What dating site has Keegan unfortunately been on?",
+        question:"What does Keegan eventually want to be?",
         answers: [
-            {text:"Tinder", correct:false},
-            {text:"Bumble", correct:false},
-            {text:"Grindr", correct:false},
-            {text:"Hinge",correct:true}
+            {text:"Senior Engineer", correct:false},
+            {text:"Optometrist", correct:false},
+            {text:"Oral Surgeon", correct:true},
+            {text:"Dentist",correct:false}
         ]
     },
     {
@@ -87,7 +87,7 @@ const quizQuestions= [
         ]
     },
     {
-        question:"Which of Keegan's friends is now on his girlfriend's leash?",
+        question:"Which of Keegan's friends will be running a mud slide mile with him?",
         answers: [
             {text:"Limtown", correct:true},
             {text:"Thickolicious",correct:false},
@@ -178,11 +178,11 @@ function showResults() {
     finalScoreSpan.textContent = score;
     const percentage = (score/quizQuestions.length) * 100
     if(percentage === 100) {
-        resultMessage.textContent = "Thick Nick, text me for your reward";
+        resultMessage.textContent = "You'll know your reward if you really know me (text me)";
     } else if (percentage >=80){ 
         resultMessage.textContent = "Damn ok! you know me decently";
     } else if (percentage >= 60) {
-        resultMessage.textContent = "Alright maybe know me a little better thickolicious";
+        resultMessage.textContent = "Alright maybe know me a little better";
     } else {
         resultMessage.textContent = "Maybe talk to me a little more!";
     }
