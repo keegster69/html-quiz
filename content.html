@@ -10,8 +10,43 @@
   --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#5c5c5c;
   --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
   --shadow:0 10px 30px rgba(0,0,0,.1);
-  --amber:#7a4f00; --amber-soft:#fff6de; --amber-line:#d99a1e;
+  --amber:#7a4f00; --amber-soft:#fff6de; --amber-line:#d99a1e; --danger-soft:#fdecea;
+  --green-mid:#cdeccf; --gray:#888;
 }
+/* alternate themes, cycled by clicking the page title */
+:root[data-theme="dark"]{
+  --green-mid:#2a4433; --gray:#7d858c;
+  --green:#5fcf86; --green-soft:#1d2b23; --line:#3a3f44; --ink:#e4e6e8; --muted:#a0a6ac;
+  --page:#15181b; --card:#1f2327; --stripe:#262a2f; --ring:#5fcf86; --danger:#ef7a7a; --danger-soft:#3a2224;
+  --shadow:0 10px 30px rgba(0,0,0,.45); --amber:#e8b860; --amber-soft:#33291a; --amber-line:#a87b2a; color-scheme:dark;
+}
+:root[data-theme="blue"]{
+  --green-mid:#c9dcf0; --gray:#8a96a3;
+  --green:#1f5f99; --green-soft:#e7f0fa; --line:#d3dce6; --ink:#1c2530; --muted:#55626f;
+  --page:#cfd9e3; --card:#fbfdff; --stripe:#f3f7fb; --ring:#1f5f99; --danger:#b3261e; --danger-soft:#fbe9e7;
+}
+:root[data-theme="sepia"]{
+  --green-mid:#e6d3b0; --gray:#9a8b74;
+  --green:#7a5a2e; --green-soft:#f3e8d4; --line:#ddd0b8; --ink:#3b2f22; --muted:#6e604e;
+  --page:#e8dcc4; --card:#fbf5e9; --stripe:#f6eedd; --ring:#7a5a2e; --danger:#a33a2a; --danger-soft:#f6e0d8;
+}
+:root[data-theme="midnight"]{
+  --green-mid:#26395a; --gray:#6f7f96;
+  --green:#7fb4ff; --green-soft:#1c2a40; --line:#2f3d52; --ink:#dde6f2; --muted:#98a6ba;
+  --page:#0f1724; --card:#172234; --stripe:#1c2a3e; --ring:#7fb4ff; --danger:#ff8a80; --danger-soft:#3a2328;
+  --shadow:0 10px 30px rgba(0,0,0,.5); --amber:#f0c674; --amber-soft:#2e2a1e; --amber-line:#a8873a; color-scheme:dark;
+}
+/* inline diagrams use fixed colours; map them onto the theme tokens */
+svg [fill="#e6fff0"]{fill:var(--green-soft)}
+svg [fill="#1c7c3a"]{fill:var(--green)}
+svg [stroke="#1c7c3a"]{stroke:var(--green)}
+svg [fill="#fff"]{fill:var(--card)}
+svg [stroke="#888"]{stroke:var(--gray)}
+svg [stroke="#c62828"]{stroke:var(--danger)}
+svg [fill="#fff0f0"]{fill:var(--danger-soft)}
+svg [stroke="#1e1e1e"]{stroke:var(--ink)}
+svg [stroke="#cdeccf"]{stroke:var(--green-mid)}
+svg text[style*="fill:#fff"]{fill:var(--card)!important}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
 header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
@@ -34,7 +69,7 @@ nav .wrap{max-width:1000px;margin:.6rem auto 0;display:flex;flex-wrap:wrap;gap:6
 nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
   padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;
   text-decoration:none;transition:background .18s ease-out,color .18s ease-out}
-nav a:hover{background:var(--green);color:white}
+nav a:hover{background:var(--green);color:var(--card)}
 main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
 section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);padding:1.5rem;scroll-margin-top:88px}
 h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
@@ -58,10 +93,10 @@ svg{max-width:100%;height:auto}
 figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:6px}
 .svgtxt{font:12px sans-serif;fill:var(--ink)}
 .svgsm{font:10px sans-serif;fill:var(--muted)}
-.svgbold{font:bold 12px sans-serif;fill:#1c7c3a}
+.svgbold{font:bold 12px sans-serif;fill:var(--green)}
 .codon td,.codon th{text-align:center;padding:3px 5px;font-size:.78rem}
 .stop{background:var(--green-soft);color:var(--danger);font-weight:700}
-.start{background:#e6fff0;color:#1c7c3a;font-weight:700}
+.start{background:var(--green-soft);color:var(--green);font-weight:700}
 .back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
 .deck{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
 .deck-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
@@ -83,7 +118,7 @@ figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius
 .rc-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
   padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;
   transition:background .18s ease-out,color .18s ease-out}
-.rc-topics button.on{background:var(--green);color:white}
+.rc-topics button.on{background:var(--green);color:var(--card)}
 .rc-clue{background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
   padding:.8rem;font-size:1rem;font-weight:600;margin:.75rem 0}
 #rc-select{width:100%;max-width:560px;min-height:48px;padding:10px 12px;font-size:16px;
@@ -126,7 +161,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   transition:background .15s ease-out,border-color .15s ease-out}
 .aa-item:hover:not(:disabled){border-color:var(--green);background:var(--green-soft)}
 .aa-item.on{border-color:var(--green);background:var(--green-soft);box-shadow:0 0 0 2px var(--green)}
-.aa-item.bad{border-color:var(--danger);background:#fdeceb}
+.aa-item.bad{border-color:var(--danger);background:var(--danger-soft)}
 .aa-item:disabled{cursor:default;opacity:.5;border-color:var(--green);background:var(--green-soft)}
 .aa-code{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;
   border:1px solid var(--green);border-radius:6px;color:var(--green);font-weight:700}
@@ -145,11 +180,21 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 .flow li:first-child{margin-left:0}
 .flow li+li::before{content:"\2192";position:absolute;left:-17px;color:var(--muted);font-weight:400}
 </style>
+<script>try{ document.documentElement.dataset.theme = localStorage.getItem("studyTheme") || ""; }catch(e){}</script>
 </head>
 <body>
 
 <header>
   <h1>Study Content</h1>
+  <script>
+  // clicking the title cycles colour themes; deliberately no visual hint
+  document.querySelector("header h1").addEventListener("click", () => {
+    const themes = ["", "dark", "blue", "sepia", "midnight"];
+    const next = themes[(themes.indexOf(document.documentElement.dataset.theme || "") + 1) % themes.length];
+    document.documentElement.dataset.theme = next;
+    try{ localStorage.setItem("studyTheme", next); }catch(e){}
+  });
+  </script>
   <p class="sub">Diagrams, tables and reference sheets for biochemistry, genetics and molecular biology.</p>
   <p><a class="back" href="biology-study-sheet.html">Biology Study Sheet &mdash; concepts, 48 questions &amp; answer key &rarr;</a></p>
   <a class="back" href="index.html">&larr; Back to quiz</a>

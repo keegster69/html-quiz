@@ -887,7 +887,20 @@ document.getElementById("fc-only").addEventListener("click", e => {
 <!-- ================= TOPIC 5: VIRUSES ================= -->
 <section id="virus">
   <h2>Topic 5: viruses</h2>
-  <p>A virus is an obligate intracellular parasite made of a nucleic acid genome in a protein coat. It has no ribosomes, no metabolism and no way to make ATP, so outside a host it is an inert particle. Viruses are the most abundant biological entities on the planet, at roughly 10<sup>31</sup> particles, and they kill an estimated 20 per cent of ocean microbial biomass every day.</p>
+  <p>A virus is an obligate intracellular parasite made of a nucleic acid genome in a protein coat. It has no ribosomes, no metabolism and no way to make ATP, so outside a host it is an inert particle. Viruses are the most abundant biological entities on the planet, at roughly 10<sup>31</sup> particles, and they kill an estimated 20 per cent of ocean microbial biomass every day. Bacteriophages, the viruses of bacteria, are the most abundant of all; the term was first used in the early 1900s.</p>
+
+  <h4>History of virology</h4>
+  <p>Viral diseases are ancient (smallpox scars appear on Egyptian mummies), but virology only became a science in the late 1800s.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Who</th><th>When</th><th>Contribution</th></tr></thead>
+    <tbody>
+      <tr><td>Dmitri Ivanovsky, Russian botanist</td><td>1892</td><td>Showed tobacco mosaic disease passed in fluid filtered free of bacteria, so the agent was smaller than any bacterium</td></tr>
+      <tr><td>Walter Reed and colleagues</td><td>1901</td><td>After yellow fever devastated troops in the Spanish-American War (Cuba, 1898), showed it was caused by a virus transmitted by mosquitoes</td></tr>
+      <tr><td>Félix d'Herelle</td><td>1917</td><td>Discovered bacteriophages and coined the term "plaque" for the clear zones they make on a bacterial lawn</td></tr>
+    </tbody>
+  </table>
+  </div>
 
   <h3>5.1 A basic overview of viruses</h3>
   <div class="scroll">
@@ -903,27 +916,52 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <div class="key"><strong>Baltimore classification</strong> groups viruses by the route from genome to mRNA, which predicts what enzymes the particle must carry. I: dsDNA (herpes, phage T4). II: ssDNA (parvovirus, phage M13). III: dsRNA (rotavirus). IV: plus-sense ssRNA, the genome is already mRNA (poliovirus, SARS-CoV-2). V: minus-sense ssRNA, needs a packaged RNA polymerase (influenza, rabies). VI: ssRNA retrovirus, needs reverse transcriptase (HIV). VII: dsDNA with a reverse transcribing step (hepatitis B).</div>
+  <p>Viruses are typically 10 to 100 nm (the notes give 20 to 300 nm as the common range), with genomes of a few thousand to about 200,000 nucleotides. The genome is single or double stranded DNA or RNA, linear or circular. Capsids usually show <strong>helical</strong> symmetry (tobacco mosaic virus) or <strong>icosahedral</strong> symmetry, or take irregular, complex shapes: many phages have an icosahedral head on a helical tail. A <strong>naked</strong> (non-enveloped) virus such as poliovirus is capsid and genome only. An <strong>enveloped</strong> virus such as SARS-CoV-2 also has a cell-derived lipid bilayer, usually from the host plasma membrane, but sometimes from the Golgi, endoplasmic reticulum or nuclear membrane depending on the virus.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Giant virus (all dsDNA viruses of amoebae)</th><th>Size</th><th>Genome</th></tr></thead>
+    <tbody>
+      <tr><td><em>Mimivirus</em></td><td>Up to 400 nm across</td><td>1.2 Mbp coding for 979 proteins</td></tr>
+      <tr><td><em>Megavirus chilensis</em></td><td>Similar to <em>Mimivirus</em></td><td>Over 1.2 Mbp, about 1,200 proteins</td></tr>
+      <tr><td><em>Pandoravirus</em> (2013)</td><td>About 1 µm, bigger than some bacteria</td><td>About 2.5 Mb</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Baltimore classification</strong> groups viruses by the route from genome to mRNA, which predicts what enzymes the particle must carry. I: dsDNA (herpes, phage T4). II: ssDNA (parvovirus, phage M13). III: dsRNA (rotavirus). IV: plus-sense ssRNA, the genome is already mRNA (poliovirus, SARS-CoV-2). V: minus-sense ssRNA, needs a packaged RNA polymerase (influenza, rabies). VI: ssRNA retrovirus, needs reverse transcriptase (HIV). VII: dsDNA with a reverse transcribing step (hepatitis B). It was devised by Nobel laureate David Baltimore and has seven classes. The key point: every virus relies on host ribosomes for translation, so every class must end up with mRNA the host can read.</div>
 
-  <h4>The replication cycle</h4>
+  <h4>The replication cycle: six steps</h4>
   <ol>
-    <li><strong>Attachment.</strong> A capsid or spike protein binds a specific host surface receptor. That interaction sets host range and tissue tropism: HIV gp120 binds CD4 plus CCR5, influenza haemagglutinin binds sialic acid, phage tail fibres bind LPS or outer membrane protein.</li>
-    <li><strong>Entry and uncoating.</strong> Phages inject the genome and leave the capsid outside. Animal viruses enter by fusion at the membrane or by receptor-mediated endocytosis and then escape the endosome, often triggered by its acidification.</li>
-    <li><strong>Synthesis.</strong> Early genes redirect host metabolism, the genome is replicated, and late genes make structural proteins. The route depends entirely on the Baltimore class.</li>
-    <li><strong>Assembly.</strong> Capsids self-assemble around the genome, often with scaffolding proteins that are then removed.</li>
-    <li><strong>Release.</strong> Lysis for naked viruses and most phages, budding for enveloped viruses, which lets the cell survive and shed for a long period.</li>
+    <li><strong>Adhere.</strong> An attachment protein on the capsid or envelope binds a specific receptor on the host. That interaction sets host range and tissue tropism: HIV gp120 binds CD4 (plus CCR5) on T cells, influenza haemagglutinin binds sialic acid, phage tail fibres bind LPS or outer membrane protein.</li>
+    <li><strong>Enter.</strong> Arguably the most important step, and the mechanism depends on the host cell (table below).</li>
+    <li><strong>Uncoat.</strong> The genome is released from the capsid. Animal viruses taken up by endocytosis escape the endosome, often triggered by its acidification.</li>
+    <li><strong>Synthesis.</strong> The genome is expressed and replicated. Early genes redirect host metabolism, late genes make structural proteins. The route depends on the Baltimore class.</li>
+    <li><strong>Assembly.</strong> New virus particles are built; capsids self-assemble around the genome.</li>
+    <li><strong>Exit.</strong> New particles leave the cell: lysis for naked viruses and most phages, budding for enveloped viruses, which lets the cell survive and shed virus for a long time.</li>
   </ol>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Host</th><th>How the virus gets in</th></tr></thead>
+    <tbody>
+      <tr><td>Animal cell, non-enveloped virus</td><td>Endocytosis: the cell engulfs the bound particle, then the genome escapes the endosome. Animal viruses never have to cross a cell wall</td></tr>
+      <tr><td>Animal cell, enveloped virus</td><td>Membrane fusion: the envelope fuses with the plasma membrane and releases the nucleocapsid into the cytoplasm (some enveloped viruses use endocytosis then fuse with the endosome)</td></tr>
+      <tr><td>Plant cell</td><td>The cell wall blocks entry, so infection usually depends on damage that opens it: insects feeding on plants (the main route), wind, hail and rain, fire, or human activity</td></tr>
+      <tr><td>Bacterial cell</td><td>Tailed phages bind with tail fibres, contract the tail and inject the genome through the cell envelope; the empty capsid stays outside</td></tr>
+    </tbody>
+  </table>
+  </div>
   <div class="scroll">
   <table>
     <thead><tr><th>Phage strategy</th><th>What happens</th><th>Consequence</th></tr></thead>
     <tbody>
-      <tr><td>Lytic (virulent)</td><td>Immediate replication, then lysis</td><td>Plaques on a lawn; phage T4</td></tr>
-      <tr><td>Lysogenic (temperate)</td><td>Genome integrates as a prophage and is replicated with the chromosome, repressed by cI</td><td>Latency, immunity to superinfection, and lysogenic conversion; phage lambda</td></tr>
+      <tr><td>Lytic</td><td>Virus enters, replicates and lyses the host; released virions infect more cells</td><td>Plaques on a lawn. A <strong>virulent phage</strong> such as T4 is always lytic</td></tr>
+      <tr><td>Lysogenic</td><td>Genome integrates into the host chromosome as a <strong>prophage</strong> and is replicated with it, repressed by cI; the host is now a <strong>lysogen</strong></td><td>A <strong>temperate phage</strong> such as lambda can go either way. Gives immunity to superinfection and lysogenic conversion</td></tr>
       <tr><td>Chronic release</td><td>Continuous extrusion without killing the cell</td><td>Filamentous phage M13, used in phage display</td></tr>
-      <tr><td>Induction</td><td>DNA damage activates RecA, which triggers cleavage of the repressor and entry into the lytic cycle</td><td>UV or mitomycin C induces prophages</td></tr>
+      <tr><td>Induction</td><td>Stress, classically DNA damage and the SOS response: RecA triggers cleavage of the repressor and entry into the lytic cycle</td><td>UV or mitomycin C induces prophages; nutrient changes and host physiology also influence the decision</td></tr>
     </tbody>
   </table>
   </div>
+  <p>Why be temperate? A strictly lytic phage always kills its host, which can leave too few hosts for continued infection. Lysogeny lets the phage hide and wait, then go lytic when conditions favour it: when nutrients appear and there are more cells to infect, or when DNA damage means the host is about to die and it is time to jump ship. Not all phages can establish lysogeny, and other strategies exist, including persistent and chronic infection.</p>
+  <p>Animal viruses can establish latent or persistent infections, but these should not automatically be called lysogeny. HIV integrates into host DNA as a <strong>provirus</strong> and becomes latent; herpes simplex virus keeps its latent genome as an <strong>episome</strong> (not integrated); human papillomavirus usually persists episomally, though integration happens in some HPV-associated cancers.</p>
   <p>Lysogenic conversion matters clinically: the prophage brings genes with it. Diphtheria toxin, cholera toxin, botulinum toxin, and the Shiga toxin of <em>E. coli</em> O157:H7 are all phage encoded, so a harmless strain becomes a pathogen by being infected.</p>
 
   <h3>5.2 Origins of viruses</h3>
@@ -931,45 +969,58 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <table>
     <thead><tr><th>Hypothesis</th><th>Claim</th><th>Support and problems</th></tr></thead>
     <tbody>
-      <tr><td>Regressive (degeneracy)</td><td>Viruses are cells that lost everything except replication</td><td>Fits giant viruses and obligate intracellular bacteria as an analogy; does not explain capsid proteins with no cellular homologue</td></tr>
-      <tr><td>Escaped gene (vagrancy)</td><td>Viruses are host nucleic acids that gained autonomy</td><td>Fits retroviruses and their relationship to retrotransposons; struggles to explain conserved capsid folds shared across domains</td></tr>
-      <tr><td>Virus-first (coevolution)</td><td>Viruses descend from replicating elements that predate cells</td><td>Fits an RNA world and the deep conservation of some capsid folds; hard to test, and viruses need cells now</td></tr>
+      <tr><td>Coevolution</td><td>Viruses originated about the same time as other microbes and have been coevolving with them ever since</td><td>Fits viruses infecting all three domains and capsid folds shared across domains; hard to test</td></tr>
+      <tr><td>Regressive</td><td>Viruses were once free-living cellular organisms that evolutionarily regressed into host-dependent particles</td><td>Fits giant viruses, and obligate intracellular bacteria as an analogy; does not explain capsid proteins with no cellular homologue</td></tr>
+      <tr><td>Progressive</td><td>Viruses originated from genetic material that gained the ability to replicate and be transmitted semi-autonomously</td><td>Fits retroviruses and their relationship to retrotransposons and plasmids; struggles to explain conserved capsid folds</td></tr>
     </tbody>
   </table>
   </div>
   <p>None of the three explains all viruses, and the current view is that different viral lineages arose by different routes and more than once. Giant viruses such as <em>Mimivirus</em> and <em>Pandoravirus</em> sharpened the argument: with genomes over 1 Mb, hundreds of genes and even some translation components, they blur the line between virus and cell.</p>
 
   <h3>5.3 Cultivation, purification and quantification of viruses</h3>
-  <p>Viruses cannot be grown on agar alone; they need living cells.</p>
+  <p>Viruses cannot be grown on agar alone; they need living cells. Cultivation means inoculating the right host cells and collecting the replicated particles.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Method</th><th>Use</th></tr></thead>
     <tbody>
-      <tr><td>Bacterial lawn</td><td>Phage growth and plaque assay, the fastest and cheapest system</td></tr>
-      <tr><td>Cell culture monolayer</td><td>Animal viruses; primary, diploid or continuous (immortal) cell lines. Cytopathic effect signals infection</td></tr>
-      <tr><td>Embryonated hen's egg</td><td>Influenza vaccine production; different membranes suit different viruses</td></tr>
+      <tr><td>Bacterial lawn</td><td>Phage growth and plaque assay. Still much trickier than growing bacteria: phages are tiny and need their specific host</td></tr>
+      <tr><td>Tissue (cell) culture</td><td>Animal viruses grown in host cells that must be kept sterile and bacteria-free. Only possible since the 1950s, and modern virology could not exist without it; many methods were developed with HeLa cells, the first human cell line. Cytopathic effect (CPE) signals infection</td></tr>
+      <tr><td>Embryonated chicken or duck egg</td><td>The cheaper option for animal viruses; influenza vaccine production</td></tr>
       <tr><td>Whole animal or plant</td><td>Viruses with no culture system, and pathogenesis studies</td></tr>
       <tr><td>Organoid or explant</td><td>Viruses needing differentiated tissue architecture</td></tr>
     </tbody>
   </table>
   </div>
-  <p>Purification uses the physical properties of the particle: differential centrifugation to clear cell debris, then ultracentrifugation through a sucrose or caesium chloride gradient, where the particle bands at its own density (rate zonal separates by size, equilibrium by density). Precipitation with polyethylene glycol concentrates the preparation, and filtration through 0.22 µm removes bacteria while letting the virus through, which is how virus was first defined.</p>
+  <p>Purification uses the physical properties of the particle. It usually begins with simple filtration to remove large cells and debris, then differential centrifugation to concentrate the virus, then gradient centrifugation, which depends on the different densities of viral components and particles: ultracentrifugation through a sucrose or caesium chloride gradient, where the particle bands at its own density (rate zonal separates by size, equilibrium by density). Precipitation with polyethylene glycol concentrates the preparation, and filtration through 0.22 µm removes bacteria while letting the virus through, which is how virus was first defined.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Assay</th><th>Measures</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Plaque assay</td><td>Infectious units, as plaque-forming units per millilitre</td><td>Each plaque comes from one infectious particle; counts only what can infect</td></tr>
-      <tr><td>TCID<sub>50</sub> or endpoint dilution</td><td>Dilution infecting half the inoculated cultures</td><td>Used where plaques do not form</td></tr>
-      <tr><td>Haemagglutination assay</td><td>Total particles able to cross-link red blood cells</td><td>Fast and cheap, does not require infectivity</td></tr>
-      <tr><td>Electron microscopy count</td><td>Total physical particles</td><td>Gives the particle-to-PFU ratio, which is often 10 to 1000 to 1</td></tr>
+      <tr><td>Direct count (electron microscopy)</td><td>Total physical particles in a known volume, scaled up to a titre</td><td>Needs an expensive, specialised microscope and does not separate infectious from non-infectious particles. Gives the particle-to-PFU ratio, often 10 to 1000 to 1</td></tr>
+      <tr><td>Haemagglutination assay</td><td>Relative haemagglutinating activity: some viruses stick red blood cells together into a gel mat</td><td>Cheap, easy, fast, no microscope. But some viruses will not do it, it does not separate viable from non-viable, and it gives no virus number</td></tr>
+      <tr><td>Plaque assay</td><td>Infectious units, as plaque-forming units (PFU) per millilitre</td><td>Diluted virus on target cells; each plaque comes from one infectious particle. Useful for phages and plant viruses</td></tr>
+      <tr><td>Endpoint assay: TCID<sub>50</sub></td><td>Tissue culture infectious dose 50, the amount of virus that causes a cytopathic effect in 50 per cent of cultured cells</td><td>Used where plaques do not form</td></tr>
+      <tr><td>Endpoint assay: LD<sub>50</sub></td><td>Lethal dose 50, the amount of virus that kills 50 per cent of test animals</td><td>Measures virulence in a whole host</td></tr>
       <tr><td>qPCR or RT-qPCR</td><td>Genome copies</td><td>Very sensitive; counts non-infectious genomes as well</td></tr>
       <tr><td>Plaque reduction neutralisation</td><td>Antibody titre</td><td>The reference test for protective immunity</td></tr>
     </tbody>
   </table>
   </div>
+  <p>Quantifying viruses is not straightforward. The result is a <strong>titre</strong>, the concentration of a virus preparation, and the methods measure different properties, so they can give different numbers for the same sample.</p>
   <div class="key">The one-step growth curve is run at a high multiplicity of infection so that every cell is infected at once. It gives two numbers: the latent period, which is the time before the first progeny appear, and the burst size, which is the number of virions released per infected cell. Multiplicity of infection is the ratio of infectious particles to cells.</div>
 
   <h3>5.4 Diversity of viruses</h3>
+  <p>Virus names were historically a "Wild West": letter and number codes (T4 phage), the host infected (tobacco mosaic virus), the place of discovery (Ebola, after the Ebola River in Zaire), appearance (coronavirus, from the "crown" of spikes), or the disease caused (hepatitis viruses).</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>System</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>ICTV (International Committee on Taxonomy of Viruses, 1971)</td><td>The official taxonomy, with ranks from realm, kingdom, phylum and class down to order, family, subfamily, genus and species. Uses morphology, genome structure, biological features, disease caused, envelope, and increasingly whole genomes. Viruses do not necessarily share a single common ancestor</td></tr>
+      <tr><td>Baltimore</td><td>Seven classes by genome type and how the virus makes mRNA</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Identification starts with electron microscopy, since morphology is the first clue (though not infallible: Ebola's filaments are distinctive, many viruses look alike). Nucleic acid analysis by PCR, or reverse-transcriptase PCR for RNA viruses, identifies a virus by its genome sequence and tracks viral evolution, as was done for SARS.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Virus</th><th>Genome</th><th>Points to remember</th></tr></thead>
@@ -997,10 +1048,10 @@ document.getElementById("fc-only").addEventListener("click", e => {
     <thead><tr><th>Entity</th><th>What it is</th><th>Significance</th></tr></thead>
     <tbody>
       <tr><td>Virus-like particle (VLP)</td><td>Capsid proteins assembled with no genome inside</td><td>Cannot replicate, so it is a safe vaccine platform: HPV and hepatitis B vaccines are VLPs</td></tr>
-      <tr><td>Viroid</td><td>Small circular naked RNA, 250 to 400 nt, encoding no protein</td><td>Plant pathogens such as potato spindle tuber viroid; replicated by host polymerase, some are ribozymes</td></tr>
+      <tr><td>Viroid</td><td>Naked RNA only, under 400 nt, encoding no protein, with a high degree of internal complementarity that makes it resistant to ribonucleases</td><td>So far only seen causing disease in plants, such as potato spindle tuber viroid; most likely replicated by host enzymes</td></tr>
       <tr><td>Satellite virus or RNA</td><td>Needs a co-infecting helper virus to replicate</td><td>Hepatitis delta depends on hepatitis B for its envelope, and worsens the disease</td></tr>
       <tr><td>Defective interfering particle</td><td>Deletion mutant that competes with intact virus for machinery</td><td>Lowers yield and can moderate the course of infection</td></tr>
-      <tr><td>Prion</td><td>Misfolded host protein, no nucleic acid at all</td><td>PrP<sup>Sc</sup> templates conversion of normal PrP<sup>C</sup>; causes CJD, scrapie and BSE; resists autoclaving and proteases</td></tr>
+      <tr><td>Prion</td><td>Proteinaceous infectious particle: misfolded host protein, no nucleic acid and no genes</td><td>Propagates by inducing misfolding of the normal host protein (PrP<sup>Sc</sup> converts PrP<sup>C</sup>), though the exact mechanism is still unclear. Causes transmissible spongiform encephalopathies (TSEs): mad cow disease (BSE), Creutzfeldt-Jakob disease in humans, scrapie; resists autoclaving and proteases</td></tr>
       <tr><td>Gene therapy vector</td><td>Virus stripped of replication genes, carrying a therapeutic gene</td><td>Adeno-associated virus and lentiviral vectors in approved therapies</td></tr>
       <tr><td>Phage display library</td><td>Peptides fused to a phage coat protein</td><td>Selects binders from billions of variants; the route to several antibody drugs</td></tr>
     </tbody>
@@ -1014,10 +1065,19 @@ document.getElementById("fc-only").addEventListener("click", e => {
     <li><strong>Antivirals.</strong> Targets are the steps that have no host counterpart: entry inhibitors, nucleoside analogues, protease and polymerase inhibitors, integrase inhibitors. Combination therapy is standard because single drugs select resistance quickly.</li>
     <li><strong>Vaccines.</strong> Inactivated, live attenuated, subunit, VLP, viral vector and mRNA platforms, the last of which moved from concept to deployment in a year.</li>
     <li><strong>Phage therapy.</strong> Being revisited for multidrug-resistant infections, with the advantages of narrow host range and self-amplification, and the difficulties of resistance and regulation.</li>
-    <li><strong>Oncolytic viruses.</strong> Engineered to replicate in tumour cells and provoke an immune response against them.</li>
+    <li><strong>Oncoviruses and oncolytic viruses.</strong> Some viruses cause cancer (HPV and cervical cancer); others are engineered to replicate in tumour cells and provoke an immune response against them. Viruses are also delivery vehicles for gene therapy.</li>
     <li><strong>Tools from viruses.</strong> CRISPR-Cas is a bacterial defence against phage, repurposed for genome editing; restriction enzymes come from the same arms race; reverse transcriptase and RNA polymerases in every molecular biology kit are viral.</li>
     <li><strong>Virome discovery.</strong> Metagenomic sequencing of seawater, soil and faeces finds far more viral diversity than culture ever did, and most of it has no cultured host.</li>
   </ul>
+  <h4>CRISPR-Cas</h4>
+  <p>CRISPR stands for clustered regularly interspaced short palindromic repeats. The repeats were first reported in 1987, and their role in adaptive defence against phages was shown in 2007. CRISPR-Cas systems defend many bacteria and archaea against viruses and other foreign DNA in three stages:</p>
+  <ol>
+    <li><strong>Adaptation.</strong> Cas proteins, often Cas1 and Cas2, capture fragments of invading DNA and insert them as <strong>spacers</strong> between the repeats of the CRISPR array, a heritable record of past infections.</li>
+    <li><strong>Expression and processing.</strong> The array is transcribed and cut into guide RNAs (crRNAs), each carrying one spacer.</li>
+    <li><strong>Interference.</strong> A crRNA-guided Cas nuclease finds the matching sequence in an invading DNA or RNA (depending on the system) and cleaves it.</li>
+  </ol>
+  <p>Spacer acquisition and interference are separate processes. Because the guide sequence can be swapped for any target, the same machinery became a genome editing tool, work recognised by the 2020 Nobel Prize in Chemistry for Jennifer Doudna and Emmanuelle Charpentier.</p>
+  <div class="memory" data-set="vir"></div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="virus"></div>
 </section>
@@ -1028,21 +1088,37 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <p>Growth in microbiology means an increase in the number of cells, not in the size of one cell. A culture doubles at a constant rate under fixed conditions, so populations are described exponentially and the whole subject of cultivation is about which conditions set that rate.</p>
 
   <h3>6.1 Factors affecting microbial growth</h3>
+  <h4>Metabolism and nutrition</h4>
+  <p>To grow, cells convert nutrients into new cell material. Building cell material is <strong>anabolism</strong> (biosynthesis), which consumes energy; breaking compounds down, usually by oxidation, is <strong>catabolism</strong>, which releases the energy for biosynthesis, transport, motility and repair. Nutrients are incorporated into biomass by <strong>assimilation</strong>.</p>
+  <p><strong>Macronutrients</strong> are needed by all cells to build macromolecules: carbon, nitrogen, phosphorus, sulfur, oxygen and hydrogen (C, N, P, S, O, H). <strong>Micronutrients</strong> (trace elements) are needed by most cells in small amounts: iron, zinc, manganese, cobalt, copper and molybdenum, with sodium and magnesium also listed in lecture. Nitrogen is most commonly assimilated as ammonia into glutamate and glutamine, and is needed for amino acids and nucleic acids.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Question</th><th>Options</th></tr></thead>
+    <tbody>
+      <tr><td>1. Energy source?</td><td><strong>Photo</strong>: light captured by pigments (oxygenic or anoxygenic). <strong>Chemo</strong>: oxidation of chemical compounds</td></tr>
+      <tr><td>2. Electron source?</td><td><strong>Organo</strong>: organic molecules such as glucose or acetate. <strong>Litho</strong>: inorganic molecules such as H<sub>2</sub>, NH<sub>3</sub>, S<sup>0</sup> or NO<sub>2</sub><sup>-</sup></td></tr>
+      <tr><td>3. Carbon source?</td><td><strong>Hetero</strong>: fixed organic carbon (C-C bonds) made by other organisms. <strong>Auto</strong>: CO<sub>2</sub>, fixed directly; autotrophs are the primary producers</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key">Build the name in that order, energy then electrons then carbon, and end in -troph ("eater"). <em>E. coli</em> is a <strong>chemoorganoheterotroph</strong> (as are fungi, protozoa and we are). Cyanobacteria are <strong>photolithoautotrophs</strong>: light energy, electrons from water, carbon from CO<sub>2</sub>. Nitrifiers such as <em>Nitrosomonas</em> are <strong>chemolithoautotrophs</strong> oxidising ammonia. Purple non-sulfur bacteria grown on organic acids in the light are <strong>photoorganoheterotrophs</strong>. Chemolithotrophy is found only in prokaryotes.</div>
+  <p>Growth rate depends on the amount of nutrient available, rising with concentration until it levels off. The key nutrient available in the lowest amount relative to need limits growth.</p>
   <h4>Temperature</h4>
-  <p>Every organism has a minimum, an optimum and a maximum. The optimum sits close to the maximum because the rate of enzyme reactions rises with temperature until proteins begin to denature, at which point growth stops abruptly rather than tapering off.</p>
+  <p>Temperature affects macromolecular structure, membrane fluidity and enzyme function. Every organism has a minimum, an optimum and a maximum, and these cardinal temperatures can shift with other factors such as the growth medium. The optimum sits close to the maximum because the rate of enzyme reactions rises with temperature until proteins begin to denature, at which point growth stops abruptly rather than tapering off.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Class</th><th>Range</th><th>Optimum</th><th>Example</th></tr></thead>
     <tbody>
-      <tr><td>Psychrophile</td><td>-5 to 20 °C</td><td>~15 °C</td><td><em>Polaromonas</em>, polar sea ice organisms</td></tr>
-      <tr><td>Psychrotroph</td><td>0 to 35 °C</td><td>20 to 30 °C</td><td><em>Listeria monocytogenes</em>, which is why it grows in a fridge</td></tr>
+      <tr><td>Psychrophile</td><td>Minimum below 0 °C, maximum about 20 °C</td><td>Below 15 °C</td><td>Ocean depths at a constant temperature under 5 °C, polar sea ice; often killed by moderate temperatures because their enzymes denature</td></tr>
+      <tr><td>Psychrotolerant (psychrotroph)</td><td>Grows at 0 to 4 °C</td><td>20 to 40 °C</td><td>Mesophiles capable of cold growth, common in temperate soils and water (Laurel Creek, your house); <em>Listeria monocytogenes</em> grows in a fridge</td></tr>
       <tr><td>Mesophile</td><td>15 to 45 °C</td><td>30 to 40 °C</td><td><em>E. coli</em>, and nearly all pathogens at 37 °C</td></tr>
       <tr><td>Thermophile</td><td>40 to 75 °C</td><td>50 to 65 °C</td><td><em>Thermus aquaticus</em>, compost organisms</td></tr>
       <tr><td>Hyperthermophile</td><td>65 to 113 °C</td><td>above 80 °C</td><td><em>Pyrococcus</em>, <em>Pyrolobus fumarii</em></td></tr>
     </tbody>
   </table>
   </div>
-  <p>Adaptations follow the range. Psychrophiles have more unsaturated membrane lipids to stay fluid in the cold and enzymes with flexible active sites. Thermophiles use more ionic bonds and hydrophobic core packing in their proteins, saturated or ether-linked lipids, and chaperones; hyperthermophilic archaea use tetraether monolayers.</p>
+  <p>Hot environments are common: soil in direct midsummer sun and compost reach about 55 °C, hot water heaters 50 to 60 °C, hot springs sit at the boiling point (Boulder Spring in Yellowstone is superheated 1 to 2 °C above it, and microcolonies grow on slides immersed in it), and fluid from deep-sea hydrothermal vents reaches 350 °C.</p>
+  <p>Adaptations follow the range. Psychrophiles have a higher proportion of unsaturated fatty acids in their membrane phospholipids to stay fluid in the cold, and enzymes with flexible active sites. Thermophile proteins have critical amino acid substitutions that give heat-tolerant folds, more ionic bonds between acidic and basic residues that resist unfolding, and stabilising solutes such as di-inositol phosphate and diglycerol phosphate. Their membranes use saturated fatty acids in bacteria, and in archaea a lipid monolayer, which is more heat tolerant than a bilayer; chaperones refold damaged proteins.</p>
 
   <h4>pH</h4>
   <div class="scroll">
@@ -1055,10 +1131,11 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <p>Whatever the external pH, cytoplasmic pH is held near neutral by proton pumps and antiporters, because the cytoplasmic enzymes and the ribosome are neutrophilic in every organism. <em>Helicobacter pylori</em> survives the stomach by hydrolysing urea to ammonia, which buffers its immediate surroundings. Culture media are buffered with phosphate or peptides because fermentation acidifies them and stops growth long before the nutrients run out.</p>
+  <p>pH affects macromolecule structure and the electrochemical gradients across the membrane, and each microbe has an optimal range. Whatever the external pH, cytoplasmic pH is held near neutral by proton pumps and antiporters. The exceptions are extreme acidophiles and alkaliphiles, whose internal pH can be as low as 4.6 or as high as 9.5. <em>Helicobacter pylori</em> survives the stomach by hydrolysing urea to ammonia, which buffers its immediate surroundings. Culture media are buffered with phosphate or peptides because fermentation acidifies them and stops growth long before the nutrients run out.</p>
 
   <h4>Water and solutes</h4>
-  <p>Water availability is measured as water activity (a<sub>w</sub>), where pure water is 1.00. Most bacteria need above 0.98, <em>Staphylococcus aureus</em> tolerates 0.86, and xerophilic moulds grow down to 0.61. That is the principle behind preserving food with salt, sugar or drying.</p>
+  <p>Different solute concentrations drive water in or out of the cell, making it swell or shrink, and water must also be available for biochemical reactions. Availability is measured as <strong>water activity</strong> (a<sub>w</sub>): the vapour pressure of air in equilibrium with a substance or solution divided by that of air in equilibrium with pure water. Solutes lower it. Pure water is 1.0, seawater 0.98, and most bacteria need above 0.9; <em>Staphylococcus aureus</em> tolerates 0.86 and xerophilic moulds grow down to 0.61. That is the principle behind preserving food with salt, sugar or drying.</p>
+  <p>The cytoplasm normally has a higher solute concentration than the surroundings, so water flows in: a <strong>positive water balance</strong>. In salty or dry environments a cell prevents water loss by raising its internal solute concentration, either by pumping in inorganic ions or by making or concentrating organic solutes.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Class</th><th>Requirement</th><th>Example</th></tr></thead>
@@ -1085,13 +1162,14 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <div class="key">Oxygen is toxic because its partial reduction gives superoxide, hydrogen peroxide and hydroxyl radical. Aerobes survive by carrying superoxide dismutase, catalase and peroxidase. The catalase test (bubbling in hydrogen peroxide) separates <em>Staphylococcus</em>, which is positive, from <em>Streptococcus</em>, which is negative.</div>
+  <div class="key">Oxygen is toxic because its partial reduction gives superoxide, hydrogen peroxide and hydroxyl radical; its impact depends on the defences a cell has. Aerobes survive by carrying superoxide dismutase, catalase (2 H<sub>2</sub>O<sub>2</sub> → 2 H<sub>2</sub>O + O<sub>2</sub>) and peroxidase. The catalase test (bubbling in hydrogen peroxide) separates <em>Staphylococcus</em>, which is positive, from <em>Streptococcus</em>, which is negative.</div>
 
   <h4>Nutrients and other factors</h4>
-  <p>Macronutrients are needed in bulk: carbon, oxygen, hydrogen, nitrogen, sulfur, phosphorus, potassium, magnesium, calcium and iron. Micronutrients such as zinc, manganese, molybdenum, cobalt, copper and nickel are cofactors. Growth factors are compounds an organism cannot make and must be given: amino acids, purines and pyrimidines, and vitamins. An organism requiring one is an auxotroph for it, and that requirement is the basis of both selection in genetics and identification in the clinic.</p>
+  <p>Beyond the macronutrients and micronutrients above, cells also need potassium, magnesium and calcium in moderate amounts, and trace metals act as enzyme cofactors. Growth factors are compounds an organism cannot make and must be given: amino acids, purines and pyrimidines, and vitamins. An organism requiring one is an auxotroph for it, and that requirement is the basis of both selection in genetics and identification in the clinic.</p>
   <p>Pressure matters at depth: barophiles from ocean trenches grow only above about 400 atmospheres. Radiation, heavy metals and low nutrient concentration all shape which organisms grow, and oligotrophs adapted to nanomolar substrate are often killed by rich laboratory media, one reason so few environmental microbes have ever been cultured.</p>
 
   <h3>6.2 Growing microorganisms in the laboratory</h3>
+  <p>Microbes are grown in liquid media (broths), for growing quantities of cells and following growth, and on solid media (agar plates), which hold cells in place so that a mixture can be separated into pure colonies. Colony morphology (shape, edge, elevation, colour) helps identify what has grown. Course definitions: a <strong>defined</strong> medium has an exact, known chemical composition made from purified ingredients; a <strong>complex</strong> medium does not, because it contains digests such as tryptone (a trypsin digest of protein) or yeast extract. <strong>Selective</strong> media allow only specific organisms to grow, <strong>differential</strong> media distinguish types of organisms by a visible reaction, and <strong>enrichment</strong> media favour the growth of a particular organism.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Medium type</th><th>Definition</th><th>Example and use</th></tr></thead>
@@ -1106,7 +1184,18 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <p>Agar is the standard solidifying agent because it melts around 95 °C, sets around 40 °C, and almost no microbe can degrade it, so the surface stays intact while colonies grow. That is what makes a colony possible, and a colony is what makes a pure culture possible: streak plating, pour plating and spread plating all exist to separate single cells far enough apart that each founds a visible clone. Koch's laboratory established that logic, along with the Petri dish.</p>
+  <p>Agar is a galactose polysaccharide from red algae, introduced to microbiology by Angelina Hesse in 1883. It is the standard solidifying agent because it stays solid at 37 °C, melts around 95 °C, sets around 40 °C, and almost no microbe can degrade it, so the surface stays intact while colonies grow. That is what makes a colony possible, and a colony is what makes a pure culture possible: streak plating, pour plating and spread plating all exist to separate single cells far enough apart that each founds a visible clone. Koch's laboratory established that logic, along with the Petri dish.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Isolation method</th><th>How it works</th></tr></thead>
+    <tbody>
+      <tr><td>Streak plate</td><td>A loop drags the sample across the plate in successive sections, thinning it out until single cells are left in the last streaks to form isolated colonies</td></tr>
+      <tr><td>Spread plate</td><td>A small volume (about 0.1 mL) of diluted sample is spread over the agar surface; colonies grow on the surface</td></tr>
+      <tr><td>Pour plate</td><td>Diluted sample is mixed with molten agar cooled to about 45 to 50 °C and poured; colonies grow on the surface and embedded in the agar</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Bacteria that resist isolation in the lab can still be studied with cultivation-independent methods, by extracting and sequencing nucleic acids from enrichment cultures or environmental samples.</p>
   <p>Anaerobes need oxygen excluded, using reducing media, anaerobic jars with a hydrogen and carbon dioxide generator plus a palladium catalyst, or a glove box. Obligate intracellular organisms (<em>Chlamydia</em>, <em>Rickettsia</em>, all viruses) need host cells rather than medium.</p>
   <div class="scroll">
   <table>
@@ -1118,6 +1207,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
+  <p>Continuous culture is useful for two reasons: it keeps cells in exponential growth so a product can be harvested continuously, and it supplies a limited but continuous flow of nutrients that mimics natural environments. A chemostat flows in fresh medium and removes old medium and cells at the same rate.</p>
   <div class="key">In a chemostat the experimenter chooses the growth rate. At steady state the specific growth rate equals the dilution rate, so the population is held in exponential phase indefinitely at whatever rate the flow imposes. Wash out occurs if the dilution rate exceeds the maximum growth rate.</div>
 
   <h3>6.3 Measuring microbial population growth</h3>
@@ -1136,17 +1226,17 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <div class="key"><strong>The arithmetic.</strong> N = N<sub>0</sub> × 2<sup>n</sup>, where n is the number of generations. Generation time g = t / n, and n = (log N - log N<sub>0</sub>) / 0.301. Specific growth rate constant k = n / t. Worked example: 10<sup>3</sup> cells become 10<sup>9</sup> in 10 hours, so n = (9 - 3) / 0.301 ≈ 19.9 generations and g = 600 min / 19.9 ≈ 30 min.</div>
+  <div class="key"><strong>The arithmetic.</strong> N = N<sub>0</sub> × 2<sup>n</sup>, where n is the number of generations. Generation time g = t / n, and n = (log N - log N<sub>0</sub>) / 0.301. Specific growth rate constant k = n / t. Worked example: 10<sup>3</sup> cells become 10<sup>9</sup> in 10 hours, so n = (9 - 3) / 0.301 ≈ 19.9 generations and g = 600 min / 19.9 ≈ 30 min.<br>From a growth curve you can read three things. <strong>Generation time</strong>: the time to double the population in exponential phase. <strong>Growth rate</strong>: generations per unit time, the inverse of generation time. <strong>Growth yield</strong>: the maximum population density or amount of cell material the culture produces.<br>Viable count: CFU per mL = number of colonies × (1 / dilution factor) / volume plated. For example, 150 colonies from 0.1 mL of a 10<sup>-5</sup> dilution is 150 × 10<sup>5</sup> / 0.1 = 1.5 × 10<sup>8</sup> CFU/mL.</div>
   <div class="scroll">
   <table>
     <thead><tr><th>Method</th><th>Counts</th><th>Strengths and limits</th></tr></thead>
     <tbody>
       <tr><td>Viable plate count</td><td>Colony-forming units per millilitre</td><td>Serial tenfold dilutions are spread or pour plated; CFU per millilitre is colonies divided by (dilution times volume plated). The standard for live cells, but slow, since plates need a day or more of incubation. Needs 30 to 300 colonies per plate to be statistically sound; clumps count as one; misses cells that will not grow on that medium</td></tr>
       <tr><td>Direct microscopic count</td><td>Total cells, in a haemocytometer or Petroff-Hausser chamber</td><td>Fast, no incubation, but cannot separate live from dead without a stain and needs about 10<sup>6</sup> cells per millilitre</td></tr>
-      <tr><td>Turbidity (OD<sub>600</sub>)</td><td>Light scattering, a proxy for biomass</td><td>Non-destructive and continuous; must be calibrated against plate counts, and dead cells still scatter</td></tr>
+      <tr><td>Turbidity (OD<sub>600</sub>)</td><td>Light scattering in a spectrophotometer, measured as absorbance or optical density, a rough proxy for cell density</td><td>Non-destructive and continuous; must be calibrated against plate counts, and dead cells still scatter</td></tr>
       <tr><td>Dry weight</td><td>Biomass</td><td>Best for filamentous fungi, where counting cells is meaningless</td></tr>
       <tr><td>Most probable number</td><td>Statistical estimate from replicate dilution tubes</td><td>Used for water testing when counts are very low</td></tr>
-      <tr><td>Membrane filtration</td><td>Cells in a large low-count volume</td><td>Filter, then place on medium; the standard for coliforms in drinking water</td></tr>
+      <tr><td>Membrane filtration</td><td>Cells in a large low-count volume</td><td>For samples already very dilute: the filter concentrates the cells, then goes on medium. The standard for coliforms in drinking water</td></tr>
       <tr><td>Flow cytometry</td><td>Individual cells, with viability and fluorescence markers</td><td>Fast and quantitative, needs instrumentation</td></tr>
       <tr><td>qPCR or ATP assay</td><td>Genome copies or metabolic activity</td><td>Culture independent; does not distinguish live from recently dead</td></tr>
     </tbody>
@@ -1155,6 +1245,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <p>Plate counts and total counts disagree systematically. Many environmental cells are viable but non-culturable: alive, metabolising and capable of causing infection, but unable to form a colony on standard media. That gap, sometimes called the great plate count anomaly, is the reason culture-independent methods in Topic 10 took over environmental microbiology.</p>
 
   <h3>6.4 Eliminating microbes and preventing their growth</h3>
+  <p>Control methods exploit cell sensitivity to heat, radiation or chemicals, or remove cells by filtration. Choosing one means asking what microbes are present and how many, whether there are endospores, whether everything needs to die, what kind of object is being treated and whether toxicity matters, and how long and intense the treatment must be.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
@@ -1164,7 +1255,12 @@ document.getElementById("fc-only").addEventListener("click", e => {
       <tr><td>Antisepsis</td><td>The same, applied to living tissue</td></tr>
       <tr><td>Sanitisation</td><td>Reducing numbers to a level judged safe by public health standards</td></tr>
       <tr><td>Degerming</td><td>Mechanical removal, such as washing before an injection</td></tr>
-      <tr><td>-cidal against -static</td><td>Kills against merely stops growth; a bacteriostatic agent needs a working immune system to finish the job</td></tr>
+      <tr><td>Disinfectant</td><td>Antimicrobial agent used on non-living objects and surfaces</td></tr>
+      <tr><td>Antiseptic</td><td>Antimicrobial agent that can be applied to living tissue, usually topically. Whether a chemical is one or the other can depend on its concentration</td></tr>
+      <tr><td>Antibiotic</td><td>Antimicrobial compound produced by a microorganism, or a chemically modified or fully synthetic version of one. Antimicrobials is the wider term, covering microbial and synthetic agents</td></tr>
+      <tr><td>Bacteriostatic</td><td>Inhibits growth without killing; total and viable counts both level off. Needs a working immune system to finish the job</td></tr>
+      <tr><td>Bactericidal</td><td>Kills cells; viable count falls while the total count (turbidity) stays level</td></tr>
+      <tr><td>Bacteriolytic</td><td>A bactericidal agent that kills by lysing the cell, so the total count and turbidity fall too</td></tr>
     </tbody>
   </table>
   </div>
@@ -1172,36 +1268,51 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <table>
     <thead><tr><th>Method</th><th>Conditions</th><th>Mechanism and use</th></tr></thead>
     <tbody>
-      <tr><td>Autoclave (moist heat under pressure)</td><td>121 °C, 15 psi, 15 to 20 minutes</td><td>Denatures protein; the reference sterilisation method. Spore strips of <em>Geobacillus stearothermophilus</em> verify it</td></tr>
-      <tr><td>Dry heat, incineration</td><td>170 °C for 2 hours, or flame</td><td>Oxidation; for glassware and loops. Less efficient than moist heat, so it needs more time and temperature</td></tr>
+      <tr><td>Autoclave (moist heat under pressure)</td><td>121 °C, 15 psi, 15 to 20 minutes</td><td>Denatures protein and collapses membranes; the reference sterilisation method, aimed at killing endospores (D-value of 4 to 5 minutes at 121 °C). The pressure only lets water reach 121 °C without boiling off: temperature kills, not pressure. Spore strips of <em>Geobacillus stearothermophilus</em> verify it</td></tr>
+      <tr><td>Dry heat, incineration</td><td>170 °C for 2 hours, or flame</td><td>Oxidation; for glassware and loops. Less efficient than moist heat, which penetrates objects better, so it needs more time and temperature</td></tr>
       <tr><td>Boiling</td><td>100 °C, 10 minutes</td><td>Disinfects, does not sterilise, because endospores survive</td></tr>
-      <tr><td>Pasteurisation</td><td>63 °C for 30 min, or 72 °C for 15 s (HTST), or 140 °C for 3 s (UHT)</td><td>Reduces pathogens and spoilage organisms while preserving flavour; not sterilisation</td></tr>
-      <tr><td>Filtration</td><td>0.22 µm membrane; HEPA for air</td><td>Physical removal for heat-labile liquids such as antibiotics, vitamins and media with serum. Does not stop most viruses</td></tr>
-      <tr><td>Ionising radiation</td><td>Gamma rays, electron beams</td><td>Breaks DNA directly and by radicals; sterilises plastics, sutures and some foods</td></tr>
-      <tr><td>Ultraviolet</td><td>260 nm</td><td>Forms pyrimidine dimers. Surface and air only; no penetration</td></tr>
-      <tr><td>Cold and desiccation</td><td>Refrigeration, freezing, lyophilisation</td><td>Bacteriostatic. Used to preserve cultures, not to kill</td></tr>
+      <tr><td>Pasteurisation</td><td>HTST (high temperature, short time) 72 °C for 15 s; UHT 135 to 150 °C for about 2 s; ESL (extended shelf life) filtration then a lower-temperature treatment; older batch method 63 °C for 30 min</td><td>Destroys pathogens, kills 90 to 99 per cent of other microbes and extends shelf life while keeping flavour; does NOT sterilise. Pasteur developed it for wine</td></tr>
+      <tr><td>Filtration</td><td>0.22 µm membrane; HEPA for air</td><td>Removes cells by size rather than killing them; for heat-labile liquids and gases such as antibiotics, vitamins and media with serum. Does not remove virus-sized particles</td></tr>
+      <tr><td>Ionising radiation</td><td>Gamma rays from cobalt-60, electron beams; dose in grays (Gy)</td><td>Stray electrons make hydroxyl and hydrogen radicals that damage protein and cause DNA double-strand breaks; higher energy penetrates better. Limited to specialised industrial facilities because of cost and hazard. Sterilises spices, pharmaceuticals, medical supplies, disposable labware, packaged foods and cartilage for tissue grafts</td></tr>
+      <tr><td>Ultraviolet</td><td>260 to 280 nm</td><td>Forms thymine dimers in DNA. Used on non-living surfaces and in water; no penetration</td></tr>
+      <tr><td>Cold and desiccation</td><td>Refrigeration, freezing, lyophilisation</td><td>Bacteriostatic: slows or stops biochemical reactions. Freezing can damage cells with ice crystals but is good for long-term preservation of cultures</td></tr>
       <tr><td>High osmotic pressure</td><td>Salting, sugaring</td><td>Plasmolysis; food preservation</td></tr>
       <tr><td>Ethylene oxide gas</td><td>Sealed chamber, hours</td><td>Alkylates protein and DNA; sterilises heat-sensitive equipment</td></tr>
     </tbody>
   </table>
   </div>
+  <h4>Filtration</h4>
+  <p>Filters with 0.22 µm (0.2 µm) pores physically remove microbes and are ideal for heat- or radiation-sensitive material; nylon and Teflon filters are common. Different pore sizes can also separate organisms, such as retrieving small cells from a mix of large ones. Ultrafiltration, with pores of 10 to 100 nm, removes viruses from liquids but needs high pressure. Problems: large particles clog filters and viscous liquids filter poorly. Syringe filters handle small volumes; a peristaltic pump pushes large volumes through disposable, pre-sterilised filter units.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Filter</th><th>Structure</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>Depth filter</td><td>Fibrous sheet or mat of randomly overlapping fibres: paper, glass or cotton ("filter paper")</td><td>A prefilter that removes suspended particles by trapping them throughout its depth</td></tr>
+      <tr><td>Conventional membrane filter</td><td>Polymer such as cellulose acetate or cellulose nitrate, pore size set during manufacture (0.22 µm)</td><td>Routine sterilisation by sieve-like action</td></tr>
+      <tr><td>Nucleopore filter</td><td>Thin polycarbonate film about 10 µm thick; radiation damage tracks are etched with chemicals into pores</td><td>Very consistent pore size, and everything is caught on one surface plane, so it is useful for microscopy</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>Chemical control</h4>
+  <p>Agents vary in target (microbicidal, bactericidal, fungicidal, algicidal, virucidal) and in selective toxicity. Non-selective agents, such as those that attack sulfhydryl groups, have their uses but never internally; selective agents, such as antibiotics hitting prokaryotic ribosomes or cell wall assembly, can treat disease. A good disinfectant kills a wide range of microbes, is not corrosive or overly toxic, leaves no residue or fumes, is cheap, and is temperature stable.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Chemical agent</th><th>Target</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Alcohols (60 to 80 per cent ethanol)</td><td>Denature protein, dissolve lipid</td><td>Need water to work, so absolute ethanol is weaker. No effect on spores</td></tr>
-      <tr><td>Chlorine, hypochlorite, chloramine</td><td>Oxidises protein</td><td>Water treatment and surfaces; inactivated by organic matter</td></tr>
+      <tr><td>Alcohols (60 to 90 per cent ethanol)</td><td>Permeabilise and dissolve membrane lipids, denature protein</td><td>Bactericidal and bacteriolytic. Need water to denature protein, so absolute ethanol is weaker. No effect on spores</td></tr>
+      <tr><td>Chlorine, bleach (hypochlorite), chloramine</td><td>Oxidise lipids, DNA, RNA and proteins</td><td>Water treatment and surfaces; inactivated by organic matter</td></tr>
       <tr><td>Iodophors</td><td>Oxidises and iodinates protein</td><td>Skin antisepsis before surgery</td></tr>
-      <tr><td>Phenolics, chlorhexidine</td><td>Disrupt membranes and denature protein</td><td>Persist on surfaces and skin</td></tr>
-      <tr><td>Quaternary ammonium compounds</td><td>Cationic detergents that disrupt membranes</td><td>Low toxicity, but <em>Pseudomonas</em> tolerates them</td></tr>
+      <tr><td>Phenolics (triclosan), chlorhexidine</td><td>Permeabilise and solubilise membranes, denature protein</td><td>Triclosan is bactericidal at high concentration and bacteriostatic at low concentration. Persist on surfaces and skin</td></tr>
+      <tr><td>Quaternary ammonium compounds (benzalkonium chloride)</td><td>Cationic detergents that disrupt membranes</td><td>Active against bacteria, enveloped viruses, fungi and some protozoa; bacteriostatic or bactericidal depending on concentration. Low toxicity, but <em>Pseudomonas</em> tolerates them</td></tr>
       <tr><td>Hydrogen peroxide, peracetic acid</td><td>Oxidising radicals</td><td>Sporicidal at high concentration; vaporised for room decontamination</td></tr>
-      <tr><td>Glutaraldehyde, formaldehyde</td><td>Alkylate protein and nucleic acid</td><td>Sterilise instruments given long contact; toxic</td></tr>
+      <tr><td>Glutaraldehyde, formaldehyde</td><td>Crosslink and alkylate protein and nucleic acid</td><td>Sterilise instruments given long contact; toxic</td></tr>
       <tr><td>Heavy metals (silver, copper)</td><td>Bind sulfhydryl groups</td><td>Silver dressings and catheter coatings</td></tr>
     </tbody>
   </table>
   </div>
-  <div class="key"><strong>Kinetics.</strong> Death is exponential, so a fixed time kills a fixed fraction rather than a fixed number. The D-value is the time at a given temperature to kill 90 per cent (one log) of a population. Thermal death time is the shortest time to kill all cells at a set temperature, and thermal death point the lowest temperature that kills them all in 10 minutes. Efficacy always depends on the starting number, the presence of organic matter, contact time, temperature and pH.</div>
+  <div class="key"><strong>Kinetics.</strong> Death is exponential, so a fixed time kills a fixed fraction rather than a fixed number. The D-value (decimal reduction time) is the time at a given temperature to kill 90 per cent (one log) of a population, and it does not depend on the starting cell concentration. Endospores are far more heat resistant than vegetative cells, which is why heat sterilisation is designed around them. For radiation the equivalent is the decimal reduction dose, D<sub>10</sub>: the dose in grays that kills 90 per cent. Thermal death time is the shortest time to kill all cells at a set temperature, and thermal death point the lowest temperature that kills them all in 10 minutes. Efficacy always depends on the starting number, the presence of organic matter, contact time, temperature and pH.</div>
   <h4>Antimicrobial drugs</h4>
+  <p>Alexander Fleming noticed on 28 September 1928 that a <em>Penicillium</em> mould killed the staphylococci around it; penicillin became the "miracle" cure and earned a Nobel Prize in 1945. Most antibiotics bind proteins or cell structures and disrupt functions essential for growth, and they may be -cidal, -static or -lytic. <strong>Broad-spectrum</strong> drugs such as tetracycline (protein synthesis) act on many kinds of bacteria; <strong>narrow-spectrum</strong> drugs such as penicillin (cell wall synthesis, mainly Gram-positives) and polymyxin B (disrupts the outer membrane, Gram-negatives only) act on few.</p>
   <div class="scroll">
   <table>
     <thead><tr><th>Target</th><th>Drug class</th><th>Note</th></tr></thead>
@@ -1216,8 +1327,9 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <p>Susceptibility is measured as the minimum inhibitory concentration, the lowest concentration preventing visible growth, by broth microdilution or by the zone of inhibition in a Kirby-Bauer disc diffusion test. The minimum bactericidal concentration is the lowest that kills rather than inhibits. The therapeutic index compares the toxic dose with the effective dose, and a narrow index is why aminoglycosides need serum monitoring.</p>
+  <p>Susceptibility is measured as the minimum inhibitory concentration, the lowest concentration preventing visible growth, by broth microdilution or by the zone of inhibition in a Kirby-Bauer disc diffusion test (agar diffusion test), where antibiotic discs on a lawn of the organism leave clear zones whose size reflects susceptibility. The minimum bactericidal concentration is the lowest that kills rather than inhibits. The therapeutic index compares the toxic dose with the effective dose, and a narrow index is why aminoglycosides need serum monitoring.</p>
   <p>Resistance arises by mutation or by horizontal transfer and works through a few mechanisms: enzymatic destruction (beta-lactamases, including extended-spectrum and carbapenemase forms), target modification (methylated rRNA, altered penicillin binding protein 2a in MRSA), efflux pumps, reduced permeability through porin loss, and bypass pathways. Selection pressure from misuse in medicine and agriculture drives all of it, which is why stewardship, combination therapy and completing courses are part of the microbiology rather than an afterthought.</p>
+  <div class="memory" data-set="grow"></div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="cult"></div>
 </section>
@@ -1849,12 +1961,12 @@ const FC = {
 "virus": [
 ["Give the Baltimore classes with an example of each.", "I dsDNA herpes, II ssDNA parvovirus, III dsRNA rotavirus, IV plus-sense ssRNA poliovirus, V minus-sense ssRNA influenza, VI retrovirus HIV, VII dsDNA with reverse transcription hepatitis B."],
 ["Why must a minus-sense RNA virus package a polymerase?", "Its genome cannot be translated. It needs an RNA-dependent RNA polymerase in the particle to make mRNA first."],
-["Name the five steps of a viral replication cycle.", "Attachment, entry and uncoating, synthesis of genome and proteins, assembly, and release by lysis or budding."],
+["Name the six steps of viral replication used in this course.", "Adhere, enter, uncoat, synthesis (express and replicate the genome), assembly, and exit by lysis or budding."],
 ["What sets the host range and tissue tropism of a virus?", "The match between a capsid or spike protein and a specific host surface receptor, such as gp120 with CD4 and CCR5, or haemagglutinin with sialic acid."],
 ["Compare the lytic and lysogenic cycles.", "Lytic replicates immediately and lyses the cell. Lysogenic integrates as a prophage, is replicated with the host chromosome and is held silent by a repressor."],
 ["What is lysogenic conversion, with examples?", "A prophage brings genes that make its host virulent. Diphtheria, cholera, botulinum and Shiga toxins are all phage encoded."],
 ["What induces a prophage into the lytic cycle?", "DNA damage. RecA activation leads to cleavage of the repressor, so UV light or mitomycin C triggers it."],
-["Name the three hypotheses for the origin of viruses.", "Regressive, from cells that lost functions; escaped gene, from host nucleic acids that gained autonomy; and virus-first, from replicators predating cells."],
+["Name the three hypotheses for the origin of viruses.", "Coevolution: viruses arose about the same time as other microbes and evolved with them. Regressive: once free-living cells that regressed into host-dependent particles. Progressive: genetic material that gained the ability to replicate and be transmitted semi-autonomously."],
 ["How is a plaque assay read, and what does it count?", "Each plaque on a lawn or monolayer comes from one infectious particle, so the count gives plaque-forming units per millilitre. It counts only infectious virus."],
 ["What does the particle-to-PFU ratio tell you?", "How many physical particles there are per infectious unit, often 10 to 1000. Electron microscopy or qPCR counts all particles, plaque assay only the infectious ones."],
 ["What two numbers come from a one-step growth curve?", "The latent period before progeny appear, and the burst size, the number of virions released per infected cell."],
@@ -1862,13 +1974,31 @@ const FC = {
 ["How do antigenic drift and antigenic shift differ?", "Drift is gradual point mutation of HA and NA. Shift is reassortment of whole genome segments between strains, and it causes pandemics."],
 ["Why do RNA viruses mutate so much faster than DNA viruses?", "RNA-dependent RNA polymerases lack proofreading, giving error rates about 10,000 times higher and quasispecies populations."],
 ["What is a virus-like particle used for?", "Capsid proteins assembled with no genome, so they cannot replicate. The HPV and hepatitis B vaccines are built this way."],
-["What is a viroid, and how does a prion differ?", "A viroid is a small naked circular RNA that encodes no protein and infects plants. A prion has no nucleic acid at all: it is a misfolded protein that templates conversion of the normal form."]
+["What is a viroid, and how does a prion differ?", "A viroid is a small naked circular RNA that encodes no protein and infects plants. A prion has no nucleic acid at all: it is a misfolded protein that templates conversion of the normal form."],
+["What did Ivanovsky, d'Herelle and Reed each contribute?", "Ivanovsky (1892) showed tobacco mosaic disease passed through bacteria-proof filters. D'Herelle discovered bacteriophages and coined the term plaque. Walter Reed (1901) showed yellow fever is a virus spread by mosquitoes."],
+["How big are typical viruses and their genomes, and what are the giant exceptions?", "About 10 to 100 nm, genomes of a few thousand to 200,000 nucleotides. Giant amoeba viruses: Mimivirus 400 nm and 1.2 Mbp, Megavirus chilensis over 1.2 Mbp, Pandoravirus about 1 µm and 2.5 Mb."],
+["Where does a viral envelope come from?", "It is cell derived, usually from the host plasma membrane as the virus buds, but sometimes from the Golgi, endoplasmic reticulum or nuclear membrane."],
+["How do enveloped and non-enveloped viruses enter animal cells?", "Non-enveloped viruses are taken in by endocytosis. Enveloped viruses fuse their envelope with the plasma membrane (or with the endosome after uptake). Neither has to cross a cell wall."],
+["How do plant viruses get into cells?", "Through damage that opens the cell wall: mainly insects feeding on the plant, but also wind, hail and rain, fire, and human activity."],
+["Distinguish temperate and virulent phage, prophage and lysogen.", "A virulent phage is always lytic. A temperate phage can be lytic or integrate as a prophage, the phage genome in the host chromosome. A lysogen is the host cell carrying a prophage."],
+["What is the advantage of lysogeny for a temperate phage?", "Always killing the host can leave too few hosts. A prophage can hide and wait, then go lytic when nutrients mean more cells to infect, or when DNA damage means the host is about to die."],
+["Why is HIV or herpes latency not called lysogeny?", "It is a different kind of persistence in animal cells. HIV integrates as a provirus and becomes latent; herpes simplex keeps its genome as an unintegrated episome; HPV is usually episomal."],
+["How are animal viruses cultivated?", "In sterile, bacteria-free tissue culture, possible only since the 1950s and largely developed with HeLa cells, the first human cell line, or more cheaply in embryonated chicken or duck eggs."],
+["Outline how a virus preparation is purified.", "Simple filtration to remove cells and debris, differential centrifugation to concentrate the virus, then gradient centrifugation, which separates by density."],
+["Give one strength and one weakness of each virus quantification method.", "EM direct count: total particles, but expensive and cannot tell infectious from not. Haemagglutination: cheap and fast, but not all viruses do it and it gives no number. Plaque assay: counts infectious PFU, good for phages and plant viruses. Endpoint assays: work without plaques."],
+["Define TCID50 and LD50.", "TCID50 is the amount of virus that causes a cytopathic effect in 50 per cent of cultured cells. LD50 is the amount that kills 50 per cent of test animals."],
+["How do ICTV and Baltimore classification differ?", "ICTV (from 1971) is the official taxonomy with ranks from realm to species, using morphology, genome, biology and disease. Baltimore sorts viruses into seven classes by genome type and how they make mRNA."],
+["Give the five historical sources of virus names.", "Codes (T4), host (tobacco mosaic virus), place (Ebola River), appearance (corona, crown) and disease (hepatitis)."],
+["How are viruses identified?", "First by electron microscopy of their morphology, which is not infallible, then by PCR or reverse-transcriptase PCR of the genome sequence."],
+["Why do viroids resist ribonucleases?", "Their RNA, under 400 nucleotides, has a high degree of internal complementarity, so it folds into a tightly base-paired structure."],
+["What are the three stages of CRISPR-Cas immunity?", "Adaptation, where Cas1 and Cas2 insert fragments of invading DNA as spacers; expression and processing of the array into crRNAs; and interference, where crRNA-guided Cas proteins cut matching DNA or RNA."],
+["When was CRISPR found and when was its function shown?", "The repeats were reported in 1987; their role in adaptive defence against phages was demonstrated in 2007. Doudna and Charpentier won the 2020 Nobel Prize for CRISPR genome editing."]
 ],
 "cult": [
-["Name the five temperature classes with their optima.", "Psychrophile about 15 degrees, psychrotroph 20 to 30, mesophile 30 to 40, thermophile 50 to 65, hyperthermophile above 80."],
+["Name the five temperature classes with their optima.", "Psychrophile below 15 degrees, psychrotolerant 20 to 40 (but grows at 0 to 4), mesophile 30 to 40, thermophile 50 to 65, hyperthermophile above 80."],
 ["Why does growth stop abruptly above the maximum temperature?", "The optimum sits close to the maximum because rates rise with temperature until proteins denature, and denaturation is not gradual."],
 ["Why does Listeria matter in a refrigerator?", "It is a psychrotroph, so it grows at 4 degrees in food that is otherwise considered safe."],
-["What is the cytoplasmic pH of an acidophile?", "Near neutral. The cytoplasmic enzymes and ribosome are neutrophilic in every organism, so pumps and antiporters hold the interior close to pH 7."],
+["What is the cytoplasmic pH of an acidophile?", "Near neutral, held there by pumps and antiporters. Only extreme acidophiles and alkaliphiles let it drift, to as low as 4.6 or as high as 9.5."],
 ["Give the five oxygen classes and where each grows in a thioglycolate tube.", "Obligate aerobe at the top, obligate anaerobe at the bottom, facultative anaerobe throughout but densest at the top, aerotolerant anaerobe evenly throughout, microaerophile in a narrow band below the surface."],
 ["Why is oxygen toxic, and how do aerobes cope?", "Partial reduction gives superoxide, hydrogen peroxide and hydroxyl radicals. Aerobes carry superoxide dismutase, catalase and peroxidase."],
 ["Which test separates Staphylococcus from Streptococcus?", "The catalase test. Staphylococcus bubbles in hydrogen peroxide, Streptococcus does not."],
@@ -1881,10 +2011,38 @@ const FC = {
 ["Give the autoclave conditions and how they are verified.", "121 degrees at 15 psi for 15 to 20 minutes, verified with spore strips of Geobacillus stearothermophilus."],
 ["Why does boiling not sterilise?", "Endospores survive 100 degrees. Only moist heat under pressure, or a chemical sporicide, kills them reliably."],
 ["What is a D-value?", "The time at a given temperature needed to kill 90 per cent, one log, of a population. Death is exponential, so a fixed time kills a fixed fraction rather than a fixed number."],
-["Why is 70 per cent ethanol better than absolute ethanol?", "Water is needed for protein denaturation, so the diluted alcohol is the more effective disinfectant. Neither kills spores."],
+["Why is 60 to 90 per cent ethanol better than absolute ethanol?", "Water is needed for protein denaturation, so the diluted alcohol is the more effective disinfectant. Neither kills spores."],
 ["Name the main antibiotic targets with a drug class for each.", "Cell wall by beta-lactams and vancomycin, 30S by aminoglycosides and tetracyclines, 50S by macrolides and chloramphenicol, DNA gyrase by fluoroquinolones, RNA polymerase by rifampicin, folate synthesis by sulfonamides, membranes by polymyxins."],
 ["What is the MIC, and how is it measured?", "The minimum inhibitory concentration, the lowest concentration preventing visible growth. It is measured by broth microdilution or estimated from the zone of inhibition in a disc diffusion test."],
-["List the mechanisms of antibiotic resistance.", "Enzymatic destruction such as beta-lactamases, target modification such as PBP2a in MRSA, efflux pumps, reduced permeability through porin loss, and bypass pathways."]
+["List the mechanisms of antibiotic resistance.", "Enzymatic destruction such as beta-lactamases, target modification such as PBP2a in MRSA, efflux pumps, reduced permeability through porin loss, and bypass pathways."],
+["Distinguish anabolism and catabolism.", "Anabolism (biosynthesis) builds cell material from nutrients and consumes energy. Catabolism breaks compounds down, usually by oxidation, and releases energy."],
+["List the macronutrients and some micronutrients.", "Macronutrients: C, N, P, S, O and H, needed by all cells. Micronutrients: trace iron, zinc, manganese, cobalt, copper and molybdenum."],
+["In what order is a nutritional category built, and what are the options?", "Energy (photo or chemo), then electrons (organo or litho), then carbon (hetero or auto), then -troph."],
+["Classify E. coli and cyanobacteria nutritionally.", "E. coli is a chemoorganoheterotroph. Cyanobacteria are photolithoautotrophs, using light, electrons from water, and CO2."],
+["Which nutritional type is found only in prokaryotes?", "Chemolithotrophy, getting energy by oxidising inorganic compounds such as H2, NH3, S0 or NO2-."],
+["What limits growth rate when nutrients are scarce?", "Growth rate rises with nutrient concentration; the key nutrient present in the lowest amount relative to need limits growth."],
+["Define water activity and give three reference values.", "Vapour pressure of air in equilibrium with a solution divided by that over pure water. Pure water 1.0, seawater 0.98, most bacteria need above 0.9."],
+["How does a cell avoid losing water in a salty environment?", "It keeps a positive water balance by raising its internal solute concentration, pumping in inorganic ions or making organic compatible solutes."],
+["Distinguish a psychrophile from a psychrotolerant organism.", "A psychrophile has an optimum below 15 and maximum near 20 degrees, with more unsaturated fatty acids. A psychrotolerant organism grows at 0 to 4 degrees but has its optimum at 20 to 40."],
+["How do thermophiles keep proteins and membranes stable?", "Amino acid substitutions for heat-tolerant folds, more ionic bonds, stabilising solutes such as di-inositol phosphate, saturated fatty acids in bacteria, and lipid monolayers in archaea."],
+["What is agar, and who introduced it?", "A galactose polysaccharide from algae, introduced by Angelina Hesse in 1883. It stays solid at 37 degrees and most microbes cannot degrade it."],
+["Distinguish defined and complex media.", "A defined medium has an exactly known composition of purified chemicals. A complex medium does not, because it contains digests such as tryptone or yeast extract."],
+["Name and describe the three plate methods for isolating colonies.", "Streak plate thins the sample with a loop across sections. Spread plate spreads a small diluted volume over the surface. Pour plate mixes diluted sample with molten agar, so colonies grow in it too."],
+["How is CFU per millilitre calculated?", "Number of colonies times the inverse of the dilution factor, divided by the volume plated. 150 colonies from 0.1 mL of 10 to the minus 5 is 1.5 times 10 to the 8 CFU per mL."],
+["What three values come from a growth curve?", "Generation time, the doubling time in exponential phase; growth rate, generations per unit time; and growth yield, the maximum density or biomass reached."],
+["Why is continuous culture useful?", "It holds cells in exponential phase so a product can be harvested, and gives a limited continuous nutrient flow that mimics natural environments."],
+["Compare depth, membrane and Nucleopore filters.", "Depth filters are fibrous prefilters that trap particles. Membrane filters of cellulose acetate or nitrate sterilise by sieving at 0.22 µm. Nucleopore filters are etched polycarbonate with uniform pores, good for microscopy."],
+["What can ultrafiltration do that a 0.22 µm filter cannot?", "With 10 to 100 nm pores it removes viruses from liquids, though it needs high pressure."],
+["In an autoclave, what actually kills, and what is the endospore D-value?", "Temperature kills, not pressure; pressure only lets steam reach 121 degrees. Endospores have a D-value of 4 to 5 minutes at 121 degrees."],
+["Give the main pasteurisation methods.", "HTST at 72 degrees for 15 seconds, UHT at 135 to 150 degrees for about 2 seconds, and ESL, filtration then a lower-temperature treatment. None sterilises."],
+["Compare UV and ionising radiation for control.", "UV at 260 to 280 nm makes thymine dimers but only treats surfaces and water. Ionising radiation such as cobalt-60 gamma rays makes radicals and double-strand breaks, penetrates, and is dosed in grays."],
+["What is the decimal reduction dose?", "D10, the radiation dose in grays needed to kill 90 per cent of a microbial population."],
+["Distinguish bacteriostatic, bactericidal and bacteriolytic.", "Static stops growth, so counts plateau. Cidal kills, so viable count falls but turbidity holds. Lytic kills by lysis, so turbidity and total count fall too."],
+["Define disinfectant, antiseptic and antibiotic.", "Disinfectant: used on non-living objects. Antiseptic: safe for living tissue. Antibiotic: an antimicrobial made by a microorganism, or a modified or synthetic version of one."],
+["How do glutaraldehyde, bleach and benzalkonium chloride work?", "Glutaraldehyde crosslinks proteins. Bleach oxidises lipids, DNA, RNA and proteins. Benzalkonium chloride, a quaternary ammonium compound, disrupts membranes."],
+["What makes a good disinfectant?", "Kills a wide range of microbes, not corrosive or too toxic, leaves no residue or fumes, cheap, and temperature stable."],
+["Give an example of a broad-spectrum and a narrow-spectrum antibiotic, with modes of action.", "Broad: tetracycline, blocks protein synthesis. Narrow: penicillin, blocks cell wall synthesis, and polymyxin B, disrupts the outer membrane."],
+["How does a Kirby-Bauer test work?", "Antibiotic discs are placed on a lawn of the organism; the drug diffuses out and the size of the clear zone of inhibition shows susceptibility."]
 ],
 "mvp": [
 ["Name the five classes of Proteobacteria with an example of each.", "Alpha with Rhizobium, Beta with Nitrosomonas, Gamma with E. coli, Delta with Desulfovibrio, Epsilon with Helicobacter."],
@@ -2105,6 +2263,58 @@ const MEM = {
 ["Reverse DNA gyrase", "Adds supercoils to protect DNA at high temperature"],
 ["Archaellum", "Motility organ that grows from the base and runs on ATP"],
 ["Cannulae", "Hollow glycoprotein tubes linking cells into a network"]
+]},
+"vir": {title: "Virus cards", intro: "History, structure, replication, cultivation and the virus-like particles from Topic 5.", pairs: [
+["Dmitri Ivanovsky", "1892: tobacco mosaic disease passes through bacteria-proof filters"],
+["Félix d'Herelle", "Discovered bacteriophages and coined the term plaque"],
+["Walter Reed", "1901: yellow fever is a virus spread by mosquitoes"],
+["Capsid", "Protein shell built from many capsomeres"],
+["Nucleocapsid", "Capsid together with the genome inside it"],
+["Envelope", "Cell-derived lipid membrane around the nucleocapsid"],
+["Baltimore classification", "Seven classes by how the virus makes mRNA"],
+["<em>Mimivirus</em>", "Giant amoeba virus, 400 nm, 1.2 Mbp genome"],
+["ICTV", "Official virus taxonomy committee, set up in 1971"],
+["Membrane fusion", "Entry where the envelope merges with the host membrane"],
+["Plant virus entry", "Needs a wound in the cell wall, often from feeding insects"],
+["Prophage", "Phage genome integrated into the host chromosome"],
+["CRISPR spacer", "Stored fragment of phage DNA, the memory of a past infection"],
+["Virulent phage", "Always lytic"],
+["Temperate phage", "Can go lytic or lysogenic"],
+["Regressive hypothesis", "Viruses are cells that degenerated into host-dependent particles"],
+["Progressive hypothesis", "Viruses came from genetic material that gained semi-autonomous replication"],
+["Coevolution hypothesis", "Viruses arose alongside early microbes and evolved with them"],
+["HeLa cells", "First human cell line, used to grow animal viruses"],
+["Haemagglutination assay", "Virus clumps red blood cells; cheap and fast, but gives no number"],
+["Plaque-forming unit", "Clear zone on a host lawn from one infectious particle"],
+["TCID<sub>50</sub>", "Virus dose causing cytopathic effect in half of cultured cells"],
+["Viroid", "Naked RNA under 400 nt that causes plant disease"],
+["Prion", "Misfolded protein with no nucleic acid; causes TSEs such as mad cow disease"]
+]},
+"grow": {title: "Cultivation and control cards", intro: "Nutrition, growth conditions, media and control methods from Topic 6.", pairs: [
+["Anabolism", "Builds cell material and consumes energy"],
+["Catabolism", "Breaks compounds down and releases energy"],
+["Macronutrients", "C, N, P, S, O and H"],
+["Photolithoautotroph", "Light energy, inorganic electrons, CO<sub>2</sub> carbon: cyanobacteria"],
+["Chemoorganoheterotroph", "Organic compounds for energy, electrons and carbon: <em>E. coli</em>"],
+["Chemolithotroph", "Oxidises H<sub>2</sub>, NH<sub>3</sub> or S<sup>0</sup> for energy; prokaryotes only"],
+["Microaerophile", "Needs oxygen, but only at low levels"],
+["Autoclave", "121 °C steam at 15 psi; the temperature kills, not the pressure"],
+["Obligate anaerobe", "Cannot grow when oxygen is present"],
+["Catalase", "2 H<sub>2</sub>O<sub>2</sub> → 2 H<sub>2</sub>O + O<sub>2</sub>"],
+["Water activity", "Vapour pressure ratio: pure water 1.0, seawater 0.98"],
+["Psychrophile", "Optimum below 15 °C, maximum about 20 °C"],
+["Antiseptic", "Antimicrobial that can be used on living tissue"],
+["Agar", "Algal galactose polymer that most microbes cannot degrade"],
+["Selective medium", "Lets only certain organisms grow"],
+["Differential medium", "Tells organisms apart by a visible reaction"],
+["Enrichment medium", "Boosts a population with a particular property"],
+["Chemostat", "Continuous culture held in exponential growth"],
+["Kirby-Bauer test", "Antibiotic discs on a lawn; zone size shows susceptibility"],
+["Tetracycline", "Broad-spectrum antibiotic that blocks protein synthesis"],
+["Nucleopore filter", "Etched polycarbonate film with uniform pores, good for microscopy"],
+["D-value", "Time to kill 90 per cent of a population"],
+["HTST pasteurisation", "72 °C for 15 seconds"],
+["Bacteriolytic", "Kills by lysing the cell"]
 ]},
 "fungi": {title: "Eukaryotic microbe cards", intro: "Fungi, other eukaryotic microbes and key terms.", pairs: [
 ["Chytridiomycota", "Early-branching fungi with flagellated zoospores"],
