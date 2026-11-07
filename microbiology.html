@@ -1337,123 +1337,189 @@ document.getElementById("fc-only").addEventListener("click", e => {
 <!-- ================= TOPIC 7: BACTERIAL MVPs ================= -->
 <section id="mvp">
   <h2>Topic 7: bacterial most valuable players</h2>
-  <p>This topic is a set of groups worth knowing by name, physiology and why they matter. The pattern to learn for each one is the same: where it sits phylogenetically, how it gets energy and carbon, what it does that nothing else does, and which named genus to quote.</p>
+  <p>This topic is a set of groups worth knowing by name, physiology and why they matter. The pattern to learn for each one is the same: where it sits phylogenetically, how it gets energy, electrons and carbon, what it does that nothing else does, and which named genus to quote. Taxonomy is still maturing, and traditional groupings often disagree with phylogeny.</p>
 
   <h3>Proteobacteria</h3>
-  <p>The largest and most metabolically varied bacterial phylum, all Gram-negative, divided into classes named by Greek letters. Alpha (<em>Rhizobium</em>, <em>Rickettsia</em>, <em>Caulobacter</em>, and the ancestor of mitochondria), Beta (<em>Nitrosomonas</em>, <em>Neisseria</em>, <em>Burkholderia</em>), Gamma (<em>E. coli</em>, <em>Pseudomonas</em>, <em>Vibrio</em>, <em>Chromatium</em>), Delta (myxobacteria, sulfate reducers) and Epsilon (<em>Helicobacter</em>, <em>Campylobacter</em>). Almost every physiology discussed elsewhere in the course has a proteobacterial example, which is why the phylum is the reference point for the rest of this topic.</p>
+  <p>Named after Proteus, the Greek god who could change shape, because the phylum is so morphologically and metabolically diverse: chemolithotrophs, chemoorganotrophs and phototrophs. They are Gram-negative, include many of the most commonly encountered bacteria, and are related to mitochondria. The classes are named by Greek letters. Alpha (<em>Rhizobium</em>, <em>Rickettsia</em>, <em>Nitrobacter</em>, <em>Beijerinckia</em>, and the ancestor of mitochondria), Beta (<em>Nitrosomonas</em>, <em>Neisseria</em>, <em>Burkholderia</em>), Gamma (<em>E. coli</em>, <em>Pseudomonas</em>, <em>Vibrio</em>, purple sulfur bacteria, <em>Nitrosococcus</em>), Delta (<em>Desulfovibrio</em>, <em>Myxococcus</em>) and Epsilon (<em>Helicobacter</em>, <em>Campylobacter</em>); the lecture figure also shows a small Zeta class (<em>Mariprofundus</em>, an iron oxidiser).</p>
 
-  <h3>Purple sulfur bacteria</h3>
+  <h3>Purple sulfur and purple nonsulfur bacteria</h3>
   <div class="scroll">
   <table>
-    <thead><tr><th>Property</th><th>Detail</th></tr></thead>
+    <thead><tr><th>Property</th><th>Purple sulfur bacteria</th><th>Purple nonsulfur bacteria</th></tr></thead>
     <tbody>
-      <tr><td>Examples</td><td><em>Chromatium</em>, <em>Thiospirillum</em>, <em>Allochromatium</em> (Gammaproteobacteria)</td></tr>
-      <tr><td>Metabolism</td><td>Anoxygenic photolithoautotrophy: light for energy, H<sub>2</sub>S as electron donor, CO<sub>2</sub> as carbon source</td></tr>
-      <tr><td>Key point</td><td>One photosystem only, so electrons come from sulfide rather than water and no O<sub>2</sub> is made. Sulfur is stored as globules inside the cell, unlike green sulfur bacteria which deposit it outside</td></tr>
-      <tr><td>Pigments</td><td>Bacteriochlorophyll a and b, absorbing in the near infrared, plus carotenoids that give the purple colour</td></tr>
-      <tr><td>Habitat</td><td>Illuminated anoxic zones: the sulfide-rich layer of stratified lakes, sediments, the Winogradsky column</td></tr>
+      <tr><td>Class</td><td>Gammaproteobacteria (<em>Chromatium</em>, <em>Thermochromatium</em>)</td><td>Alpha- and Betaproteobacteria (<em>Rhodopseudomonas</em>, <em>Rhodocyclus</em>)</td></tr>
+      <tr><td>Nutrition</td><td>Photolithoautotrophs: light for energy, H<sub>2</sub>S as electron donor, CO<sub>2</sub> for carbon</td><td>Usually photoorganoheterotrophs</td></tr>
+      <tr><td>Sulfide</td><td>Prefer high H<sub>2</sub>S, oxidising it to elemental sulfur (S<sup>0</sup>) during photosynthetic CO<sub>2</sub> reduction</td><td>Tolerate only low H<sub>2</sub>S</td></tr>
+      <tr><td>Sulfur storage</td><td>S<sup>0</sup> stored in the periplasm or outside the cell; it disappears when further oxidised to sulfate</td><td>Not applicable</td></tr>
+      <tr><td>Habitat</td><td>Illuminated anoxic zones of lakes where H<sub>2</sub>S is present, where they form purple blooms</td><td>Lit, low-sulfide zones</td></tr>
     </tbody>
   </table>
   </div>
+  <p>Both carry out <strong>anoxygenic photosynthesis</strong>: no oxygen is produced because water is not the electron source. Oxygen inhibits photosynthesis, although some can grow aerobically by respiration. Bacteriochlorophylls and carotenoids set which wavelengths of light are used (bacteriochlorophyll a absorbs in the near infrared), and extensive intracytoplasmic membranes hold the light-harvesting pigments.</p>
+  <div class="key"><strong>Winogradsky column.</strong> Invented by Sergei Winogradsky in the 1880s: pond mud and water in a column with a carbon source such as newspaper (cellulose) and a sulfur source such as gypsum (calcium sulfate) or egg yolk. Sulfate reducers in the mud make H<sub>2</sub>S by anaerobic respiration with sulfate as electron acceptor, so a sulfide gradient forms opposite the oxygen gradient. Purple sulfur bacteria band where sulfide is high and light reaches, purple nonsulfur bacteria above them where sulfide is low. The columns are colourful, easy to make, and last for years.</div>
 
-  <h3>C1 eaters (methylotrophs and methanotrophs)</h3>
-  <p>Organisms that grow on compounds with a single carbon atom and no carbon-carbon bond: methane, methanol, methylamine, formate. Methanotrophs are the subset that starts from methane, using methane monooxygenase to make methanol, then formaldehyde, which is assimilated by the serine or the ribulose monophosphate pathway. <em>Methylococcus</em> and <em>Methylosinus</em> are the standard examples, and they form the biological filter that oxidises most of the methane produced in sediments and landfill before it reaches the atmosphere. Methane monooxygenase also cooxidises chlorinated solvents such as trichloroethylene, which makes these organisms useful in bioremediation.</p>
+  <h3>C1 eaters: methylotrophs and methanotrophs</h3>
+  <p><strong>Methylotrophs</strong> use reduced C1 compounds, which have no carbon-carbon bonds (methanol CH<sub>3</sub>OH, formate HCOOH, methylamine CH<sub>3</sub>NH<sub>2</sub>), as carbon and energy sources. <strong>Methanotrophs</strong> are methylotrophs that can also oxidise methane (CH<sub>4</sub>). Most are obligate C1 users that cannot use compounds with C-C bonds; a few facultative methanotrophs, such as <em>Methylocella</em>, can use acetate.</p>
+  <ul>
+    <li><strong>Methane monooxygenase (MMO)</strong> oxidises methane to methanol. The membrane-bound particulate form, pMMO, sits in extensive intracytoplasmic membranes; some methanotrophs also, or instead, have a soluble cytoplasmic form, sMMO. Methanol goes on to formaldehyde, which is assimilated into biomass.</li>
+    <li>Obligate aerobes, often microaerophilic, widespread in soil and water and morphologically diverse (<em>Methylococcus</em>, <em>Methylobacter</em>, <em>Methylosinus</em>).</li>
+    <li>Found at the <strong>oxic-anoxic interface</strong>, between anoxic zones where methane is made and oxic zones where O<sub>2</sub> is available for respiration, for example near the thermocline of a stratified lake. Cattle rumen and swamps have plenty of methane but often too little O<sub>2</sub>.</li>
+    <li>Some are symbionts in the gill tissue of marine mussels living near geological methane sources.</li>
+    <li>They oxidise much of the methane made in sediments and landfill before it reaches the atmosphere, and MMO also cooxidises chlorinated solvents such as trichloroethylene, which is useful in bioremediation.</li>
+  </ul>
 
   <h3>Nitrifiers</h3>
+  <p>Nitrifiers use reduced nitrogen compounds as energy sources (electron donors). They are obligate aerobes and <strong>chemolithoautotrophs</strong>, scattered across several groups, and widespread in wastewater treatment plants, soils, lakes and sediments.</p>
   <div class="scroll">
   <table>
-    <thead><tr><th>Step</th><th>Reaction</th><th>Organism</th></tr></thead>
+    <thead><tr><th>Step</th><th>Enzymes</th><th>Organisms</th></tr></thead>
     <tbody>
-      <tr><td>Ammonia oxidation</td><td>NH<sub>3</sub> to NO<sub>2</sub><sup>-</sup>, via hydroxylamine, using ammonia monooxygenase</td><td><em>Nitrosomonas</em>, <em>Nitrosococcus</em>; also ammonia-oxidising Thaumarchaeota</td></tr>
-      <tr><td>Nitrite oxidation</td><td>NO<sub>2</sub><sup>-</sup> to NO<sub>3</sub><sup>-</sup>, using nitrite oxidoreductase</td><td><em>Nitrobacter</em>, <em>Nitrospira</em></td></tr>
-      <tr><td>Complete nitrification</td><td>Both steps in one organism (comammox)</td><td>Some <em>Nitrospira</em>, discovered in 2015</td></tr>
+      <tr><td>Ammonia oxidation: NH<sub>3</sub> to NO<sub>2</sub><sup>-</sup></td><td>Ammonia monooxygenase (AMO) makes hydroxylamine, then hydroxylamine dehydrogenase (HAO) makes nitrite. Both sit in extensive intracytoplasmic membranes, and AMO is evolutionarily related to methane monooxygenase</td><td><em>Nitrosomonas</em>, <em>Nitrosococcus</em>; also ammonia-oxidising archaea (Thaumarchaeota)</td></tr>
+      <tr><td>Nitrite oxidation: NO<sub>2</sub><sup>-</sup> to NO<sub>3</sub><sup>-</sup></td><td>Nitrite oxidoreductase (Nxr), held in intracytoplasmic membranes in <em>Nitrobacter</em></td><td><em>Nitrobacter</em>, <em>Nitrospira</em>. <em>Nitrospira</em> is not a proteobacterium: it has its own phylum, Nitrospirota</td></tr>
+      <tr><td>Complete ammonia oxidation (comammox): NH<sub>3</sub> to NO<sub>3</sub><sup>-</sup></td><td>Both AMO and Nxr in one cell</td><td>Some <em>Nitrospira</em>, discovered in 2015 in biofilms from engineered aquatic systems; adapted to low ammonia and nitrite, now found in soils and drinking water systems. Never say never with microorganisms</td></tr>
     </tbody>
   </table>
   </div>
-  <p>Nitrifiers are obligate chemolithoautotrophs and aerobes. The energy yield per electron is small, so they grow slowly, which matters practically: a sewage treatment plant loses nitrification long before it loses carbon removal, and nitrifiers are the bottleneck when a system is upset. Nitrification also converts ammonium, which soil holds, into nitrate, which leaches, so it drives fertiliser loss and groundwater contamination.</p>
+  <p>Ammonia oxidisers and nitrite oxidisers co-occur in nature. FISH with fluorescent phylogenetic probes on activated sewage sludge shows them in tight clusters, ammonia oxidisers in one colour and nitrite oxidisers in another, passing nitrite between them. The energy yield is small, so nitrifiers grow slowly and are the first process lost when a treatment plant is upset. Nitrification also turns ammonium, which soil holds, into nitrate, which leaches, so it drives fertiliser loss and groundwater contamination.</p>
 
   <h3>Pseudomonads</h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Property</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td>Examples</td><td><em>Pseudomonas aeruginosa</em>, <em>P. fluorescens</em>, <em>P. putida</em></td></tr>
-      <tr><td>Character</td><td>Gram-negative straight rods, polar flagellum, strict aerobes that can also respire nitrate, oxidase positive, non-fermentative</td></tr>
-      <tr><td>Metabolic range</td><td>Extremely broad: over a hundred organic substrates, including aromatics and hydrocarbons. Central to bioremediation and to spoilage</td></tr>
-      <tr><td>Clinical importance</td><td><em>P. aeruginosa</em> is an opportunist in burns, cystic fibrosis and ventilated patients. Pyocyanin gives blue-green pus, it forms tough biofilms, and it resists many antibiotics and disinfectants intrinsically through efflux and low permeability</td></tr>
-      <tr><td>Habitat</td><td>Soil, water, damp surfaces, including distilled water and disinfectant bottles</td></tr>
+      <tr><td>Taxonomy</td><td>A very heterogeneous group with recently revised taxonomy: the old <em>Pseudomonas</em> was split into <em>Pseudomonas</em>, <em>Burkholderia</em>, <em>Ralstonia</em>, <em>Comamonas</em> and others</td></tr>
+      <tr><td>Nutrition</td><td>Aerobic chemoorganoheterotrophs; some, such as <em>P. aeruginosa</em>, can also respire nitrate anaerobically. Nutritionally versatile: over a hundred organic substrates, including aromatics and hydrocarbons</td></tr>
+      <tr><td>Motility</td><td><strong>Polar</strong> flagella, which distinguishes them from the peritrichous enterics</td></tr>
+      <tr><td>Habitat</td><td>Soil, water, and eukaryotic hosts: animal pathogens and plant pathogens</td></tr>
+      <tr><td>Pigments</td><td>Some are fluorescent: <em>P. aeruginosa</em> and <em>P. fluorescens</em> make pyoverdin, a siderophore that glows under UV. <em>P. aeruginosa</em> also makes pyocyanin, the blue-green pigment in infected wounds</td></tr>
+      <tr><td>Clinical importance</td><td><em>P. aeruginosa</em> is an opportunist in burns, cystic fibrosis and ventilated patients; it forms tough biofilms and resists many antibiotics and disinfectants through efflux and low permeability</td></tr>
     </tbody>
   </table>
   </div>
 
   <h3>Nitrogen fixers</h3>
-  <p>Only prokaryotes fix nitrogen. Nitrogenase reduces N<sub>2</sub> to two NH<sub>3</sub>, consuming 16 ATP and 8 electrons per molecule, and it is irreversibly inactivated by oxygen. Every fixer solves that contradiction somehow.</p>
+  <p>Only prokaryotes fix nitrogen. <strong>Nitrogenase</strong> reduces N<sub>2</sub> to NH<sub>3</sub>, consuming about 16 ATP and 8 electrons per N<sub>2</sub>, and it is <strong>irreversibly inactivated by O<sub>2</sub></strong>. Every fixer needs a way around that.</p>
   <div class="scroll">
   <table>
-    <thead><tr><th>Organism</th><th>Lifestyle</th><th>Oxygen strategy</th></tr></thead>
+    <thead><tr><th>Organism</th><th>Lifestyle</th><th>How nitrogenase is protected from O<sub>2</sub></th></tr></thead>
     <tbody>
-      <tr><td><em>Rhizobium</em>, <em>Bradyrhizobium</em></td><td>Symbiotic in legume root nodules, differentiating into bacteroids</td><td>Plant leghaemoglobin buffers O<sub>2</sub> to a low steady concentration</td></tr>
-      <tr><td><em>Frankia</em></td><td>Symbiotic with alder and other woody plants (Actinobacteria)</td><td>Vesicles with thick lipid envelopes</td></tr>
-      <tr><td><em>Azotobacter</em></td><td>Free-living aerobe in soil</td><td>Respiratory protection: the highest respiration rate known consumes O<sub>2</sub> before it reaches nitrogenase</td></tr>
-      <tr><td><em>Anabaena</em>, <em>Nostoc</em></td><td>Filamentous cyanobacteria</td><td>Heterocysts: differentiated cells that shut down photosystem II</td></tr>
-      <tr><td><em>Clostridium pasteurianum</em></td><td>Free-living anaerobe</td><td>Avoids oxygen entirely</td></tr>
+      <tr><td><em>Azotobacter</em>, <em>Beijerinckia</em></td><td>Free-living strict aerobes in soil</td><td>A thick slime layer (capsule) plus a very high respiration rate keep intracellular O<sub>2</sub> low during fixation</td></tr>
+      <tr><td><em>Klebsiella</em></td><td>Free-living facultative anaerobe</td><td>Fixes when growing anaerobically</td></tr>
+      <tr><td><em>Clostridium</em></td><td>Free-living strict anaerobe</td><td>No O<sub>2</sub> present, so no protection needed</td></tr>
+      <tr><td>Rhizobia (<em>Rhizobium</em>, <em>Sinorhizobium</em>, <em>Mesorhizobium</em>, <em>Bradyrhizobium</em>, <em>Azorhizobium</em>)</td><td>Symbiotic in legume root nodules as bacteroids</td><td>The plant's leghaemoglobin binds O<sub>2</sub>, keeping free O<sub>2</sub> low enough to protect nitrogenase while still supplying it for bacteroid respiration</td></tr>
+      <tr><td><em>Anabaena</em>, <em>Nostoc</em></td><td>Filamentous cyanobacteria</td><td>Heterocysts: no oxygen-evolving photosystem II and a thick envelope that slows O<sub>2</sub> diffusion</td></tr>
+      <tr><td><em>Frankia</em></td><td>Actinobacterium symbiotic with alder and other woody plants</td><td>Vesicles with thick lipid envelopes</td></tr>
     </tbody>
   </table>
   </div>
-  <div class="key">Nodule formation is a genetic conversation. Flavonoids from the root induce <em>nod</em> genes in the bacterium, Nod factors make the root hair curl, an infection thread forms, and the bacteria differentiate into bacteroids that trade ammonia for dicarboxylic acids. The specificity of that exchange is why a given rhizobium nodulates only certain legumes.</div>
+
+  <h4>Agrobacterium and the rhizobia</h4>
+  <p>Both are plant-associated, Gram-negative, aerobic rods in the family Rhizobiaceae of the Alphaproteobacteria (a few "beta-rhizobia", such as <em>Paraburkholderia</em>, are Betaproteobacteria). Their relationships with plants run in opposite directions.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Rhizobia</th><th><em>Agrobacterium</em></th></tr></thead>
+    <tbody>
+      <tr><td>Relationship</td><td>Mutualism with legumes (clover, soybean, peas)</td><td>Pathogen causing crown gall disease, a tumour on the plant</td></tr>
+      <tr><td>Signal and entry</td><td>Bacterial <em>nod</em> genes are switched on in response to plant <strong>flavonoids</strong>; Nod factors curl the root hair and an <strong>infection thread</strong> carries the bacteria into the root</td><td>Enters through wounds; plant phenolics switch on virulence genes on the Ti plasmid</td></tr>
+      <tr><td>What happens in the plant</td><td>A <strong>root nodule</strong> forms, giving a low-O<sub>2</sub> environment; bacteria differentiate into N<sub>2</sub>-fixing <strong>bacteroids</strong>; root cells make leghaemoglobin</td><td>A piece of the Ti plasmid (T-DNA) is transferred into the plant genome, making plant cells divide into a tumour and produce nutrients (opines) for the bacteria</td></tr>
+      <tr><td>Exchange</td><td>Plant supplies photosynthate as organic acids, burned in the TCA cycle to fuel fixation; bacteroids return fixed nitrogen as ammonium or amino acids</td><td>One-way: the bacterium benefits, the plant is harmed. The T-DNA system is used to genetically engineer plants</td></tr>
+    </tbody>
+  </table>
+  </div>
 
   <h3>Enterics</h3>
   <div class="scroll">
   <table>
     <thead><tr><th>Property</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td>Family</td><td>Enterobacteriaceae, Gammaproteobacteria</td></tr>
-      <tr><td>Shared traits</td><td>Gram-negative rods, facultative anaerobes, oxidase negative, catalase positive, ferment glucose, reduce nitrate, peritrichous flagella if motile</td></tr>
-      <tr><td>Members</td><td><em>Escherichia</em>, <em>Salmonella</em>, <em>Shigella</em>, <em>Klebsiella</em>, <em>Proteus</em>, <em>Enterobacter</em>, <em>Serratia</em>, <em>Yersinia</em></td></tr>
-      <tr><td>Identification</td><td>Lactose fermentation on MacConkey (pink for <em>E. coli</em> and <em>Klebsiella</em>, colourless for <em>Salmonella</em> and <em>Shigella</em>), the IMViC tests, H<sub>2</sub>S on TSI agar, urease for <em>Proteus</em></td></tr>
-      <tr><td>Why they matter</td><td>Coliforms are the indicator organisms for faecal contamination of water. The group covers most gastrointestinal and urinary infections and carries much of the world's transmissible antibiotic resistance on its plasmids</td></tr>
+      <tr><td>Group</td><td>Enteric means common in animal intestines. All are Gammaproteobacteria (Enterobacteriaceae)</td></tr>
+      <tr><td>Shared traits</td><td>Gram-negative rods, facultative anaerobes, oxidase negative, peritrichous flagella when motile, simple nutritional requirements (not fastidious); also catalase positive, glucose fermenting, nitrate reducing. Genera are told apart by diagnostic tests</td></tr>
+      <tr><td>Members</td><td><em>Escherichia</em>, <em>Salmonella</em>, <em>Shigella</em>, <em>Klebsiella</em>, <em>Proteus</em>, <em>Enterobacter</em>, <em>Serratia</em>, <em>Yersinia</em>. Many are pathogens, so they are very well studied</td></tr>
+      <tr><td>Identification</td><td>Lactose fermentation on MacConkey (pink for <em>E. coli</em> and <em>Klebsiella</em>, colourless for <em>Salmonella</em> and <em>Shigella</em>), IMViC tests, H<sub>2</sub>S on TSI agar, urease for <em>Proteus</em></td></tr>
+      <tr><td>Resistance</td><td>Carry much of the world's transmissible antibiotic resistance on plasmids</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="key"><strong>Coliforms</strong> (such as <em>E. coli</em>) are enterics traditionally defined as rod-shaped, Gram-negative, non-spore-forming, motile or non-motile bacteria that ferment lactose with acid and gas when incubated at 35 to 37 °C. They also live in soil and water, usually as plant saprophytes, but faecal coliforms are so abundant in animal waste that finding them in water signals faecal contamination. Coliforms may not be pathogens themselves; they are <strong>indicator organisms</strong> that pathogens could be present, which is why summer beach closures follow high <em>E. coli</em> counts.</div>
+
+  <h3>Deltaproteobacteria: predators</h3>
+  <p>A phylogenetically and physiologically diverse class. It includes the sulfate reducers (<em>Desulfovibrio</em>, <em>Desulfobacter</em>), strict anaerobes that respire sulfate to H<sub>2</sub>S, blacken sediments and corrode pipelines, as well as two kinds of bacterial hunter.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th><em>Bdellovibrio bacteriovorus</em></th><th>Gliding myxobacteria (<em>Myxococcus xanthus</em>, <em>Stigmatella aurantiaca</em>)</th></tr></thead>
+    <tbody>
+      <tr><td>Cell</td><td>Small, vibrioid (comma shaped), highly motile: about 100 cell lengths per second. "Bdello" means leech</td><td>Rods with gliding motility over surfaces; very large chromosome, about 9 to 15 Mb (9.1 Mb in <em>M. xanthus</em>, twice <em>E. coli</em>)</td></tr>
+      <tr><td>How it hunts</td><td>Strikes and sticks to a Gram-negative prey cell (<em>E. coli</em>, <em>Spirillum</em>, <em>Pseudomonas</em>), enters the periplasm using hydrolytic enzymes, and replicates there</td><td>Cells swarm cooperatively, secrete enzymes and lyse other bacterial cells for nutrients (chemoorganoheterotrophs)</td></tr>
+      <tr><td>Life cycle</td><td>Virus-like: grows as a filament in the periplasm, then divides and lyses the prey, releasing 3 to 6 progeny (more from larger prey) after 2.5 to 4 hours. Host-independent variants that grow without prey have been isolated</td><td>Starvation plus a quorum (cell-to-cell communication) triggers differentiation into a multicellular, pigmented <strong>fruiting body</strong> filled with <strong>myxospores</strong>, just visible to the eye (about 150 µm for <em>Stigmatella</em>) on decaying wood and dung pellets</td></tr>
     </tbody>
   </table>
   </div>
 
-  <h3>Deltaproteobacteria</h3>
-  <p>Two very different lifestyles in one class. The sulfate reducers (<em>Desulfovibrio</em>, <em>Desulfobacter</em>) are strict anaerobes that use sulfate as terminal electron acceptor, producing H<sub>2</sub>S; they blacken sediments with iron sulfide, corrode steel pipelines, and dominate anaerobic marine carbon flow. The myxobacteria (<em>Myxococcus xanthus</em>, <em>Bdellovibrio</em>) are aerobic predators: <em>Myxococcus</em> glides in cooperative swarms, lyses other bacteria with secreted enzymes, and on starvation builds a multicellular fruiting body in which some cells become myxospores, which is the most complex developmental cycle in the bacteria. <em>Bdellovibrio</em> instead invades the periplasm of a Gram-negative prey cell and consumes it from inside.</p>
+  <h3>Gram-positive bacteria: low GC and high GC</h3>
+  <p>Gram-positive bacteria fall into two phylogenetic groups, once called low GC and high GC by their DNA base content. The low GC group is the <strong>Firmicutes</strong>; the high GC group is the <strong>Actinobacteria</strong>.</p>
 
   <h3>Firmicutes, Gram-positive without spores</h3>
   <div class="scroll">
   <table>
-    <thead><tr><th>Genus</th><th>Character</th><th>Significance</th></tr></thead>
+    <thead><tr><th></th><th><em>Staphylococcus</em></th><th><em>Micrococcus</em></th></tr></thead>
     <tbody>
-      <tr><td><em>Staphylococcus</em></td><td>Clusters, catalase positive, salt tolerant, facultative</td><td><em>S. aureus</em> causes abscesses, food poisoning and toxic shock; MRSA carries an altered penicillin binding protein</td></tr>
-      <tr><td><em>Streptococcus</em></td><td>Chains, catalase negative, classified by haemolysis and Lancefield group</td><td><em>S. pyogenes</em> for pharyngitis and rheumatic fever, <em>S. pneumoniae</em> for pneumonia, <em>S. mutans</em> for dental caries</td></tr>
-      <tr><td><em>Lactobacillus</em>, <em>Lactococcus</em></td><td>Aerotolerant anaerobes, lactic acid fermenters, need rich media</td><td>Yoghurt, cheese, silage, sourdough; part of the vaginal and gut flora; homolactic against heterolactic fermentation</td></tr>
+      <tr><td>Group</td><td>Firmicutes (low GC)</td><td>Actually Actinobacteria (high GC), but looks like <em>Staphylococcus</em></td></tr>
+      <tr><td>Oxygen</td><td>Facultative anaerobe</td><td>Aerobe</td></tr>
+      <tr><td>Shared</td><td colspan="2">Catalase positive, resistant to drying and high salt (7.5 per cent NaCl selects for them, as in mannitol salt agar), often pigmented. Those traits make them ideal skin inhabitants</td></tr>
+      <tr><td>Where</td><td>Animals, including human skin; <em>S. aureus</em> causes boils, scalded skin syndrome, food poisoning and toxic shock; MRSA has an altered penicillin binding protein</td><td>Inanimate objects, dust, skin</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h4>Lactic acid bacteria</h4>
+  <ul>
+    <li>Rods (<em>Lactobacillus</em>) and cocci (<em>Streptococcus</em>, <em>Lactococcus</em>, <em>Enterococcus</em>) that make lactic acid as their major fermentation product.</li>
+    <li>No electron transport system, so no respiration: ATP comes from substrate-level phosphorylation (fermentation) only. They are anaerobes but <strong>aerotolerant</strong>, and catalase negative.</li>
+    <li>Most can only catabolise sugars. Complex nutritional requirements and limited biosynthesis make them <strong>fastidious</strong>.</li>
+    <li><strong>Homofermenters</strong> make essentially only lactic acid; <strong>heterofermenters</strong> make lactic acid plus ethanol (or acetate) and CO<sub>2</sub>.</li>
+    <li>Human interest: <em>Streptococcus pyogenes</em> (strep throat, necrotising fasciitis or flesh-eating disease, rheumatic fever), <em>S. pneumoniae</em> (bacterial pneumonia), <em>S. mutans</em> (dental caries), and fermented foods such as buttermilk, cheese (<em>Lactococcus</em>), yoghurt, silage and sourdough.</li>
+  </ul>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Other genus</th><th>Character</th><th>Significance</th></tr></thead>
+    <tbody>
       <tr><td><em>Enterococcus</em></td><td>Bile and salt tolerant gut organisms</td><td>Hospital infections; vancomycin-resistant strains are a major concern</td></tr>
       <tr><td><em>Listeria</em></td><td>Psychrotroph, facultative intracellular, motile at 25 °C</td><td>Grows at refrigerator temperature, dangerous in pregnancy</td></tr>
-      <tr><td><em>Mycoplasma</em></td><td>No cell wall, sterols in membrane, smallest free-living cell</td><td>Atypical pneumonia; unaffected by beta-lactams. Classified within Firmicutes despite staining as neither</td></tr>
+      <tr><td><em>Mycoplasma</em></td><td>No cell wall, sterols in membrane, smallest free-living cell</td><td>Atypical pneumonia; unaffected by beta-lactams</td></tr>
     </tbody>
   </table>
   </div>
 
   <h3>Firmicutes, Gram-positive with spores</h3>
+  <p>This group includes all endospore-forming bacteria. Their natural home is soil, and most are not pathogenic.</p>
   <div class="scroll">
   <table>
-    <thead><tr><th>Genus</th><th>Oxygen</th><th>Significance</th></tr></thead>
+    <thead><tr><th></th><th><em>Bacillus</em></th><th><em>Clostridium</em></th></tr></thead>
     <tbody>
-      <tr><td><em>Bacillus</em></td><td>Aerobic or facultative</td><td><em>B. subtilis</em> is the Gram-positive model organism and a source of industrial enzymes; <em>B. anthracis</em> causes anthrax; <em>B. cereus</em> causes food poisoning from reheated rice; <em>B. thuringiensis</em> supplies the Bt insecticidal toxin</td></tr>
-      <tr><td><em>Clostridium</em></td><td>Obligate anaerobe</td><td><em>C. tetani</em> and <em>C. botulinum</em> make the most potent toxins known, both blocking neurotransmission; <em>C. perfringens</em> causes gas gangrene; <em>C. difficile</em> causes antibiotic-associated colitis; <em>C. acetobutylicum</em> is used for solvent fermentation</td></tr>
-      <tr><td><em>Geobacillus</em></td><td>Thermophilic aerobe</td><td>Spores are the biological indicator for autoclave validation</td></tr>
+      <tr><td>Oxygen</td><td>Facultative or obligate aerobes</td><td>Strict anaerobes with no electron transport system</td></tr>
+      <tr><td>Metabolism</td><td>Break down complex polymers with secreted amylases, nucleases and lipases</td><td>Great diversity of fermentations, in both substrates and products; some fix N<sub>2</sub>, with no need to protect nitrogenase from O<sub>2</sub></td></tr>
+      <tr><td>Products</td><td>Many make antibiotics, linked to the sporulation process; <em>B. subtilis</em> supplies industrial enzymes</td><td>Industrial butyrate, acetone and butanol (<em>C. acetobutylicum</em>)</td></tr>
+      <tr><td>Toxins and disease</td><td><em>B. thuringiensis</em> makes a crystal protein toxin (Bt toxin) that kills insect larvae; <em>B. anthracis</em> causes anthrax; <em>B. cereus</em> causes food poisoning from reheated rice</td><td><em>C. botulinum</em> (botulism, and Botox), <em>C. tetani</em> (tetanus), <em>C. perfringens</em> (gas gangrene), <em>C. difficile</em> (antibiotic-associated colitis)</td></tr>
     </tbody>
   </table>
   </div>
-  <p>Sporulation in <em>B. subtilis</em> is the model for bacterial development: starvation triggers an asymmetric septum, the mother cell engulfs the forespore, and a cascade of sporulation-specific sigma factors (H, F, E, G, K) runs the programme compartment by compartment. Germination reverses it when nutrients return. The spore survives because of its dehydrated core, calcium dipicolinate, small acid-soluble proteins bound to the DNA, and a multilayer coat.</p>
+  <p><strong>Bt toxin.</strong> <em>B. thuringiensis</em> forms a parasporal body beside its spore, a crystal of Cry protoxin. The insect larva eats it, its alkaline gut converts the protoxin into active toxin, and the toxin destroys the gut lining. Many Cry proteins are specific to one type of insect, which is why Bt is used as an agricultural insecticide and engineered into crops.</p>
+  <p>Endospore position inside the mother cell helps identify a species: terminal (<em>Clostridium cadaveris</em>), subterminal (<em>C. sporogenes</em>) or central (<em>C. bifermentans</em>). Sporulation in <em>B. subtilis</em> is the model for bacterial development: starvation triggers an asymmetric septum, the mother cell engulfs the forespore, and a cascade of sporulation-specific sigma factors (H, F, E, G, K) runs the programme compartment by compartment. The spore survives because of its dehydrated core, calcium dipicolinate, small acid-soluble proteins bound to the DNA, and a multilayer coat. <em>Geobacillus</em> spores are the biological indicator for autoclave validation.</p>
 
   <h3>Actinobacteria, Gram-positive with high GC</h3>
+  <h4>Mycobacterium</h4>
+  <ul>
+    <li>Cell wall contains lipids called <strong>mycolic acids</strong>, which make the cells <strong>acid-fast</strong>: the dye basic fuchsin is not removed by an acid-alcohol wash because it binds the mycolic acids.</li>
+    <li>The high lipid content makes them resistant to many chemicals. Many contain carotenoid pigments, and they grow very slowly; <em>M. tuberculosis</em> grows in cordlike strands.</li>
+    <li>Some are major pathogens, but most species are free-living soil and water saprophytes, and <em>M. avium</em> is an opportunist in AIDS patients.</li>
+    <li><em>M. tuberculosis</em> causes tuberculosis. Robert Koch announced its discovery to the Berlin Physiological Society on 24 March 1882, opening by arguing that TB killed more people than plague or cholera (one in seven of all humans at the time). Paul Ehrlich, in the audience, called it the most important evening of his scientific life. Treatment still takes months of multidrug therapy.</li>
+    <li><em>M. leprae</em> causes leprosy, with over 170,000 new cases a year. It <strong>cannot be cultured</strong> in the lab, and its only known hosts are humans, red squirrels, chimpanzees and armadillos.</li>
+  </ul>
+  <h4>Filamentous Actinobacteria: Streptomyces and relatives</h4>
+  <p>Nutritionally versatile soil organisms that grow as filamentous, branching <strong>mycelia</strong>. Aerial filaments called <strong>sporophores</strong> divide into chains of desiccation-resistant spores called <strong>conidia</strong>, and the shape of the spore-bearing structures is a key feature for classifying <em>Streptomyces</em> groups. Colonies are opaque, rough and non-spreading. They make <strong>geosmin</strong>, which gives soil its earthy smell, and they are the great antibiotic producers: about 50 per cent of <em>Streptomyces</em> isolates make antibiotics, about 7,600 distinct compounds are known, and they supply about two thirds of the antibiotics used in human and veterinary medicine, agriculture and industry (streptomycin, tetracycline, erythromycin, vancomycin, chloramphenicol). A clear zone of inhibition around a colony on a lawn shows antibiotic production. Why they make them, whether as weapons or as signals, is still debated.</p>
   <div class="scroll">
   <table>
-    <thead><tr><th>Genus</th><th>Character</th><th>Significance</th></tr></thead>
+    <thead><tr><th>Other actinobacterium</th><th>Character</th><th>Significance</th></tr></thead>
     <tbody>
-      <tr><td><em>Streptomyces</em></td><td>Filamentous mycelium, aerial hyphae with chains of conidia, large genome</td><td>Source of most clinically used antibiotics: streptomycin, tetracycline, erythromycin, vancomycin, chloramphenicol. Gives soil its smell through geosmin</td></tr>
-      <tr><td><em>Mycobacterium</em></td><td>Acid-fast, mycolic acid layer, very slow growth</td><td><em>M. tuberculosis</em> requires months of multidrug therapy; <em>M. leprae</em> cannot be cultured at all</td></tr>
       <tr><td><em>Corynebacterium</em></td><td>Club-shaped, palisade arrangement</td><td><em>C. diphtheriae</em> makes a phage-encoded toxin that blocks elongation factor 2; <em>C. glutamicum</em> produces industrial glutamate and lysine</td></tr>
       <tr><td><em>Bifidobacterium</em>, <em>Propionibacterium</em></td><td>Anaerobic fermenters</td><td>Infant gut flora and probiotics; Swiss cheese holes and flavour; <em>Cutibacterium acnes</em> on skin</td></tr>
       <tr><td><em>Frankia</em></td><td>Filamentous nitrogen fixer</td><td>Symbiosis with non-legume woody plants</td></tr>
@@ -1466,15 +1532,46 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <table>
     <thead><tr><th>Property</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td>Metabolism</td><td>Oxygenic photosynthesis with two photosystems, chlorophyll a, phycobilisomes, and thylakoid membranes inside a Gram-negative envelope</td></tr>
-      <tr><td>Historical role</td><td>Produced the Great Oxidation Event about 2.4 billion years ago and gave rise to the chloroplast by primary endosymbiosis</td></tr>
-      <tr><td>Forms</td><td>Unicellular (<em>Synechococcus</em>, <em>Prochlorococcus</em>), colonial, and filamentous with differentiated cells (<em>Anabaena</em>, <em>Nostoc</em>, <em>Oscillatoria</em>)</td></tr>
-      <tr><td>Differentiated cells</td><td>Heterocysts for nitrogen fixation, akinetes as resting cells, hormogonia for dispersal</td></tr>
-      <tr><td>Ecology</td><td><em>Prochlorococcus</em> is probably the most abundant photosynthetic organism on Earth; blooms of <em>Microcystis</em> produce hepatotoxic microcystins; gas vesicles set buoyancy in the water column</td></tr>
-      <tr><td>Extras</td><td>Carboxysomes concentrate CO<sub>2</sub> for rubisco; many species fix both carbon and nitrogen, so they need almost nothing but light, water and minerals</td></tr>
+      <tr><td>Phylogeny and envelope</td><td>Distantly related to the Gram-positive bacteria, but with a Gram-negative-like envelope and a thick cell wall</td></tr>
+      <tr><td>Metabolism</td><td>Oxygenic photoautotrophs with two photosystems; some can also do anoxygenic photosynthesis using sulfide, or ferment in the dark. Carboxysomes concentrate CO<sub>2</sub> for rubisco</td></tr>
+      <tr><td>Pigments</td><td>Chlorophyll a, the same chlorophyll as in chloroplasts, plus accessory phycobilins: phycocyanin (blue) and phycoerythrin (red). <em>Prochloron</em> and <em>Acaryochloris</em> have unusual chlorophylls</td></tr>
+      <tr><td>Membranes</td><td>Extensive intracytoplasmic membranes called <strong>thylakoids</strong> hold the light-capturing pigments</td></tr>
+      <tr><td>Motility</td><td>Many glide; flagella are absent</td></tr>
+      <tr><td>Forms</td><td>Unicellular (<em>Synechococcus</em>, <em>Prochlorococcus</em>), colonial, filamentous (<em>Oscillatoria</em>), filamentous with heterocysts (<em>Anabaena</em>, <em>Nostoc</em>), and filamentous branching</td></tr>
+      <tr><td>Heterocysts</td><td>Differentiated cells spaced along a filament where N<sub>2</sub> fixation happens. They lack the O<sub>2</sub>-evolving photosystem II, and a thick envelope (extra glycolipid and polysaccharide layers outside the wall) slows O<sub>2</sub> diffusion in. Neighbouring cells supply organic carbon and receive fixed nitrogen. Akinetes are resting cells and hormogonia are motile dispersal filaments</td></tr>
+      <tr><td>Water quality</td><td>Some make geosmin, giving drinking water an earthy or musty taste and smell; many bloom-forming "blue-green algae" such as <em>Microcystis</em> make toxins (microcystins)</td></tr>
+      <tr><td>History and ecology</td><td>Caused the Great Oxidation Event about 2.4 billion years ago and gave rise to the chloroplast by primary endosymbiosis. <em>Prochlorococcus</em> is probably the most abundant photosynthetic organism on Earth</td></tr>
     </tbody>
   </table>
   </div>
+
+  <h3>Summary: intracytoplasmic membranes and nutritional categories</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Bacteria with intracytoplasmic membranes</th><th>What the membranes hold</th></tr></thead>
+    <tbody>
+      <tr><td>Purple sulfur and nonsulfur bacteria</td><td>Bacteriochlorophylls and carotenoids for light harvesting</td></tr>
+      <tr><td>Methanotrophs</td><td>Particulate methane monooxygenase (pMMO)</td></tr>
+      <tr><td>Ammonia oxidisers (<em>Nitrosomonas</em>, <em>Nitrosococcus</em>)</td><td>Ammonia monooxygenase (AMO) and hydroxylamine dehydrogenase (HAO)</td></tr>
+      <tr><td>Nitrite oxidisers (<em>Nitrobacter</em>)</td><td>Nitrite oxidoreductase (Nxr)</td></tr>
+      <tr><td>Cyanobacteria</td><td>Thylakoids holding chlorophyll a and the photosystems</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Group</th><th>Nutritional category</th></tr></thead>
+    <tbody>
+      <tr><td>Purple sulfur bacteria</td><td>Photolithoautotroph (light, H<sub>2</sub>S, CO<sub>2</sub>)</td></tr>
+      <tr><td>Purple nonsulfur bacteria</td><td>Usually photoorganoheterotroph</td></tr>
+      <tr><td>Cyanobacteria</td><td>Photolithoautotroph (light, H<sub>2</sub>O, CO<sub>2</sub>)</td></tr>
+      <tr><td>Nitrifiers</td><td>Chemolithoautotroph (NH<sub>3</sub> or NO<sub>2</sub><sup>-</sup>, CO<sub>2</sub>)</td></tr>
+      <tr><td>Methanotrophs and methylotrophs</td><td>Chemoorganotrophs on C1 compounds, which supply energy, electrons and carbon</td></tr>
+      <tr><td>Pseudomonads, enterics, nitrogen fixers, rhizobia, <em>Bdellovibrio</em>, myxobacteria, staphylococci, lactic acid bacteria, <em>Bacillus</em>, <em>Clostridium</em>, <em>Mycobacterium</em>, <em>Streptomyces</em></td><td>Chemoorganoheterotroph</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="memory" data-set="mvp"></div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="mvp"></div>
 </section>
@@ -2046,9 +2143,9 @@ const FC = {
 ],
 "mvp": [
 ["Name the five classes of Proteobacteria with an example of each.", "Alpha with Rhizobium, Beta with Nitrosomonas, Gamma with E. coli, Delta with Desulfovibrio, Epsilon with Helicobacter."],
-["How do purple sulfur bacteria make a living?", "Anoxygenic photolithoautotrophy: one photosystem, light for energy, hydrogen sulfide as electron donor, CO2 for carbon. Sulfur is stored as globules inside the cell."],
+["How do purple sulfur bacteria make a living?", "Anoxygenic photolithoautotrophy: one photosystem, light for energy, hydrogen sulfide as electron donor, CO2 for carbon. Sulfur is stored in the periplasm or outside the cell."],
 ["Why do purple sulfur bacteria make no oxygen?", "They have only one photosystem, so electrons come from sulfide rather than from splitting water."],
-["What is a methanotroph, and what enzyme defines it?", "A microbe that grows on methane, using methane monooxygenase to oxidise it to methanol. Methylococcus is the standard example."],
+["What is a methanotroph, and what enzyme defines it?", "A methylotroph that can also oxidise methane, using methane monooxygenase to turn it into methanol. The particulate enzyme sits in intracytoplasmic membranes, and these obligate aerobes live at oxic-anoxic interfaces. Methylobacter is an example."],
 ["Which organisms carry out the two steps of nitrification?", "Nitrosomonas oxidises ammonia to nitrite, Nitrobacter and Nitrospira oxidise nitrite to nitrate. Some Nitrospira do both, which is called comammox."],
 ["Why do nitrifiers grow slowly, and why does it matter in a treatment plant?", "The energy yield per electron is small. Nitrification is therefore the first process lost when a plant is upset."],
 ["What makes Pseudomonas aeruginosa hard to treat?", "Tough biofilms, intrinsic resistance through efflux pumps and low outer membrane permeability, and growth in damp environments including disinfectant solutions."],
@@ -2060,8 +2157,8 @@ const FC = {
 ["What are the two lifestyles found in Deltaproteobacteria?", "Sulfate reduction by Desulfovibrio, producing hydrogen sulfide, and predation by myxobacteria such as Myxococcus, which swarm, lyse prey and build fruiting bodies."],
 ["Which Gram-positive genus makes most clinical antibiotics?", "Streptomyces, an actinobacterium with filamentous growth, aerial conidia and a large genome. It also produces geosmin."],
 ["Distinguish Bacillus from Clostridium.", "Both are spore-forming Firmicutes. Bacillus is aerobic or facultative, Clostridium is an obligate anaerobe."],
-["Which sigma factors run sporulation in B. subtilis?", "A cascade of sporulation-specific factors H, F, E, G and K, each acting in a particular compartment of the developing spore."],
-["Why is Mycoplasma unaffected by penicillin?", "It has no cell wall. It keeps sterols in its membrane instead and is pleomorphic and osmotically fragile."],
+["How do homofermentative and heterofermentative lactic acid bacteria differ?", "Homofermenters make essentially only lactic acid; heterofermenters also make ethanol or acetate and CO2. Both are aerotolerant anaerobes with no electron transport chain, so they ferment by substrate-level phosphorylation only."],
+["What makes Mycobacterium acid-fast, and why does it matter?", "Mycolic acids in the cell wall hold basic fuchsin against an acid-alcohol wash. That waxy wall also resists many chemicals and drugs; M. tuberculosis and M. leprae are major pathogens."],
 ["What makes cyanobacteria historically important?", "Oxygenic photosynthesis with two photosystems caused the Great Oxidation Event, and one lineage became the chloroplast by primary endosymbiosis."],
 ["What are heterocysts, akinetes and hormogonia?", "Heterocysts fix nitrogen with photosystem II shut down, akinetes are resting cells, hormogonia are motile filaments for dispersal."],
 ["Which is the most abundant photosynthetic organism on Earth?", "Prochlorococcus, a tiny marine cyanobacterium."]
@@ -2315,6 +2412,32 @@ const MEM = {
 ["D-value", "Time to kill 90 per cent of a population"],
 ["HTST pasteurisation", "72 °C for 15 seconds"],
 ["Bacteriolytic", "Kills by lysing the cell"]
+]},
+"mvp": {title: "Bacterial MVP cards", intro: "Topic 7 organisms, enzymes and features from the course notes.", pairs: [
+["Purple sulfur bacteria", "Gammaproteobacteria photoautotrophs that oxidise H<sub>2</sub>S to S<sup>0</sup> in sunlit anoxic lake water"],
+["Purple nonsulfur bacteria", "Alpha- and Betaproteobacteria that tolerate only low H<sub>2</sub>S, usually photoheterotrophs"],
+["Methylotroph", "Uses C1 compounds with no C-C bonds, such as methanol, for carbon and energy"],
+["Methane monooxygenase", "Oxidises methane to methanol; the particulate form sits in intracytoplasmic membranes"],
+["Ammonia monooxygenase", "Oxidises ammonia to hydroxylamine in <em>Nitrosomonas</em>"],
+["Comammox", "One <em>Nitrospira</em> cell oxidises ammonia all the way to nitrate (found 2015)"],
+["<em>Pseudomonas</em>", "Aerobic chemoorganoheterotroph with polar flagella; some fluoresce from pyoverdin"],
+["<em>Azotobacter</em>", "Free-living aerobic N<sub>2</sub> fixer that guards nitrogenase with slime and fast respiration"],
+["Nitrogenase", "Reduces N<sub>2</sub> to NH<sub>3</sub>; irreversibly inactivated by O<sub>2</sub>"],
+["Leghemoglobin", "Plant protein in the root nodule that binds O<sub>2</sub> to protect nitrogenase"],
+["<em>Agrobacterium</em>", "Alphaproteobacterium that causes crown gall tumours on plants"],
+["Enteric bacteria", "Gammaproteobacteria: facultative, oxidase negative, peritrichous flagella"],
+["Coliform", "Lactose-fermenting Gram-negative rod (acid and gas at 35 to 37 °C); indicator of faecal contamination"],
+["<em>Bdellovibrio</em>", "Predator that enters the periplasm of Gram-negative prey and replicates there"],
+["Myxobacteria", "Gliding predators that form fruiting bodies full of myxospores when starved"],
+["<em>Staphylococcus</em>", "Facultative, catalase-positive skin coccus that tolerates drying and high salt"],
+["Lactic acid bacteria", "Aerotolerant fermenters with no electron transport chain; fastidious"],
+["<em>Bacillus thuringiensis</em>", "Makes Cry protein crystals that kill insect larvae (BT toxin)"],
+["<em>Clostridium</em>", "Strict anaerobic spore former: butanol and acetone, botulinum toxin, some fix N<sub>2</sub>"],
+["Mycolic acids", "Waxy wall lipids that make <em>Mycobacterium</em> acid-fast"],
+["<em>Streptomyces</em>", "Filamentous soil actinobacterium with conidia on sporophores; source of most clinical antibiotics"],
+["Geosmin", "Earthy smell made by actinobacteria and some cyanobacteria"],
+["Heterocyst", "Thick-envelope cyanobacterial cell without photosystem II, where N<sub>2</sub> is fixed"],
+["Thylakoids", "Cyanobacterial internal membranes holding chlorophyll <em>a</em> and phycobilins"]
 ]},
 "fungi": {title: "Eukaryotic microbe cards", intro: "Fungi, other eukaryotic microbes and key terms.", pairs: [
 ["Chytridiomycota", "Early-branching fungi with flagellated zoospores"],
