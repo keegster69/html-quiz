@@ -509,6 +509,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 
   <p class="svgsm"><strong>Proving membranes are fluid:</strong> <strong>Frye and Edidin (1970)</strong> fused a mouse cell with a human cell, each with its surface proteins tagged a different fluorescent colour. At first the two colours sat on their own halves of the hybrid; within 40 minutes they were completely intermixed, so proteins diffuse laterally in the plane of the bilayer. <strong>FRAP</strong> (bleach a spot with a laser, watch fluorescence return as unbleached molecules drift in) measures that diffusion rate directly. <strong>How the first membranes formed:</strong> amphipathic lipids in water self-assemble into bilayers and close into vesicles with no enzyme needed, trapping whatever macromolecules happened to be inside, which is the most plausible origin of the first cell boundary.</p>
 
+  <div class="memory" data-set="cells"></div>
   <div class="deck" data-topic="membranes"></div>
 </section>
 
@@ -708,6 +709,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 
   <div class="key">Bacteria start at a <strong>Shine-Dalgarno</strong> sequence with fMet-tRNA; eukaryotes scan from the 5' cap to the first AUG (Kozak). Many ribosomes on one mRNA = a <strong>polysome</strong>. Chain grows N-terminus → C-terminus.</div>
 
+  <div class="memory" data-set="info"></div>
   <div class="deck" data-topic="txn"></div>
 </section>
 
@@ -882,6 +884,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 
   <p class="svgsm"><strong>Chaperones and protein evolution:</strong> most small proteins fold on their own (Anfinsen), but in the crowded cell many large or slow-folding proteins need <strong>chaperones</strong>: <strong>Hsp70</strong> binds exposed hydrophobic stretches on a nascent chain to stop it aggregating, and <strong>chaperonins</strong> (GroEL/Hsp60) are barrels that enclose a single misfolded chain and give it an isolated chamber in which to refold, burning ATP each cycle. Heat raises their expression, hence "heat shock proteins". Misfolded protein that escapes is tagged with ubiquitin and destroyed by the proteasome; when that fails, aggregates such as amyloid accumulate (Alzheimer's, prion diseases). <strong>Modular evolution:</strong> most proteins are built from a few hundred reusable <strong>domains</strong>, and new proteins arise largely by <strong>exon shuffling</strong>, duplication and divergence that combine old domains in new orders. Amino acid sequences change by mutation and are filtered by selection, so residues at an active site are nearly invariant across billions of years while surface loops drift freely.</p>
 
+  <div class="memory" data-set="prot"></div>
   <div class="deck" data-topic="protein"></div>
 </section>
 
@@ -1382,6 +1385,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
     <li><strong>Integration:</strong> a cell receives many signals at once and sums them. Pathways cross-talk through shared kinases and second messengers, and a response such as division often needs several inputs together, which is one reason cancer requires multiple mutations.</li>
   </ul>
 
+  <div class="memory" data-set="signal"></div>
   <div class="deck" data-topic="transduction"></div>
 </section>
 
@@ -1531,6 +1535,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </ul>
   <div class="hook">Stem cell = self-renewal plus making something else. Potency shrinks as development goes on: toti, pluri, multi, uni.</div>
 
+  <div class="memory" data-set="tissue"></div>
   <div class="deck" data-topic="ecm"></div>
 </section>
 
@@ -1659,6 +1664,7 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </div>
   <p>Once a cell passes the restriction point it is committed: it finishes the cycle even if the mitogens are taken away.</p>
 
+  <div class="memory" data-set="divide"></div>
   <div class="deck" data-topic="cellcycle"></div>
 </section>
 
@@ -2042,6 +2048,162 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
 // topic card sets, played as flashcards or match columns; same engine as microbiology.html (allows HTML in cards)
 // [front, back, extra note shown under the back]
 const MEM = {
+"cells": {title: "Cells and membranes cards", intro: "Chapter 3: cell theory, membranes, transport and the endomembrane system.", pairs: [
+["Cell theory", "All organisms are cells, the cell is the unit of life, cells come from cells"],
+["Prokaryote", "No nucleus; one circular chromosome in a nucleoid"],
+["Eukaryote", "Nucleus plus membrane-bound organelles"],
+["Phospholipid", "Amphipathic: polar head, two hydrophobic tails"],
+["Fluid mosaic", "Lipids and proteins diffuse laterally in the bilayer"],
+["Cholesterol", "Buffers membrane fluidity across temperatures"],
+["Frye and Edidin", "Mouse-human fusion showed membrane proteins mix in 40 minutes"],
+["Simple diffusion", "Small nonpolar molecules cross the bilayer directly, no protein"],
+["Facilitated diffusion", "Down a gradient through a channel or carrier, no ATP"],
+["Osmosis", "Water moves toward the higher solute concentration"],
+["Hypertonic", "Outside solution more concentrated; the cell shrinks"],
+["Primary active transport", "Pump spends ATP directly, like the Na⁺/K⁺ pump"],
+["Secondary active transport", "Rides a gradient another pump built, like Na⁺/glucose symport"],
+["Antiport", "Two solutes cross in opposite directions"],
+["Contractile vacuole", "Pumps out water that osmosis brings into a freshwater protist"],
+["Turgor", "Water pressure against a plant cell wall that keeps it stiff"],
+["Nucleus", "Holds the genome; site of RNA synthesis"],
+["Rough ER", "Ribosome-studded; makes secreted and membrane proteins"],
+["Smooth ER", "Lipid synthesis, detoxification, Ca²⁺ storage"],
+["Golgi apparatus", "Modifies, sorts and ships proteins and lipids"],
+["Lysosome", "Acidic bag of hydrolases that degrades macromolecules"],
+["Mitochondrion", "Double membrane, cristae; makes most of the cell's ATP"],
+["Chloroplast", "Thylakoids inside a double membrane; captures light energy"],
+["Endosymbiosis", "Mitochondria and chloroplasts descend from engulfed bacteria"]
+]},
+"info": {title: "Nucleic acids and transcription cards", intro: "Chapter 4: DNA structure, the classic experiments, transcription and RNA processing.", pairs: [
+["Griffith", "Heat-killed S plus live R strain killed mice: a transforming principle"],
+["Avery, MacLeod and McCarty", "Only DNase destroyed transformation: DNA is the principle"],
+["Hershey and Chase", "³²P entered cells, ³⁵S did not: phage DNA carries the information"],
+["Chargaff", "%A = %T and %G = %C"],
+["Rosalind Franklin", "X-ray diffraction image that revealed the helix"],
+["Nucleotide", "Phosphate + 5-carbon sugar + nitrogenous base"],
+["Phosphodiester bond", "Links the 3' OH of one nucleotide to the 5' phosphate of the next"],
+["Antiparallel", "The two strands run 5'→3' in opposite directions"],
+["Purine", "Two rings: A and G"],
+["Pyrimidine", "One ring: C, T and U"],
+["Major groove", "Wider groove where proteins read the base sequence"],
+["Ribose", "RNA's sugar, with a 2' OH that makes RNA less stable"],
+["Uracil", "Replaces thymine in RNA"],
+["RNA world", "Idea that early life used RNA for both information and catalysis"],
+["Promoter", "Sequence where RNA polymerase binds and transcription starts"],
+["Terminator", "Sequence where transcription stops"],
+["Template strand", "Read 3'→5' to build RNA 5'→3'"],
+["Coding strand", "Same sequence as the mRNA, with T for U"],
+["Sigma factor", "Bacterial subunit that finds the promoter"],
+["5' cap", "Modified G added to the start of eukaryotic mRNA"],
+["Poly-A tail", "Run of A's added to the 3' end for stability and export"],
+["Splicing", "Spliceosome removes introns and joins exons"],
+["Alternative splicing", "One gene, several mRNAs by choosing different exons"],
+["Polycistronic mRNA", "Bacterial transcript carrying several genes, translated at once"]
+]},
+"prot": {title: "Protein structure and synthesis cards", intro: "Chapter 5: amino acids, folding, chaperones, translation and sorting.", pairs: [
+["α-carbon", "Central carbon bearing the amino, carboxyl, H and R groups"],
+["R group", "Side chain; the only part that differs between amino acids"],
+["Peptide bond", "Amide link formed by condensation between carboxyl and amino groups"],
+["Primary structure", "Linear amino acid sequence"],
+["Secondary structure", "α-helix and β-sheet held by backbone hydrogen bonds"],
+["Tertiary structure", "Full 3-D fold driven by side-chain interactions"],
+["Quaternary structure", "Several folded subunits assembled, like hemoglobin"],
+["Hydrophobic effect", "Nonpolar side chains bury inward, the main folding drive"],
+["Disulfide bond", "Covalent S–S link between two cysteines"],
+["Anfinsen", "Ribonuclease refolded on its own: sequence dictates structure"],
+["Hsp70", "Chaperone that shields hydrophobic stretches on a nascent chain"],
+["Chaperonin", "Barrel that encloses one chain so it can refold, burning ATP"],
+["Codon", "Three mRNA bases specifying one amino acid or stop"],
+["Anticodon", "tRNA triplet that pairs with the codon"],
+["Aminoacyl-tRNA synthetase", "Charges each tRNA with its correct amino acid"],
+["Nirenberg and Matthaei", "Poly-U made polyphenylalanine: first codon deciphered"],
+["Start codon", "AUG, methionine"],
+["Release factor", "Protein that reads a stop codon and frees the chain"],
+["Peptidyl transferase", "rRNA ribozyme that forms the peptide bond"],
+["Signal sequence", "N-terminal tag that sends a chain to the ER"],
+["SRP", "Signal recognition particle; pauses translation and docks the ribosome on the ER"],
+["Domain", "Compact, independently folding unit reused across proteins"],
+["Exon shuffling", "New proteins by recombining existing domain-encoding exons"],
+["Prion", "Misfolded protein that templates misfolding of its normal copies"]
+]},
+"signal": {title: "Cell signalling cards", intro: "Chapter 9: signal types, receptors, G proteins, second messengers, kinases and how signals stop.", pairs: [
+["Endocrine signalling", "Hormone travels through the blood to distant targets"],
+["Paracrine signalling", "Local signal diffuses to nearby cells"],
+["Autocrine signalling", "Cell responds to a signal it secreted itself"],
+["Contact-dependent signalling", "Membrane-bound signal needs direct cell-cell touch"],
+["Synaptic signalling", "Neurotransmitter released across a synapse"],
+["Ligand", "Signal molecule that binds a receptor"],
+["Nuclear receptor", "Intracellular receptor for hydrophobic signals like steroids"],
+["GPCR", "Seven-pass receptor that activates a trimeric G protein"],
+["Gα subunit", "Binds GDP at rest, swaps for GTP when activated, hydrolyses it to stop"],
+["Adenylyl cyclase", "Makes cAMP from ATP"],
+["cAMP", "Second messenger that switches on protein kinase A"],
+["Phosphodiesterase", "Destroys cAMP to end the signal"],
+["Protein kinase A", "cAMP-activated serine/threonine kinase"],
+["CREB", "Transcription factor PKA phosphorylates to change gene expression"],
+["Phospholipase C", "Cuts PIP₂ into IP₃ and DAG"],
+["IP₃", "Opens ER channels to release Ca²⁺"],
+["DAG", "Stays in the membrane and activates protein kinase C"],
+["Calmodulin", "Ca²⁺-binding protein that switches on CaM kinases"],
+["Receptor tyrosine kinase", "Dimerises on ligand binding and cross-phosphorylates tyrosines"],
+["Ras", "Small G protein downstream of RTKs; most mutated gene in cancer"],
+["MAP kinase cascade", "Three-kinase relay from Ras to gene expression"],
+["Phosphatase", "Removes phosphate; undoes a kinase"],
+["Cholera toxin", "Locks Gα in the GTP state so cAMP floods the cell"],
+["Arrestin", "Binds a phosphorylated receptor to desensitise and internalise it"]
+]},
+"tissue": {title: "Cell form and tissue cards", intro: "Chapter 10: cytoskeleton, motors, junctions and matrix.", pairs: [
+["Microfilament", "Actin polymer, 7 nm; cell crawling and the contractile ring"],
+["Microtubule", "Tubulin tube, 25 nm; spindle, cilia and intracellular tracks"],
+["Intermediate filament", "Rope-like fibre for mechanical strength, like keratin"],
+["Dynamic instability", "Microtubule ends grow and shrink abruptly"],
+["Centrosome", "Main microtubule-organising centre of an animal cell"],
+["Kinesin", "Walks toward the microtubule plus end"],
+["Dynein", "Walks toward the minus end; powers cilia and flagella"],
+["Myosin", "Motor that pulls on actin"],
+["Lamellipodium", "Actin-driven sheet at the front of a crawling cell"],
+["Axoneme", "9+2 microtubule core of a eukaryotic cilium"],
+["Epithelium", "Sheet of cells covering a surface or lining a cavity"],
+["Connective tissue", "Sparse cells in abundant matrix: bone, tendon, blood"],
+["Cadherin", "Ca²⁺-dependent adhesion molecule linking cells to cells"],
+["Integrin", "Receptor that ties the cell to the extracellular matrix"],
+["Adherens junction", "Cadherins linked to actin belts"],
+["Desmosome", "Cadherin spot weld anchored to intermediate filaments"],
+["Hemidesmosome", "Integrins pinning the cell to the basal lamina"],
+["Tight junction", "Seals the gap between epithelial cells"],
+["Gap junction", "Connexon channel letting small molecules pass between animal cells"],
+["Plasmodesmata", "Cytoplasmic channels through plant cell walls"],
+["Collagen", "Most abundant protein; triple helix that gives tensile strength"],
+["Proteoglycan", "Protein with long sugar chains that holds water in the matrix"],
+["Primary cell wall", "Thin, stretchable wall laid down while the plant cell grows"],
+["Middle lamella", "Pectin layer gluing neighbouring plant cells together"]
+]},
+"divide": {title: "Replication and cell division cards", intro: "Chapter 11: copying DNA, mitosis and cell-cycle control.", pairs: [
+["Binary fission", "How prokaryotes divide"],
+["Interphase", "G1, S and G2: growth and DNA replication"],
+["G0", "Resting state outside the cycle"],
+["Semiconservative", "Each daughter helix keeps one parental strand"],
+["Meselson and Stahl", "Density-labelled DNA proved replication is semiconservative"],
+["Helicase", "Unwinds the double helix at the fork"],
+["Primase", "Lays an RNA primer so polymerase has a 3' OH"],
+["DNA polymerase", "Adds nucleotides only to a 3' OH, 5'→3'"],
+["Leading strand", "Made continuously toward the fork"],
+["Lagging strand", "Made in Okazaki fragments away from the fork"],
+["Ligase", "Seals nicks between Okazaki fragments"],
+["Proofreading", "3'→5' exonuclease removes a wrong base just added"],
+["Origin of replication", "Start site; eukaryotic chromosomes have many"],
+["Telomerase", "Extends chromosome ends that replication would shorten"],
+["Homologous chromosomes", "Matching pair, one from each parent"],
+["Sister chromatids", "Identical copies joined at the centromere"],
+["Prophase", "Chromosomes condense and become visible"],
+["Prometaphase", "Nuclear envelope breaks; spindle attaches to kinetochores"],
+["Metaphase", "Chromosomes line up at the equator"],
+["Anaphase", "Sister chromatids pulled apart"],
+["Telophase", "Nuclear envelopes re-form around each set"],
+["Cytokinesis", "Contractile ring in animals, cell plate in plants"],
+["Cyclin-Cdk", "Oscillating cyclin switches a constant kinase on and off"],
+["Checkpoint", "Pause until DNA is intact, replicated or chromosomes attached"]
+]},
 "found": {title: "Foundations and chemistry cards", intro: "Chapter 1 and 2 ideas: how science works, what life needs, atoms and functional groups.", pairs: [
 ["Hypothesis", "Tentative, testable explanation drawn from observation"],
 ["Theory", "General explanation supported by a very large body of evidence"],
