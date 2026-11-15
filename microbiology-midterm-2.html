@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Microbiology Midterm 2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --page:#f6f7f4; --ink:#1b2028; --ink-soft:#2c343c; --muted:#5d666e; --faint:#8a9199;
+  --line:#e4e7e2; --card:#fff; --opt:#fbfcfa; --chip:#eef0ed; --chip-ink:#7d8790;
+  --hero:#141a1f; --hero-ink:#eef2f0; --hero-muted:#8fa0a8;
+  --accent:#2563eb; --ok:#16a34a; --ok-ink:#14532d; --ok-bg:#f3faf5; --ok-line:#a7d8ba;
+  --bad:#dc2626; --bad-ink:#7f1d1d; --bad-bg:#fef4f4; --bad-line:#f0a3a3;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body{background:var(--page);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+
+header{background:var(--hero);padding:34px 0 30px}
+.kicker{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+h1{font-size:34px;font-weight:400;letter-spacing:-.015em;color:var(--hero-ink);margin:.35rem 0 .5rem}
+.lede{font-family:var(--sans);font-size:13.5px;color:var(--hero-muted);max-width:56ch;line-height:1.6}
+.stats{display:flex;gap:38px;margin-top:22px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--serif);font-size:27px;font-weight:400;color:var(--hero-ink)}
+.stat span{font-family:var(--sans);font-size:12px;color:var(--hero-muted)}
+
+main{padding:26px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.lead-card{border-left:4px solid var(--accent);display:flex;align-items:center;
+  justify-content:space-between;gap:20px;flex-wrap:wrap}
+.lead-card .label{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.lead-card h2{font-size:21px;font-weight:400;margin:.15rem 0}
+.lead-card .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.btn{font-family:var(--sans);font-size:15px;font-weight:600;color:#fff;background:var(--accent);
+  border:none;border-radius:7px;padding:13px 22px;min-height:44px;cursor:pointer}
+.btn:hover{background:#1d4ed8}
+.btn.ghost{background:var(--card);color:var(--accent);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--chip)}
+.btn.wide{width:100%;border-radius:8px;padding:14px}
+
+.section-title{font-family:var(--sans);font-size:12.5px;color:var(--faint);margin:26px 0 10px}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.unit{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);
+  border-radius:10px;padding:16px 18px;text-align:left;cursor:pointer;font-family:var(--serif);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%}
+.unit:hover{border-color:var(--accent)}
+.unit h3{font-size:18px;font-weight:400;margin:.1rem 0}
+.unit .meta{font-family:var(--sans);font-size:12.5px;color:var(--faint)}
+.score-ring{font-family:var(--sans);font-size:11.5px;font-weight:600;color:var(--chip-ink);
+  border:1px solid var(--line);border-radius:999px;padding:5px 9px;white-space:nowrap}
+.score-ring.done{color:var(--accent);border-color:var(--accent)}
+
+.topbar{background:var(--card);border-bottom:1px solid var(--line);padding:12px 0 0}
+.topbar .row{display:flex;align-items:center;gap:14px}
+.close{font-family:var(--sans);font-size:20px;line-height:1;color:var(--faint);background:none;
+  border:none;cursor:pointer;min-width:44px;min-height:44px}
+.close:hover{color:var(--ink)}
+.crumb{font-family:var(--sans);font-size:12.5px;color:var(--muted);flex:1;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.count{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted)}
+.progress{height:2px;background:var(--line);margin-top:10px}
+.progress i{display:block;height:2px;background:var(--accent);transition:width .2s ease-out}
+
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px 22px;margin-top:26px}
+.qtopic{font-family:var(--sans);font-size:11.5px;color:var(--accent)}
+.qtext{font-size:20px;font-weight:400;margin:.4rem 0 1.1rem;line-height:1.4}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:var(--opt);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-height:48px;cursor:pointer;
+  font-family:var(--serif);font-size:15.5px;line-height:1.45;color:var(--ink-soft)}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt .num{flex:none;width:25px;height:25px;border-radius:6px;background:var(--chip);color:var(--chip-ink);
+  font-family:var(--sans);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.right{border-color:var(--ok);color:var(--ok-ink)}
+.opt.right .num{background:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);color:var(--bad-ink)}
+.opt.wrong .num{background:var(--bad);color:#fff}
+.opt.dim{color:#a0a8ae}
+.feedback{border:1px solid var(--bad-line);background:var(--bad-bg);border-radius:8px;padding:14px 18px;margin-top:16px}
+.feedback.ok{border-color:var(--ok-line);background:var(--ok-bg)}
+.feedback b{display:block;font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--bad);margin-bottom:.3rem}
+.feedback.ok b{color:var(--ok)}
+.hint{font-family:var(--sans);font-size:11.5px;color:#b3bac0;text-align:center;margin-top:12px}
+.done-score{font-size:40px;font-weight:400}
+.done-meta{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:.3rem}
+.done-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.links{font-family:var(--sans);font-size:12.5px;margin-top:14px}
+.links a{color:var(--hero-muted);text-decoration:none;margin-right:16px}
+.links a:hover{color:var(--hero-ink);text-decoration:underline}
+.home{background:var(--hero);padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px}
+.home a{display:inline-block;color:var(--hero-ink);font:600 13px var(--sans);text-decoration:none;
+  padding:8px 14px;border:1px solid #3a454d;border-radius:999px}
+.home a:hover{background:#232c33}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:520px){h1{font-size:27px}.qcard{padding:20px 16px}.stats{gap:24px}}
+.stem{font-family:var(--sans);font-size:14px;color:var(--muted);background:var(--chip);border-radius:8px;padding:12px 14px;margin:.5rem 0 0;line-height:1.55}
+.note{font-family:var(--sans);font-size:12px;color:#875c16;margin-top:12px}
+textarea{width:100%;min-height:200px;font:15.5px/1.5 var(--serif);color:var(--ink-soft);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px;background:var(--opt);resize:vertical}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+textarea:disabled{color:var(--muted)}
+.points{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.points label{display:flex;gap:12px;align-items:flex-start;background:var(--opt);border:1px solid var(--line);
+  border-radius:8px;padding:12px 14px;cursor:pointer;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.points input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--ok)}
+.points label:has(input:checked){border-color:var(--ok);background:var(--ok-bg)}
+</style>
+</head>
+<body>
+<nav class="home" aria-label="Study navigation"><a href="microbiology-quiz.html">&larr; Microbiology quiz</a><a href="microbiology.html">Microbiology content &rarr;</a><a href="microbiology-midterm.html">Midterm 1 &rarr;</a><a href="microbiology-final.html">Practice final exam &rarr;</a></nav>
+<div id="topbar" class="topbar" hidden></div>
+<div id="app"></div>
+
+<script>
+const STEM1 = "A student makes serial tenfold dilutions of an E. coli broth culture and spreads 0.1 mL of the 10⁻⁶ dilution on an agar plate. After incubation the plate has 212 colonies. A drug is then added to the rest of the culture. Over the next hours the viable count falls steadily, but the turbidity of the culture stays level.";
+
+// Multiple choice: {n, stem?, q, o: [A-D], a: correct index, why}. 2 marks each.
+// Long answer: {n, q, pts: [key points]}. 1 mark per key point.
+const MC = [
+  {n:"1a", stem:STEM1, q:"What was the viable count of the original culture?",
+   o:["2.12 × 10⁷ CFU/mL","2.12 × 10⁸ CFU/mL","2.12 × 10⁹ CFU/mL","2.12 × 10¹⁰ CFU/mL"],
+   a:2, why:"CFU per mL = colonies × (1 / dilution) / volume plated = 212 × 10⁶ / 0.1 = 2.12 × 10⁹. Forgetting to divide by the 0.1 mL plated gives an answer ten times too low. The plate is countable because it falls between 30 and 300 colonies."},
+  {n:"1b", stem:STEM1, q:"How should the drug be described?",
+   o:["Bacteriostatic","Bactericidal, but not bacteriolytic","Bacteriolytic","An antiseptic"],
+   a:1, why:"The cells are dying (viable count falls) but they stay intact and keep scattering light (turbidity level), so the drug is bactericidal. A bacteriostatic agent would leave both counts level, and a bacteriolytic one would drop the turbidity too."},
+  {n:2, q:"What did Dmitri Ivanovsky show in 1892?",
+   o:["Tobacco mosaic disease passed in fluid filtered free of bacteria.","Yellow fever is carried between people by mosquitoes.","Bacteriophages leave clear plaques on a bacterial lawn.","Smallpox can be prevented by inoculation with cowpox."],
+   a:0, why:"Ivanovsky's filtrate was still infectious, so the agent had to be smaller than any bacterium. Walter Reed's group linked yellow fever to mosquitoes in 1901, and d'Herelle discovered bacteriophages and named plaques in 1917."},
+  {n:3, q:"Which virus must carry an RNA-dependent RNA polymerase inside its particle?",
+   o:["Poliovirus, a plus-sense ssRNA virus","Phage T4, a dsDNA virus","Parvovirus, an ssDNA virus","Influenza A, a minus-sense ssRNA virus"],
+   a:3, why:"A minus-sense genome (Baltimore class V) can't be read by host ribosomes, and the host has no enzyme that copies RNA from RNA, so the virus must bring its own polymerase. A plus-sense genome such as poliovirus's is already mRNA."},
+  {n:4, q:"A culture of E. coli carrying a lambda prophage is exposed to UV light. What happens?",
+   o:["The prophage is deleted and the cell is cured.","RecA triggers cleavage of the cI repressor and the phage enters the lytic cycle.","The phage is extruded continuously without killing the cell.","The cell becomes immune to all other phages."],
+   a:1, why:"This is induction. DNA damage sets off the SOS response, RecA triggers cleavage of the repressor that keeps the prophage silent, and the phage replicates and lyses the host. Continuous extrusion is the chronic strategy of filamentous phage M13."},
+  {n:5, q:"An electron microscope count gives a titre 100 times higher than a plaque assay on the same phage stock. Why?",
+   o:["Each infectious particle makes about 100 plaques.","The microscope also counts host ribosomes as virions.","The microscope counts every particle, but only infectious ones form plaques.","Plaque assays only detect enveloped viruses."],
+   a:2, why:"A direct count gives total physical particles and can't separate infectious from non-infectious ones. Each plaque comes from one infectious particle, so the particle-to-PFU ratio is often 10 to 1000 to 1."},
+  {n:6, q:"A potato disease is traced to an infectious agent that is naked RNA, under 400 nucleotides long, and encodes no protein. What is it?",
+   o:["A viroid","A prion","A satellite virus","A virus-like particle"],
+   a:0, why:"Viroids are naked RNA with no capsid and no genes; internal complementarity makes them resistant to ribonucleases, and potato spindle tuber viroid is the classic example. A prion is protein with no nucleic acid, and a virus-like particle is a capsid with no genome."},
+  {n:7, q:"What happens in the adaptation stage of CRISPR-Cas defence?",
+   o:["The CRISPR array is transcribed and cut into crRNAs.","A crRNA-guided Cas nuclease cleaves matching invader DNA.","The cI repressor shuts down phage gene expression.","Cas proteins insert fragments of invader DNA into the array as spacers."],
+   a:3, why:"Adaptation is spacer acquisition: Cas proteins, often Cas1 and Cas2, capture pieces of invading DNA and store them between the repeats as a heritable record. Transcription into crRNAs is the expression stage, and cleavage of the invader is interference."},
+  {n:8, q:"An organism gets its energy from light, its electrons from H₂S and its carbon from CO₂. What is it?",
+   o:["Chemolithoautotroph","Photolithoautotroph","Photoorganoheterotroph","Chemoorganoheterotroph"],
+   a:1, why:"Build the name in order: energy (photo), electrons (litho, an inorganic donor), carbon (auto, CO₂). This describes the purple sulfur bacteria. Cyanobacteria are also photolithoautotrophs, but take their electrons from water."},
+  {n:9, q:"In a thioglycolate tube an isolate grows all the way through, but most densely at the top. Which class is it?",
+   o:["Obligate aerobe","Aerotolerant anaerobe","Facultative anaerobe","Microaerophile"],
+   a:2, why:"A facultative anaerobe such as E. coli grows better with O₂ (respiration gives more ATP) but can ferment or respire anaerobically without it. An aerotolerant anaerobe grows evenly throughout, and a microaerophile forms a narrow band just below the surface."},
+  {n:10, q:"Why is MacConkey agar both selective and differential?",
+   o:["Bile salts and crystal violet block Gram-positives, and lactose fermenters turn pink.","Its 7.5 per cent NaCl blocks most bacteria, and mannitol fermenters turn yellow.","Its low pH blocks bacteria, and fungi show haemolysis patterns.","Its composition is exactly known, and thioglycolate removes the O₂."],
+   a:0, why:"Selective media stop unwanted organisms growing; differential media make organisms look different. MacConkey does both: only Gram-negatives grow, and lactose fermenters such as E. coli are pink while Salmonella and Shigella are colourless. The 7.5 per cent NaCl medium is mannitol salt agar."},
+  {n:11, q:"What sets the growth rate of the cells in a chemostat at steady state?",
+   o:["The size of the inoculum","The volume of the vessel","The organism's maximum growth rate","The dilution rate chosen by the experimenter"],
+   a:3, why:"At steady state the specific growth rate equals the dilution rate, with one nutrient limiting, so the experimenter picks the growth rate by setting the flow. If the dilution rate exceeds the maximum growth rate the culture washes out."},
+  {n:12, q:"What is the role of pressure in an autoclave?",
+   o:["It crushes endospores directly.","It lets water reach 121 °C without boiling off; the heat does the killing.","It forces steam through a 0.22 µm filter.","It generates radicals that break DNA."],
+   a:1, why:"At 15 psi steam reaches 121 °C, hot enough to kill endospores in 15 to 20 minutes. Temperature kills, not pressure. Moist heat also penetrates better than dry heat, which needs 170 °C for 2 hours."},
+  {n:13, q:"A culture in exponential phase grows from 1 × 10⁵ to 3.2 × 10⁶ cells/mL in 2.5 hours. What is its generation time?",
+   o:["15 minutes","20 minutes","30 minutes","50 minutes"],
+   a:2, why:"The population rose 32-fold, and 32 = 2⁵, so n = 5 generations. Generation time g = t / n = 150 minutes / 5 = 30 minutes. The formula n = (log N − log N₀) / 0.301 gives the same answer."},
+  {n:14, q:"Where do purple sulfur bacteria band in a Winogradsky column?",
+   o:["Where sulfide is high and light still reaches","At the oxic surface, next to the cyanobacteria","In the dark mud at the very bottom","Above the purple nonsulfur bacteria"],
+   a:0, why:"They are anoxygenic phototrophs that use H₂S as electron donor, so they need light plus the sulfide made by sulfate reducers in the mud. Purple nonsulfur bacteria tolerate only low sulfide and sit above them."},
+  {n:15, q:"Why are methanotrophs concentrated at oxic-anoxic interfaces?",
+   o:["Methane monooxygenase is destroyed by bright light.","They are strict anaerobes that respire methane.","They must hide their nitrogenase from O₂.","They need CH₄ from the anoxic zone and O₂ from the oxic zone."],
+   a:3, why:"Methane is made by methanogens in anoxic zones, but methanotrophs are obligate aerobes: methane monooxygenase needs O₂ to oxidise methane to methanol. Only the interface, such as the thermocline of a stratified lake, supplies both."},
+  {n:16, q:"How do lactic acid bacteria make their ATP?",
+   o:["Aerobic respiration through an electron transport chain","Substrate-level phosphorylation during fermentation only","Anoxygenic photosynthesis with bacteriochlorophyll","Anaerobic respiration with sulfate as the acceptor"],
+   a:1, why:"Lactic acid bacteria have no electron transport system, so they can't respire at all. They ferment sugars whether or not O₂ is present, which makes them aerotolerant anaerobes, and they are catalase negative and fastidious."},
+  {n:17, q:"Where does Bdellovibrio bacteriovorus replicate?",
+   o:["In the cytoplasm of Gram-positive prey","On the surface of a fruiting body","In the periplasm of Gram-negative prey","Inside legume root nodules"],
+   a:2, why:"Bdellovibrio strikes a Gram-negative cell, enters the periplasm using hydrolytic enzymes, grows there as a filament, then divides and lyses the prey to release 3 to 6 progeny. Fruiting bodies belong to the myxobacteria, the other deltaproteobacterial predators."},
+  {n:18, q:"Why do Mycobacterium cells keep their stain after an acid-alcohol wash?",
+   o:["Thick peptidoglycan traps crystal violet.","The endospore coat is impermeable to acid.","LPS in the outer membrane binds safranin.","Mycolic acids in the wall bind basic fuchsin."],
+   a:3, why:"Mycolic acids are wall lipids that hold basic fuchsin against the acid-alcohol wash, making the cells acid-fast. The same lipid-rich wall makes mycobacteria slow growing and resistant to many chemicals. They don't form endospores."},
+  {n:19, q:"How does Bacillus thuringiensis kill insect larvae?",
+   o:["The larva eats a crystal protoxin, which its alkaline gut activates.","It transfers T-DNA that makes larval cells form tumours.","It makes a neurotoxin that causes rigid paralysis.","It secretes geosmin, which blocks larval ribosomes."],
+   a:0, why:"The parasporal crystal is Cry protoxin. The larva's alkaline gut converts it into active toxin, which destroys the gut lining. Many Cry proteins are specific to one type of insect, so Bt is used as an insecticide and engineered into crops. T-DNA transfer is how Agrobacterium causes crown gall in plants."}
+];
+
+const LA = [
+  {n:20, q:"Outline the six steps of a viral replication cycle. Then compare how viruses get into animal, plant and bacterial cells.",
+   pts:["Adhere: an attachment protein on the capsid or envelope binds a specific host receptor, which sets host range and tissue tropism (for example HIV gp120 and CD4, or influenza haemagglutinin and sialic acid).",
+     "Enter, then uncoat: the genome is released from the capsid. Animal viruses taken up by endocytosis escape the endosome, often triggered by its acidification.",
+     "Synthesis: the genome is expressed and replicated, with early genes redirecting the host and late genes making structural proteins. The route depends on the Baltimore class, and translation always uses host ribosomes.",
+     "Assembly, then exit: capsids self-assemble around the genome. Naked viruses and most phages leave by lysis; enveloped viruses bud, which lets the cell survive and keep shedding virus.",
+     "Animal cell, non-enveloped virus: endocytosis. Animal viruses never have to cross a cell wall.",
+     "Animal cell, enveloped virus: the envelope fuses with the plasma membrane and releases the nucleocapsid into the cytoplasm (some use endocytosis and then fuse with the endosome).",
+     "Plant cell: the cell wall blocks entry, so infection depends on damage, mainly insects feeding, but also wind, hail, rain, fire or human activity.",
+     "Bacterial cell: tailed phages bind with tail fibres, contract the tail and inject the genome through the envelope; the empty capsid stays outside."]},
+  {n:21, q:"Compare the lytic and lysogenic cycles of bacteriophages. Explain why being temperate can benefit a phage, what triggers induction, and why lysogenic conversion matters clinically.",
+   pts:["Lytic cycle: the phage enters, replicates and lyses the host; the released virions infect more cells, which gives plaques on a lawn.",
+     "A virulent phage such as T4 is always lytic.",
+     "Lysogenic cycle: the genome integrates into the host chromosome as a prophage and is replicated with it, kept silent by the cI repressor. The host is now a lysogen.",
+     "A temperate phage such as lambda can go either way, and a lysogen is immune to superinfection by the same phage.",
+     "Why be temperate: a strictly lytic phage always kills its host and can leave too few hosts to infect. Lysogeny lets the phage hide and wait until conditions favour lytic growth.",
+     "Induction: stress, classically DNA damage (UV, mitomycin C) and the SOS response. RecA triggers cleavage of the repressor and the phage enters the lytic cycle, jumping ship before the host dies.",
+     "Lysogenic conversion: the prophage brings genes that change the host's phenotype, so a harmless strain can become a pathogen by being infected.",
+     "Examples: diphtheria toxin, cholera toxin, botulinum toxin and the Shiga toxin of E. coli O157:H7 are all phage encoded."]},
+  {n:22, q:"A virologist needs the titre of a virus stock. Compare a direct count by electron microscopy, the haemagglutination assay, the plaque assay and endpoint assays, and explain why they can give different numbers for the same sample.",
+   pts:["A titre is the concentration of a virus preparation. The methods measure different properties, so they can disagree on the same sample.",
+     "Direct count by electron microscopy: total physical particles in a known volume. It needs an expensive, specialised microscope and can't separate infectious from non-infectious particles.",
+     "Haemagglutination assay: some viruses stick red blood cells together into a gel mat. It is cheap, easy and fast and needs no microscope.",
+     "Its limits: some viruses don't haemagglutinate, it doesn't separate viable from non-viable virus, and it gives relative activity, not a number of viruses.",
+     "Plaque assay: diluted virus is put on target cells and each plaque comes from one infectious particle, giving plaque-forming units (PFU) per mL.",
+     "Endpoint assays: TCID50 is the amount of virus that causes a cytopathic effect in 50 per cent of cultured cells (used where plaques don't form); LD50 is the amount that kills 50 per cent of test animals.",
+     "Particle counts exceed infectious counts because many particles are non-infectious: the particle-to-PFU ratio is often 10 to 1000 to 1."]},
+  {n:23, q:"Describe the four phases of a batch culture growth curve and what the cells are doing in each. Show how generation time is calculated, and explain how a chemostat differs from a batch culture.",
+   pts:["Growth means an increase in cell number. A batch culture is a closed system: nutrients deplete and waste accumulates.",
+     "Lag phase: no division. Cells synthesise the enzymes, ribosomes and cofactors needed for the new medium; its length depends on the age of the inoculum and how different the new conditions are.",
+     "Exponential (log) phase: constant doubling time and balanced growth, a straight line on a log plot. Cells are most uniform and most sensitive to antibiotics.",
+     "Stationary phase: division equals death because a nutrient is exhausted or waste has built up. Cells express stress responses and make secondary metabolites, including most antibiotics.",
+     "Death phase: exponential loss of viability, though a resistant subpopulation can persist.",
+     "N = N₀ × 2ⁿ, so n = (log N − log N₀) / 0.301, and generation time g = t / n. Growth rate is the inverse of generation time.",
+     "A chemostat is an open, continuous culture: fresh medium flows in and culture flows out at the same rate. At steady state the growth rate equals the dilution rate, with one limiting nutrient, so cells stay in exponential growth; washout occurs if the dilution rate exceeds the maximum growth rate."]},
+  {n:24, q:"Classify microbes by their relationship to oxygen and say where each class grows in a thioglycolate tube. Explain why oxygen is toxic and how cells defend themselves.",
+   pts:["Obligate aerobe: requires O₂ as terminal electron acceptor; grows at the top only (Pseudomonas, Mycobacterium tuberculosis).",
+     "Obligate anaerobe: killed by O₂; grows at the bottom only (Clostridium, Bacteroides, methanogens).",
+     "Facultative anaerobe: uses O₂ when present, and ferments or respires anaerobically when not; grows throughout but densest at the top (E. coli, S. cerevisiae).",
+     "Aerotolerant anaerobe: ignores O₂ and ferments regardless; grows evenly throughout (Lactobacillus).",
+     "Microaerophile: needs O₂ but only at 2 to 10 per cent; grows in a narrow band below the surface (Campylobacter jejuni, Helicobacter pylori).",
+     "Oxygen is toxic because its partial reduction gives superoxide, hydrogen peroxide and the hydroxyl radical.",
+     "Defences: superoxide dismutase, catalase (2 H₂O₂ → 2 H₂O + O₂) and peroxidase. Obligate anaerobes lack catalase and superoxide dismutase. The catalase test separates Staphylococcus (positive) from Streptococcus (negative)."]},
+  {n:25, q:"Define sterilisation, disinfection and antisepsis. Then compare autoclaving, pasteurisation, filtration and radiation as ways of controlling microbes, and explain what a D-value is.",
+   pts:["Sterilisation kills or removes all life, endospores included. Disinfection kills or removes pathogens from inanimate surfaces (spores may survive); antisepsis is the same applied to living tissue.",
+     "Autoclave: moist heat under pressure, 121 °C at 15 psi for 15 to 20 minutes. It denatures protein and is the reference sterilisation method, designed to kill endospores.",
+     "The pressure only lets water reach 121 °C without boiling off; temperature does the killing. Moist heat penetrates better than dry heat, which needs about 170 °C for 2 hours.",
+     "Pasteurisation: HTST at 72 °C for 15 s (or UHT at 135 to 150 °C for about 2 s). It destroys pathogens, cuts other microbes by 90 to 99 per cent and extends shelf life, but does not sterilise.",
+     "Filtration: 0.22 µm membranes remove cells by size instead of killing them, for heat-labile liquids such as antibiotics, vitamins and media with serum. Viruses pass through unless ultrafiltration is used.",
+     "Ionising radiation (gamma rays from cobalt-60, electron beams): radicals damage protein and cause DNA double-strand breaks. It penetrates well and sterilises medical supplies, labware, spices and packaged food.",
+     "Ultraviolet (260 to 280 nm) forms thymine dimers in DNA but doesn't penetrate, so it is used only on surfaces and in water.",
+     "D-value (decimal reduction time): the time at a given temperature to kill 90 per cent (one log) of a population. Death is exponential, so a fixed time kills a fixed fraction, and the D-value doesn't depend on the starting cell concentration."]},
+  {n:26, q:"Explain why nitrogen fixation is a problem for organisms exposed to oxygen, and describe the ways different bacteria protect nitrogenase. Then outline how the symbiosis between rhizobia and legumes is set up and what each partner gains.",
+   pts:["Only prokaryotes fix nitrogen. Nitrogenase reduces N₂ to NH₃ at a cost of about 16 ATP and 8 electrons per N₂.",
+     "Nitrogenase is irreversibly inactivated by O₂, so every fixer needs a way to keep O₂ away from it.",
+     "Azotobacter (a free-living strict aerobe): a thick slime layer plus a very high respiration rate keep intracellular O₂ low.",
+     "Klebsiella, a facultative anaerobe, fixes only when growing anaerobically; Clostridium is a strict anaerobe and needs no protection.",
+     "Anabaena and Nostoc fix in heterocysts, which lack the O₂-evolving photosystem II and have a thick envelope that slows O₂ diffusion. Neighbouring cells supply carbon and receive fixed nitrogen.",
+     "Rhizobia: plant flavonoids switch on the bacterial nod genes; Nod factors curl the root hair, and an infection thread carries the bacteria into the root.",
+     "A root nodule forms and the bacteria differentiate into N₂-fixing bacteroids. The plant's leghaemoglobin binds O₂, keeping free O₂ low enough to protect nitrogenase while still supplying bacteroid respiration.",
+     "It is a mutualism: the plant supplies photosynthate as organic acids to fuel fixation, and the bacteroids return fixed nitrogen as ammonium or amino acids."]},
+  {n:27, q:"Describe nitrification: the nutritional type of the organisms, the two steps with their enzymes and example genera, and why the process matters. What is comammox?",
+   pts:["Nitrifiers use reduced nitrogen compounds as their energy source and electron donor. They are obligate aerobes and chemolithoautotrophs, fixing CO₂ for carbon.",
+     "Step 1, ammonia oxidation (NH₃ to NO₂⁻): ammonia monooxygenase (AMO) makes hydroxylamine, then hydroxylamine dehydrogenase (HAO) makes nitrite.",
+     "Ammonia oxidisers: Nitrosomonas and Nitrosococcus, plus ammonia-oxidising archaea (Thaumarchaeota).",
+     "Step 2, nitrite oxidation (NO₂⁻ to NO₃⁻) by nitrite oxidoreductase (Nxr): Nitrobacter and Nitrospira. Nitrospira is not a proteobacterium; it has its own phylum.",
+     "The enzymes sit in extensive intracytoplasmic membranes, and AMO is evolutionarily related to methane monooxygenase.",
+     "Ammonia oxidisers and nitrite oxidisers co-occur in tight clusters (seen by FISH in activated sludge), passing nitrite between them. The energy yield is small, so they grow slowly. They matter in wastewater treatment, and by turning ammonium into nitrate, which leaches, they drive fertiliser loss.",
+     "Comammox is complete ammonia oxidation, NH₃ to NO₃⁻, in one cell carrying both AMO and Nxr. It was discovered in 2015 in some Nitrospira."]}
+];
+
+(function(){
+  const $ = s => document.querySelector(s);
+  const app = $("#app"), bar = $("#topbar");
+  const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const KEY = "microMidterm2", L = "ABCD";
+  const Q = [...MC.map(q => ({...q, t:"mc"})), ...LA.map(q => ({...q, t:"la"}))];
+  const MC_MAX = MC.length * 2, LA_MAX = LA.reduce((s, q) => s + q.pts.length, 0);
+
+  let at = 0, mc = 0, la = 0, done = false;
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } };
+  const save = pct => {
+    try {
+      const p = load() || {best:0, attempts:0};
+      localStorage.setItem(KEY, JSON.stringify({last:pct, best:Math.max(p.best, pct), attempts:p.attempts + 1}));
+    } catch (e) {}
+  };
+
+  function home(){
+    bar.hidden = true;
+    const p = load();
+    app.innerHTML =
+      '<header><div class="wrap">' +
+        '<p class="kicker">Microbiology, practice midterm, Topics 5 to 7</p>' +
+        '<h1>Microbiology midterm 2</h1>' +
+        '<p class="lede">Multiple choice is marked for you. For long answers, write your answer, then compare it ' +
+          'against the key points and tick off each one you covered.</p>' +
+        '<div class="stats">' +
+          '<div class="stat"><b>' + MC.length + '</b><span>multiple choice</span></div>' +
+          '<div class="stat"><b>' + LA.length + '</b><span>long answer</span></div>' +
+          '<div class="stat"><b>' + (p ? p.best + "%" : "—") + '</b><span>best score</span></div>' +
+        '</div>' +
+      '</div></header>' +
+      '<main><div class="wrap">' +
+        '<div class="card lead-card">' +
+          '<div><p class="label">Section 1 then Section 2</p><h2>Full midterm exam</h2>' +
+          '<p class="meta">' + MC_MAX + ' marks multiple choice, ' + LA_MAX + ' marks long answer' +
+          (p ? ' · last ' + p.last + '%, ' + p.attempts + ' attempts' : '') + '</p></div>' +
+          '<button class="btn" id="start">' + (p ? "Retake midterm exam" : "Start midterm exam") + '</button>' +
+        '</div>' +
+        '<p class="note">Written from the Topic 5 to 7 course notes and lecture slides. It is a practice paper, not a past exam.</p>' +
+      '</div></main>';
+  }
+
+  function start(){ at = 0; mc = 0; la = 0; question(); }
+
+  function question(){
+    done = false;
+    const q = Q[at];
+    bar.hidden = false;
+    bar.innerHTML =
+      '<div class="wrap"><div class="row">' +
+        '<button class="close" aria-label="Leave the midterm exam">×</button>' +
+        '<span class="crumb">' + (q.t === "mc" ? "Section 1 · Multiple choice" : "Section 2 · Long answer") + '</span>' +
+        '<span class="count">' + (at + 1) + '/' + Q.length + '</span>' +
+      '</div><div class="progress"><i style="width:' + (100 * at / Q.length) + '%"></i></div></div>';
+    const head =
+      '<p class="qtopic">Question ' + q.n + ' · ' + (q.t === "mc" ? 2 : q.pts.length) + ' marks</p>' +
+      (q.stem ? '<p class="stem">' + esc(q.stem) + '</p>' : '') +
+      '<p class="qtext">' + esc(q.q) + '</p>';
+    const body = q.t === "mc"
+      ? '<div class="opts">' + q.o.map((o, i) =>
+          '<button class="opt" data-i="' + i + '"><span class="num">' + L[i] + '</span><span>' + esc(o) + '</span></button>').join("") + '</div>' +
+        '<div id="tail"></div><p class="hint">Press A to D to answer, Enter to continue</p>'
+      : '<textarea id="ans" placeholder="Write your answer here" aria-label="Your answer"></textarea>' +
+        '<div id="tail"><button class="btn wide" id="submit" style="margin-top:14px">Submit and compare</button></div>';
+    app.innerHTML = '<main><div class="wrap"><div class="qcard">' + head + body + '</div></div></main>';
+    if(q.t === "la") $("#ans").focus();
+  }
+
+  const nextBtn = () => '<button class="btn wide" id="next" style="margin-top:16px">' +
+    (at + 1 === Q.length ? "See your score" : "Next question") + '</button>';
+
+  function answer(i){
+    const q = Q[at];
+    if(done || q.t !== "mc" || !q.o[i]) return;
+    done = true;
+    const hit = i === q.a;
+    if(hit) mc += 2;
+    document.querySelectorAll(".opt").forEach((b, j) => {
+      b.disabled = true;
+      const num = b.querySelector(".num");
+      if(j === q.a){ b.classList.add("right"); num.textContent = "✓"; }
+      else if(j === i){ b.classList.add("wrong"); num.textContent = "✕"; }
+      else b.classList.add("dim");
+    });
+    $("#tail").innerHTML =
+      '<div class="feedback' + (hit ? " ok" : "") + '"><b>' + (hit ? "Correct" : "Not quite, the answer is " + L[q.a]) + '</b>' +
+      esc(q.why) + '</div>' + (q.note ? '<p class="note">' + esc(q.note) + '</p>' : '') + nextBtn();
+    $("#next").focus();
+  }
+
+  function submit(){
+    const q = Q[at];
+    done = true;
+    $("#ans").disabled = true;
+    $("#tail").innerHTML =
+      '<p class="section-title">Key points. Tick each one your answer covered (1 mark each)</p>' +
+      '<ul class="points">' + q.pts.map((p, i) =>
+        '<li><label><input type="checkbox" data-p="' + i + '"><span>' + esc(p) + '</span></label></li>').join("") + '</ul>' +
+      nextBtn();
+  }
+
+  function next(){
+    if(!done) return;
+    if(Q[at].t === "la") la += document.querySelectorAll(".points input:checked").length;
+    at++;
+    if(at < Q.length) return question();
+    const pct = Math.round(100 * (mc + la) / (MC_MAX + LA_MAX));
+    save(pct);
+    bar.hidden = true;
+    app.innerHTML =
+      '<main><div class="wrap"><div class="qcard">' +
+        '<p class="qtopic">Microbiology midterm 2</p>' +
+        '<p class="done-score">' + (mc + la) + ' / ' + (MC_MAX + LA_MAX) + '</p>' +
+        '<p class="done-meta">' + pct + ' per cent · multiple choice ' + mc + '/' + MC_MAX +
+          ' · long answer ' + la + '/' + LA_MAX + ' (self-marked)</p>' +
+        '<div class="done-btns">' +
+          '<button class="btn" id="again">Run it again</button>' +
+          '<button class="btn ghost" id="back">Back</button>' +
+        '</div>' +
+      '</div></div></main>';
+  }
+
+  document.addEventListener("click", e => {
+    const t = e.target;
+    if(t.closest("#start") || t.closest("#again")) return start();
+    if(t.closest(".close") || t.closest("#back")) return home();
+    if(t.closest("#submit")) return submit();
+    if(t.closest("#next")) return next();
+    const o = t.closest(".opt");
+    if(o) answer(+o.dataset.i);
+  });
+  document.addEventListener("keydown", e => {
+    if(e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT" || bar.hidden) return;
+    const i = L.indexOf(e.key.toUpperCase());
+    if(i !== -1 && e.key.length === 1) answer(i);
+    else if(e.key === "Enter" && done && e.target.id !== "next"){ e.preventDefault(); next(); }
+  });
+
+  home();
+
+  // ponytail: self-check, run by loading the page with #selftest
+  if(location.hash === "#selftest"){
+    MC.forEach(q => {
+      console.assert(q.o.length === 4 && new Set(q.o).size === 4, "options", q.n);
+      console.assert(q.a >= 0 && q.a < 4, "bad answer index", q.n);
+      console.assert(!q.note, "unexpected source note", q.n);
+      console.assert(q.why && q.why.length > 20, "thin explanation", q.n);
+    });
+    LA.forEach(q => console.assert(q.pts.length >= 3, "too few key points", q.n));
+    console.assert(MC_MAX === 40, "section 1 should total 40 marks", MC_MAX);
+    console.assert(LA_MAX === 60, "section 2 should total 60 marks", LA_MAX);
+    console.log("selftest done:", MC.length, "MC,", LA.length, "LA");
+  }
+})();
+</script>
+</body>
+</html>

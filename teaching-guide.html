@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Teaching Guide</title>
+<style>
+/* ponytail: own small stylesheet, tokens copied from content.html so the saved theme carries over */
+:root{--green:#1c7c3a;--green-soft:#e6fff0;--line:#dcdcdc;--ink:#1e1e1e;--muted:#5c5c5c;--page:#d3d3d3;--card:#fff;
+  --stripe:#fafafa;--danger:#c62828;--danger-soft:#fdecea;--amber:#7a4f00;--amber-soft:#fff6de;--amber-line:#d99a1e;
+  --shadow:0 10px 30px rgba(0,0,0,.1)}
+:root[data-theme="dark"]{--green:#5fcf86;--green-soft:#1d2b23;--line:#3a3f44;--ink:#e4e6e8;--muted:#a0a6ac;--page:#15181b;
+  --card:#1f2327;--stripe:#262a2f;--danger:#ef7a7a;--danger-soft:#3a2224;--amber:#e8b860;--amber-soft:#33291a;
+  --amber-line:#a87b2a;--shadow:0 10px 30px rgba(0,0,0,.45);color-scheme:dark}
+:root[data-theme="blue"]{--green:#1f5f99;--green-soft:#e7f0fa;--line:#d3dce6;--ink:#1c2530;--muted:#55626f;--page:#cfd9e3;
+  --card:#fbfdff;--stripe:#f3f7fb;--danger:#b3261e;--danger-soft:#fbe9e7}
+:root[data-theme="sepia"]{--green:#7a5a2e;--green-soft:#f3e8d4;--line:#ddd0b8;--ink:#3b2f22;--muted:#6e604e;--page:#e8dcc4;
+  --card:#fbf5e9;--stripe:#f6eedd;--danger:#a33a2a;--danger-soft:#f6e0d8}
+:root[data-theme="midnight"]{--green:#7fb4ff;--green-soft:#1c2a40;--line:#2f3d52;--ink:#dde6f2;--muted:#98a6ba;--page:#0f1724;
+  --card:#172234;--stripe:#1c2a3e;--danger:#ff8a80;--danger-soft:#3a2328;--amber:#f0c674;--amber-soft:#2e2a1e;
+  --amber-line:#a8873a;--shadow:0 10px 30px rgba(0,0,0,.5);color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
+header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
+h1{color:var(--green);font-size:2.2rem}
+.sub{color:var(--muted);margin-top:.4rem}
+nav{position:sticky;top:0;z-index:5;background:var(--page);padding:.6rem 0;border-bottom:1px solid var(--line);
+  margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;padding:0 14px;
+  min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;text-decoration:none}
+nav a:hover{background:var(--green);color:var(--card)}
+main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
+section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);padding:1.5rem;scroll-margin-top:70px}
+h2{color:var(--green);font-size:1.4rem}
+.ref{color:var(--muted);font-size:.85rem;margin-bottom:.5rem}
+h3{font-size:1.1rem;margin:1.5rem 0 .5rem;border-left:4px solid var(--green);padding-left:.5rem}
+p,li{max-width:76ch}
+p+p{margin-top:.6rem}
+ul,ol{margin:.5rem 0 .5rem 1.25rem}
+li{margin-bottom:.3rem}
+.proc>li{margin-bottom:.8rem}
+.proc>li>strong{color:var(--green)}
+.scroll{overflow-x:auto;margin:.5rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--green-soft);color:var(--green)}
+tbody tr:nth-child(even){background:var(--stripe)}
+.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.7rem .9rem;border-radius:6px;margin:.7rem 0;max-width:78ch}
+.hook{background:var(--amber-soft);border-left:4px solid var(--amber-line);padding:.6rem .9rem;border-radius:6px;margin:.7rem 0;max-width:78ch}
+.hook b{color:var(--amber)}
+pre{background:var(--stripe);border:1px solid var(--line);border-radius:6px;padding:.6rem .8rem;margin:.5rem 0;
+  font:14px/1.5 ui-monospace,Consolas,monospace;overflow-x:auto}
+code{font:14px ui-monospace,Consolas,monospace}
+details{border:1px solid var(--line);border-radius:8px;margin:.4rem 0;max-width:78ch}
+summary{cursor:pointer;padding:.6rem .8rem;font-weight:600;min-height:44px}
+details>div{padding:0 .8rem .7rem;color:var(--ink)}
+details[open]{background:var(--stripe)}
+.back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--green);outline-offset:2px;border-radius:6px}
+@media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
+@media print{body{background:#fff;padding:0}nav,.back{display:none}section{box-shadow:none;break-inside:auto;padding:.5rem 0}
+  details{border:0}details>div{display:block}summary{list-style:none}}
+</style>
+<script>try{ document.documentElement.dataset.theme = localStorage.getItem("studyTheme") || ""; }catch(e){}</script>
+</head>
+<body>
+
+<header id="top">
+  <h1>Teaching Guide</h1>
+  <p class="sub">Transcription, translation and cell signalling: what you need in your head before you teach them.</p>
+  <p class="sub">Built from <em>Biology: How Life Works</em>, 4th edition, sections 4.3 to 4.4, 5.2 to 5.3 and chapter 9.</p>
+  <a class="back" href="content.html">&larr; Study content</a>
+</header>
+
+<nav>
+  <a href="#how">How to use this</a>
+  <a href="#transcription">1. Transcription</a>
+  <a href="#translation">2. Translation</a>
+  <a href="#signalling">3. Cell signalling</a>
+  <a href="#links">Linking the three</a>
+</nav>
+
+<main>
+
+<!-- ================= HOW TO USE ================= -->
+<section id="how">
+  <h2>How to use this guide</h2>
+  <p>Knowing a topic and teaching it are different jobs. To teach you need the content, a sensible order to say it in, a picture to draw, the mistakes your audience will make, and answers to the questions they will ask. Each topic below is laid out in that order.</p>
+  <ul>
+    <li><strong>The point</strong> is the one sentence everyone should leave with. If you run out of time, say that.</li>
+    <li><strong>Teaching order</strong> is a sequence that builds, with the facts and numbers the textbook gives for each step.</li>
+    <li><strong>Misconceptions</strong> are the predictable wrong ideas. Plan to raise them yourself.</li>
+    <li><strong>Questions you will get</strong> has short answers you can give on the spot.</li>
+    <li><strong>Check questions</strong> are for the audience. Ask, wait, then open the answer.</li>
+    <li><strong>Depth guide</strong> separates what the textbook covers from the extra detail on the study content page, so you know what is core and what is only there for a keen question.</li>
+  </ul>
+  <h3>Five habits that work for all three topics</h3>
+  <ol>
+    <li><strong>Open with a puzzle.</strong> Each topic below has one. A question gives people a reason to listen to the answer.</li>
+    <li><strong>Draw it live and label the direction.</strong> 5' and 3' on every nucleic acid, N and C on every protein, inside and outside on every membrane. Most errors in these topics are direction errors.</li>
+    <li><strong>Use the same three-stage skeleton.</strong> Transcription and translation both run initiation, elongation, termination. Signalling runs activation, transduction, response, termination. Say "start, run, stop" each time and the three topics feel like one idea.</li>
+    <li><strong>Ask before you tell.</strong> "Which strand do you think it copies?" gets a wrong answer onto the table where you can fix it.</li>
+    <li><strong>Work one example by hand.</strong> A sequence written on the board and converted step by step teaches more than a finished diagram.</li>
+  </ol>
+</section>
+
+<!-- ================= TRANSCRIPTION ================= -->
+<section id="transcription">
+  <h2>1. Transcription</h2>
+  <p class="ref">Module 4 &middot; textbook 4.3 Transcription and 4.4 RNA Processing</p>
+  <div class="key"><strong>The point:</strong> RNA polymerase copies one strand of a gene into RNA, building 5' to 3' from a promoter to a terminator. In eukaryotes that first transcript is then capped, given a poly(A) tail and spliced before it leaves the nucleus as mRNA.</div>
+
+  <h3>The whole process, start to finish</h3>
+  <p><strong>Where:</strong> the cytoplasm in prokaryotes, the nucleus in eukaryotes. <strong>Needed:</strong> a DNA template, the four ribonucleoside triphosphates (ATP, UTP, GTP, CTP) and RNA polymerase with its helper proteins.</p>
+  <ol class="proc">
+    <li><strong>Initiation: the polymerase finds the gene and starts.</strong>
+      <ul>
+        <li>RNA polymerase is brought to the promoter. In bacteria, sigma factor does this. In eukaryotes, general transcription factors assemble at the promoter, activator proteins bound to enhancers recruit the mediator complex, and the mediator recruits RNA polymerase II.</li>
+        <li>The two DNA strands are separated, opening a transcription bubble.</li>
+        <li>The polymerase begins joining ribonucleotides on the template strand. No primer is needed.</li>
+        <li>In bacteria, sigma factor now falls off.</li>
+      </ul></li>
+    <li><strong>Elongation: the RNA is built one nucleotide at a time.</strong>
+      <ul>
+        <li>The polymerase moves along the template strand in the 3' to 5' direction.</li>
+        <li>An incoming ribonucleoside triphosphate is accepted only if it base pairs with the template (U opposite A, A opposite T, G opposite C, C opposite G).</li>
+        <li>The 3' hydroxyl of the growing RNA attacks the new nucleotide, a phosphodiester bond forms and pyrophosphate is released.</li>
+        <li>The RNA therefore grows 5' to 3'. Only about 8 base pairs of RNA stay paired to the template; behind the polymerase the RNA peels away and the DNA closes up again.</li>
+        <li>This repeats for thousands of nucleotides.</li>
+      </ul></li>
+    <li><strong>Termination: the polymerase stops and lets go.</strong>
+      <ul>
+        <li>The polymerase reaches a terminator sequence in the template.</li>
+        <li>Transcription stops, the RNA is released and the DNA double helix is restored.</li>
+        <li>The product is the <strong>primary transcript</strong>.</li>
+      </ul></li>
+    <li><strong>RNA processing: eukaryotes only.</strong>
+      <ul>
+        <li>A 7-methylguanosine cap is added to the 5' end.</li>
+        <li>A poly(A) tail of about 250 A nucleotides is added to the 3' end.</li>
+        <li>The spliceosome removes the introns and joins the exons.</li>
+        <li>The finished mRNA is exported to the cytoplasm. In prokaryotes none of this happens: the primary transcript is the mRNA and ribosomes are already translating it.</li>
+      </ul></li>
+  </ol>
+
+  <h3>What the audience must already know</h3>
+  <ul>
+    <li>A nucleotide is a sugar, a phosphate and a base, and strands have a 5' phosphate end and a 3' hydroxyl end.</li>
+    <li>The two strands of DNA are antiparallel and pair A with T, G with C.</li>
+    <li>The central dogma: DNA to RNA to protein.</li>
+    <li>Eukaryotes keep DNA in a nucleus; prokaryotes have no nucleus.</li>
+  </ul>
+  <p>If any of these is shaky, spend two minutes on it first. Nothing after it will land otherwise.</p>
+
+  <h3>What they should be able to do afterwards</h3>
+  <ol>
+    <li>Give four differences between DNA and RNA.</li>
+    <li>Write the RNA made from a given DNA strand, with the 5' and 3' ends correct.</li>
+    <li>Describe initiation, elongation and termination, using the words promoter, terminator and RNA polymerase.</li>
+    <li>Compare how the promoter is found in bacteria and in eukaryotes.</li>
+    <li>Name the three RNA processing steps and say what each is for.</li>
+    <li>Explain alternative splicing, and why prokaryotes can translate an mRNA while it is still being made.</li>
+    <li>List the main noncoding RNAs and their jobs.</li>
+  </ol>
+
+  <h3>Teaching order</h3>
+  <ol>
+    <li><strong>The puzzle.</strong> In a eukaryotic cell the DNA is locked in the nucleus and the ribosomes that make protein are out in the cytoplasm. How does the information get from one to the other? This was the real question in the 1950s, and the answer was an intermediate molecule: RNA.</li>
+    <li><strong>RNA compared with DNA.</strong> Put the table below on the board. The two that matter most later are the 2' hydroxyl (it makes RNA less stable) and single strandedness (RNA can fold back on itself into hairpins and complex shapes, and some RNAs act as catalysts).</li>
+    <li><strong>The copying rule.</strong> Draw a short double-stranded gene. One strand is the <strong>template</strong>; its partner is the <strong>nontemplate</strong> strand and is not transcribed. The RNA is complementary to the template, with U wherever the template has A. Work the example in the next box.</li>
+    <li><strong>Direction.</strong> Every nucleic acid grows by adding nucleotides to its 3' end, so RNA is built 5' to 3'. Because paired strands are antiparallel, the template is read 3' to 5'.</li>
+    <li><strong>Three stages on a gene map.</strong> Draw a line with a promoter on the left and a terminator on the right. Initiation: polymerase and helper proteins gather at the promoter and the strands separate. Elongation: nucleotides are added to the 3' end as the polymerase moves along. Termination: a terminator sequence makes the polymerase stop and let go of the transcript.</li>
+    <li><strong>Which strand?</strong> A long DNA molecule carries thousands of genes and they do not all use the same strand. The orientation of each promoter decides which strand is the template and which way the polymerase travels. Draw a second gene pointing the other way.</li>
+    <li><strong>Finding the promoter.</strong> In bacteria a protein called <strong>sigma factor</strong> joins RNA polymerase, helps it bind particular promoters, then falls off once transcription has started. Different sigma factors switch on different sets of genes, for example under heat or starvation. In eukaryotes it takes more: at least six <strong>general transcription factors</strong> assemble at the promoter (many promoters contain a <strong>TATA box</strong>, with transcription starting about 25 nucleotides downstream), <strong>transcriptional activator proteins</strong> bind DNA sequences called <strong>enhancers</strong>, the activators recruit a <strong>mediator complex</strong>, and the mediator brings in <strong>RNA polymerase II</strong>. Enhancers can be far from the gene, so the DNA loops to bring them together.</li>
+    <li><strong>Inside the polymerase.</strong> The strands are held apart in a transcription bubble (about 14 base pairs in bacteria, with about 8 base pairs of RNA paired to the template). An incoming ribonucleoside triphosphate is accepted only if it base pairs with the template. The 3' hydroxyl of the growing chain attacks it, a phosphodiester bond forms, and pyrophosphate is released. Breaking the pyrophosphate makes the step irreversible. The polymerase opens the DNA, copies it and closes it again behind itself.</li>
+    <li><strong>Accuracy.</strong> RNA polymerase makes fewer than one mistake per 10,000 nucleotides but has no proofreading, so it is less accurate than DNA polymerase. That is acceptable because a faulty transcript affects one short-lived molecule, while a faulty DNA copy is inherited.</li>
+    <li><strong>What happens to the transcript.</strong> The RNA that comes off the template is the <strong>primary transcript</strong>. In prokaryotes it already is the mRNA: there is no nucleus, so ribosomes start translating the 5' end while the 3' end is still being made (the two processes are <strong>coupled</strong>), and one mRNA often codes for several proteins (<strong>polycistronic</strong>). In eukaryotes the nuclear envelope separates the two processes and the transcript is processed first.</li>
+    <li><strong>The three processing steps.</strong> Use the table below. Finish with <strong>alternative splicing</strong>: the same primary transcript can be spliced in different ways, keeping or skipping particular exons, to give different mRNAs and different proteins.</li>
+    <li><strong>Not all RNA is messenger.</strong> rRNA, tRNA, snRNA and the small regulatory RNAs are finished products as RNA. About 80% of the RNA in a mammalian cell is rRNA and about 10% is tRNA, because so much of both is needed for protein synthesis.</li>
+  </ol>
+
+  <h3>Worked example for the board</h3>
+  <pre>nontemplate  5'-ATGCCTAAGTGA-3'
+template     3'-TACGGATTCACT-5'
+RNA          5'-AUGCCUAAGUGA-3'</pre>
+  <p>Write the template first, build the RNA under it one base at a time, then add the nontemplate strand last and let the audience notice that it has the same sequence as the RNA with T in place of U. Keep this RNA; it is translated in the next topic.</p>
+
+  <h3>Tables to draw</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Feature</th><th>DNA</th><th>RNA</th></tr></thead>
+    <tbody>
+      <tr><td>Sugar</td><td>Deoxyribose (H on the 2' carbon)</td><td>Ribose (OH on the 2' carbon), so less stable</td></tr>
+      <tr><td>Bases</td><td>A, G, C, T</td><td>A, G, C, U. Uracil lacks the methyl group of thymine but pairs with A the same way</td></tr>
+      <tr><td>Strands</td><td>Usually double stranded</td><td>Usually single stranded, but folds on itself</td></tr>
+      <tr><td>Length</td><td>Millions of nucleotides</td><td>Typically a few thousand</td></tr>
+      <tr><td>5' end</td><td>Usually a monophosphate</td><td>Usually a triphosphate</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Processing step (eukaryotes only)</th><th>What is done</th><th>What it is for</th></tr></thead>
+    <tbody>
+      <tr><td><strong>5' cap</strong></td><td>A modified nucleotide, 7-methylguanosine, is joined to the 5' end backwards, through a triphosphate bridge between the two 5' carbons</td><td>The ribosome recognises an mRNA by its cap, so no cap means no translation. Also protects the end</td></tr>
+      <tr><td><strong>Polyadenylation</strong></td><td>About 250 A nucleotides are added to the 3' end: the poly(A) tail</td><td>Export from the nucleus, and stability</td></tr>
+      <tr><td><strong>Splicing</strong></td><td>Introns (noncoding) are removed and exons (expressed) are joined by the spliceosome, a complex of RNA and protein</td><td>Produces a continuous coding sequence, and allows alternative splicing</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Numbers worth having ready: about 90% of human genes contain at least one intron, most have 6 to 9, and more than 80% of human genes are alternatively spliced.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Noncoding RNA</th><th>Job</th></tr></thead>
+    <tbody>
+      <tr><td>Ribosomal RNA (rRNA)</td><td>Makes up most of the ribosome; made in the nucleolus</td></tr>
+      <tr><td>Transfer RNA (tRNA)</td><td>Carries amino acids to the ribosome</td></tr>
+      <tr><td>Small nuclear RNA (snRNA)</td><td>Part of the spliceosome</td></tr>
+      <tr><td>MicroRNA (miRNA) and small interfering RNA (siRNA)</td><td>Small regulatory RNAs that block translation or cause an RNA transcript to be destroyed</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Analogies, and where they stop working</h3>
+  <ul>
+    <li><strong>The reference book.</strong> DNA is a reference book that cannot leave the library. Transcription photocopies one page so the copy can go to the workshop. Limit: a photocopy is identical to the page, while RNA is a complementary copy in slightly different chemistry.</li>
+    <li><strong>Film editing.</strong> The primary transcript is raw footage. Splicing cuts out the scenes that will not be shown, and alternative splicing is two different cuts of the same footage. Limit: introns are not always useless, so avoid calling them junk.</li>
+    <li><strong>Shoelace tips.</strong> The cap and tail are the plastic ends that stop a lace fraying. Limit: the cap also has a second job as the ribosome's landing mark.</li>
+    <li><strong>The usher.</strong> Sigma factor shows the polymerase to the right seat and then leaves.</li>
+  </ul>
+
+  <h3>Misconceptions to raise yourself</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>What people think</th><th>What is true</th><th>How to fix it</th></tr></thead>
+    <tbody>
+      <tr><td>The RNA is copied from the coding strand</td><td>It is built on the template strand. It only <em>matches</em> the nontemplate strand in sequence</td><td>Write all three lines aligned, as in the worked example</td></tr>
+      <tr><td>Polymerase reads 5' to 3'</td><td>It reads the template 3' to 5' and builds the RNA 5' to 3'</td><td>Always say "reads" and "builds" as two separate directions</td></tr>
+      <tr><td>The same strand is the template for every gene</td><td>It changes from gene to gene, set by which way the promoter points</td><td>Draw two genes facing opposite ways</td></tr>
+      <tr><td>Transcription starts at AUG, and the promoter is part of the RNA</td><td>The promoter sits upstream and is not transcribed. AUG is where <em>translation</em> starts, further into the mRNA</td><td>Mark the transcription start and the AUG as different points on your map</td></tr>
+      <tr><td>A terminator is a stop codon</td><td>A terminator ends transcription. A stop codon ends translation</td><td>Keep a two-column list: DNA signals for polymerase, mRNA signals for the ribosome</td></tr>
+      <tr><td>Splicing cuts the DNA</td><td>The gene is untouched. Introns are transcribed and then removed from the RNA</td><td>Say "introns are in the DNA and in the primary transcript, but not in the mRNA"</td></tr>
+      <tr><td>Bacteria cap, tail and splice too</td><td>Their primary transcript is used as it is</td><td>Ask where a bacterium would do the processing, with no nucleus and ribosomes already attached</td></tr>
+      <tr><td>Transcription factors are the enzyme</td><td>They recruit and position RNA polymerase, which does the copying</td><td>Draw the factors arriving first and the polymerase last</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Questions you will get</h3>
+  <details><summary>Why does RNA use U when DNA uses T?</summary><div>The textbook's answer is that the two differ only by a methyl group and pair with A identically. If pushed further (this goes beyond the textbook): cytosine can decay into uracil, so a cell whose DNA uses T can treat any U in DNA as damage and repair it. RNA is short-lived, so it does not need that safeguard.</div></details>
+  <details><summary>Why does RNA polymerase not proofread?</summary><div>A mistake spoils one transcript out of many and that transcript is soon broken down. A mistake in DNA is copied into every daughter cell. The cell spends its accuracy where errors last.</div></details>
+  <details><summary>How does the polymerase know which strand to copy?</summary><div>The promoter is not symmetrical. Its orientation positions the polymerase facing one way, and since RNA can only grow at its 3' end, facing one way means using one particular strand.</div></details>
+  <details><summary>Why have introns at all?</summary><div>Having exons separated by introns lets a cell mix and match them. Alternative splicing gives several proteins from one gene, which is how more than 80% of human genes are used.</div></details>
+  <details><summary>What is the difference between a promoter and an enhancer?</summary><div>The promoter is where the general transcription factors and polymerase assemble, right next to the start. An enhancer is a separate sequence, sometimes far away, where activator proteins bind to decide when and in which cells the gene is used.</div></details>
+  <details><summary>Can a bacterium use a human gene?</summary><div>Often not directly. The human gene has introns and bacteria have no splicing machinery, so the protein comes out wrong. A bacterial gene placed in a eukaryote usually works, because it has no introns to remove.</div></details>
+
+  <h3>Check questions</h3>
+  <details><summary>1. A template strand reads 3'-TACGGATTCACT-5'. Write the RNA.</summary><div>5'-AUGCCUAAGUGA-3'. Follow-up: the same strand written the other way round is 5'-TCACTTAGGCAT-3', and the answer does not change. Always find the 3' end of the template first.</div></details>
+  <details><summary>2. Give four ways RNA differs from DNA.</summary><div>Any four of: ribose instead of deoxyribose; uracil instead of thymine; usually single stranded; much shorter; a triphosphate at the 5' end.</div></details>
+  <details><summary>3. A nucleotide with H in place of OH on its 3' carbon is added to a growing RNA. What happens? What if the H is on the 2' carbon instead?</summary><div>Without a 3' hydroxyl there is nothing to attack the next nucleotide, so the chain stops. A missing 2' hydroxyl makes it a deoxyribonucleotide; the 3' hydroxyl is still there, so the chain can carry on.</div></details>
+  <details><summary>4. Put eukaryotic initiation in order: mediator complex recruited, Pol II begins transcription, activators bind enhancers, general transcription factors assemble at the promoter, Pol II recruited.</summary><div>General transcription factors assemble at the promoter and activators bind enhancers; the activators recruit the mediator complex; the mediator recruits Pol II; Pol II begins transcription.</div></details>
+  <details><summary>5. A gene has exons 1 to 4. One tissue makes a protein from exons 1, 2 and 4, another from exons 1, 2 and 3. How?</summary><div>Alternative splicing of the same primary transcript. Each tissue removes a different exon along with the introns around it.</div></details>
+  <details><summary>6. Why can a bacterium start translating an mRNA before transcription has finished, while your cells cannot?</summary><div>Bacteria have no nucleus and do not process their transcripts, so ribosomes can bind the 5' end straight away. In eukaryotes the transcript has to be capped, tailed, spliced and exported first.</div></details>
+
+  <h3>Depth guide</h3>
+  <p><strong>Textbook core:</strong> everything in the teaching order above.</p>
+  <p><strong>On the study content page but beyond these textbook sections:</strong> the bacterial &minus;10 and &minus;35 boxes, rho-dependent and hairpin termination, RNA polymerases I and III, the branch-point adenine and lariat in splicing, and poly-A polymerase. Know them in case someone asks; do not build the lesson on them.</p>
+  <a class="back" href="#top">Back to top</a>
+</section>
+
+<!-- ================= TRANSLATION ================= -->
+<section id="translation">
+  <h2>2. Translation</h2>
+  <p class="ref">Module 5 &middot; textbook 5.2 Protein Synthesis and 5.3 Regulation of Protein Synthesis and Sorting</p>
+  <div class="key"><strong>The point:</strong> the ribosome reads mRNA three bases at a time from a start codon, and tRNAs that have been loaded with the right amino acid turn each codon into one amino acid, growing the chain from its amino end to its carboxyl end until a stop codon is reached.</div>
+
+  <h3>The whole process, start to finish</h3>
+  <p><strong>Where:</strong> the cytoplasm, on free ribosomes or on ribosomes attached to the rough ER. <strong>Needed:</strong> an mRNA, the two ribosomal subunits, charged tRNAs, protein factors and GTP.</p>
+  <ol class="proc">
+    <li><strong>Before it starts: the tRNAs are charged.</strong>
+      <ul>
+        <li>Each aminoacyl tRNA synthetase attaches its amino acid to the 3' CCA end of every tRNA carrying a matching anticodon.</li>
+      </ul></li>
+    <li><strong>Initiation: the ribosome is assembled at the start codon.</strong>
+      <ul>
+        <li>Initiation factors bind the 5' cap of the mRNA.</li>
+        <li>They recruit the small ribosomal subunit and the initiator tRNA charged with Met.</li>
+        <li>This complex moves along the mRNA until it meets the first AUG, and the tRNA's anticodon pairs with it. That fixes the reading frame.</li>
+        <li>The large subunit joins and the initiation factors leave. The Met tRNA is in the P site and the A site sits empty over the second codon.</li>
+        <li>In prokaryotes there is no cap: the ribosome binds a Shine-Dalgarno sequence and starts at the AUG just downstream.</li>
+      </ul></li>
+    <li><strong>Elongation: one amino acid is added per cycle.</strong>
+      <ul>
+        <li>A charged tRNA whose anticodon matches the codon in the A site binds there.</li>
+        <li>A peptide bond forms. The growing chain is transferred from the tRNA in the P site onto the amino acid in the A site, catalysed by RNA in the large subunit.</li>
+        <li>The ribosome moves one codon towards the 3' end of the mRNA. The empty tRNA passes to the E site and leaves, the tRNA holding the chain is now in the P site, and the A site is open over the next codon.</li>
+        <li>Elongation factors break down GTP to power this.</li>
+        <li>The cycle repeats and the chain grows from its amino end towards its carboxyl end.</li>
+      </ul></li>
+    <li><strong>Termination: the chain is released.</strong>
+      <ul>
+        <li>A stop codon (UAA, UAG or UGA) arrives in the A site. No tRNA matches it.</li>
+        <li>A protein release factor binds the A site instead.</li>
+        <li>The bond holding the polypeptide to the last tRNA is broken, which frees the chain and creates its carboxyl end.</li>
+        <li>The two ribosomal subunits separate from the mRNA and from each other.</li>
+      </ul></li>
+    <li><strong>Afterwards: the protein is finished and delivered.</strong>
+      <ul>
+        <li>The chain folds, may be modified (cleaved, or given groups such as phosphate), and is sorted to its location by its signal sequences.</li>
+      </ul></li>
+  </ol>
+
+  <h3>What the audience must already know</h3>
+  <ul>
+    <li>Transcription and what an mRNA is, including the 5' cap in eukaryotes.</li>
+    <li>Amino acids join by peptide bonds, and a polypeptide has an amino (N) end and a carboxyl (C) end.</li>
+    <li>Base pairing is antiparallel.</li>
+    <li>Primary structure decides how a protein folds, which is why getting the sequence right matters.</li>
+  </ul>
+
+  <h3>What they should be able to do afterwards</h3>
+  <ol>
+    <li>Name the components of translation and the job of each.</li>
+    <li>Find the start codon in an mRNA and translate it with a codon table.</li>
+    <li>Explain reading frame, redundancy and stop codons.</li>
+    <li>Walk through initiation, elongation and termination using the A, P and E sites.</li>
+    <li>Explain why aminoacyl tRNA synthetases are the molecules that actually translate the code.</li>
+    <li>Compare initiation in eukaryotes and prokaryotes, and explain polycistronic mRNA and operons.</li>
+    <li>Say how a protein ends up in the cytosol, in a membrane, in an organelle or outside the cell.</li>
+  </ol>
+
+  <h3>Teaching order</h3>
+  <ol>
+    <li><strong>The puzzle.</strong> mRNA is written with 4 letters and protein with 20. How many letters per word do you need? One gives 4 words, two gives 16, three gives 64. Three is the smallest number that covers 20 amino acids, and it leaves spares.</li>
+    <li><strong>The cast.</strong> Use the table below. More than 100 genes code for parts of this machinery. Stress the ribosome's three tRNA sites and the two ends of a tRNA: the anticodon loop and the 3' CCA end where the amino acid is attached.</li>
+    <li><strong>The translator is the synthetase.</strong> An <strong>aminoacyl tRNA synthetase</strong> joins each amino acid to the tRNAs carrying the matching anticodon. Most organisms have one synthetase per amino acid, and they attach the wrong one far less than once in 10,000 times. A tRNA with its amino acid is <strong>charged</strong>; without it, uncharged. This is the step where nucleic acid language is matched to amino acid language. Everything after it is base pairing.</li>
+    <li><strong>The code.</strong> 64 codons: 61 specify the 20 amino acids and 3 are stop codons (UAA, UAG, UGA). Most amino acids have more than one codon, so the code is <strong>redundant</strong> (degenerate), nearly always at the third position: UUU and UUC both mean Phe. AUG is the initiation codon and also codes for Met inside a protein. Almost all cells use the same code, with small differences in a few organisms and in mitochondria.</li>
+    <li><strong>Reading frame.</strong> Codons do not overlap and there is no spacing, so where you start decides every word after it. Use a sentence with no spaces (see the analogies). The position of the initiator AUG sets the frame.</li>
+    <li><strong>How the code was cracked.</strong> Khorana's group made synthetic RNAs of known sequence and translated them in a test tube under conditions where ribosomes could start anywhere. Poly(U) gave only Phe, so UUU is Phe. Alternating UC gave alternating Ser and Leu. Repeating UCA gave three different single-amino-acid chains, one per reading frame. This is a good moment to let the audience predict the result before you tell them.</li>
+    <li><strong>Codon meets anticodon.</strong> The pairing is antiparallel, so the first (5') base of the codon pairs with the last (3') base of the anticodon. Codon 5'-AUG-3' pairs with anticodon 3'-UAC-5'.</li>
+    <li><strong>Initiation (eukaryotes).</strong> Initiation factors bind the 5' cap. They bring in the small ribosomal subunit and a tRNA charged with Met. The complex moves along the mRNA until it meets the first AUG. The large subunit then joins and the initiation factors leave. The Met tRNA is sitting in the P site.</li>
+    <li><strong>Elongation.</strong> Three steps, repeated. (1) A charged tRNA matching the next codon enters the A site. (2) A peptide bond forms: the chain is transferred from the tRNA in the P site onto the amino acid in the A site. The catalyst is an RNA in the large subunit. (3) The ribosome moves along by one codon, so the empty tRNA shifts to the E site and leaves, the tRNA holding the chain is now in the P site, and the A site is free. Elongation factors spend GTP to drive this.</li>
+    <li><strong>Termination.</strong> No tRNA matches a stop codon. A protein <strong>release factor</strong> binds the A site instead and the bond between the chain and the last tRNA is broken. That creates the carboxyl end. The two subunits separate from the mRNA and from each other.</li>
+    <li><strong>The prokaryote difference.</strong> Elongation and termination are much the same. Initiation is not: bacterial mRNA has no cap, and the ribosome binds at a <strong>Shine-Dalgarno sequence</strong> (5'-AGGAGGU-3' in <em>E. coli</em>) with the AUG about eight nucleotides downstream. An mRNA can have several of these, so one mRNA can make several proteins. Such a <strong>polycistronic</strong> mRNA comes from an <strong>operon</strong>, a group of related genes transcribed together from one promoter so their products appear together.</li>
+    <li><strong>Control and delivery.</strong> Transcription, RNA processing and translation together are <strong>gene expression</strong>, and it can be regulated at every level: access to the DNA, transcription factors, processing and export, translation, and <strong>posttranslational modification</strong> such as adding a phosphate. Finished proteins are then sorted. Use the sorting table below.</li>
+  </ol>
+
+  <h3>Worked example for the board</h3>
+  <pre>mRNA     5'-AUG CCU AAG UGA-3'
+protein  N- Met-Pro-Lys -C      (UGA = stop)</pre>
+  <p>This is the RNA made in the transcription example. Then insert one G after the start codon and translate again:</p>
+  <pre>mRNA     5'-AUG GCC UAA GUG A-3'
+protein  N- Met-Ala -C          (UAA = stop)</pre>
+  <p>One extra base changed every codon after it and brought a stop codon into frame. That is a frameshift, and it shows why reading frame matters better than a definition does.</p>
+
+  <h3>Tables to draw</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Component</th><th>What it is</th><th>Job</th></tr></thead>
+    <tbody>
+      <tr><td>mRNA</td><td>The processed transcript</td><td>Carries the codons, read 5' to 3'</td></tr>
+      <tr><td>Ribosome</td><td>A small and a large subunit, each made of 1 to 3 rRNAs and 20 to 50 proteins. Larger in eukaryotes</td><td>Holds the mRNA, keeps the reading frame, and joins the amino acids</td></tr>
+      <tr><td>A, P and E sites</td><td>Three tRNA binding sites on the ribosome</td><td>A: aminoacyl, where a charged tRNA arrives. P: peptidyl, holds the tRNA carrying the chain. E: exit</td></tr>
+      <tr><td>tRNA</td><td>A small RNA of 70 to 90 nucleotides, drawn as a cloverleaf</td><td>Adaptor: anticodon at one end, amino acid on the 3' CCA end</td></tr>
+      <tr><td>Aminoacyl tRNA synthetase</td><td>An enzyme, usually one per amino acid</td><td>Attaches the correct amino acid to its tRNAs</td></tr>
+      <tr><td>Initiation, elongation and release factors</td><td>Proteins</td><td>Assemble the ribosome at the start, power each step with GTP, and release the finished chain</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Where the protein ends up</th><th>Made on</th><th>Signal</th></tr></thead>
+    <tbody>
+      <tr><td>Cytosol</td><td>Free ribosomes</td><td>None. This is the default</td></tr>
+      <tr><td>Mitochondria or chloroplasts</td><td>Free ribosomes, sorted after translation</td><td>Signal sequence, often at the amino end</td></tr>
+      <tr><td>Nucleus</td><td>Free ribosomes, sorted after translation</td><td>Nuclear localisation signal, usually internal; the protein passes through nuclear pores</td></tr>
+      <tr><td>ER, Golgi or lysosome interior, or secreted</td><td>Ribosomes on the rough ER, sorted during translation</td><td>Amino-terminal signal sequence, cut off inside the ER</td></tr>
+      <tr><td>A membrane</td><td>Ribosomes on the rough ER</td><td>Amino-terminal signal sequence plus a hydrophobic signal-anchor sequence that stays in the bilayer</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>How a ribosome gets to the ER, in four steps:</strong> the signal sequence emerges and a <strong>signal-recognition particle (SRP)</strong> binds it and pauses translation; the SRP docks on its receptor on the rough ER; the SRP leaves, translation resumes and the chain is threaded through a channel; a protease cuts off the signal sequence in the ER lumen.</p>
+
+  <h3>Analogies, and where they stop working</h3>
+  <ul>
+    <li><strong>The sentence with no spaces.</strong> THEFATCATATETHERAT reads as THE FAT CAT ATE THE RAT only if you start at the T. Start one letter late and you get HEF ATC ATA TET HER AT. Three possible frames, one of which makes sense.</li>
+    <li><strong>The interpreter.</strong> tRNA is a bilingual adaptor with a nucleic acid end and an amino acid end. Limit: the tRNA does not choose its amino acid. The synthetase does.</li>
+    <li><strong>The mislabelled parcel.</strong> The synthetase sticks the address label on the parcel. The ribosome reads only the label. If the label is wrong, the wrong parcel is delivered with complete confidence.</li>
+    <li><strong>The postcode.</strong> A signal sequence is an address on the protein. No address means it stays where it was made, in the cytosol.</li>
+  </ul>
+
+  <h3>Misconceptions to raise yourself</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>What people think</th><th>What is true</th><th>How to fix it</th></tr></thead>
+    <tbody>
+      <tr><td>The ribosome matches the amino acid to the codon</td><td>The ribosome checks only codon against anticodon. The synthetase chose the amino acid earlier</td><td>Ask check question 4 below</td></tr>
+      <tr><td>tRNA carries the codon</td><td>mRNA carries codons. tRNA carries the anticodon</td><td>Label both on the same drawing</td></tr>
+      <tr><td>Translation starts at the first base of the mRNA</td><td>It starts at the initiator AUG. The stretch before it is not translated</td><td>Put a few bases before the AUG in every example</td></tr>
+      <tr><td>A stop codon codes for a stop amino acid or a stop tRNA</td><td>Nothing is added. A release factor, which is a protein, fills the A site</td><td>Ask "what is in the A site at the end?"</td></tr>
+      <tr><td>Redundant means ambiguous</td><td>Several codons can mean one amino acid, but one codon never means two amino acids</td><td>Say "many to one, never one to many"</td></tr>
+      <tr><td>The new amino acid is carried over to the chain in the P site</td><td>The chain moves onto the new amino acid in the A site</td><td>Act it out: the chain is handed forward each time</td></tr>
+      <tr><td>The anticodon is written in the same direction as the codon</td><td>They are antiparallel</td><td>Write the anticodon 3' to 5' directly under the codon</td></tr>
+      <tr><td>Every protein keeps Met at its start</td><td>Every chain starts with Met, but it is often removed afterwards</td><td>Mention it once when you introduce AUG</td></tr>
+      <tr><td>ER ribosomes are a different kind of ribosome</td><td>Same ribosomes. The signal sequence on the protein being made sends the ribosome to the ER</td><td>Tell the SRP story</td></tr>
+      <tr><td>A protein enzyme makes the peptide bond</td><td>An RNA in the large subunit is the catalyst</td><td>Link back to catalytic RNA from the transcription topic</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Questions you will get</h3>
+  <details><summary>Why is the code redundant?</summary><div>There are 61 sense codons for 20 amino acids, so there have to be repeats. Because the repeats mostly differ at the third base, many single-base changes there do not alter the protein at all.</div></details>
+  <details><summary>How does the ribosome find the right AUG?</summary><div>In eukaryotes it loads at the 5' cap and uses the first AUG it reaches. In bacteria it binds a Shine-Dalgarno sequence and uses the AUG just downstream.</div></details>
+  <details><summary>Why can one bacterial mRNA make three proteins and a eukaryotic one only make one?</summary><div>A bacterial ribosome can start at any internal Shine-Dalgarno sequence, so each coding region on the mRNA gets its own start. A eukaryotic ribosome can only load at the cap, so it translates the first coding region and then falls off at the stop codon.</div></details>
+  <details><summary>Where does the energy come from?</summary><div>Elongation factors bound to GTP break its high-energy bond to drive ribosome movement and peptide bond formation.</div></details>
+  <details><summary>What happens if a base changes?</summary><div>It depends on the codon it produces: the same amino acid (silent), a different one (missense), or a stop (nonsense). Adding or removing a base shifts the frame. The mutation table on the study content page covers this.</div></details>
+  <details><summary>Is one ribosome per mRNA the limit?</summary><div>No. Several ribosomes can work along the same mRNA at once, each making its own copy of the protein. (The name for this, a polysome, is on the study content page and not in these textbook sections.)</div></details>
+  <details><summary>Why would a cell keep inactive protein around to be activated by phosphorylation?</summary><div>Speed. Switching on a protein that already exists takes seconds; making a new one means transcription, processing, export and translation. This also sets up the signalling topic.</div></details>
+
+  <h3>Check questions</h3>
+  <details><summary>1. Translate 5'-GCCACCAUGGCUUGGAAAUAAGC-3'.</summary><div>Find the first AUG, then read in threes: AUG GCU UGG AAA UAA gives Met-Ala-Trp-Lys, then stop. The bases before AUG and after UAA are not translated.</div></details>
+  <details><summary>2. What anticodon pairs with the codon 5'-GCU-3'?</summary><div>3'-CGA-5', which is the same thing as 5'-AGC-3'.</div></details>
+  <details><summary>3. A synthetic mRNA is ACACACAC... repeating. What is made? What about AAGAAGAAG...?</summary><div>ACACAC reads as ACA CAC ACA or CAC ACA CAC in any frame, so the product is alternating Thr and His. AAG repeats read as AAG, AGA or GAA depending on the frame, giving three separate products: all Lys, all Arg, or all Glu.</div></details>
+  <details><summary>4. A faulty synthetase attaches alanine to the tRNA for cysteine. What does the ribosome do at a cysteine codon?</summary><div>It inserts alanine. The ribosome checks the anticodon, which is still correct, and has no way to inspect the amino acid.</div></details>
+  <details><summary>5. Just after a peptide bond forms and before the ribosome moves, which site holds the tRNA carrying the chain?</summary><div>The A site. The move then carries it into the P site.</div></details>
+  <details><summary>6. A bacterial operon coding for three enzymes is put into yeast and transcribed correctly. Only the first enzyme is made. Why?</summary><div>The yeast ribosome loads at the cap, translates from the first AUG and leaves at the first stop codon. It cannot start again at the internal Shine-Dalgarno sequences.</div></details>
+  <details><summary>7. You delete the amino-terminal signal sequence from a secreted protein. Where does it end up?</summary><div>In the cytosol. With no signal the SRP never binds, the ribosome never docks on the ER, and the default location applies.</div></details>
+  <details><summary>8. What are the relationships among template DNA, codon, anticodon and amino acid?</summary><div>The codon is complementary to the template DNA. The anticodon is complementary to the codon, so it resembles the template with U for T. The amino acid is whichever one the synthetase attached to that tRNA.</div></details>
+
+  <h3>Depth guide</h3>
+  <p><strong>Textbook core:</strong> everything in the teaching order above, including Khorana's experiments and protein sorting.</p>
+  <p><strong>On the study content page but beyond these textbook sections:</strong> fMet in bacteria, the Kozak sequence, wobble pairing and inosine, the name peptidyl transferase, polysomes, 70S and 80S ribosomes and the antibiotics that tell them apart. Useful for questions, optional for the lesson.</p>
+  <a class="back" href="#top">Back to top</a>
+</section>
+
+<!-- ================= CELL SIGNALLING ================= -->
+<section id="signalling">
+  <h2>3. Cell signalling</h2>
+  <p class="ref">Module 9 &middot; textbook chapter 9, sections 9.1 to 9.5</p>
+  <div class="key"><strong>The point:</strong> a signalling molecule binds a specific receptor, the receptor changes shape, the message is relayed and amplified inside the cell, the cell responds, and then every step is switched off again so the cell can hear the next signal.</div>
+
+  <h3>The whole process, start to finish</h3>
+  <p><strong>Before the four steps:</strong> a signalling cell makes a signalling molecule. It reaches the responding cell through the blood, by diffusion, or by staying on the sender's membrane while the two cells touch.</p>
+  <ol class="proc">
+    <li><strong>Receptor activation: the signal is received.</strong>
+      <ul>
+        <li>The signalling molecule (the ligand) binds the ligand-binding site of its receptor. The fit is specific and the bond is noncovalent.</li>
+        <li>Binding changes the receptor's conformation. The receptor is now on.</li>
+        <li>What "on" means depends on the receptor. A G protein-coupled receptor binds and activates a G protein. Receptor kinases pair up and phosphorylate each other. A ligand-gated ion channel opens.</li>
+        <li>For a nonpolar signal such as a steroid, the receptor is inside the cell and the hormone-receptor complex goes straight to the genes.</li>
+      </ul></li>
+    <li><strong>Signal transduction: the message is relayed and amplified.</strong>
+      <ul>
+        <li>The active receptor switches on a protein inside the cell, which switches on the next, and so on down a cascade.</li>
+        <li>At several steps one active molecule turns on many copies of the next, so a little signal produces a large effect.</li>
+        <li>G protein route: the &alpha; subunit swaps GDP for GTP, separates from &beta; and &gamma;, and activates adenylyl cyclase. Adenylyl cyclase makes the second messenger cAMP, and cAMP activates protein kinase A.</li>
+        <li>Receptor kinase route: proteins dock on the phosphorylated receptor, Ras swaps GDP for GTP, and Ras starts the MAP kinase pathway, in which each kinase phosphorylates the next until the last one enters the nucleus.</li>
+      </ul></li>
+    <li><strong>Response: the cell changes what it is doing.</strong>
+      <ul>
+        <li>Fast responses alter proteins already present: enzymes are activated or ion channels opened. In heart muscle, PKA opens calcium channels and the heart beats faster.</li>
+        <li>Slow responses alter gene expression: transcription factors are phosphorylated and switch genes on. After a cut, the genes for cell division are turned on.</li>
+        <li>Which response happens depends on the receptor and on the proteins that particular cell contains.</li>
+      </ul></li>
+    <li><strong>Termination: every step is switched off.</strong>
+      <ul>
+        <li>The ligand leaves the receptor and the receptor returns to its inactive shape.</li>
+        <li>The G protein &alpha; subunit, or Ras, converts its own GTP to GDP and turns itself off.</li>
+        <li>An enzyme converts cAMP to AMP.</li>
+        <li>Phosphatases remove the phosphate groups the kinases added.</li>
+        <li>The response stays in proportion and the cell is ready for the next signal.</li>
+      </ul></li>
+  </ol>
+
+  <h3>What the audience must already know</h3>
+  <ul>
+    <li>The membrane has a hydrophobic core, so nonpolar molecules cross it and polar ones do not.</li>
+    <li>A protein's shape decides its activity, and binding something can change that shape.</li>
+    <li>ATP carries a transferable phosphate; GTP is the same idea with guanine.</li>
+    <li>Gene expression from the first two topics, because many pathways end by switching genes on.</li>
+  </ul>
+
+  <h3>What they should be able to do afterwards</h3>
+  <ol>
+    <li>Name the four elements of cell communication and the four steps of signalling.</li>
+    <li>Classify signalling by distance: endocrine, paracrine, autocrine, contact-dependent.</li>
+    <li>Predict where a receptor is from whether its signal is polar or nonpolar.</li>
+    <li>Describe the three kinds of cell-surface receptor.</li>
+    <li>Trace the adrenaline pathway through a G protein-coupled receptor and point to where it is amplified and where it is terminated.</li>
+    <li>Trace a growth factor pathway through a receptor kinase, Ras and the MAP kinase pathway.</li>
+    <li>Explain why the same signal gives different responses in different cells, and how signalling faults lead to cancer.</li>
+  </ol>
+
+  <h3>Teaching order</h3>
+  <ol>
+    <li><strong>The puzzle.</strong> Something startles you and within seconds your heart is pounding. The trigger is adrenaline, released by glands sitting above your kidneys. How does a molecule released there change what heart cells do, and why does it stop?</li>
+    <li><strong>Four elements.</strong> A <strong>signalling cell</strong>, a <strong>signalling molecule</strong>, a <strong>receptor protein</strong> and a <strong>responding cell</strong>. Fill them in for adrenaline (adrenal gland cell, adrenaline, adrenaline receptor, heart cell). Then show it is universal with bacteria: pneumococcus cells constantly release a 17-amino-acid peptide, and only when the population is dense is there enough peptide to bind receptors and switch on the genes for DNA uptake. That is <strong>quorum sensing</strong>, and each cell is both sender and responder.</li>
+    <li><strong>Four steps.</strong> <strong>Receptor activation</strong> (binding changes the receptor's conformation), <strong>signal transduction</strong> (one molecule activates the next in a cascade, usually amplifying as it goes), <strong>response</strong>, <strong>termination</strong>. Write these four words across the top of the board and keep them there; both pathways later are hung on them.</li>
+    <li><strong>Who responds, and how.</strong> A cell responds only if it has the receptor. What it does then depends on the proteins and pathways inside that cell. Adrenaline makes heart muscle contract faster and harder, and makes the cells lining the airways relax.</li>
+    <li><strong>Distance.</strong> Use the table below. Mention neurotransmitters crossing a synapse as a specialised short-range case.</li>
+    <li><strong>Receptors and ligands.</strong> The signalling molecule is a <strong>ligand</strong>. It binds a specific <strong>ligand-binding site</strong> by noncovalent bonds, and binding changes the receptor's conformation, much as a substrate does to an enzyme. Polar ligands such as growth factors cannot cross the membrane, so their receptors span it, with an extracellular, a transmembrane and a cytoplasmic domain. Nonpolar ligands such as steroid hormones pass through the bilayer and meet their receptor in the cytosol or nucleus, and the hormone-receptor complex controls the expression of specific genes.</li>
+    <li><strong>Three kinds of surface receptor, all switches.</strong> <strong>G protein-coupled receptors</strong>, <strong>receptor kinases</strong> and <strong>ligand-gated ion channels</strong>. Define kinase and phosphatase here: a kinase moves a phosphate from ATP onto a protein, typically switching it on; a phosphatase removes it, typically switching it off.</li>
+    <li><strong>Pathway one: adrenaline through a G protein-coupled receptor.</strong> Use the first pathway table below. Then go back over it twice with a coloured pen: once marking where the signal is amplified, once marking where it is shut off.</li>
+    <li><strong>Pathway two: a growth factor through a receptor kinase.</strong> Start with a cut finger. Platelets at the wound release <strong>platelet-derived growth factor (PDGF)</strong>. Use the second pathway table.</li>
+    <li><strong>Compare the two.</strong> Use the comparison table. Same four steps, different speed and lifetime.</li>
+    <li><strong>When it breaks: cancer.</strong> A fault at almost any step can make a cell behave as if it has been told to divide. Some cancers carry 10 to 100 times the normal number of EGF receptors (HER2/neu in certain breast cancers). More than 30% of human cancers involve Ras, often a mutant that cannot convert GTP to GDP and so is locked on.</li>
+    <li><strong>Integration.</strong> A real cell is receiving many signals at once and its response depends on how the pathways meet. Two signals can reinforce each other, or one can damp the other: active PKA from the G protein pathway can inhibit enzymes of the MAP kinase pathway.</li>
+  </ol>
+
+  <h3>Tables to draw</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Type</th><th>How the signal travels</th><th>Textbook example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Endocrine</strong></td><td>Through the bloodstream, over long distances</td><td>Adrenaline; estradiol and testosterone at puberty</td></tr>
+      <tr><td><strong>Paracrine</strong></td><td>Diffusion to nearby cells, about 20 cell diameters</td><td>Growth factors such as PDGF; Sonic Hedgehog shaping the embryo</td></tr>
+      <tr><td><strong>Autocrine</strong></td><td>The cell responds to its own signal</td><td>Cells in the embryo holding on to a developmental decision</td></tr>
+      <tr><td><strong>Contact-dependent</strong></td><td>The signal stays in the sender's membrane, so the cells must touch</td><td>Delta on a future neuron binds Notch on its neighbours, which become glial cells</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Step</th><th>Adrenaline in heart muscle (G protein-coupled receptor)</th></tr></thead>
+    <tbody>
+      <tr><td>Receptor activation</td><td>Adrenaline binds the receptor, a single polypeptide that crosses the membrane seven times. The activated receptor binds a G protein on the inner face of the membrane</td></tr>
+      <tr><td>G protein switched on</td><td>The G protein has &alpha;, &beta; and &gamma; subunits. The &alpha; subunit releases GDP and binds GTP, then separates from &beta; and &gamma;. GDP bound is off; GTP bound is on</td></tr>
+      <tr><td>Transduction</td><td>The GTP-bound &alpha; subunit activates the membrane enzyme <strong>adenylyl cyclase</strong>, which converts ATP to <strong>cyclic AMP (cAMP)</strong>, a <strong>second messenger</strong>. cAMP activates <strong>protein kinase A (PKA)</strong></td></tr>
+      <tr><td>Response</td><td>PKA phosphorylates its targets. In heart muscle this opens calcium channels, the gaps between contractions shorten and the heart rate rises</td></tr>
+      <tr><td>Amplification, three places</td><td>One receptor activates several G proteins; each adenylyl cyclase makes many cAMP; each PKA phosphorylates many target proteins</td></tr>
+      <tr><td>Termination, four places</td><td>Adrenaline leaves the receptor (how long it stays depends on binding affinity); the &alpha; subunit converts its own GTP to GDP; an enzyme converts cAMP to AMP; phosphatases remove the phosphates PKA added</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Step</th><th>PDGF at a wound (receptor kinase)</th></tr></thead>
+    <tbody>
+      <tr><td>Receptor activation</td><td>One PDGF molecule binds two receptors, so they pair up (<strong>dimerise</strong>). The partners phosphorylate each other at several sites on their cytoplasmic tails</td></tr>
+      <tr><td>Docking</td><td>The new phosphate groups are binding sites where cytoplasmic signalling proteins attach and become active</td></tr>
+      <tr><td>Transduction</td><td><strong>Ras</strong>, a single-subunit G protein, swaps GDP for GTP. Active Ras switches on the first of a series of kinases, each phosphorylating the next: the <strong>MAP kinase pathway</strong></td></tr>
+      <tr><td>Response</td><td>The last kinase enters the nucleus and phosphorylates transcription factors, which turn on genes for cell division. The wound is repaired</td></tr>
+      <tr><td>Amplification</td><td>Each active kinase activates many copies of the next one down</td></tr>
+      <tr><td>Termination</td><td>Phosphatases inactivate the receptor and the MAP kinases; Ras converts its GTP to GDP</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>G protein-coupled receptor</th><th>Receptor kinase</th></tr></thead>
+    <tbody>
+      <tr><td>Structure</td><td>One chain, seven membrane-spanning regions. About 800 kinds in humans</td><td>Extracellular ligand-binding part, intracellular kinase part; works as a pair</td></tr>
+      <tr><td>First event after binding</td><td>Activates a three-subunit G protein</td><td>Dimerises and the partners phosphorylate each other</td></tr>
+      <tr><td>Relay</td><td>Second messenger (cAMP), then PKA</td><td>Ras, then the MAP kinase pathway</td></tr>
+      <tr><td>Typical response</td><td>Changes proteins already in the cell: activates enzymes, opens channels</td><td>Changes gene expression: growth, division, differentiation</td></tr>
+      <tr><td>Speed and lifetime</td><td>Rapid, short-lived, easily reversed</td><td>Slower and longer-lasting</td></tr>
+      <tr><td>Also used for</td><td>Sight, smell and taste</td><td>Limb formation in the embryo; pigment production through the Kit receptor</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Analogies, and where they stop working</h3>
+  <ul>
+    <li><strong>The doorbell.</strong> The signal presses the bell and never comes inside. What happens next depends on who lives in the house. Limit: steroid hormones do come inside, so present them as the exception.</li>
+    <li><strong>The light switch and the timer switch.</strong> A receptor is on while its ligand is bound and off when it leaves. A G protein is a timer switch: it turns itself off by converting GTP to GDP, so it has to keep being pressed.</li>
+    <li><strong>The rumour.</strong> One person tells ten, each of those tells ten more. That is amplification through a cascade. Limit: a rumour changes as it spreads and a signal does not.</li>
+    <li><strong>The stuck accelerator.</strong> Ras that cannot convert GTP to GDP keeps saying "divide" with nobody pressing the pedal.</li>
+    <li><strong>Broadcast, conversation, talking to yourself, handshake.</strong> Endocrine, paracrine, autocrine, contact-dependent.</li>
+  </ul>
+
+  <h3>Misconceptions to raise yourself</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>What people think</th><th>What is true</th><th>How to fix it</th></tr></thead>
+    <tbody>
+      <tr><td>The signal molecule goes into the cell</td><td>Polar signals stay outside. Only the information crosses, through the receptor's change of shape</td><td>Draw the ligand on the outside and never move it</td></tr>
+      <tr><td>"G protein" is short for G protein-coupled receptor</td><td>They are two different proteins. The receptor spans the membrane; the G protein sits on the inner face and is activated by it</td><td>Draw them in two colours</td></tr>
+      <tr><td>The G protein's GDP is phosphorylated to make GTP</td><td>GDP is released and a new GTP binds in its place. It is an exchange</td><td>Say "swaps", and draw GDP leaving</td></tr>
+      <tr><td>The hormone decides the response</td><td>The responding cell decides. Same adrenaline, opposite effects in heart and airway</td><td>Give the two-tissue example early</td></tr>
+      <tr><td>Every cell the hormone reaches responds</td><td>Only cells with the receptor</td><td>Ask check question 3</td></tr>
+      <tr><td>A second messenger is a second hormone, or a protein</td><td>It is a small molecule made inside the cell, such as cAMP. The first messenger is the signal outside</td><td>Label "first messenger" on adrenaline</td></tr>
+      <tr><td>Kinases remove phosphate</td><td>Kinases add, phosphatases remove</td><td>Write both on the board with arrows in opposite directions</td></tr>
+      <tr><td>The signal just fades when the hormone runs out</td><td>Termination is active at every level: receptor, G protein, second messenger, target proteins</td><td>Do the "where is it shut off" pass with a second colour</td></tr>
+      <tr><td>A receptor kinase phosphorylates itself</td><td>Each partner in the pair phosphorylates the other, which is why pairing is needed</td><td>Ask what would happen if the receptors could not dimerise</td></tr>
+      <tr><td>Ras is a receptor, or a kinase</td><td>Ras is a small G protein downstream of the receptor. It activates the first kinase</td><td>Compare it to the &alpha; subunit: same GDP and GTP switch, one subunit</td></tr>
+      <tr><td>Endocrine, paracrine and autocrine are kinds of molecule</td><td>They describe distance. The same principles apply to all of them</td><td>Sort the examples by "how far did it travel?"</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Questions you will get</h3>
+  <details><summary>Why so many steps? Why not have the receptor do the job directly?</summary><div>Each step multiplies the signal, so a tiny amount of hormone has a large effect. Each step is also a place to switch the pathway off, and a place where other pathways can cut in.</div></details>
+  <details><summary>Why is the heart response over in minutes while healing takes days?</summary><div>The adrenaline pathway changes proteins that are already made, which is fast and easy to reverse. The growth factor pathway turns on genes, so new proteins have to be transcribed and translated, and the effect lasts.</div></details>
+  <details><summary>What is the difference between Ras and the other G protein?</summary><div>Both are off with GDP and on with GTP, and both turn themselves off. The G protein that works with G protein-coupled receptors has three subunits; Ras is a single subunit, like the &alpha; subunit alone, and works downstream of receptor kinases.</div></details>
+  <details><summary>How can one mutation in Ras cause cancer?</summary><div>If Ras cannot convert GTP to GDP it stays on, the MAP kinase pathway stays on, and the genes for division stay on, with no growth factor present.</div></details>
+  <details><summary>Do steroid hormones use second messengers?</summary><div>They do not need to. They cross the membrane, bind a receptor inside, and the complex acts on genes directly.</div></details>
+  <details><summary>Do bacteria really signal to each other?</summary><div>Yes. Quorum sensing uses the same four elements, and controls DNA uptake, light production, antibiotic production and biofilm formation.</div></details>
+  <details><summary>Where do calcium, IP3 or cholera toxin fit in?</summary><div>Those are beyond textbook chapter 9, which uses only the cAMP branch. They are on the study content page: another G protein branch that releases calcium, and toxins that jam the G protein switch. Answer briefly and point people there.</div></details>
+
+  <h3>Check questions</h3>
+  <details><summary>1. Name the four elements of communication for adrenaline and the heart. What is unusual about them in quorum sensing?</summary><div>Signalling cell: adrenal gland cell. Signalling molecule: adrenaline. Receptor: the adrenaline receptor on the heart cell. Responding cell: the heart cell. In quorum sensing every bacterium is both the signalling cell and the responding cell.</div></details>
+  <details><summary>2. A newly found hormone is a nonpolar steroid. Where is its receptor, and what kind of response do you expect?</summary><div>Inside the cell, in the cytosol or nucleus. The hormone-receptor complex changes the expression of specific genes.</div></details>
+  <details><summary>3. A hormone in the blood touches nearly every cell in the body. What decides which cells respond?</summary><div>Whether the cell has a receptor for it. What the response is depends on the proteins and pathways inside that cell.</div></details>
+  <details><summary>4. Put in order: cAMP made, PKA activated, GTP replaces GDP on the &alpha; subunit, adrenaline binds, calcium channels open, adenylyl cyclase activated.</summary><div>Adrenaline binds; GTP replaces GDP on the &alpha; subunit; adenylyl cyclase activated; cAMP made; PKA activated; calcium channels open.</div></details>
+  <details><summary>5. Give three places the adrenaline signal is amplified and three ways it is terminated.</summary><div>Amplified: one receptor activates several G proteins; each adenylyl cyclase makes many cAMP; each PKA phosphorylates many targets. Terminated (any three): adrenaline leaves the receptor; the &alpha; subunit converts GTP to GDP; cAMP is converted to AMP; phosphatases remove phosphates.</div></details>
+  <details><summary>6. A mutant &alpha; subunit cannot convert GTP to GDP. What happens in the cell?</summary><div>The G protein stays on after the hormone has gone. Adenylyl cyclase keeps making cAMP and PKA stays active, so the response continues without a signal.</div></details>
+  <details><summary>7. A drug stops a growth factor receptor from dimerising. What happens downstream?</summary><div>The receptors cannot phosphorylate each other, so there are no docking sites, Ras is not activated, the MAP kinase pathway stays off and the division genes are not switched on.</div></details>
+  <details><summary>8. Is Delta binding to Notch endocrine, paracrine, autocrine or contact-dependent? Why?</summary><div>Contact-dependent. Delta is a transmembrane protein that stays on the signalling cell, so the two cells have to touch.</div></details>
+  <details><summary>9. How are receptor kinase pathways like G protein-coupled pathways, and how do they differ?</summary><div>Alike: activation by ligand binding, a relay that amplifies, a response, and termination by GTP conversion and phosphatases. Different: receptor kinases dimerise and are themselves enzymes, signal through Ras and a kinase cascade, and usually change gene expression with longer-lasting effects.</div></details>
+  <details><summary>10. Cells with raised cAMP respond poorly to a growth factor. Suggest why.</summary><div>cAMP activates PKA, and active PKA can inhibit enzymes of the MAP kinase pathway. One pathway is damping the other, which is an example of cross talk.</div></details>
+
+  <h3>Depth guide</h3>
+  <p><strong>Textbook core:</strong> everything in the teaching order above. Note that the textbook's adrenaline example is <em>heart muscle</em> (PKA opens calcium channels), while the study content page follows adrenaline in liver and muscle to glycogen breakdown. Both are correct; know which one your audience has seen.</p>
+  <p><strong>On the study content page but beyond textbook chapter 9:</strong> the phospholipase C branch (IP3, DAG, calcium, PKC, calmodulin), cholera and pertussis toxins, CREB and the slow gene-expression branch of the cAMP pathway, GEFs and GAPs, and receptor desensitisation by arrestin. The textbook says phosphorylation typically activates a protein; the fuller picture is that it activates some and inhibits others.</p>
+  <a class="back" href="#top">Back to top</a>
+</section>
+
+<!-- ================= LINKING ================= -->
+<section id="links">
+  <h2>Linking the three topics</h2>
+  <p>If you teach all three, close by joining them into one story. It takes a minute and it is the part people remember.</p>
+  <div class="hook"><b>One story:</b> you cut your finger. Platelets release PDGF. It binds receptor kinases on nearby cells, Ras switches on, and the MAP kinase pathway carries the message into the nucleus <em>(cell signalling)</em>. Transcription factors are phosphorylated and RNA polymerase II is recruited to the genes for cell division; the transcripts are capped, tailed and spliced <em>(transcription)</em>. The mRNAs leave the nucleus, ribosomes load at the cap and build the proteins, and signal sequences send each one where it is needed <em>(translation)</em>. The cells divide and the cut closes.</div>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Start</th><th>Run</th><th>Stop</th></tr></thead>
+    <tbody>
+      <tr><td>Transcription</td><td>Polymerase finds a promoter</td><td>RNA grows at its 3' end</td><td>Terminator; transcript released</td></tr>
+      <tr><td>Translation</td><td>Ribosome finds the initiator AUG</td><td>Chain grows at its carboxyl end</td><td>Stop codon; release factor</td></tr>
+      <tr><td>Signalling</td><td>Ligand binds, receptor changes shape</td><td>Cascade relays and amplifies</td><td>GTP converted to GDP, cAMP broken down, phosphates removed</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Two ideas run through all of it. Specific binding between complementary shapes or sequences does the recognising: base with base, codon with anticodon, ligand with receptor. And every process has an off switch that matters as much as the on switch.</p>
+  <a class="back" href="#top">Back to top</a>
+</section>
+
+</main>
+</body>
+</html>
