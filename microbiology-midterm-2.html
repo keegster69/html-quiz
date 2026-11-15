@@ -255,14 +255,79 @@ const LA = [
      "Comammox is complete ammonia oxidation, NH₃ to NO₃⁻, in one cell carrying both AMO and Nxr. It was discovered in 2015 in some Nitrospira."]}
 ];
 
+// Extra multiple choice, offered in place of the long answers. Same shape as MC.
+const MORE = [
+  {n:20, q:"What is lysogenic conversion?",
+   o:["A temperate phage mutating into a virulent one","A prophage bringing genes that change the host's phenotype","A lysogen being cured of its prophage by UV light","A lytic phage packaging host DNA by mistake"],
+   a:1, why:"The prophage carries genes the host then expresses, so a harmless strain can become a pathogen. Diphtheria toxin, cholera toxin, botulinum toxin and the Shiga toxin of E. coli O157:H7 are all phage encoded."},
+  {n:21, q:"Why can a cell infected with an enveloped virus keep releasing virus for a long time?",
+   o:["Enveloped viruses carry no enzymes that damage the cell.","The envelope protects the cell from detergents.","The virus replicates only in the nucleus.","The virus leaves by budding, which doesn't lyse the cell."],
+   a:3, why:"Enveloped viruses pick up their lipid bilayer by budding through a host membrane, so the cell can survive and keep shedding. Naked viruses and most phages leave by lysis, which kills the cell."},
+  {n:22, q:"What is the burst size in a one-step growth curve?",
+   o:["The number of virions released per infected cell","The time before the first progeny appear","The ratio of infectious particles to cells","The dilution that infects half the cultures"],
+   a:0, why:"A one-step growth curve gives two numbers: the latent period (time before the first progeny appear) and the burst size (virions released per infected cell). The ratio of infectious particles to cells is the multiplicity of infection."},
+  {n:23, q:"Which hypothesis says viruses were once free-living cells that lost functions and became dependent on a host?",
+   o:["The coevolution hypothesis","The progressive hypothesis","The regressive hypothesis","The endosymbiotic hypothesis"],
+   a:2, why:"The regressive hypothesis fits giant viruses such as Mimivirus. The progressive hypothesis says viruses came from genetic material that gained the ability to move between cells, and coevolution says viruses arose alongside the first cells. None explains every virus."},
+  {n:24, q:"Which infectious agent contains no nucleic acid at all?",
+   o:["A viroid","A satellite virus","A defective interfering particle","A prion"],
+   a:3, why:"A prion is a misfolded host protein that propagates by making the normal protein misfold too. Prions cause transmissible spongiform encephalopathies such as BSE, Creutzfeldt-Jakob disease and scrapie, and resist autoclaving and proteases."},
+  {n:25, q:"What causes antigenic shift in influenza A?",
+   o:["Point mutations building up in the HA gene","Reassortment of genome segments between strains","Integration of the genome as a provirus","Loss of the envelope during budding"],
+   a:1, why:"Influenza A has 8 genome segments, so two strains infecting one cell can swap segments and produce a new subtype, the mechanism behind pandemic strains. Gradual change by point mutation is antigenic drift."},
+  {n:26, q:"What is the main route by which viruses get into plant cells?",
+   o:["Damage to the cell wall, mostly from insects feeding","Fusion of the viral envelope with the plasma membrane","Injection of the genome through a contractile tail","Receptor-mediated endocytosis of the whole particle"],
+   a:0, why:"The plant cell wall blocks entry, so infection usually depends on damage that opens it: insect feeding is the main route, with wind, hail, rain, fire and human activity also contributing. Fusion and endocytosis are how animal viruses enter."},
+  {n:27, q:"Listeria monocytogenes grows best near 37 °C but can still grow in a refrigerator. What is it?",
+   o:["A psychrophile","A thermophile","A psychrotolerant mesophile","A hyperthermophile"],
+   a:2, why:"Psychrotolerant organisms (psychrotrophs) grow at 0 to 4 °C but have optima of 20 to 40 °C. True psychrophiles have optima below 15 °C and are often killed by moderate temperatures."},
+  {n:28, q:"Why does mannitol salt agar select for Staphylococcus?",
+   o:["Staphylococci need at least 15 per cent NaCl to grow.","Staphylococci are halotolerant and grow in 7.5 per cent NaCl.","Its bile salts block all Gram-negative bacteria.","Its low pH blocks everything except cocci."],
+   a:1, why:"S. aureus is halotolerant: it doesn't need salt but tolerates up to about 10 per cent and a water activity of 0.86, while most bacteria need above 0.9. Requiring 15 per cent or more salt would make it an extreme halophile like Halobacterium."},
+  {n:29, q:"What makes a medium complex and not defined?",
+   o:["It contains more than ten ingredients.","It contains agar as a solidifying agent.","It stops some organisms from growing.","It contains digests such as tryptone or yeast extract."],
+   a:3, why:"A defined medium has an exact, known chemical composition made from purified ingredients. A complex medium contains digests of unknown composition, such as tryptone or yeast extract. Blocking some organisms makes a medium selective."},
+  {n:30, q:"How does a pour plate differ from a spread plate?",
+   o:["It needs no dilution of the sample.","It can only be used for anaerobes.","Colonies grow embedded in the agar as well as on the surface.","A loop thins the sample out across successive sections."],
+   a:2, why:"In a pour plate the diluted sample is mixed with molten agar cooled to about 45 to 50 °C, so colonies form within the agar and on top. In a spread plate about 0.1 mL is spread over the surface. Dragging a loop across sections is a streak plate."},
+  {n:31, q:"What does HTST pasteurisation of milk (72 °C for 15 s) achieve?",
+   o:["It destroys pathogens and extends shelf life, but does not sterilise.","It sterilises the milk, endospores included.","It removes all cells through a 0.22 µm membrane.","It only slows growth, so it is bacteriostatic."],
+   a:0, why:"Pasteurisation destroys pathogens and kills 90 to 99 per cent of other microbes while keeping flavour. It isn't sterilisation; that needs an autoclave at 121 °C to kill endospores."},
+  {n:32, q:"What is the D-value of a heat treatment?",
+   o:["The lowest temperature that kills all cells in 10 minutes","The time at a given temperature to kill 90 per cent of the population","The shortest time to kill every cell at a given temperature","The dose in grays that sterilises the sample"],
+   a:1, why:"The D-value, or decimal reduction time, is the time for a one-log (90 per cent) reduction. Death is exponential, so it doesn't depend on the starting number of cells. The other options describe thermal death point and thermal death time."},
+  {n:33, q:"Why is 70 per cent ethanol a better disinfectant than absolute ethanol?",
+   o:["Absolute ethanol evaporates before it reaches the cells.","Water makes the ethanol kill endospores.","Diluted ethanol is less toxic to human skin.","Ethanol needs water present to denature proteins."],
+   a:3, why:"Alcohols at 60 to 90 per cent dissolve membrane lipids and denature protein, and the protein denaturation needs water. They have no effect on endospores at any concentration."},
+  {n:34, q:"What does leghaemoglobin do in a legume root nodule?",
+   o:["It carries fixed nitrogen from the bacteroids to the plant.","It signals the rhizobia to switch on their nod genes.","It binds O₂, keeping free O₂ low enough to protect nitrogenase.","It curls the root hair so an infection thread can form."],
+   a:2, why:"Nitrogenase is irreversibly inactivated by O₂, but bacteroids still need O₂ to respire. Leghaemoglobin holds free O₂ low while delivering enough for respiration. Plant flavonoids are the signal that switches on nod genes, and Nod factors curl the root hair."},
+  {n:35, q:"How do heterocysts protect nitrogenase from oxygen?",
+   o:["They lack O₂-evolving photosystem II and have a thick envelope.","They respire so fast that O₂ never builds up.","They make leghaemoglobin that binds the O₂.","They fix nitrogen only at night, when photosynthesis stops."],
+   a:0, why:"Heterocysts in Anabaena and Nostoc make no O₂ themselves because they have no photosystem II, and a thick envelope slows O₂ diffusing in. Neighbouring cells supply carbon and get fixed nitrogen back. Very fast respiration is Azotobacter's strategy."},
+  {n:36, q:"Why are coliform counts used to test water quality?",
+   o:["Coliforms are the main cause of waterborne disease.","Coliforms only ever live in the human intestine.","Coliforms are the only bacteria that survive chlorination.","Coliforms indicate faecal contamination, so pathogens may be present."],
+   a:3, why:"Coliforms such as E. coli are indicator organisms. They may not be pathogens themselves, and they also live in soil and water, but they are so abundant in animal waste that finding them signals faecal contamination."},
+  {n:37, q:"Which trait separates pseudomonads from enteric bacteria?",
+   o:["Pseudomonads are Gram-positive rods.","Pseudomonads have polar flagella; enterics are peritrichous.","Pseudomonads are strict anaerobes.","Pseudomonads form endospores in soil."],
+   a:1, why:"Both are Gram-negative Gammaproteobacteria, but pseudomonads are aerobic chemoorganoheterotrophs with polar flagella, while enterics are facultative anaerobes with peritrichous flagella and are oxidase negative."},
+  {n:38, q:"Which describes Streptomyces?",
+   o:["Filamentous soil bacteria that make geosmin and most antibiotics in use","Acid-fast rods that grow in cordlike strands","Endospore formers that make a crystal insect toxin","Gliding predators that build fruiting bodies when starved"],
+   a:0, why:"Streptomyces grow as branching mycelia with aerial sporophores that divide into conidia. They make geosmin, the earthy smell of soil, and supply about two thirds of antibiotics in use, including streptomycin, tetracycline and vancomycin."},
+  {n:39, q:"How does Agrobacterium cause crown gall disease?",
+   o:["It makes a toxin that blocks plant ribosomes.","It fixes so much nitrogen that root cells overgrow.","It transfers T-DNA from its Ti plasmid into the plant genome.","It enters the periplasm of root cells and lyses them."],
+   a:2, why:"Agrobacterium enters through wounds, and plant phenolics switch on virulence genes on the Ti plasmid. The transferred T-DNA makes plant cells divide into a tumour and produce opines that feed the bacterium. The same system is used to engineer plants."}
+];
+
 (function(){
   const $ = s => document.querySelector(s);
   const app = $("#app"), bar = $("#topbar");
   const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   const KEY = "microMidterm2", L = "ABCD";
-  const Q = [...MC.map(q => ({...q, t:"mc"})), ...LA.map(q => ({...q, t:"la"}))];
   const MC_MAX = MC.length * 2, LA_MAX = LA.reduce((s, q) => s + q.pts.length, 0);
 
+  // mode "la": Section 2 is the long answers. mode "mc": Section 2 is the MORE multiple choice.
+  let Q = [], mode = "la", mcMax = 0, laMax = 0;
   let at = 0, mc = 0, la = 0, done = false;
 
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } };
@@ -295,11 +360,25 @@ const LA = [
           (p ? ' · last ' + p.last + '%, ' + p.attempts + ' attempts' : '') + '</p></div>' +
           '<button class="btn" id="start">' + (p ? "Retake midterm exam" : "Start midterm exam") + '</button>' +
         '</div>' +
+        '<div class="card lead-card" style="margin-top:16px">' +
+          '<div><p class="label">No writing</p><h2>Multiple choice only</h2>' +
+          '<p class="meta">Section 1, then ' + MORE.length + ' more multiple choice in place of the long answers · ' +
+          (MC_MAX + MORE.length * 2) + ' marks</p></div>' +
+          '<button class="btn ghost" id="start-mc">Start multiple choice</button>' +
+        '</div>' +
         '<p class="note">Written from the Topic 5 to 7 course notes and lecture slides. It is a practice paper, not a past exam.</p>' +
       '</div></main>';
   }
 
-  function start(){ at = 0; mc = 0; la = 0; question(); }
+  function start(m){
+    if(m) mode = m;
+    Q = mode === "mc"
+      ? [...MC, ...MORE].map(q => ({...q, t:"mc"}))
+      : [...MC.map(q => ({...q, t:"mc"})), ...LA.map(q => ({...q, t:"la"}))];
+    mcMax = Q.filter(q => q.t === "mc").length * 2;
+    laMax = mode === "mc" ? 0 : LA_MAX;
+    at = 0; mc = 0; la = 0; question();
+  }
 
   function question(){
     done = false;
@@ -308,7 +387,7 @@ const LA = [
     bar.innerHTML =
       '<div class="wrap"><div class="row">' +
         '<button class="close" aria-label="Leave the midterm exam">×</button>' +
-        '<span class="crumb">' + (q.t === "mc" ? "Section 1 · Multiple choice" : "Section 2 · Long answer") + '</span>' +
+        '<span class="crumb">' + (q.t === "la" ? "Section 2 · Long answer" : at < MC.length ? "Section 1 · Multiple choice" : "Section 2 · More multiple choice") + '</span>' +
         '<span class="count">' + (at + 1) + '/' + Q.length + '</span>' +
       '</div><div class="progress"><i style="width:' + (100 * at / Q.length) + '%"></i></div></div>';
     const head =
@@ -363,15 +442,15 @@ const LA = [
     if(Q[at].t === "la") la += document.querySelectorAll(".points input:checked").length;
     at++;
     if(at < Q.length) return question();
-    const pct = Math.round(100 * (mc + la) / (MC_MAX + LA_MAX));
+    const pct = Math.round(100 * (mc + la) / (mcMax + laMax));
     save(pct);
     bar.hidden = true;
     app.innerHTML =
       '<main><div class="wrap"><div class="qcard">' +
         '<p class="qtopic">Microbiology midterm 2</p>' +
-        '<p class="done-score">' + (mc + la) + ' / ' + (MC_MAX + LA_MAX) + '</p>' +
-        '<p class="done-meta">' + pct + ' per cent · multiple choice ' + mc + '/' + MC_MAX +
-          ' · long answer ' + la + '/' + LA_MAX + ' (self-marked)</p>' +
+        '<p class="done-score">' + (mc + la) + ' / ' + (mcMax + laMax) + '</p>' +
+        '<p class="done-meta">' + pct + ' per cent · multiple choice ' + mc + '/' + mcMax +
+          (laMax ? ' · long answer ' + la + '/' + laMax + ' (self-marked)' : '') + '</p>' +
         '<div class="done-btns">' +
           '<button class="btn" id="again">Run it again</button>' +
           '<button class="btn ghost" id="back">Back</button>' +
@@ -381,7 +460,9 @@ const LA = [
 
   document.addEventListener("click", e => {
     const t = e.target;
-    if(t.closest("#start") || t.closest("#again")) return start();
+    if(t.closest("#start")) return start("la");
+    if(t.closest("#start-mc")) return start("mc");
+    if(t.closest("#again")) return start();
     if(t.closest(".close") || t.closest("#back")) return home();
     if(t.closest("#submit")) return submit();
     if(t.closest("#next")) return next();
@@ -399,7 +480,8 @@ const LA = [
 
   // ponytail: self-check, run by loading the page with #selftest
   if(location.hash === "#selftest"){
-    MC.forEach(q => {
+    console.assert(MORE.length === 20, "want 20 extra multiple choice", MORE.length);
+    [...MC, ...MORE].forEach(q => {
       console.assert(q.o.length === 4 && new Set(q.o).size === 4, "options", q.n);
       console.assert(q.a >= 0 && q.a < 4, "bad answer index", q.n);
       console.assert(!q.note, "unexpected source note", q.n);
