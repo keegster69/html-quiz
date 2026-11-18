@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Macular Degeneration</title>
+<style>
+:root{
+  --green:#1c7c3a; --green-soft:#e6fff0; --line:#dcdcdc; --ink:#1e1e1e; --muted:#5c5c5c;
+  --page:#d3d3d3; --card:#fff; --stripe:#fafafa; --ring:#1c7c3a; --danger:#c62828;
+  --shadow:0 10px 30px rgba(0,0,0,.1);
+  --amber:#7a4f00; --amber-soft:#fff6de; --amber-line:#d99a1e; --danger-soft:#fdecea;
+}
+/* alternate themes, cycled by clicking the page title */
+:root[data-theme="dark"]{
+  --green:#5fcf86; --green-soft:#1d2b23; --line:#3a3f44; --ink:#e4e6e8; --muted:#a0a6ac;
+  --page:#15181b; --card:#1f2327; --stripe:#262a2f; --ring:#5fcf86; --danger:#ef7a7a; --danger-soft:#3a2224;
+  --shadow:0 10px 30px rgba(0,0,0,.45); --amber:#e8b860; --amber-soft:#33291a; --amber-line:#a87b2a; color-scheme:dark;
+}
+:root[data-theme="blue"]{
+  --green:#1f5f99; --green-soft:#e7f0fa; --line:#d3dce6; --ink:#1c2530; --muted:#55626f;
+  --page:#cfd9e3; --card:#fbfdff; --stripe:#f3f7fb; --ring:#1f5f99; --danger:#b3261e; --danger-soft:#fbe9e7;
+}
+:root[data-theme="sepia"]{
+  --green:#7a5a2e; --green-soft:#f3e8d4; --line:#ddd0b8; --ink:#3b2f22; --muted:#6e604e;
+  --page:#e8dcc4; --card:#fbf5e9; --stripe:#f6eedd; --ring:#7a5a2e; --danger:#a33a2a; --danger-soft:#f6e0d8;
+}
+:root[data-theme="midnight"]{
+  --green:#7fb4ff; --green-soft:#1c2a40; --line:#2f3d52; --ink:#dde6f2; --muted:#98a6ba;
+  --page:#0f1724; --card:#172234; --stripe:#1c2a3e; --ring:#7fb4ff; --danger:#ff8a80; --danger-soft:#3a2328;
+  --shadow:0 10px 30px rgba(0,0,0,.5); --amber:#f0c674; --amber-soft:#2e2a1e; --amber-line:#a8873a; color-scheme:dark;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--page);font-family:sans-serif;color:var(--ink);font-size:16px;line-height:1.6;padding:0 1rem 4rem}
+header{max-width:1000px;margin:0 auto;padding:2rem 0 1rem;text-align:center}
+h1{color:var(--green);font-size:2.2rem}
+.sub{color:var(--muted);margin-top:.4rem}
+nav{position:sticky;top:0;z-index:50;background:var(--page);padding:.6rem 0;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
+nav .wrap{max-width:1000px;margin:.6rem auto 0;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+  max-height:40vh;overflow-y:auto}
+#jump{max-width:1000px;margin:0 auto}
+#jump summary{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:44px;
+  list-style:none;cursor:pointer;color:var(--green);font-size:13px;font-weight:600;
+  border:1px solid var(--green);border-radius:999px;background:var(--card);padding:0 16px;width:max-content;
+  margin:0 auto;transition:background .18s ease-out,color .18s ease-out}
+#jump summary::-webkit-details-marker{display:none}
+#jump summary:hover{background:var(--green);color:var(--card)}
+#jump summary::after{content:"\25be";font-size:11px;transition:transform .18s ease-out}
+#jump[open] summary::after{transform:rotate(180deg)}
+.jump-count{color:var(--muted);font-weight:400}
+#jump summary:hover .jump-count{color:inherit}
+nav a{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 14px;min-height:44px;display:inline-flex;align-items:center;font-size:13px;font-weight:600;
+  text-decoration:none;transition:background .18s ease-out,color .18s ease-out}
+nav a:hover{background:var(--green);color:var(--card)}
+main{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
+section{background:var(--card);border-radius:1rem;box-shadow:var(--shadow);padding:1.5rem;scroll-margin-top:88px}
+h2{color:var(--green);font-size:1.4rem;margin-bottom:.25rem}
+h3{font-size:1.1rem;margin:1.5rem 0 .5rem;color:var(--ink);border-left:4px solid var(--green);padding-left:.5rem;scroll-margin-top:88px}
+p,li{font-size:1rem;max-width:72ch}
+p+p{margin-top:.6rem}
+ul,ol{margin:.5rem 0 .5rem 1.25rem}
+li{margin-bottom:.25rem}
+.tag{display:inline-block;background:var(--green-soft);color:var(--green);border-radius:6px;
+  padding:1px 7px;font-size:.75rem;font-weight:700;margin-left:.35rem}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.5rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--green-soft);color:var(--green);position:sticky;top:0;text-align:left}
+tbody tr:nth-child(even){background:var(--stripe)}
+code{background:var(--stripe);border:1px solid var(--line);padding:1px 5px;border-radius:4px;font-size:.9em}
+.key{background:var(--green-soft);border-left:4px solid var(--green);padding:.7rem .9rem;border-radius:6px;margin:.7rem 0;font-size:.95rem;max-width:78ch}
+figure{margin:.75rem 0;text-align:center}
+figcaption{color:var(--muted);font-size:.8rem;margin-top:.35rem}
+svg{max-width:100%;height:auto}
+figure img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff;padding:6px}
+.svgtxt{font:12px sans-serif;fill:var(--ink)}
+.svgsm{font:10px sans-serif;fill:var(--muted)}
+.svgbold{font:bold 12px sans-serif;fill:var(--green)}
+.codon td,.codon th{text-align:center;padding:3px 5px;font-size:.78rem}
+.stop{background:var(--green-soft);color:var(--danger);font-weight:700}
+.start{background:var(--green-soft);color:var(--green);font-weight:700}
+.back{display:inline-block;margin-top:.5rem;color:var(--green);font-size:.85rem;text-decoration:none;font-weight:600}
+.deck{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
+.deck-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+.deck-title{color:var(--green);font-weight:700;font-size:1.05rem}
+.deck-count{color:var(--muted);font-size:.85rem}
+.card{display:block;width:100%;text-align:left;background:var(--green-soft);border:1px solid var(--green);
+  border-left:5px solid var(--green);border-radius:10px;padding:1rem;min-height:112px;cursor:pointer;
+  font-family:inherit;font-size:1rem;color:var(--ink);line-height:1.5;transition:background .18s ease-out}
+.card:hover{background:var(--card)}
+.card-side{display:block;font-weight:600}
+.card[aria-expanded="true"] .card-side{font-weight:400}
+.card-hint{display:block;margin-top:.6rem;color:var(--muted);font-size:.8rem;font-weight:400}
+.deck-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.6rem}
+.deck-btns button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:8px;
+  min-height:44px;padding:0 18px;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;
+  transition:background .18s ease-out,color .18s ease-out}
+.deck-btns button:hover{background:var(--green);color:var(--card)}
+.rc-topics{display:flex;flex-wrap:wrap;gap:6px;margin:.75rem 0}
+.rc-topics button{background:var(--card);color:var(--green);border:1px solid var(--green);border-radius:999px;
+  padding:0 16px;min-height:44px;font-size:13px;font-weight:600;cursor:pointer;
+  transition:background .18s ease-out,color .18s ease-out}
+.rc-topics button.on{background:var(--green);color:var(--card)}
+.rc-clue{background:var(--green-soft);border-left:4px solid var(--green);border-radius:6px;
+  padding:.8rem;font-size:1rem;font-weight:600;margin:.75rem 0}
+#rc-select{width:100%;max-width:560px;min-height:48px;padding:10px 12px;font-size:16px;
+  border:2px solid var(--green);border-radius:8px;background:var(--card);color:var(--ink);cursor:pointer}
+.rc-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:.75rem}
+.rc-btns button{background:var(--green);color:var(--card);border:none;border-radius:8px;
+  min-height:44px;padding:0 22px;font-size:.95rem;font-weight:600;cursor:pointer;
+  transition:filter .18s ease-out}
+.rc-btns button:hover{filter:brightness(1.08)}
+.rc-btns button.ghost{background:var(--card);color:var(--green);border:1px solid var(--green)}
+.rc-feedback{margin-top:.6rem;font-weight:700;font-size:.95rem;min-height:1.2em}
+.rc-feedback.ok{color:var(--green)}
+.rc-feedback.bad{color:var(--danger)}
+.rc-score{color:var(--muted);font-size:.85rem;margin-top:.25rem}
+.memory{margin-top:1.5rem;padding-top:1rem;border-top:1px dashed var(--line)}
+#fc-only{display:block;margin:.9rem auto 0;min-height:44px;padding:0 22px;border:1px solid var(--green);border-radius:999px;
+  background:var(--card);color:var(--green);font:600 .9rem sans-serif;cursor:pointer}
+#fc-only[aria-pressed="true"]{background:var(--green);color:var(--card)}
+/* flashcards-only view: each topic keeps its heading and card decks, everything else hides */
+body.fc-only section > :not(h2):not(.deck):not(.memory){display:none}
+body.fc-only section:not(:has(.deck, .memory)){display:none}
+body.fc-only .deck, body.fc-only .memory{border-top:0;margin-top:.5rem}
+/* card sets show their flashcards and match columns together, so no mode switch */
+body.fc-only .memory .mem-cards, body.fc-only .memory .mem-cols{display:block}
+body.fc-only .memory .mem-modes{display:none}
+body.fc-only .memory .mem-cols{margin-top:1.5rem}
+.mem-tally{color:var(--muted);font-size:.85rem;margin-top:.6rem}
+.mem-intro{color:var(--muted);font-size:.9rem}
+.memory .card-side svg{display:block;width:100%;max-width:200px;margin:.4rem 0;color:var(--ink)}
+.mem-note{display:block;margin-top:.5rem;color:var(--muted);font-size:.9rem}
+.deck-btns button[aria-pressed="true"]{background:var(--green);color:var(--card)}
+.mem-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:.75rem}
+.mem-card{min-height:96px;padding:.6rem;border:1px solid var(--green);border-radius:10px;background:var(--card);
+  color:var(--ink);font-family:inherit;font-size:.85rem;line-height:1.35;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;text-align:center;transition:background .18s ease-out}
+.mem-card.up{background:var(--green-soft);border-width:2px}
+.mem-card.done{background:var(--green-soft);border-style:dashed;opacity:.6;cursor:default}
+.mem-card.bad{border-color:var(--danger);background:var(--danger-soft)}
+.mem-card svg{width:100%;max-width:170px;color:var(--ink)}
+.mem-status{min-height:1.4em;margin-top:.6rem;font-size:.9rem}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:500px){section{padding:1rem}h1{font-size:1.7rem}}
+h4{font-size:1rem;margin:1.2rem 0 .4rem;color:var(--green);font-weight:700}
+figure.slot .miss{border:2px dashed var(--line);border-radius:8px;padding:1.1rem;color:var(--muted);
+  font-size:.85rem;background:var(--stripe)}
+figure.slot .miss code{background:var(--card)}
+.term{border-bottom:1px dashed var(--green);cursor:help}
+.term:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
+#gloss-tip{position:fixed;left:0;top:0;z-index:100;width:max-content;max-width:min(340px,88vw);
+  background:var(--card);color:var(--ink);border:1px solid var(--green);border-left:4px solid var(--green);
+  border-radius:8px;padding:.55rem .7rem;font-size:.85rem;line-height:1.45;box-shadow:var(--shadow);
+  pointer-events:none;opacity:0;visibility:hidden;transition:opacity .12s ease-out}
+#gloss-tip.on{opacity:1;visibility:visible}
+#gloss-tip b{display:block;color:var(--green);margin-bottom:.15rem}
+.hook{background:var(--amber-soft);border-left:4px solid var(--amber-line);padding:.6rem .9rem;border-radius:6px;margin:.7rem 0;font-size:.95rem;max-width:78ch}
+.hook::before{content:"Memory hook";display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin-bottom:.1rem}
+.flow{list-style:none;margin:.7rem 0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0;max-width:none}
+.flow li{background:var(--green-soft);color:var(--green);border:1px solid var(--green);border-radius:999px;padding:2px 10px;font-size:.85rem;font-weight:600;margin:0 0 0 22px;max-width:none;position:relative;line-height:1.5}
+.flow li:first-child{margin-left:0}
+.flow li+li::before{content:"\2192";position:absolute;left:-17px;color:var(--muted);font-weight:400}
+</style>
+<script>try{ document.documentElement.dataset.theme = localStorage.getItem("amdTheme") || ""; }catch(e){}</script>
+</head>
+<body id="top">
+
+<header>
+  <h1>Macular Degeneration</h1>
+  <p class="sub">The biology of age-related macular degeneration, and how the zebrafish and killifish literature is built on top of it. Notes, tables, flashcards, match games and recall practice.</p>
+  <a class="back" href="index.html">&larr; Home</a>
+  <a class="back" href="microbiology.html" style="margin-left:1rem">Microbiology content &rarr;</a>
+  <a class="back" href="content.html" style="margin-left:1rem">General biology content &rarr;</a>
+  <button type="button" id="fc-only" aria-pressed="false">Flashcards only</button>
+</header>
+<script>
+// clicking the title cycles colour themes; deliberately no visual hint
+document.querySelector("header h1").addEventListener("click", () => {
+  const themes = ["", "dark", "blue", "sepia", "midnight"];
+  const next = themes[(themes.indexOf(document.documentElement.dataset.theme || "") + 1) % themes.length];
+  document.documentElement.dataset.theme = next;
+  try{ localStorage.setItem("amdTheme", next); }catch(e){}
+});
+document.getElementById("fc-only").addEventListener("click", e => {
+  const on = document.body.classList.toggle("fc-only");
+  e.currentTarget.setAttribute("aria-pressed", on);
+  e.currentTarget.textContent = on ? "Show full notes" : "Flashcards only";
+  scrollTo(0, 0);
+});
+</script>
+<nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">9 sections</span></summary><div class="wrap">
+  <a href="#eye">1. Outer retina</a>
+  <a href="#amd">2. The disease</a>
+  <a href="#mech">3. Mechanisms</a>
+  <a href="#risk">4. Genetics and therapy</a>
+  <a href="#models">5. Why fish</a>
+  <a href="#papers">6. The papers</a>
+  <a href="#killi">6.7 Killifish AMD paper</a>
+  <a href="#appraise">7. Reading a model paper</a>
+  <a href="#recall">8. Recall practice</a>
+</div></details></nav>
+
+<main>
+
+<section id="eye">
+  <h2>1. The outer retina: four layers that decide everything</h2>
+  <p class="mem-intro">Study notes for coursework. Not clinical guidance.</p>
+  <p>Age-related macular degeneration (AMD) is a disease of one small patch of retina and of the four layers stacked beneath it. Nearly every result in an AMD paper, human or fish, is a claim about one of those layers, so learn the stack before anything else: photoreceptors, the retinal pigment epithelium (RPE), Bruch's membrane and the choriocapillaris.</p>
+
+  <figure>
+    <svg viewBox="0 0 620 300" role="img" aria-label="Cross-section of the outer retina showing the neural retina, photoreceptor outer segments, subretinal space, retinal pigment epithelium, Bruch's membrane and choriocapillaris, with subretinal drusenoid deposits above the RPE and drusen below it">
+      <rect x="20" y="16" width="400" height="60" fill="var(--green-soft)" stroke="var(--line)"/>
+      <text class="svgbold" x="30" y="36">Neural retina</text>
+      <text class="svgsm" x="30" y="54">ganglion cells, bipolar cells, Müller glia, photoreceptor nuclei</text>
+      <g stroke="var(--green)" stroke-width="5">
+        <line x1="60" y1="76" x2="60" y2="134"/><line x1="90" y1="76" x2="90" y2="134"/>
+        <line x1="120" y1="76" x2="120" y2="134"/><line x1="150" y1="76" x2="150" y2="134"/>
+        <line x1="300" y1="76" x2="300" y2="134"/><line x1="330" y1="76" x2="330" y2="134"/>
+        <line x1="360" y1="76" x2="360" y2="134"/><line x1="390" y1="76" x2="390" y2="134"/>
+      </g>
+      <text class="svgsm" x="176" y="100">photoreceptor outer segments</text>
+      <rect x="20" y="134" width="400" height="16" fill="none" stroke="var(--line)" stroke-dasharray="3 3"/>
+      <rect x="20" y="150" width="400" height="30" fill="var(--amber-soft)" stroke="var(--amber-line)"/>
+      <text class="svgtxt" x="30" y="170">RPE, one cell thick, pigmented</text>
+      <rect x="20" y="180" width="400" height="9" fill="var(--stripe)" stroke="var(--muted)"/>
+      <rect x="20" y="189" width="400" height="36" fill="var(--danger-soft)" stroke="var(--danger)"/>
+      <text class="svgtxt" x="30" y="212">choriocapillaris and choroid</text>
+      <ellipse cx="225" cy="143" rx="28" ry="8" fill="var(--amber-line)" opacity=".75"/>
+      <path d="M 300 180 Q 330 160 360 180 Z" fill="var(--amber-line)" opacity=".75"/>
+      <g class="svgsm">
+        <text x="432" y="144">subretinal space</text>
+        <text x="432" y="170">RPE</text>
+        <text x="432" y="188">Bruch's membrane</text>
+        <text x="432" y="212">choriocapillaris</text>
+      </g>
+      <g class="svgtxt">
+        <text x="20" y="252">Deposit at 225 sits ABOVE the RPE: subretinal drusenoid deposit</text>
+        <text x="20" y="272">Deposit at 330 sits BELOW the RPE: drusen</text>
+        <text class="svgsm" x="20" y="292">This one distinction decides how most fish deposit findings are read.</text>
+      </g>
+    </svg>
+    <figcaption>Where everything sits. Drusen are under the RPE; subretinal drusenoid deposits are above it, between the RPE and the outer segments.</figcaption>
+  </figure>
+
+  <h3>1.1 The macula and fovea</h3>
+  <p>The macula is the central patch of the human retina, roughly 5 to 6 mm across, yellow because it concentrates the carotenoids lutein and zeaxanthin. At its centre the fovea holds almost nothing but cones, packed at the highest density anywhere in the eye, with the inner retinal layers swept aside so light reaches them directly. Rods peak in a ring just outside the fovea. This is the tissue used for reading, faces and fine detail, which is why losing a few square millimetres of it is disabling while the peripheral field stays intact.</p>
+  <p>Only primates, and some birds and reptiles, have a true macula. Mice and rats are nocturnal and rod-dominated with no fovea at all, which is the single biggest reason AMD has resisted modelling. Hold on to that fact: it is the argument every fish paper opens with.</p>
+
+  <h3>1.2 Photoreceptors</h3>
+  <p>Rods and cones each have an outer segment, a stack of membrane discs loaded with opsin, joined by a narrow connecting cilium to an inner segment packed with mitochondria. Outer segments are rebuilt continuously: new discs are added at the base and the oldest tips are shed every day on a circadian schedule. Photoreceptors have among the highest metabolic rates of any cell in the body, so they depend completely on the blood supply below and on the RPE between.</p>
+  <div class="key"><strong>Why the inner and outer segment length matters.</strong> If outer segments shorten but keep their width, material is being lost. If they widen instead, the measurement has changed without material loss. Papers measure both for exactly this reason, and the distinction is what turns "shorter segments" into evidence of degeneration.</div>
+
+  <h3>1.3 The retinal pigment epithelium</h3>
+  <p>The RPE is a single layer of pigmented, hexagonal, non-dividing cells. One RPE cell serves dozens of photoreceptors for an entire lifetime, which makes it the textbook post-mitotic cell: damage accumulates with nothing to dilute it. Its jobs are worth listing, because each is a failure point.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>RPE job</th><th>What it involves</th><th>How it fails with age and in AMD</th></tr></thead>
+    <tbody>
+      <tr><td>Phagocytosis</td><td>Engulfs and digests shed outer-segment tips daily</td><td>Undigested residue accumulates as lipofuscin</td></tr>
+      <tr><td>Visual cycle</td><td>RPE65 and partners regenerate 11-cis retinal; cones also use a Müller glia route</td><td>Toxic bis-retinoid by-products such as A2E form</td></tr>
+      <tr><td>Outer blood-retina barrier</td><td>Tight junctions seal the retina from choroidal blood</td><td>Barrier breakdown admits fluid and vessels</td></tr>
+      <tr><td>Transport</td><td>Glucose and nutrients up, water and waste down</td><td>Basal lipid efflux loads Bruch's membrane</td></tr>
+      <tr><td>Light absorption</td><td>Melanin absorbs stray light and quenches radicals</td><td>Melanin content declines with age</td></tr>
+      <tr><td>Secretion</td><td>VEGF basally sustains the choriocapillaris; PEDF apically</td><td>Imbalance permits neovascularisation</td></tr>
+      <tr><td>Immune regulation</td><td>Keeps the subretinal space immunologically quiet</td><td>Complement activation, immune cells enter</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>1.4 Bruch's membrane and the choriocapillaris</h3>
+  <p>Bruch's membrane is a thin five-layered sheet between the RPE and the choroid: the RPE basement membrane, inner collagenous layer, elastic layer, outer collagenous layer, and the choriocapillaris basement membrane. Everything the RPE exchanges with blood crosses it. With age it thickens, calcifies and fills with lipid, especially esterified cholesterol in lipoprotein-like particles, which slows transport the way a clogging filter does. The choriocapillaris is a dense sheet of wide fenestrated capillaries supplying the photoreceptors; it thins and drops out with age and further in AMD.</p>
+  <div class="hook">Treat the outer retina as a kitchen. Photoreceptors are the cooks making scraps, the RPE is the dishwasher, Bruch's membrane is the drain and the choroid is the sewer. Drusen are grease in the drain; subretinal drusenoid deposits are scraps left on the counter.</div>
+  <p>One more structural idea you need for the fish papers. The human retina is built once and then only ages. The fish retina keeps growing at its rim, in a ring of stem cells called the ciliary marginal zone, so the centre of a fish eye is the oldest tissue and the edge is the youngest. That means a centre-versus-periphery comparison inside a single fish eye is partly an age comparison, and papers use it as an internal control.</p>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="eye"></div>
+</section>
+<section id="amd">
+  <h2>2. The disease: deposits, stages, two late forms</h2>
+  <p>AMD is the leading cause of irreversible central vision loss in older people in high-income countries, affecting on the order of 200 million people worldwide with projections approaching 300 million by 2040 as populations age. Peripheral vision survives, so even advanced disease is not total blindness, but reading, driving and face recognition go.</p>
+
+  <h3>2.1 Deposits: the two kinds, and why the difference matters</h3>
+  <p><strong>Drusen</strong> are extracellular deposits between the RPE basal lamina and the inner collagenous layer of Bruch's membrane, so <em>below</em> the RPE. They contain esterified and unesterified cholesterol, phospholipids, oxidised phospholipids, apolipoproteins such as APOE, complement components and regulators, amyloid beta, vitronectin and crystallins. Small hard drusen under 63 µm are ordinary ageing. Medium (63 to 125 µm) and large (over 125 µm) soft drusen mark disease and predict progression.</p>
+  <p><strong>Subretinal drusenoid deposits</strong> (SDD, also called reticular pseudodrusen) sit on the other side of the RPE, between the RPE and the photoreceptor outer segments, so <em>above</em> the RPE. They are granular, contain unesterified cholesterol, are less lipid-rich than drusen, and cluster in rod-rich retina outside the fovea. They carry a high risk of progressing to late disease, geographic atrophy especially. Spaide, Ooto and Curcio (2018) is the standard reference.</p>
+  <div class="key"><strong>Keep this straight and half the fish literature becomes readable.</strong> Drusen: below the RPE, lipid-rich. SDD: above the RPE, lipid-containing but not lipid-rich. A deposit's position says which side of the pipeline failed; its composition says what the material is. When a fish develops a deposit that is lipid-rich (drusen-like composition) but sits above the RPE (SDD-like position), the two criteria disagree, and that is exactly the result the killifish paper has to argue about.</div>
+
+  <h3>2.2 Stages</h3>
+  <p>The Beckman classification (2013) grades by the largest drusen present and by pigment changes.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Stage</th><th>Findings</th><th>Vision</th></tr></thead>
+    <tbody>
+      <tr><td>Normal ageing</td><td>Only small drusen, under 63 µm</td><td>Normal</td></tr>
+      <tr><td>Early AMD</td><td>Medium drusen, no pigment abnormality</td><td>Usually normal</td></tr>
+      <tr><td>Intermediate AMD</td><td>Large drusen, or medium drusen plus pigment abnormalities</td><td>Mild; slow dark adaptation is often the first complaint</td></tr>
+      <tr><td>Late AMD, atrophic</td><td>Geographic atrophy: sharp-edged loss of RPE, photoreceptors and choriocapillaris</td><td>Slowly expanding central blind spot</td></tr>
+      <tr><td>Late AMD, neovascular</td><td>Abnormal vessels, leakage, bleeding, eventual scar</td><td>Distortion and loss over weeks</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>2.3 Geographic atrophy</h3>
+  <p>Geographic atrophy is the death of RPE cells together with the photoreceptors that depend on them and the choriocapillaris beneath. Lesions often begin around the fovea and spare it at first, then enlarge and merge at roughly 1.5 to 2 mm² per year. The agreed imaging definition is complete RPE and outer retinal atrophy. Somewhere around 10 to 20 per cent of people with AMD reach this stage, and until 2023 nothing could be offered at all.</p>
+
+  <h3>2.4 Neovascular AMD</h3>
+  <p>Here new vessels grow where they do not belong, driven chiefly by VEGF-A. The current term is macular neovascularisation, typed by position:</p>
+  <ul>
+    <li><strong>Type 1</strong>: from the choroid into the space under the RPE. The most common; polypoidal choroidal vasculopathy is a variant more frequent in Asian populations.</li>
+    <li><strong>Type 2</strong>: through the RPE into the subretinal space.</li>
+    <li><strong>Type 3</strong>: begins in the deep retinal capillaries and grows downward.</li>
+  </ul>
+  <p>Leaking fluid and blood distort the photoreceptors; untreated, the lesion ends as a fibrous disciform scar. This form is only around 10 to 15 per cent of cases but causes most of the severe vision loss.</p>
+
+  <h3>2.5 Symptoms and how it is measured</h3>
+  <p>Patients notice metamorphopsia, in which straight lines look wavy, a central blur or blind spot, poor contrast, and slow dark adaptation, which is often the earliest complaint of all.</p>
+  <p>Learn the human method alongside its fish counterpart, because the translation between them is where papers earn or lose credibility.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Human method</th><th>What it shows</th><th>Fish equivalent</th></tr></thead>
+    <tbody>
+      <tr><td>Optical coherence tomography</td><td>Layers in cross-section: drusen, SDD, fluid, atrophy</td><td>Histological sections; OCT is feasible in adult fish</td></tr>
+      <tr><td>Fundus autofluorescence</td><td>Lipofuscin glow; atrophy reads black</td><td>Autofluorescence in sections</td></tr>
+      <tr><td>Fluorescein angiography</td><td>Vessel leakage</td><td>Transgenic vessel reporter lines</td></tr>
+      <tr><td>Electroretinography</td><td>Photoreceptor electrical response</td><td>ERG works in larval and adult fish</td></tr>
+      <tr><td>Acuity and contrast charts</td><td>Function</td><td>Optokinetic and optomotor response</td></tr>
+      <tr><td>Histopathology, post mortem</td><td>Cells and deposits directly</td><td>Routine, at any age, in large numbers</td></tr>
+    </tbody>
+  </table></div>
+  <p>That last row is the whole case for animal models. Human outer-retinal cell biology is mostly known from scarce donor eyes of unknown history. A fish can be sampled at any timepoint, in numbers, with stains chosen in advance.</p>
+  <a class="back" href="#top">Back to top</a>
+  <div class="memory" data-set="lesion"></div>
+  <div class="deck" data-topic="amd"></div>
+</section>
+
+<section id="mech">
+  <h2>3. Mechanisms: six strands, one web</h2>
+  <p>No single cause explains AMD. Think of several stressors converging on the RPE and Bruch's membrane, with genotype setting how well each person's tissue copes. Fish papers almost always model one strand, so knowing the strands lets you place any paper immediately.</p>
+  <ul class="flow" aria-label="Disease cascade">
+    <li>ageing and oxidative stress</li><li>RPE overloaded</li><li>lipid and debris build-up</li><li>complement and immune activation</li><li>RPE and choriocapillaris loss</li><li>atrophy or neovascularisation</li>
+  </ul>
+
+  <h3>3.1 Oxidative stress</h3>
+  <p>The macula combines high oxygen tension from the choroid, lifelong light exposure, and membranes rich in the polyunsaturated fatty acid DHA, which oxidises readily. Lipid peroxidation generates oxidation-specific epitopes such as carboxyethylpyrrole and oxidised phosphatidylcholine. These are found in drusen and are read by innate immunity as danger signals, which is how an oxidative problem becomes an inflammatory one. Handa and colleagues (2017) is the reference review, and it is the paper the fish deposit-staining work leans on.</p>
+
+  <h3>3.2 Lipofuscin and the visual cycle</h3>
+  <p>Each RPE cell digests millions of outer-segment discs across a lifetime. Some retinoid by-products are indigestible, most famously A2E, a bis-retinoid formed from two molecules of all-trans retinal. They collect in lysosomes as lipofuscin, which is autofluorescent (the basis of fundus autofluorescence imaging), photosensitising, and disruptive to lysosomal function. Stargardt disease, from ABCA4 mutations, is the accelerated monogenic version and is often used to model this strand.</p>
+
+  <h3>3.3 Lipids and Bruch's membrane</h3>
+  <p>The RPE packages lipid, both from phagocytosed outer segments and from plasma lipoproteins, into APOB-containing particles and secretes it basally. With age these particles accumulate in Bruch's membrane as a lipid wall, then condense into basal linear deposits and soft drusen. Several risk genes (APOE, CETP, LIPC, ABCA1) are lipid genes, and drusen resemble the lipid cores of atherosclerotic plaques, though statins have not proven useful as treatment.</p>
+
+  <h3>3.4 Complement and inflammation</h3>
+  <p>Complement is part of innate immunity. C3 is cleaved into C3a and C3b; C3b amplifies the alternative pathway; C5 cleavage yields inflammatory C5a and the membrane attack complex C5b-9. The regulator complement factor H normally switches the alternative pathway off on host surfaces by binding glycosaminoglycans and oxidised lipids. The CFH Y402H variant binds these less effectively, so complement runs hotter on Bruch's membrane. Drusen contain complement components, and the first two approved atrophy drugs target C3 and C5, which is about as direct a confirmation of a mechanism as clinical medicine offers.</p>
+  <p>Inflammation is also cellular. The healthy subretinal space contains almost no immune cells. In AMD, microglia and blood-derived macrophages enter it, gather at drusen and atrophy borders, and may either clear debris or damage photoreceptors. Where macrophages go is one of the main readouts in the fish papers, precisely because it is cheap to stain and unambiguous to count.</p>
+
+  <h3>3.5 Mitochondria and metabolic competition</h3>
+  <p>Aged and AMD RPE shows mitochondrial DNA damage, fewer and structurally abnormal mitochondria, and a metabolic shift. The current framing is competition: a healthy RPE burns fatty acids and lactate and passes glucose up to the photoreceptors, while a stressed RPE that keeps the glucose starves the cells above it. Stressed photoreceptors in turn send down more lipid to process. Kanow and colleagues (2017, <em>eLife</em>) established this ecosystem view and is heavily cited for it.</p>
+
+  <h3>3.6 Angiogenesis</h3>
+  <p>When the RPE is stressed or the choroid hypoxic, the VEGF-to-PEDF balance shifts, Bruch's membrane is breached by inflammation and matrix proteases, and choroidal vessels invade. VEGF-A also makes vessels leaky, producing the fluid seen on imaging. Angiopoietin-2 destabilises vessels and sensitises them to VEGF, which is the rationale for the bispecific drug faricimab.</p>
+  <div class="key"><strong>Synthesis worth memorising.</strong> Atrophy is mainly the RPE-degeneration and complement strands. Neovascular disease is mainly the VEGF strand laid on the same background. They are two endpoints of one process, and many eyes eventually show both.</div>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="mech"></div>
+</section>
+<section id="risk">
+  <h2>4. Risk, genetics and what treatment exists</h2>
+  <p>Age dominates everything: prevalence climbs steeply after 60. Genome-wide association work by the International AMD Genomics Consortium (Fritsche et al. 2016) identified 52 independent variants at 34 loci, which between them explain an unusually large share of heritability for a complex disease.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Factor</th><th>Effect</th><th>Strand it acts on</th></tr></thead>
+    <tbody>
+      <tr><td>Age</td><td>The strongest risk factor of any kind</td><td>All of them</td></tr>
+      <tr><td>Smoking</td><td>Roughly two to four times the risk; the strongest modifiable factor</td><td>Oxidative stress, complement, choroid</td></tr>
+      <tr><td>CFH Y402H, chromosome 1q32</td><td>About 2.5-fold per allele, more in homozygotes</td><td>Complement regulation</td></tr>
+      <tr><td>ARMS2 / HTRA1, chromosome 10q26</td><td>Comparable or larger; strongly tied to neovascular disease</td><td>Unclear: ARMS2 function unknown, HTRA1 is a matrix protease</td></tr>
+      <tr><td>C3, CFB, CFI, C2, C9</td><td>Modest common variants; rare CFI and C3 variants are strong</td><td>Complement</td></tr>
+      <tr><td>APOE</td><td>E4 protective, E2 raises risk, the opposite of Alzheimer's</td><td>Lipid transport</td></tr>
+      <tr><td>LIPC, CETP, ABCA1</td><td>Modest</td><td>HDL and lipid handling</td></tr>
+      <tr><td>TIMP3</td><td>Modest common; rare mutations cause Sorsby fundus dystrophy</td><td>Extracellular matrix, Bruch's membrane</td></tr>
+      <tr><td>Diet and ancestry</td><td>Mediterranean diet and oily fish associate with slower progression; prevalence highest in European ancestry</td><td>Antioxidants, pigment, genetics</td></tr>
+    </tbody>
+  </table></div>
+  <div class="hook">The two big loci are "one and ten". Chromosome 1 is complement, through CFH. Chromosome 10 is ARMS2/HTRA1. Between them sits most of the genetic risk.</div>
+
+  <h3>4.1 The teleost genome problem</h3>
+  <p>Ray-finned fish went through an extra whole-genome duplication, so many human genes have two zebrafish or killifish copies labelled a and b: <code>rpe65a</code>, <code>apoeb</code>, <code>htra1b</code>, <code>rlbp1a</code>. Three consequences you must apply when reading any fish knockout:</p>
+  <ul>
+    <li>Knocking out one paralogue may show nothing, because the other compensates. A negative result is weak evidence.</li>
+    <li>The two copies may have split the original job between tissues (subfunctionalisation), so a fish paralogue may do only part of what the human gene does. Fleisch and colleagues (2008) showed exactly this for a retinoid-binding protein in the zebrafish cone visual cycle.</li>
+    <li>The naming of the human disease gene does not guarantee the fish copy is the right one to test.</li>
+  </ul>
+
+  <h3>4.2 Supplements</h3>
+  <p>The Age-Related Eye Disease Study (2001) found that high-dose antioxidants with zinc cut the five-year risk of progressing to late disease by roughly a quarter in people with intermediate disease or late disease in one eye. AREDS2 (2013) swapped beta-carotene, which raised lung cancer risk in smokers, for lutein and zeaxanthin. The AREDS formulation does not help early disease and does not prevent the disease, so it belongs to the same late-acting category as everything else below.</p>
+
+  <h3>4.3 Anti-VEGF for neovascular disease</h3>
+  <p>Intravitreal anti-VEGF turned neovascular AMD from near-certain severe vision loss into a manageable condition: in the pivotal trials most patients retained vision and about a third gained substantially. The cost is repeated injections, every 4 to 16 weeks, often indefinitely.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Agent</th><th>Format</th><th>Target</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Bevacizumab</td><td>Full antibody</td><td>VEGF-A</td><td>Used off-label; matched ranibizumab in the CATT trial</td></tr>
+      <tr><td>Ranibizumab</td><td>Antibody fragment</td><td>VEGF-A</td><td>The MARINA and ANCHOR trials, approved 2006</td></tr>
+      <tr><td>Aflibercept</td><td>Receptor-Fc fusion</td><td>VEGF-A, VEGF-B, PlGF</td><td>Approved 2011; a higher dose allows longer intervals</td></tr>
+      <tr><td>Brolucizumab</td><td>Single-chain fragment</td><td>VEGF-A</td><td>Highly concentrated; linked to intraocular inflammation</td></tr>
+      <tr><td>Faricimab</td><td>Bispecific antibody</td><td>VEGF-A and angiopoietin-2</td><td>Approved 2022; intervals out to 16 weeks</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.4 Complement inhibitors for atrophy</h3>
+  <p>In 2023 two drugs for geographic atrophy were approved in the United States, both given by repeated intravitreal injection: pegcetacoplan, which inhibits C3, and avacincaptad pegol, which inhibits C5. Each slows lesion growth by roughly 15 to 20 per cent, but neither demonstrated preserved visual function in the pivotal trials, and both increase conversion to neovascular disease. European regulators declined pegcetacoplan on that basis. Treat them as proof that the complement strand is real, not as a solved problem.</p>
+  <div class="key"><strong>The gap the fish work aims at.</strong> Every approved therapy acts late: on vessels, or on complement once atrophy is under way. Nothing clears deposits, restores RPE, or blocks the early-to-late transition. A model that forms deposits spontaneously, in months, is aimed squarely at that gap.</div>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="risk"></div>
+</section>
+
+<section id="models">
+  <h2>5. Why model this in fish</h2>
+  <p>Every AMD model compromises. Judging a fish paper means knowing what it is competing against.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Model</th><th>Strengths</th><th>Weaknesses</th></tr></thead>
+    <tbody>
+      <tr><td>Non-human primates</td><td>A true macula; some develop drusen with age</td><td>Expensive, slow, small numbers, ethical constraints</td></tr>
+      <tr><td>Mouse genetic models</td><td>Genetics and tools, abundant</td><td>No macula, few cones, nocturnal; phenotypes mild and variable</td></tr>
+      <tr><td>Laser-induced neovascularisation</td><td>Reliable and quantitative for drug testing</td><td>An injury model, not ageing; no deposits</td></tr>
+      <tr><td>Human iPSC-RPE and organoids</td><td>Human genetics, patient-specific lines</td><td>No choroid, no blood, no immune system, no ageing</td></tr>
+      <tr><td>Zebrafish</td><td>Cone-rich, diurnal, fast genetics, transparent larvae, drug screening at scale</td><td>Lives 3 to 5 years, regenerates retina and RPE, no macula</td></tr>
+      <tr><td>Turquoise killifish</td><td>Ages naturally in months, cone-rich, forms deposits spontaneously</td><td>Newer model with fewer tools; no macula; key data still recent or unreviewed</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5.1 What fish share with the human macula</h3>
+  <p>Zebrafish and killifish are diurnal, so their retinas are cone-rich, much closer in photoreceptor composition to the human macula than any mouse retina. Zebrafish have four cone types in a regular mosaic, plus rods. The layering of neural retina, RPE, Bruch's membrane and choroid is conserved, as are visual cycle genes and most known AMD risk genes. The cone-specific visual cycle, reviewed by Wang and Kefalov (2011), is in fact better studied in fish than in mammals, because a cone-dominant retina makes it tractable.</p>
+
+  <h3>5.2 What fish do differently, and how papers handle it</h3>
+  <ul>
+    <li><strong>Regeneration.</strong> Fish Müller glia re-enter the cell cycle and rebuild lost neurons, and fish RPE regenerates. A gift for regeneration research, a confound for degeneration research, because loss can be masked by replacement. Lahne and colleagues (2020) review the mechanism.</li>
+    <li><strong>Lifelong growth.</strong> The ciliary marginal zone keeps adding retina at the rim, giving the centre-versus-periphery age gradient described in section 1.</li>
+    <li><strong>Duplicated genes.</strong> Paralogues complicate every knockout, as in section 4.1.</li>
+    <li><strong>No macula.</strong> Any claim about "macular" pathology in a fish is an analogy to cone-rich retina, never anatomy. Watch for papers that blur this.</li>
+    <li><strong>Ectothermy and a different immune system.</strong> Complement genes exist but are expanded and not one-to-one with human ones, so complement findings transfer least well of all.</li>
+  </ul>
+  <div class="hook">Zebrafish are the genetics workhorse, killifish are the clock. Zebrafish answer "what does this gene do?". Killifish answer "what does time do?".</div>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="models"></div>
+</section>
+<section id="papers">
+  <h2>6. The papers</h2>
+  <p>Seven papers, in the order that builds understanding: the human anchor, the oxidised-lipid mechanism, two zebrafish mutants, the killifish ageing groundwork, the killifish transcriptome, and the killifish AMD paper that ties them together. For each one: the question, the method, the result, why it matters, and what it cannot show.</p>
+
+  <h3>6.1 Human anchor: what a deposit actually is</h3>
+  <h4>Spaide RF, Ooto S, Curcio CA (2018). Subretinal drusenoid deposits, also known as pseudodrusen. <em>Survey of Ophthalmology</em>.</h4>
+  <p><strong>Question.</strong> What are these deposits that imaging shows above the RPE, how do they differ from drusen, and what do they predict?</p>
+  <p><strong>What it establishes.</strong> Two separate deposit types with different positions, compositions, retinal distributions and risks. Drusen: below the RPE, lipid-rich, concentrated in cone-rich central retina. Subretinal drusenoid deposits: above the RPE, lipid-containing but not lipid-rich, concentrated in rod-rich retina, strongly predictive of progression to atrophy.</p>
+  <p><strong>Why read it first.</strong> Every fish deposit claim is scored against these criteria. Without them, "the fish has deposits" is unfalsifiable; with them, you can ask the sharp question: which kind, by position, by composition, and do the two answers agree?</p>
+  <p><strong>Limits.</strong> A review of human imaging and donor histology, so it describes but cannot test mechanism. It also cannot say how a deposit forms in the first place, because you cannot watch it happen in a person.</p>
+
+  <h3>6.2 Mechanism: oxidised lipid as the bridge from ageing to inflammation</h3>
+  <h4>Handa JT, Cano M, Wang L, Datta S, Liu T (2017). Lipids, oxidized lipids, oxidation-specific epitopes, and age-related macular degeneration. <em>Biochimica et Biophysica Acta</em>.</h4>
+  <p><strong>Question.</strong> How does lipid accumulation in the outer retina turn into the inflammation and cell loss seen in AMD?</p>
+  <p><strong>What it establishes.</strong> Oxidised lipids are not inert waste. Lipid peroxidation produces oxidation-specific epitopes that innate immunity recognises as danger signals, activating complement and recruiting immune cells. Drusen contain them. This is the mechanistic join between the oxidative strand and the complement strand of section 3.</p>
+  <p><strong>Why it matters for the fish work.</strong> It licenses a specific experiment: stain a deposit for oxidised phospholipids. If the stain is positive, the deposit is not merely fat, it is immunologically active material. Both fish papers below use exactly this logic, which is why their oxidised-phospholipid panels matter more than the plain lipid stains.</p>
+  <p><strong>Limits.</strong> Largely correlative in humans; association of an epitope with a lesion is not proof it caused the lesion.</p>
+
+  <h3>6.3 Zebrafish: a photoreceptor defect alone can make deposits</h3>
+  <h4>Noel NCL, Nadolski NJ, Hocking JC, MacDonald IM, Allison WT (2020). Progressive photoreceptor dysfunction and age-related macular degeneration-like features in <em>rp1l1</em> mutant zebrafish. <em>Cells</em> 9:2214.</h4>
+  <p><strong>Question.</strong> Can a zebrafish mutant reproduce AMD-like subretinal deposits? RP1L1 is a photoreceptor ciliary protein that helps organise outer-segment discs; human <em>RP1L1</em> mutations cause occult macular dystrophy and retinitis pigmentosa.</p>
+  <p><strong>Approach.</strong> CRISPR/Cas9 knockout of <code>rp1l1</code>, followed across life with histology, electron microscopy, lipid staining and visual function testing.</p>
+  <p><strong>Findings.</strong> Mutants showed disorganised outer segments and progressive photoreceptor dysfunction, and developed lipid-rich deposits between the photoreceptors and the RPE, interpreted as subretinal drusenoid deposits. Reported as the first zebrafish model of photoreceptor degeneration with such deposits. Follow-up work found the deposits enlarged with age, and that occasional deposits appeared even in old wild-type fish.</p>
+  <p><strong>Why it matters.</strong> It shifts the causal arrow. The intuitive story is that a failing RPE lets debris pile up. Here the RPE is genetically intact and the <em>photoreceptor</em> is broken, and deposits form anyway, because material the RPE cannot cope with arrives from above. So deposits on the apical side can be a photoreceptor-origin problem, which is a real argument about how human subretinal drusenoid deposits arise.</p>
+  <p><strong>Limits.</strong> A monogenic, early-onset disease gene, not ageing. Deposits are subretinal, not sub-RPE drusen. Complement and the choroid are not the subject. And zebrafish regenerate, so degeneration severity is damped.</p>
+
+  <h3>6.4 Zebrafish again: one visual cycle gene, two copies, two different cells</h3>
+  <h4>Schlegel DK, Ramkumar S, von Lintig J, Neuhauss SCF (2021). Disturbed retinoid metabolism upon loss of <em>rlbp1a</em> impairs cone function and leads to subretinal lipid deposits and photoreceptor degeneration in the zebrafish retina. <em>eLife</em> 10:e71473.</h4>
+  <p><strong>Question.</strong> <em>RLBP1</em> encodes CRALBP, a 36 kDa soluble retinoid carrier in the visual cycle. Human mutations cause a spread of recessive blinding conditions: Bothnia dystrophy, retinitis pigmentosa, retinitis punctata albescens, fundus albipunctatus and Newfoundland rod-cone dystrophy. Why one gene produces so many phenotypes was not understood. Can a zebrafish model explain it?</p>
+  <p><strong>Approach, and why the design is elegant.</strong> Zebrafish carry two copies of the gene, and crucially they are expressed in different cells: <code>rlbp1a</code> in the RPE, <code>rlbp1b</code> in Müller glia. That accident of duplication hands you a cell-type-specific knockout for free, with no conditional genetics. The authors made single and double mutants and tested each.</p>
+  <p><strong>Findings.</strong> Only <code>rlbp1a</code>, the RPE copy, mattered for vision. Those mutants had reduced chromophore, attenuated cone responses to light, and accumulated 11-<em>cis</em> and all-<em>trans</em> retinyl esters that appeared as enlarged lipid droplets in the RPE, resembling the subretinal yellow-white lesions seen in patients. With age they developed retinal thinning and both cone and rod dystrophy. The <code>rlbp1b</code> Müller glia mutants had no visual impairment, and the double mutant simply reproduced the <code>rlbp1a</code> phenotype.</p>
+  <p><strong>Why it matters here.</strong> Two reasons. First, it is the worked example of the paralogue problem from section 4.1: had the authors knocked out only <code>rlbp1b</code>, they would have concluded the gene was dispensable for vision, which is exactly the false negative to watch for. The duplication split the ancestral job between two cell types, and only one of them carries the visual load. Second, it gives a different route to lipid accumulation from Noel 2020. Here nothing is wrong with the photoreceptor or with phagocytosis; a metabolic blockage in the visual cycle backs retinoid up inside the RPE until it precipitates as droplets. Same end result, different cause, which is why "the fish has lipid deposits" means nothing until you say where and from what.</p>
+  <p><strong>Limits.</strong> A monogenic disease gene again, not ageing. The droplets sit inside RPE cells rather than extracellularly in Bruch's membrane, so they are not drusen in the human sense. And the human conditions it models are inherited dystrophies, not AMD, so the relevance is mechanistic rather than direct.</p>
+
+  <h3>6.5 Killifish groundwork: establishing that the eye ages at all</h3>
+  <h4>Vanhunsel S, Bergmans S, Beckers A, et al. (2021). The killifish visual system as an in vivo model to study brain aging and rejuvenation. <em>npj Aging and Mechanisms of Disease</em>. DOI 10.1038/s41514-021-00077-4.</h4>
+  <p><strong>Question.</strong> Does the visual system of the turquoise killifish, <em>Nothobranchius furzeri</em>, show the hallmarks of ageing, and can it serve as a short-timeframe model?</p>
+  <p><strong>Approach.</strong> Characterisation of retina and optic tectum across four age groups, with markers of oxidative stress, gliosis and neurodegeneration. Female fish only.</p>
+  <p><strong>Findings.</strong> Evidence of neurodegenerative change in the old retina, rising oxidative stress markers, gliosis, retinal thinning and functional vision loss. The strain lives six to eight months, so a full ageing study fits in under a year.</p>
+  <p><strong>Why it matters.</strong> This is the permission slip for everything after it. Before you can claim a fish models an age-related disease, you must show the organ ages.</p>
+  <p><strong>Limits, and an important dispute.</strong> Females only, and general markers rather than AMD-specific lesions. Then Bergmans and colleagues (2023, <em>Biogerontology</em> 24:403-419) argued that apparent thinning is confounded by tissue stretching as the eye keeps growing, not necessarily neurodegeneration. This is the model's most serious methodological objection, and you should carry it into any thinning result you read. The paper below answers it from a different direction.</p>
+
+  <h3>6.6 Killifish molecules: what ageing does to the transcriptome</h3>
+  <h4>Bergmans S, Noel NCL, Masin L, Harding EG, Krzywańska AM, De Schutter JD, Ayana R, Hu CK, Arckens L, Ruzycki PA, MacDonald RB, Clark BS, Moons L (2024). Age-related dysregulation of the retinal transcriptome in African turquoise killifish. <em>Aging Cell</em> 23:e14192.</h4>
+  <p><strong>Question.</strong> Histology says the old killifish retina looks degenerate, and a critic says it may just be stretched. What do the genes say? Which pathways change with age, in which cell types, and do they overlap with human retinal disease?</p>
+  <p><strong>Approach.</strong> Bulk RNA sequencing plus single-cell RNA sequencing of killifish retina at three ages, 6, 12 and 18 weeks, then integration of the two datasets at matched ages. Note the three timepoints, finer than the two used in the 2025 histology paper.</p>
+  <p><strong>Findings.</strong></p>
+  <ul>
+    <li>Transcriptional ageing fingerprints matching those of the aged brain: oxidative stress, gliosis and inflammageing. These were comparable to what is seen in the ageing mouse retina, which is a useful cross-species check.</li>
+    <li>Changed expression of genes tied to human retinal disease, including glaucoma and AMD.</li>
+    <li>All typical vertebrate retinal cell types are present in the killifish retina, established by the single-cell data. Another piece of groundwork that licenses comparison.</li>
+    <li>A loss of cellular specificity in gene expression with age: cells switch on genes not normally characteristic of their type, suggesting the breakdown of transcriptional homeostasis rather than simple up or down regulation.</li>
+    <li>Glial and immune cells stood out as the main stress regulators during ageing.</li>
+  </ul>
+  <p><strong>Why it matters.</strong> It answers the stretching objection on ground where stretching cannot explain anything: a stretched tissue does not rewrite its transcriptome, and it certainly does not make cells express the wrong genes for their type. It also supplies the molecular target list that the later histology work follows up, <code>apoeb</code> and <code>htra1b</code> among them, and it is where the claim that killifish retinal cell types are conserved actually comes from.</p>
+  <p><strong>Limits.</strong> Transcript levels are not protein levels and not lesions; this paper shows dysregulation, not damage. Its oldest group, 18 weeks, is younger than the 24-week animals in which deposits are most obvious, so the two studies do not line up exactly. And expression changes alone cannot say which changes are causes and which are consequences.</p>
+  <div class="hook">Pair 6.5 and 6.6 in your head. Vanhunsel looked at the tissue and said it degenerates. Bergmans 2023 said the tissue might only be stretched. Bergmans 2024 looked at the transcripts, where stretching has no explanatory power, and found genuine age-related dysregulation. That is how a methodological objection gets answered properly: not by arguing, but by changing the measurement.</div>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="papers"></div>
+</section>
+<section id="killi">
+  <h2>6.7 The central paper: killifish develop AMD hallmarks on their own</h2>
+  <h4>Noel NCL, Breitenbach E-M, MacDonald RB (2025). Turquoise killifish naturally develop hallmarks of age-related macular degeneration with advancing age. bioRxiv, DOI 10.1101/2025.10.23.683644. Institute of Ophthalmology, UCL.</h4>
+  <div class="key"><strong>Status.</strong> A preprint, posted October 2025, not peer reviewed. Cite it as a preprint, and treat the numbers as provisional. The design and the reasoning are worth studying regardless, and the first author is the same person who built the zebrafish <code>rp1l1</code> model in 6.3, so the two papers read as one line of thought.</div>
+
+  <h3>The question</h3>
+  <p>Existing AMD models either lack the right retina (rodents) or lack ageing (mutants, laser injury, cell culture). Killifish have a cone-rich retina <em>and</em> a six-to-eight-month lifespan. Does their retina spontaneously develop the specific hallmark lesions of AMD, without any genetic manipulation? And does sex matter, given that all previous killifish retina work used females?</p>
+
+  <h3>Design</h3>
+  <ul>
+    <li>GRZ strain <em>Nothobranchius furzeri</em>, the short-lived laboratory strain.</li>
+    <li>Two ages: "young" at 6 weeks post-hatching (young adult) and "old" at 24 weeks (end of lifespan). Deposits were also checked at 18 weeks.</li>
+    <li>Both sexes, analysed separately. This is the design choice that produced the paper's most novel result.</li>
+    <li>Central versus peripheral retina compared, using the growth gradient from section 1 as an internal age control.</li>
+    <li>Methods: in situ hybridisation chain reaction for gene expression and localisation; histology with measurement of inner and outer segment length and outer segment width; immunofluorescence for opsin (zpr-3), PRPH2, oxidised phospholipids, ceramide and the macrophage marker L-plastin; neutral lipid staining with LipidTox and oil red O.</li>
+  </ul>
+
+  <h3>Findings, in the order the paper builds them</h3>
+  <ol>
+    <li><strong>The genes are in the right cells.</strong> Young retinas expressed <code>rpe65a</code> in the RPE and <code>rp1l1</code>, <code>prph2b</code>, <code>elovl4b</code> and <code>eys</code> in photoreceptors, all localised as expected from other species. Old retinas expressed them in the same cell types. This is groundwork, not a result: it licenses the comparison by showing the tissue is built the way human retina is built.</li>
+    <li><strong>Photoreceptors shorten.</strong> Old males had significantly shorter inner and outer segment regions than young fish. Old females trended shorter without reaching significance. Outer segment <em>width</em> did not differ between any group, which is the control that matters: the tissue is losing material rather than changing shape.</li>
+    <li><strong>Outer segment proteins end up in the wrong place.</strong> In old fish, zpr-3 and PRPH2 labelling appeared in inner segments, cell bodies and synaptic terminals, in cells with no identifiable outer segment at all. Protein that belongs in the outer segment accumulating in the cell body is a recognised signature of photoreceptor degeneration, and it is strong evidence because mislocalisation can itself kill the cell.</li>
+    <li><strong>Deposits form spontaneously.</strong> Lipid deposits appeared mainly in the central retina, few in the periphery, consistent with the age gradient. Most sat between outer segments and the RPE, but some were sub-RPE. They stained positive for oxidised phospholipids, which is the Handa criterion from 6.2. Opsin labelled with zpr-3 was found within or around the deposits.</li>
+    <li><strong>Males are affected earlier and worse.</strong> Males averaged more than four times as many central-retina deposits as females, and deposits were detectable by 18 weeks in males. Deposit composition was also more varied in males, some staining for neutral lipid only.</li>
+    <li><strong>The RPE is stressed.</strong> Ceramide, which signals stress and can trigger RPE death, was confined to the neural retina and Müller glia in young fish, but accumulated in the RPE of old fish, unevenly between neighbouring cells.</li>
+    <li><strong>Immune cells move in.</strong> Young fish had few L-plastin-positive macrophages near the outer segments, with small round cell bodies. Old fish had macrophages throughout the outer segment region, some apparently wrapping around outer segments, with thick processes and a motile appearance. Old males had significantly more than young fish or than their own peripheral retina.</li>
+  </ol>
+
+  <h3>The interpretation, and why it is the interesting part</h3>
+  <p>Compare this with 6.4: there a metabolic blockage filled the RPE with retinoid droplets from the inside, with healthy photoreceptors above. Here the deposits are extracellular and carry photoreceptor protein. Two different mechanisms, two different lesions, both called lipid deposits in an abstract.</p>
+  <p>The deposits do not fit either human category cleanly. They are lipid-rich and oxidised-phospholipid-positive, which is drusen-like composition, but they sit between photoreceptors and RPE, which is subretinal drusenoid position. The authors call them hybrid, and propose that the killifish may form deposits on both sides of the RPE because it has abundant rods and cones rather than a rod-dominated retina. Separately, they note that killifish can also form genuinely sub-RPE lipid-rich deposits.</p>
+  <p>On how deposits arise, they offer two mutually exclusive hypotheses and are explicit that the data do not choose between them. Either outer-segment deterioration and RPE dysfunction leave shed material unphagocytosed, so it accumulates; or a degenerating RPE expels its own contents, such as opsin-containing phagosomes, into the subretinal space where they break down. The opsin found in and around deposits is consistent with both. Likewise, whether RPE dysfunction precedes deposit formation or follows it is left open as future work.</p>
+  <div class="hook">Learn the paper by its chain, not its figures: genes in the right cells, segments shorten, protein mislocalises, deposits appear, RPE stresses, macrophages arrive. Each link is one hallmark, and each is measured separately.</div>
+
+  <h3>Limits, stated and unstated</h3>
+  <ul>
+    <li>A preprint without peer review.</li>
+    <li>Genetics was not tested. The authors say so, and name introducing human AMD variants, and high-fat or hypoxic challenge, as next steps.</li>
+    <li>Two timepoints only, 6 and 24 weeks (plus an 18-week deposit check), so the trajectory between them is inferred.</li>
+    <li>No functional vision measurement in this paper; damage is structural and molecular.</li>
+    <li>Still no macula, so "AMD-like" means cone-rich-retina pathology, not macular pathology.</li>
+    <li>Complement was not examined, despite being central to human disease and to both approved atrophy drugs. Given fish complement genes do not map one-to-one onto human ones, this is the hardest gap to close.</li>
+    <li>The sex difference is reported, not explained. The authors suggest hormones or metabolism, and note the human literature is itself inconsistent: some studies find late disease more common in women, possibly confounded by longer life expectancy, while another found large drusen and pigment change more likely in men.</li>
+  </ul>
+
+  <h3>Where the seven papers sit relative to each other</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Paper</th><th>System</th><th>Drives the pathology</th><th>Hallmarks shown</th><th>Biggest gap</th></tr></thead>
+    <tbody>
+      <tr><td>Spaide 2018</td><td>Human</td><td>Nothing, descriptive</td><td>Defines both deposit types</td><td>No mechanism</td></tr>
+      <tr><td>Handa 2017</td><td>Human, review</td><td>Oxidised lipid</td><td>Links lipid to inflammation</td><td>Correlative</td></tr>
+      <tr><td>Noel 2020</td><td>Zebrafish</td><td>Engineered <code>rp1l1</code> loss</td><td>Subretinal deposits, photoreceptor dysfunction</td><td>Monogenic, not ageing</td></tr>
+      <tr><td>Schlegel 2021</td><td>Zebrafish</td><td>Engineered <code>rlbp1a</code> loss</td><td>Lipid droplets in RPE, cone failure, later dystrophy</td><td>Deposits intracellular; inherited dystrophy, not AMD</td></tr>
+      <tr><td>Vanhunsel 2021</td><td>Killifish</td><td>Ageing</td><td>Oxidative stress, gliosis, thinning, vision loss</td><td>No AMD-specific lesions; thinning disputed</td></tr>
+      <tr><td>Bergmans 2024</td><td>Killifish</td><td>Ageing</td><td>Transcriptional dysregulation, gliosis, inflammageing</td><td>Transcripts are not lesions</td></tr>
+      <tr><td>Noel 2025</td><td>Killifish</td><td>Ageing alone</td><td>Deposits, mislocalisation, ceramide, macrophages, sex difference</td><td>No genetics, no complement, preprint</td></tr>
+    </tbody>
+  </table></div>
+  <p>Read as a set, they make one argument. Spaide says what counts as a deposit. Handa says why an oxidised deposit is dangerous. Noel 2020 shows a photoreceptor defect is sufficient to make one, and Schlegel shows an RPE metabolic blockage makes a different kind, so lipid accumulation has at least two independent routes. Vanhunsel shows the killifish eye genuinely ages, and Bergmans 2024 confirms it in the transcriptome where the stretching objection cannot reach. Noel 2025 then shows ageing alone, with no mutation, produces deposits plus three further hallmarks, and that sex changes the severity.</p>
+  <div class="key"><strong>The shape of the argument.</strong> Notice that no single paper here is decisive, and the authors of each would say so. What carries the case is that the engineered models supply mechanism without ageing, the ageing models supply ageing without engineered mechanism, and they converge on the same lesions. Learning to see that convergence, rather than grading each paper alone, is most of what reading a literature means.</div>
+  <a class="back" href="#top">Back to top</a>
+  <div class="memory" data-set="paper"></div>
+  <div class="deck" data-topic="killi"></div>
+</section>
+
+<section id="appraise">
+  <h2>7. Reading a model paper: a checklist you can apply to any of them</h2>
+  <p>The skill being built here is not recall of seven papers, it is the ability to read the eighth. Run any animal-model paper through these questions.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Question</th><th>Why it decides the paper's value</th><th>Worked example</th></tr></thead>
+    <tbody>
+      <tr><td>Which hallmark is claimed, exactly?</td><td>"AMD-like" is not a finding. Deposits, atrophy, neovascularisation, inflammation and photoreceptor loss are separate claims with separate evidence.</td><td>Noel 2025 claims four, each with its own stain</td></tr>
+      <tr><td>Spontaneous or engineered?</td><td>A mutant proves sufficiency of one gene. Spontaneous ageing pathology is closer to the human disease but harder to attribute.</td><td>Noel 2020 engineered; Noel 2025 spontaneous</td></tr>
+      <tr><td>Where is the lesion, anatomically?</td><td>Above or below the RPE changes which human lesion it corresponds to.</td><td>The hybrid-deposit argument in 6.7</td></tr>
+      <tr><td>What is the lesion made of?</td><td>Position and composition can disagree. When they do, say so rather than picking the flattering one.</td><td>Lipid-rich but subretinal in killifish</td></tr>
+      <tr><td>What is the control for the measurement?</td><td>A length can shrink because material was lost or because shape changed.</td><td>Outer segment width, unchanged, in Noel 2025</td></tr>
+      <tr><td>Is there an internal age control?</td><td>Comparing central to peripheral retina in one fish eye removes between-animal variation.</td><td>Central versus peripheral deposit and macrophage counts</td></tr>
+      <tr><td>Structure, function, or both?</td><td>Structural damage without functional loss may not matter; function without structure gives no mechanism.</td><td>Noel 2020 tested function; Noel 2025 did not</td></tr>
+      <tr><td>Could regeneration be hiding the damage?</td><td>Fish rebuild retina, so observed loss is a floor, not a ceiling.</td><td>Any zebrafish degeneration result</td></tr>
+      <tr><td>Paralogue problem?</td><td>A negative knockout result may just mean the other copy compensated.</td><td>The a and b genes of section 4.1</td></tr>
+      <tr><td>Could the measurement be a growth artefact?</td><td>Fish eyes keep growing; tissue can stretch.</td><td>Bergmans 2023 versus thinning claims</td></tr>
+      <tr><td>Both sexes?</td><td>Single-sex designs can hide a fourfold effect.</td><td>Exactly what Noel 2025 found</td></tr>
+      <tr><td>Peer reviewed?</td><td>Changes how hard you lean on the numbers, not whether the ideas are worth learning.</td><td>Noel 2025 is a preprint</td></tr>
+    </tbody>
+  </table></div>
+  <div class="key"><strong>The question that survives all of this.</strong> Does the model let you do an experiment you could not otherwise do? Killifish let you watch deposits appear from scratch, in a cone-rich retina, in under six months, in an animal you can sample at will. No other system offers that, and that is the claim to judge, not whether a fish has a macula.</div>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="appraise"></div>
+</section>
+
+<section id="recall">
+  <h2>8. Recall practice: name the thing</h2>
+  <p>A description is given; pick the name from the list. Options are matched to the answer for length, wording and format, so nothing about an option's shape gives it away.</p>
+  <div class="rc-topics" id="rc-topics" role="group" aria-label="Filter questions by topic"></div>
+  <p class="rc-clue" id="rc-clue">Loading…</p>
+  <select id="rc-select" aria-label="Choose the answer"></select>
+  <div class="rc-btns">
+    <button id="rc-check">Check</button>
+    <button id="rc-next" class="ghost">Next</button>
+    <button id="rc-reset" class="ghost">Reset score</button>
+  </div>
+  <p class="rc-feedback" id="rc-feedback" role="status" aria-live="polite"></p>
+  <p class="rc-score" id="rc-score" aria-live="polite"></p>
+</section>
+
+</main>
+
+<script>
+// figure slots: if the PNG is not in media/ yet, say so instead of showing a broken image
+document.querySelectorAll("figure.slot img").forEach(img => {
+  const flag = () => {
+    if(img.dataset.flagged) return;
+    img.dataset.flagged = "1";
+    img.hidden = true;
+    const note = document.createElement("div");
+    note.className = "miss";
+    note.innerHTML = "Diagram slot. Save the figure as <code>" +
+      img.getAttribute("src") + "</code> and it appears here.";
+    img.parentNode.insertBefore(note, img.nextSibling);
+  };
+  if(img.complete && img.naturalWidth === 0) flag();
+  else img.addEventListener("error", flag);
+});
+</script>
+
+<script>
+// one flashcard deck per section: click the card to turn it over
+const FC = {
+"eye": [
+["Name the four layers of the outer retina, outermost inward from the photoreceptors.", "Photoreceptors (outer segments), the retinal pigment epithelium, Bruch's membrane, then the choriocapillaris and choroid."],
+["What is the macula, and what makes it yellow?", "The central 5 to 6 mm of the human retina. The carotenoids lutein and zeaxanthin give it the yellow colour."],
+["Why does losing the fovea disable someone who still has full peripheral vision?", "The fovea holds the highest cone density in the eye and is used for reading, faces and fine detail. The periphery cannot resolve detail at all."],
+["Which species have a true macula, and why does that matter for AMD research?", "Primates, plus some birds and reptiles. Mice and rats are nocturnal, rod-dominated and have no fovea, which is the main reason AMD has resisted modelling."],
+["Describe the structure of a photoreceptor from outer segment to synapse.", "An outer segment of opsin-loaded membrane discs, a connecting cilium, an inner segment packed with mitochondria, the cell body and nucleus, then the synaptic terminal."],
+["How are outer segments maintained through life?", "They are rebuilt continuously: new discs are added at the base and the oldest tips are shed daily on a circadian schedule, to be phagocytosed by the RPE."],
+["Why do papers measure outer segment width as well as length?", "A shorter length could mean lost material or merely a change in shape. Unchanged width with reduced length shows material was actually lost."],
+["List the seven jobs of the RPE.", "Phagocytosis of shed outer segments, the visual cycle, the outer blood-retina barrier, transport, light absorption by melanin, secretion of VEGF and PEDF, and immune regulation of the subretinal space."],
+["Why is the RPE especially vulnerable to ageing?", "It is a single layer of non-dividing cells, each serving dozens of photoreceptors for life, so damage accumulates with no cell division to dilute it."],
+["Name the five layers of Bruch's membrane.", "RPE basement membrane, inner collagenous layer, elastic layer, outer collagenous layer, and the choriocapillaris basement membrane."],
+["What happens to Bruch's membrane with age?", "It thickens, calcifies and fills with lipid, especially esterified cholesterol in lipoprotein-like particles, so transport between RPE and choroid slows."],
+["What is the ciliary marginal zone, and why do fish papers exploit it?", "A ring of retinal stem cells at the rim that keeps adding retina through life. The centre is therefore the oldest tissue and the periphery the youngest, so a central-versus-peripheral comparison is an internal age control."],
+["Which cells supply the photoreceptors with blood, and what happens to them with age?", "The choriocapillaris, a sheet of wide fenestrated capillaries. It thins and drops out with age, and further in AMD."]
+],
+"amd": [
+["Define drusen by position and composition.", "Extracellular deposits below the RPE, between its basal lamina and the inner collagenous layer of Bruch's membrane. Lipid-rich: esterified and unesterified cholesterol, phospholipids, oxidised phospholipids, apolipoproteins, complement components, amyloid beta, vitronectin."],
+["Define subretinal drusenoid deposits by position and composition.", "Granular deposits above the RPE, between it and the photoreceptor outer segments. Lipid-containing but not lipid-rich, with unesterified cholesterol, concentrated in rod-rich retina outside the fovea."],
+["Which drusen sizes mean ageing and which mean disease?", "Small hard drusen under 63 µm are ordinary ageing. Medium (63 to 125 µm) and large (over 125 µm) soft drusen mark disease and predict progression."],
+["Give the five Beckman stages.", "Normal ageing (small drusen only), early AMD (medium drusen), intermediate AMD (large drusen or medium plus pigment change), and late AMD as either geographic atrophy or neovascular disease."],
+["What is geographic atrophy, and how fast does it grow?", "Death of RPE, the photoreceptors depending on it, and the underlying choriocapillaris, with sharp lesion edges. Roughly 1.5 to 2 mm squared per year, often sparing the fovea at first."],
+["What fraction of AMD patients reach geographic atrophy?", "Around 10 to 20 per cent. Until 2023 there was no treatment for it at all."],
+["Distinguish the three types of macular neovascularisation.", "Type 1 from the choroid into the sub-RPE space, the commonest. Type 2 through the RPE into the subretinal space. Type 3 starting in deep retinal capillaries and growing downward."],
+["What share of AMD is neovascular, and why does it dominate severe vision loss?", "Only about 10 to 15 per cent of cases, but leaking fluid and blood distort photoreceptors quickly and end as a fibrous disciform scar."],
+["What early symptom do patients notice before acuity drops?", "Slow dark adaptation, along with metamorphopsia, where straight lines look wavy, and loss of contrast."],
+["Which imaging method shows what, for drusen and for lipofuscin?", "Optical coherence tomography gives cross-sectional layers, so it shows drusen, deposits, fluid and atrophy. Fundus autofluorescence shows lipofuscin, with atrophy appearing black."],
+["What is the fish equivalent of a human visual acuity test?", "The optokinetic and optomotor responses, which measure whether the animal tracks moving stripes."],
+["Why is histopathology the strongest argument for an animal model?", "Human outer-retinal cell biology comes mostly from scarce donor eyes of unknown history. A fish can be sampled at any timepoint, in numbers, with stains chosen in advance."]
+],
+"mech": [
+["Give the six-step cascade from ageing to late AMD.", "Ageing and oxidative stress, RPE overloaded, lipid and debris build-up, complement and immune activation, RPE and choriocapillaris loss, then atrophy or neovascularisation."],
+["Why is the macula unusually exposed to oxidative damage?", "High oxygen tension from the choroid, lifelong light exposure, and membranes rich in DHA, a polyunsaturated fatty acid that oxidises readily."],
+["What are oxidation-specific epitopes, and why do they matter?", "Products of lipid peroxidation such as carboxyethylpyrrole and oxidised phosphatidylcholine. Innate immunity reads them as danger signals, so they join the oxidative strand to the inflammatory one."],
+["What is A2E and how does it form?", "An indigestible bis-retinoid formed from two molecules of all-trans retinal during the visual cycle. It accumulates in RPE lysosomes as lipofuscin."],
+["Why is lipofuscin useful clinically as well as harmful?", "It is autofluorescent, which is what fundus autofluorescence imaging detects. It is also photosensitising and disrupts lysosomal function."],
+["Which monogenic disease is used as an accelerated model of the lipofuscin strand?", "Stargardt disease, caused by ABCA4 mutations."],
+["Trace lipid from a shed outer segment to a druse.", "The RPE phagocytoses the outer segment, packages lipid into APOB-containing particles, secretes them basally into Bruch's membrane, where they build a lipid wall that condenses into basal linear deposits and soft drusen."],
+["Outline the complement steps that matter in AMD.", "C3 is cleaved to C3a and C3b, C3b amplifies the alternative pathway, C5 cleavage gives inflammatory C5a and the membrane attack complex C5b-9."],
+["What does complement factor H normally do, and what does Y402H change?", "CFH switches the alternative pathway off on host surfaces by binding glycosaminoglycans and oxidised lipids. The Y402H variant binds these less well, so complement runs hotter on Bruch's membrane."],
+["What is the cellular, as opposed to molecular, side of AMD inflammation?", "Microglia and blood-derived macrophages enter the normally immune-quiet subretinal space, gather at drusen and atrophy borders, and may clear debris or damage photoreceptors."],
+["State the metabolic competition hypothesis.", "Healthy RPE burns fatty acids and lactate and passes glucose up to photoreceptors. A stressed RPE that keeps the glucose starves them, and stressed photoreceptors send down more lipid to process."],
+["What shifts to allow neovascularisation?", "The VEGF-to-PEDF balance tips toward VEGF, while inflammation and matrix proteases breach Bruch's membrane, letting choroidal vessels invade. VEGF-A also makes them leaky."],
+["How do the two late forms map onto the mechanistic strands?", "Geographic atrophy is mainly the RPE-degeneration and complement strands. Neovascular disease is mainly the VEGF strand on the same background. Many eyes develop both."]
+],
+"risk": [
+["What did the 2016 International AMD Genomics Consortium study find?", "52 independent variants at 34 loci, together explaining an unusually large share of heritability for a complex disease."],
+["Name the two major risk loci and the gene at each.", "Chromosome 1q32, complement factor H. Chromosome 10q26, ARMS2 and HTRA1."],
+["What is known and unknown about the chromosome 10 locus?", "Its effect size is comparable to or larger than CFH and it is strongly tied to neovascular disease, but ARMS2 function is unclear and HTRA1 is a matrix-acting serine protease."],
+["How does APOE behave in AMD compared with Alzheimer's disease?", "The opposite way: E4 is protective in AMD and E2 raises risk."],
+["What is the strongest modifiable risk factor, and by how much?", "Smoking, roughly two to four times the risk, acting through oxidative stress, complement and the choroid."],
+["Why does the teleost whole-genome duplication complicate fish knockouts?", "Many human genes have two copies, labelled a and b. One copy may compensate for the loss of the other, so a negative result is weak, and the copies may have split the original function between tissues."],
+["What is subfunctionalisation, with a retinal example?", "Duplicated genes dividing the ancestral job between them. Fleisch and colleagues (2008) showed it for a retinoid-binding protein in the cone visual cycle of zebrafish."],
+["What did AREDS and AREDS2 show, and what changed between them?", "High-dose antioxidants plus zinc cut five-year progression to late disease by about a quarter in intermediate disease. AREDS2 replaced beta-carotene, which raised lung cancer risk in smokers, with lutein and zeaxanthin."],
+["What are the limits of the AREDS formulation?", "It does not help early disease and does not prevent AMD; it only slows progression in those already at intermediate stage or with late disease in one eye."],
+["Why is faricimab bispecific?", "It blocks VEGF-A and angiopoietin-2. Angiopoietin-2 destabilises vessels and sensitises them to VEGF, so blocking both allows longer dosing intervals."],
+["Name the two 2023 geographic atrophy drugs and their targets.", "Pegcetacoplan, which inhibits C3, and avacincaptad pegol, which inhibits C5."],
+["What is the honest assessment of the complement inhibitors?", "They slow lesion growth by roughly 15 to 20 per cent but did not show preserved visual function in the pivotal trials, and both increase conversion to neovascular disease. European regulators declined pegcetacoplan on that basis."],
+["What gap in treatment do the fish models target?", "Every approved therapy acts late, on vessels or on complement once atrophy is under way. Nothing clears deposits, restores RPE, or blocks the early-to-late transition."]
+],
+"models": [
+["Why are rodents poor AMD models despite excellent genetics?", "They are nocturnal with few cones and no macula, so phenotypes are mild and variable and the relevant cone-rich tissue does not exist."],
+["What is the laser-induced neovascularisation model good and bad for?", "Good: reliable, quantitative vessel growth for testing drugs. Bad: it is an injury model with no ageing and no deposits."],
+["What do iPSC-derived RPE and organoids lack?", "A choroid, a blood supply, an immune system and ageing, though they do provide human and patient-specific genetics."],
+["Why are zebrafish and killifish retinas more human-like than mouse retinas?", "Both fish are diurnal, so their retinas are cone-rich, much closer in photoreceptor composition to the human macula."],
+["Name four things fish retinas do that human retinas do not.", "Regenerate neurons via Müller glia, regenerate RPE, keep growing at the ciliary marginal zone, and carry duplicated paralogous genes."],
+["Why is fish regeneration a problem for degeneration studies?", "Lost cells can be replaced, so measured loss is a floor rather than a ceiling and severity is damped."],
+["What is the single honest limitation shared by every fish AMD model?", "No macula. Any 'macular' claim is an analogy to cone-rich retina, not anatomy."],
+["Why do complement findings transfer least well from fish?", "Fish are ectotherms with a different adaptive immune system, and their complement genes are expanded rather than one-to-one with human genes."],
+["Contrast what zebrafish and killifish are each best for.", "Zebrafish are the genetics workhorse, answering what a gene does. Killifish are the ageing clock, answering what time does."],
+["Why does killifish lifespan make the model practical?", "The GRZ strain lives six to eight months, so a full lifespan ageing study fits in under a year instead of the three to five years zebrafish need."],
+["Which fish strength matters most for drug work?", "Transparent larvae and large clutch sizes allow screening at a scale impossible in mammals, and fish retinal disease models have been used for drug screening before."]
+],
+"papers": [
+["What does Spaide, Ooto and Curcio (2018) establish, and why read it first?", "It separates drusen from subretinal drusenoid deposits by position, composition, retinal distribution and risk. Without those criteria, a claim that a fish 'has deposits' cannot be tested."],
+["According to Spaide 2018, how do the two deposit types differ in retinal distribution?", "Drusen concentrate in the cone-rich central retina; subretinal drusenoid deposits concentrate in rod-rich retina outside the fovea and strongly predict progression to atrophy."],
+["What is the core claim of Handa et al. (2017)?", "Oxidised lipids are not inert waste. Lipid peroxidation makes oxidation-specific epitopes that innate immunity reads as danger signals, activating complement and recruiting immune cells."],
+["Which experiment does Handa 2017 license in a model organism?", "Staining a deposit for oxidised phospholipids. A positive result means the deposit is immunologically active material, not merely fat."],
+["What is RP1L1 and what does its human mutation cause?", "A photoreceptor ciliary protein that helps organise outer-segment discs. Human mutations cause occult macular dystrophy and retinitis pigmentosa."],
+["Give the design and headline result of Noel et al. (2020).", "CRISPR/Cas9 knockout of rp1l1 in zebrafish, followed with histology, electron microscopy, lipid stains and function tests. Mutants had disorganised outer segments, progressive dysfunction, and lipid-rich deposits between photoreceptors and RPE."],
+["Why does Noel 2020 change the causal story about deposits?", "The RPE is genetically intact and the photoreceptor is broken, yet deposits still form. So apical deposits can originate from the photoreceptor side, not only from a failing RPE."],
+["What are the limits of Noel 2020 as an AMD model?", "A monogenic early-onset disease gene rather than ageing, subretinal rather than sub-RPE deposits, no complement or choroidal component, and zebrafish regeneration damping severity."],
+["What does RLBP1 encode, and what do its mutations cause in humans?", "CRALBP, a 36 kDa soluble retinoid carrier in the visual cycle. Recessive mutations cause Bothnia dystrophy, retinitis pigmentosa, retinitis punctata albescens, fundus albipunctatus and Newfoundland rod-cone dystrophy."],
+["Why is the zebrafish rlbp1 duplication a free experiment?", "The two paralogues are expressed in different cells: rlbp1a in the RPE and rlbp1b in Müller glia. Knocking out each copy therefore gives a cell-type-specific knockout without conditional genetics."],
+["What did Schlegel et al. (2021) find for each rlbp1 paralogue?", "Only rlbp1a, the RPE copy, mattered: reduced chromophore, attenuated cone light responses, retinyl ester droplets in the RPE, and later retinal thinning with cone and rod dystrophy. The rlbp1b mutant had normal vision, and the double mutant matched rlbp1a alone."],
+["What false conclusion would a researcher reach by testing only rlbp1b?", "That the gene is dispensable for vision. It is the worked example of the paralogue trap: duplication split the job between cell types and only one carries the visual load."],
+["How does lipid accumulation in Schlegel 2021 differ in origin from that in Noel 2020?", "In Schlegel a metabolic blockage in the visual cycle backs retinoid up inside the RPE until it precipitates as intracellular droplets. In Noel 2020 a broken photoreceptor sheds material the RPE cannot handle, which collects extracellularly. Same label, different cause."],
+["Why are the Schlegel droplets not drusen in the human sense?", "They are intracellular, inside RPE cells, rather than extracellular deposits in Bruch's membrane, and the human conditions modelled are inherited dystrophies rather than AMD."],
+["What did Vanhunsel et al. (2021) set out to show, and in which sex?", "That the killifish visual system shows ageing hallmarks and can serve as a short-timeframe model. Female fish only."],
+["What did Vanhunsel 2021 find?", "Neurodegenerative change in the old retina, rising oxidative stress markers, gliosis, retinal thinning and functional vision loss across four age groups."],
+["Why is Vanhunsel 2021 a prerequisite for the later AMD work?", "Before claiming a fish models an age-related disease, you must first show the organ actually ages."],
+["What objection did Bergmans et al. (2023) raise, and why does it matter?", "That apparent retinal thinning is confounded by tissue stretching as the eye keeps growing, not necessarily neurodegeneration. It is the model's most serious methodological challenge."],
+["How does Bergmans et al. (2024) answer that objection?", "With transcriptomics. Age-related dysregulation of the retinal transcriptome is molecular evidence that stretching cannot explain: a stretched tissue does not rewrite its gene expression."],
+["Give the design of Bergmans et al. (2024).", "Bulk and single-cell RNA sequencing of killifish retina at 6, 12 and 18 weeks, published in Aging Cell, with the two datasets integrated at matched ages."],
+["Which ageing fingerprints did the killifish retinal transcriptome show?", "Oxidative stress, gliosis and inflammageing, the same pathways found in the aged brain and comparable to the ageing mouse retina."],
+["What does 'loss of cellular specificity' mean in the ageing killifish retina?", "Cells switch on genes not normally characteristic of their type, which suggests a breakdown of transcriptional homeostasis rather than simple up or down regulation."],
+["Which cell types did Bergmans 2024 identify as the main stress regulators?", "Glial and immune cells."],
+["What groundwork claim does the single-cell data in Bergmans 2024 establish?", "That all typical vertebrate retinal cell types are present in the killifish retina, which licenses comparison with human retina."],
+["What are the limits of a transcriptomic study like Bergmans 2024?", "Transcript levels are neither protein levels nor lesions, its oldest group at 18 weeks is younger than the 24-week fish with obvious deposits, and expression changes cannot separate causes from consequences."]
+],
+"killi": [
+["Give the full citation and status of the central killifish paper.", "Noel NCL, Breitenbach E-M, MacDonald RB (2025), 'Turquoise killifish naturally develop hallmarks of age-related macular degeneration with advancing age', bioRxiv, DOI 10.1101/2025.10.23.683644, UCL Institute of Ophthalmology. A preprint, not peer reviewed."],
+["What question does Noel 2025 ask that earlier models could not answer?", "Whether a cone-rich retina develops the specific hallmark lesions of AMD spontaneously, with no genetic manipulation, within a short lifespan, and whether sex affects it."],
+["State the design: strain, ages, sexes.", "GRZ strain Nothobranchius furzeri. Young adults at 6 weeks post-hatching against old fish at 24 weeks, the end of lifespan, with an 18-week check for deposits. Both sexes analysed separately."],
+["Which genes were checked for localisation, and why does that step come first?", "rpe65a in the RPE, and rp1l1, prph2b, elovl4b and eys in photoreceptors. Confirming they sit in the expected cell types licenses the comparison with human retina; it is groundwork, not a result."],
+["What happened to photoreceptor segment length, and what was the control?", "Old males had significantly shorter inner and outer segment regions; old females only trended shorter. Outer segment width was unchanged in every group, showing material was lost rather than shape altered."],
+["What protein mislocalisation was found, and why is it strong evidence?", "zpr-3 and PRPH2 labelling appeared in inner segments, cell bodies and synaptic terminals of cells with no identifiable outer segment. Outer-segment protein in the cell body is a recognised degeneration signature and can itself kill the cell."],
+["Describe the deposits found in old killifish.", "Lipid deposits, mainly central with few peripheral, usually between outer segments and RPE but sometimes sub-RPE, positive for oxidised phospholipids, with zpr-3-labelled opsin within or around them."],
+["What was the sex difference in deposits?", "Males averaged more than four times as many central-retina deposits as females, detectable by 18 weeks, and showed more varied deposit composition, some staining for neutral lipid only."],
+["What did ceramide staining show?", "In young fish ceramide was confined to the neural retina and Müller glia. In old fish it also accumulated in the RPE, unevenly between neighbouring cells, indicating stress that can trigger RPE death."],
+["What did L-plastin staining show about macrophages?", "Young fish had few near the outer segments, with small round cell bodies. Old fish had them throughout the outer segment region, some wrapping around outer segments, with thick processes and a motile appearance; old males had significantly more."],
+["Why are the killifish deposits called hybrid?", "They are lipid-rich and oxidised-phospholipid-positive, which is drusen-like composition, but sit between photoreceptors and RPE, which is subretinal drusenoid position. Position and composition disagree."],
+["Why might killifish form deposits on both sides of the RPE?", "The authors propose it is because killifish have abundant rods and cones, rather than a rod-dominated retina like most other model species."],
+["Give the two competing hypotheses for deposit formation, and say which the data support.", "Either outer-segment deterioration and RPE dysfunction leave shed material unphagocytosed, or a degenerating RPE expels its own contents such as opsin-containing phagosomes. The opsin in and around deposits fits both; the data do not choose."],
+["List the limits of Noel 2025.", "A preprint; no genetics tested; only two main timepoints; no functional vision measurement; still no macula; complement not examined; and the sex difference reported but unexplained."],
+["How does the human literature on sex differences compare with the killifish result?", "It is inconsistent. Some studies find late disease more common in women, possibly confounded by longer life expectancy, while another found large drusen and pigment change more likely in men, which matches the male-biased killifish result."],
+["Summarise what the seven papers argue as a set.", "Spaide defines what counts as a deposit, Handa explains why an oxidised one is dangerous, Noel 2020 shows a photoreceptor defect alone can make one, Schlegel shows an RPE metabolic blockage makes a different kind, Vanhunsel shows the killifish eye ages, Bergmans 2024 confirms it in the transcriptome, and Noel 2025 shows ageing alone produces deposits plus three further hallmarks with a sex difference."]
+],
+"appraise": [
+["Why is 'AMD-like' not a finding?", "Deposits, atrophy, neovascularisation, inflammation and photoreceptor loss are separate claims needing separate evidence. A paper must say which hallmark it demonstrates."],
+["What does an engineered mutant prove that spontaneous pathology does not, and vice versa?", "A mutant proves one gene is sufficient to cause the phenotype. Spontaneous ageing pathology is closer to the human disease but harder to attribute to any cause."],
+["What two questions must you ask about any deposit in a model organism?", "Where is it, above or below the RPE, and what is it made of. When position and composition point to different human lesions, say so rather than choosing the flattering answer."],
+["What is the value of an internal age control in a fish eye?", "Comparing central with peripheral retina in the same eye removes between-animal variation, because the periphery is younger tissue."],
+["Why do you need both structure and function?", "Structural damage without functional loss may not matter to the animal; functional loss without structural data gives no mechanism."],
+["Which two fish-specific artefacts can manufacture or hide a result?", "Regeneration can mask real loss, and continued eye growth can stretch tissue and mimic thinning."],
+["Why can a negative knockout result in fish be uninformative?", "A paralogous second copy of the gene may compensate, so no phenotype does not mean no function."],
+["What does single-sex design risk, on the evidence of Noel 2025?", "Missing an effect of fourfold magnitude. All earlier killifish retina work used females, and the male phenotype turned out to be earlier and more severe."],
+["How should a preprint change your reading?", "Lean less on the exact numbers, since they have not been refereed, but still learn the design and the reasoning."],
+["State the question that survives all the others.", "Does the model permit an experiment otherwise impossible? Killifish let you watch deposits form from scratch in a cone-rich retina in under six months, in an animal you can sample at will."]
+]
+};
+
+document.querySelectorAll(".deck").forEach(deck => {
+  const cards = FC[deck.dataset.topic];
+  if(!cards || !cards.length) return;
+  let order = cards.map((_, i) => i), at = 0, shown = false;
+
+  deck.innerHTML =
+    '<div class="deck-head"><span class="deck-title">Flashcards</span>' +
+    '<span class="deck-count"></span></div>' +
+    '<button class="card" type="button" aria-expanded="false">' +
+    '<span class="card-side"></span><span class="card-hint"></span></button>' +
+    '<div class="deck-btns"><button type="button" data-a="prev">Previous</button>' +
+    '<button type="button" data-a="next">Next</button>' +
+    '<button type="button" data-a="shuffle">Shuffle</button></div>';
+
+  const card = deck.querySelector(".card");
+  const side = deck.querySelector(".card-side");
+  const hint = deck.querySelector(".card-hint");
+  const count = deck.querySelector(".deck-count");
+
+  function draw(){
+    const c = cards[order[at]];
+    side.textContent = shown ? c[1] : c[0];
+    hint.textContent = shown ? "Click to see the question" : "Click to reveal the answer";
+    card.setAttribute("aria-expanded", shown ? "true" : "false");
+    count.textContent = (at + 1) + " of " + cards.length;
+  }
+  function step(by){
+    at = (at + by + cards.length) % cards.length;
+    shown = false;
+    draw();
+  }
+
+  card.addEventListener("click", () => { shown = !shown; draw(); });
+  deck.querySelector(".deck-btns").addEventListener("click", e => {
+    const act = e.target.dataset.a;
+    if(act === "next") step(1);
+    else if(act === "prev") step(-1);
+    else if(act === "shuffle"){
+      order = order.map(v => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map(p => p[1]);
+      at = 0; shown = false; draw();
+    }
+  });
+  draw();
+});
+</script>
+
+<script>
+// topic card sets, played as flashcards or match columns; unlike FC these allow HTML
+const MEM = {
+"lesion": {title: "Lesion and anatomy cards", intro: "The structures, lesions and measurements an AMD paper refers to.", pairs: [
+["Drusen", "Lipid-rich deposit <em>below</em> the RPE, in Bruch's membrane"],
+["Subretinal drusenoid deposit", "Granular deposit <em>above</em> the RPE, in the subretinal space"],
+["Geographic atrophy", "Sharp-edged loss of RPE, photoreceptors and choriocapillaris"],
+["Macular neovascularisation type 1", "New vessels from the choroid into the sub-RPE space"],
+["Macular neovascularisation type 2", "New vessels crossing the RPE into the subretinal space"],
+["Macular neovascularisation type 3", "New vessels starting in deep retinal capillaries, growing down"],
+["Fovea", "Cone-only pit of highest acuity, inner layers swept aside"],
+["Lutein and zeaxanthin", "Carotenoids that give the macula its yellow colour"],
+["Outer segment", "Stack of opsin-loaded membrane discs, rebuilt daily"],
+["Inner segment", "Mitochondria-packed compartment below the outer segment"],
+["Connecting cilium", "Narrow bridge through which all outer segment cargo passes"],
+["Retinal pigment epithelium", "One cell layer, non-dividing, serving dozens of photoreceptors for life"],
+["Bruch's membrane", "Five-layered sheet every RPE-to-blood exchange must cross"],
+["Choriocapillaris", "Wide fenestrated capillary sheet feeding the photoreceptors"],
+["Lipofuscin", "Autofluorescent indigestible residue in RPE lysosomes"],
+["A2E", "Bis-retinoid made from two all-trans retinal molecules"],
+["Ceramide", "Lipid whose build-up marks RPE stress and can trigger its death"],
+["Oxidised phospholipid", "Peroxidation product read by innate immunity as a danger signal"],
+["Complement factor H", "Switches the alternative pathway off on host surfaces"],
+["C5b-9", "The membrane attack complex at the end of the cascade"],
+["VEGF-A", "Drives vessel growth and leakage; the anti-VEGF target"],
+["PEDF", "RPE-secreted factor opposing angiogenesis"],
+["Metamorphopsia", "Straight lines appearing wavy, an early patient complaint"],
+["Ciliary marginal zone", "Rim stem cells that keep a fish retina growing for life"]
+]},
+"paper": {title: "Paper and method cards", intro: "Papers, markers and techniques from the seven studies.", pairs: [
+["Noel, Breitenbach and MacDonald 2025", "Killifish develop AMD hallmarks with age; preprint, both sexes"],
+["Noel et al. 2020", "<em>rp1l1</em> mutant zebrafish with subretinal deposits, in <em>Cells</em>"],
+["Vanhunsel et al. 2021", "First characterisation of the ageing killifish visual system"],
+["Bergmans et al. 2023", "Warns retinal thinning may be tissue stretching, not loss"],
+["Bergmans et al. 2024", "Age-related dysregulation of the killifish retinal transcriptome"],
+["Spaide, Ooto and Curcio 2018", "Defines subretinal drusenoid deposits against drusen"],
+["Handa et al. 2017", "Oxidised lipids and oxidation-specific epitopes in AMD"],
+["Fritsche et al. 2016", "52 variants at 34 loci from the AMD genomics consortium"],
+["Kanow et al. 2017", "Metabolic ecosystem shared by retina and RPE, in <em>eLife</em>"],
+["Fleisch et al. 2008", "Two parallel visual cycles in the cone-dominant zebrafish retina"],
+["<em>Nothobranchius furzeri</em>", "Turquoise killifish; the GRZ strain lives six to eight months"],
+["zpr-3", "Antibody labelling opsin in rods and double cones"],
+["PRPH2", "Membrane protein that shapes outer segment discs"],
+["L-plastin", "Marker used to label and count macrophages"],
+["LipidTox and oil red O", "Stains for neutral lipid in deposits"],
+["Hybridisation chain reaction", "In situ method showing which cells express a gene"],
+["<code>rpe65a</code>", "Visual cycle gene expressed in the killifish RPE"],
+["<code>rp1l1</code>", "Ciliary gene organising outer segment discs"],
+["<code>apoeb</code> and <code>htra1b</code>", "AMD-linked genes dysregulated in the ageing killifish"],
+["6 weeks versus 24 weeks", "The young and old timepoints in the killifish study"],
+["Outer segment width", "The unchanged control showing length loss was real"],
+["Central versus peripheral retina", "Internal age comparison within one fish eye"],
+["Fourfold male excess", "The deposit difference between the sexes in killifish"],
+["Hybrid deposit", "Drusen-like composition in a subretinal drusenoid position"]
+]}
+};
+
+document.querySelectorAll(".memory").forEach(box => {
+  const set = MEM[box.dataset.set];
+  const shuf = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(p => p[1]);
+  box.innerHTML =
+    '<div class="deck-head"><span class="deck-title"></span><span class="deck-count"></span></div>' +
+    '<p class="mem-intro"></p>' +
+    '<div class="deck-btns mem-modes"><button type="button" data-m="cards" aria-pressed="true">Flashcards</button>' +
+    '<button type="button" data-m="cols" aria-pressed="false">Match columns</button></div>' +
+    '<div class="mem-cards"><button class="card" type="button" aria-expanded="false" style="margin-top:.6rem"><span class="card-side"></span><span class="card-hint"></span></button>' +
+    '<div class="deck-btns"><button type="button" data-a="prev">Previous</button>' +
+    '<button type="button" data-a="next">Next</button>' +
+    '<button type="button" data-a="shuffle">Shuffle</button></div></div>' +
+    '<div class="mem-cols" hidden><p class="mem-tally"></p><div class="mem-grid"></div><p class="mem-status" aria-live="polite"></p>' +
+    '<div class="deck-btns"><button type="button" data-a="new">New game</button></div></div>';
+  box.querySelector(".deck-title").textContent = set.title;
+  box.querySelector(".mem-intro").textContent = set.intro;
+  const count = box.querySelector(".deck-count"), paneCards = box.querySelector(".mem-cards"), paneCols = box.querySelector(".mem-cols");
+  let mode = "cards";
+
+  // flashcards: Next past the last card reshuffles, so nothing repeats until every card has been seen
+  const card = box.querySelector(".card"), side = box.querySelector(".card-side"), hint = box.querySelector(".card-hint");
+  let order = [], at = 0, shown = false;
+  const reshuffle = () => { order = shuf(set.pairs.map((_, i) => i)); at = 0; shown = false; };
+  function draw(){
+    const c = set.pairs[order[at]];
+    side.innerHTML = shown ? c[1] + (c[2] ? '<span class="mem-note">' + c[2] + '.</span>' : "") : c[0];
+    hint.textContent = shown ? "Click to see the front" : "Click to reveal the answer";
+    card.setAttribute("aria-expanded", shown ? "true" : "false");
+    count.textContent = (at + 1) + " of " + order.length;
+  }
+  card.addEventListener("click", () => { shown = !shown; draw(); });
+
+  // match columns: names on the left, shuffled answers on the right.
+  // ponytail: 24 pairs = 3 rounds of 8 with no repeats; after round 3 the whole set is reshuffled
+  const grid = box.querySelector(".mem-grid"), status = box.querySelector(".mem-status");
+  const rounds = Math.ceil(set.pairs.length / 8);
+  let mOrder = [], round = 0, ids = [], picks = [], moves = 0, left = 0, lock = false;
+  const tallyEl = box.querySelector(".mem-tally");
+  const tally = () => tallyEl.textContent = "Match columns: round " + round + " of " + rounds + ", " + (ids.length - left) + " of " + ids.length + " pairs, " + moves + " moves";
+  function deal(){
+    if(round * 8 >= mOrder.length){ mOrder = shuf(set.pairs.map((_, i) => i)); round = 0; }
+    ids = mOrder.slice(round * 8, round * 8 + 8);
+    round++;
+    const right = shuf(ids);
+    grid.innerHTML = ids.flatMap((i, k) => [[i, 0], [right[k], 1]]).map(([i, sd]) =>
+      '<button type="button" class="mem-card" data-i="' + i + '" data-s="' + sd + '"><span>' + set.pairs[i][sd] + '</span></button>').join("");
+    picks = []; moves = 0; left = ids.length; lock = false; status.textContent = ""; tally();
+  }
+  grid.addEventListener("click", e => {
+    const b = e.target.closest(".mem-card");
+    if(!b || lock || b.classList.contains("done") || picks.includes(b)) return;
+    // a second click in the same column just moves the selection
+    if(picks[0] && picks[0].dataset.s === b.dataset.s){ picks[0].classList.remove("up"); picks = []; }
+    b.classList.add("up"); picks.push(b);
+    if(picks.length < 2) return;
+    moves++;
+    const [x, y] = picks;
+    if(x.dataset.i === y.dataset.i){
+      x.classList.add("done"); y.classList.add("done"); picks = []; left--;
+      const p = set.pairs[x.dataset.i];
+      status.innerHTML = "Match: " + p[0] + (p[2] ? ". " + p[2] + "." : ".") +
+        (left ? "" : " All matched in " + moves + " moves. " + (round < rounds ? "New game deals 8 cards you have not seen." : "That was every card; New game reshuffles the whole set."));
+    } else {
+      x.classList.add("bad"); y.classList.add("bad"); lock = true;
+      setTimeout(() => { x.classList.remove("up", "bad"); y.classList.remove("up", "bad"); picks = []; lock = false; }, 500);
+    }
+    tally();
+  });
+
+  box.addEventListener("click", e => {
+    const m = e.target.dataset.m, act = e.target.dataset.a;
+    if(m){
+      mode = m;
+      box.querySelectorAll("[data-m]").forEach(b => b.setAttribute("aria-pressed", b.dataset.m === m));
+      paneCards.hidden = m !== "cards"; paneCols.hidden = m !== "cols";
+      if(m === "cards") draw();
+    }
+    else if(act === "next"){ if(at === order.length - 1) reshuffle(); else { at++; shown = false; } draw(); }
+    else if(act === "prev"){ at = Math.max(0, at - 1); shown = false; draw(); }
+    else if(act === "shuffle"){ reshuffle(); draw(); }
+    else if(act === "new") deal();
+  });
+  reshuffle(); deal(); draw();
+});
+
+// ponytail: self-check, load the page with #memtest
+if(location.hash === "#memtest"){
+  Object.entries(MEM).forEach(([k, v]) => {
+    console.assert(v.title && v.pairs.length === 24, "want a title and 24 cards:", k, v.pairs.length);
+    console.assert(new Set(v.pairs.map(p => p[0])).size === v.pairs.length && new Set(v.pairs.map(p => p[1])).size === v.pairs.length, "duplicate card:", k);
+    console.assert(document.querySelector('.memory[data-set="' + k + '"]'), "no deck box:", k);
+  });
+  document.querySelectorAll(".memory").forEach(box => {
+    const cnt = () => box.querySelector(".deck-count").textContent, tl = () => box.querySelector(".mem-tally").textContent;
+    // flashcards: 24 distinct fronts, then a reshuffle
+    const side = box.querySelector(".card-side"), next = box.querySelector("[data-a=next]"), seen = new Set();
+    for(let i = 0; i < 24; i++){ seen.add(side.innerHTML); if(i < 23) next.click(); }
+    console.assert(seen.size === 24 && /24 of 24/.test(cnt()), "flashcards repeat:", box.dataset.set, seen.size);
+    next.click();
+    console.assert(/^1 of 24/.test(cnt()), "no reshuffle after the last card:", box.dataset.set);
+    // match columns: play round 1, then rounds 2 and 3 must show the other 16 pairs
+    box.querySelector("[data-m=cols]").click();
+    const grid = box.querySelector(".mem-grid"), dealt = new Set();
+    [...new Set([...grid.children].map(b => b.dataset.i))].forEach(i => grid.querySelectorAll('[data-i="' + i + '"]').forEach(b => b.click()));
+    console.assert(grid.querySelectorAll(".done").length === 16 && /All matched/.test(box.querySelector(".mem-status").textContent), "match play-through failed:", box.dataset.set);
+    [...grid.children].forEach(b => dealt.add(b.dataset.i));
+    const nw = box.querySelector("[data-a=new]");
+    nw.click(); [...grid.children].forEach(b => dealt.add(b.dataset.i));
+    nw.click(); [...grid.children].forEach(b => dealt.add(b.dataset.i));
+    console.assert(dealt.size === 24 && /round 3 of 3/.test(tl()), "match rounds repeat:", box.dataset.set, dealt.size);
+    nw.click();
+    console.assert(/round 1 of 3/.test(tl()), "no match reshuffle after round 3:", box.dataset.set);
+    box.querySelector("[data-m=cards]").click();
+  });
+  console.log("memtest done:", Object.keys(MEM).map(k => k + " " + MEM[k].pairs.length).join(", "));
+}
+</script>
+
+<script>
+// question bank: t = topic, q = the description, a = the name to recall
+const RC_TOPICS = {
+  anat: "Anatomy",
+  lesion: "Lesions &amp; imaging",
+  mech: "Mechanisms",
+  gene: "Genes &amp; therapy",
+  fish: "Fish models",
+  paper: "Papers &amp; methods"
+};
+const RC_Q = [
+  // --- anatomy ---
+  {t:"anat", q:"Central patch of human retina, about five to six millimetres across, coloured yellow by carotenoids", a:"Macula"},
+  {t:"anat", q:"Cone-only central pit of highest acuity, where the inner retinal layers are swept aside", a:"Fovea"},
+  {t:"anat", q:"Stack of opsin-loaded membrane discs whose oldest tips are shed and rebuilt every day", a:"Outer segment"},
+  {t:"anat", q:"Photoreceptor compartment densely packed with mitochondria, sitting below the light-detecting part", a:"Inner segment"},
+  {t:"anat", q:"Narrow bridge through which every piece of cargo bound for the light-detecting region must pass", a:"Connecting cilium"},
+  {t:"anat", q:"Single layer of pigmented non-dividing cells that each serve dozens of photoreceptors for life", a:"Pigment epithelium"},
+  {t:"anat", q:"Five-layered sheet that every exchange between the pigment layer and the blood must cross", a:"Bruch's membrane"},
+  {t:"anat", q:"Sheet of wide fenestrated capillaries that supplies the photoreceptors with oxygen", a:"Choriocapillaris"},
+  {t:"anat", q:"Pigment that absorbs stray light inside the epithelium and quenches free radicals", a:"Melanin"},
+  {t:"anat", q:"Light-absorbing protein of the photoreceptor discs, labelled in sections by the zpr antibody", a:"Opsin"},
+  {t:"anat", q:"Ring of retinal stem cells at the rim that keeps adding new tissue throughout a fish's life", a:"Ciliary marginal zone"},
+  {t:"anat", q:"Glial cell spanning the retina, which in fish can re-enter the cycle and rebuild lost neurons", a:"Müller glia"},
+  // --- lesions and imaging ---
+  {t:"lesion", q:"Lipid-rich extracellular deposit lying beneath the pigment epithelium, inside the underlying sheet", a:"Drusen"},
+  {t:"lesion", q:"Granular deposit lying above the pigment epithelium, between it and the light-detecting segments", a:"Drusenoid deposit"},
+  {t:"lesion", q:"Sharp-edged late lesion in which pigment cells, photoreceptors and capillaries are all lost together", a:"Geographic atrophy"},
+  {t:"lesion", q:"Late form in which abnormal vessels leak and bleed, ending as a fibrous disciform scar", a:"Neovascular disease"},
+  {t:"lesion", q:"Patient complaint in which straight lines appear wavy, classically tested with a printed grid", a:"Metamorphopsia"},
+  {t:"lesion", q:"Cross-sectional imaging method that reveals deposits, retinal fluid and areas of atrophy", a:"Coherence tomography"},
+  {t:"lesion", q:"Imaging method reading the natural glow of accumulated residue, where atrophy appears black", a:"Autofluorescence"},
+  {t:"lesion", q:"Recording of the electrical response of photoreceptors, used in both patients and adult fish", a:"Electroretinography"},
+  {t:"lesion", q:"Behavioural test in which an animal tracks moving stripes, standing in for an acuity chart", a:"Optokinetic response"},
+  {t:"lesion", q:"Deposit type whose composition and anatomical position point to two different human lesions", a:"Hybrid deposit"},
+  // --- mechanisms ---
+  {t:"mech", q:"Autofluorescent indigestible residue that collects inside the lysosomes of the pigment layer", a:"Lipofuscin"},
+  {t:"mech", q:"Indigestible bis-retinoid formed from two molecules of all-trans retinal during the visual cycle", a:"Retinoid dimer"},
+  {t:"mech", q:"Lipid whose accumulation signals stress in the pigment layer and can trigger those cells to die", a:"Ceramide"},
+  {t:"mech", q:"Peroxidation product that innate immunity recognises as a danger signal, found inside deposits", a:"Oxidised lipid"},
+  {t:"mech", q:"Daily engulfing and digestion of shed photoreceptor tips, the busiest task of the pigment layer", a:"Phagocytosis"},
+  {t:"mech", q:"Regulator that switches the alternative immune pathway off on the body's own surfaces", a:"Complement factor"},
+  {t:"mech", q:"Pore-forming complex assembled at the end of the complement cascade, found inside deposits", a:"Attack complex"},
+  {t:"mech", q:"Secreted factor driving vessel growth and leakage, the target of the standard injected drugs", a:"Growth factor"},
+  {t:"mech", q:"Idea that a stressed pigment layer keeps the glucose it should pass up to the photoreceptors", a:"Metabolic competition"},
+  {t:"mech", q:"Resident immune cell of the retina that moves into the space beneath it as an animal ages", a:"Microglia"},
+  {t:"mech", q:"Polyunsaturated fatty acid abundant in photoreceptor membranes, which oxidises readily", a:"Docosahexaenoic acid"},
+  // --- genes and therapy ---
+  {t:"gene", q:"Chromosome ten locus of uncertain function, tied most strongly to the vessel-growing late form", a:"Chromosome ten locus"},
+  {t:"gene", q:"Lipid transport gene whose variants act opposite to their direction in Alzheimer's disease", a:"Apolipoprotein E"},
+  {t:"gene", q:"Matrix protein whose rare mutations cause Sorsby fundus dystrophy and thicken the sheet", a:"Matrix inhibitor"},
+  {t:"gene", q:"Gene whose mutations cause Stargardt disease, the accelerated model of residue build-up", a:"Retinal transporter"},
+  {t:"gene", q:"Strongest modifiable risk factor, roughly doubling to quadrupling the chance of disease", a:"Smoking"},
+  {t:"gene", q:"Supplement trial showing antioxidants with zinc slow progression in intermediate disease", a:"Antioxidant trial"},
+  {t:"gene", q:"Bispecific antibody blocking both the vessel growth factor and a vessel destabilising partner", a:"Faricimab"},
+  {t:"gene", q:"Fusion protein of receptor domains on an antibody tail, blocking several growth factors", a:"Aflibercept"},
+  {t:"gene", q:"Injected drug inhibiting the third complement component, approved for atrophy in 2023", a:"Pegcetacoplan"},
+  {t:"gene", q:"Extra duplication in the ray-finned fish lineage that leaves many genes in two copies", a:"Genome duplication"},
+  {t:"gene", q:"Duplicated copies of one ancestral gene, which may compensate for each other in a knockout", a:"Paralogues"},
+  // --- fish models ---
+  {t:"fish", q:"Cone-rich diurnal laboratory fish living three to five years, the genetics workhorse of eye research", a:"Zebrafish"},
+  {t:"fish", q:"Rapidly ageing cone-rich fish whose laboratory strain completes its lifespan within months", a:"Killifish"},
+  {t:"fish", q:"Species name of the turquoise fish used as the rapidly ageing retinal model", a:"Nothobranchius furzeri"},
+  {t:"fish", q:"Short-lived laboratory strain used in the killifish retina studies, living six to eight months", a:"Strain GRZ"},
+  {t:"fish", q:"Rebuilding of lost retinal neurons, a gift for repair studies and a confound for degeneration ones", a:"Regeneration"},
+  {t:"fish", q:"Growth artefact proposed as an alternative explanation for apparent retinal thinning with age", a:"Tissue stretching"},
+  {t:"fish", q:"Division of an ancestral gene's job between its two duplicate copies, shown for a binding protein", a:"Split function"},
+  {t:"fish", q:"Anatomical feature no fish possesses, making every fish claim about it an analogy only", a:"True macula"},
+  // --- papers and methods ---
+  {t:"paper", q:"Ciliary gene organising the photoreceptor discs, knocked out to make a deposit-forming fish", a:"Ciliary disc gene"},
+  {t:"paper", q:"Gene marking the killifish pigment layer, used to confirm conserved localisation", a:"Visual cycle gene"},
+  {t:"paper", q:"Antibody marker used to label and count the immune cells entering the subretinal space", a:"Plastin marker"},
+  {t:"paper", q:"Membrane protein shaping the photoreceptor discs, found mislocalised in aged killifish cells", a:"Peripherin"},
+  {t:"paper", q:"In situ method showing which cell type expresses a gene, used to check conserved localisation", a:"Chain reaction"},
+  {t:"paper", q:"Measurement that stayed unchanged and so proved the shortening reflected real material loss", a:"Segment width"},
+  {t:"paper", q:"Comparison within one fish eye that serves as an internal control for age", a:"Central versus peripheral"},
+  {t:"paper", q:"Publication status of the central killifish study, meaning its numbers are not yet refereed", a:"Preprint"},
+  {t:"paper", q:"Finding that males carried over four times as many deposits as females of the same age", a:"Sex difference"},
+  {t:"paper", q:"Editing tool used to knock out the ciliary gene in the deposit-forming zebrafish line", a:"Cas nuclease"},
+  {t:"paper", q:"Soluble carrier of the visual cycle whose loss fills the pigment layer with droplets", a:"Cralbp"},
+  {t:"paper", q:"Sequencing approach revealing which individual retinal cell types change with age", a:"Single cell sequencing"},
+  {t:"paper", q:"Ageing signature of chronic low grade inflammation found in the killifish transcriptome", a:"Inflammageing"},
+  {t:"paper", q:"Breakdown in which cells switch on genes not characteristic of their own type", a:"Lost cell specificity"},
+  {t:"fish", q:"Duplicate copy expressed in radial glia, whose knockout left zebrafish vision unharmed", a:"Glial paralogue"},
+  {t:"fish", q:"Storage form of retinoid that accumulated as droplets inside the mutant pigment layer", a:"Retinyl esters"}
+];
+
+(function(){
+  // keep the section list collapsed by default so it stops eating the screen
+  const jump = document.getElementById("jump");
+  try { jump.open = localStorage.getItem("jumpOpen") === "1"; } catch (e) {}
+  jump.addEventListener("toggle", () => {
+    try { localStorage.setItem("jumpOpen", jump.open ? "1" : "0"); } catch (e) {}
+  });
+  jump.querySelector(".wrap").addEventListener("click", e => {
+    if(e.target.tagName === "A") jump.open = false;
+  });
+})();
+
+(function(){
+  const $ = id => document.getElementById(id);
+  let topic = "all", pool = [], current = null, answered = false;
+  let right = 0, total = 0;
+
+  const shuffle = arr => arr.map(v => [Math.random(), v]).sort((a,b) => a[0]-b[0]).map(p => p[1]);
+
+  // Distractors are chosen to look like the answer: similar length, same word count,
+  // same use of digits or hyphens, same -ase ending. Same topic is preferred but a
+  // closer-looking name from another topic wins over an odd-one-out from this one.
+  const shape = t => ({
+    len: t.length,
+    words: t.split(/\s+/).length,
+    digit: /\d/.test(t) ? 1 : 0,
+    hyphen: /-/.test(t) ? 1 : 0,
+    ase: /ase$/.test(t) ? 1 : 0
+  });
+  function distance(a, b){
+    const x = shape(a), y = shape(b);
+    return Math.abs(x.len - y.len)
+         + 7 * Math.abs(x.words - y.words)
+         + 12 * Math.abs(x.digit - y.digit)
+         + 7 * Math.abs(x.hyphen - y.hyphen)
+         + 5 * Math.abs(x.ase - y.ase);
+  }
+  // counts the ways the answer still stands out from the options around it
+  function tells(opts, ans){
+    const others = opts.filter(o => o !== ans);
+    const only = f => f(ans) && !others.some(f);
+    const lens = opts.map(o => o.length).sort((a, b) => a - b);
+    let n = 0;
+    if(ans.length === lens[lens.length - 1] && ans.length - lens[lens.length - 2] > 3) n++;
+    if(ans.length === lens[0] && lens[1] - ans.length > 3) n++;
+    const wc = t => t.split(/\s+/).length;
+    if(!others.some(o => wc(o) === wc(ans))) n++;
+    if(only(t => /\d/.test(t))) n++;
+    if(only(t => /-/.test(t))) n++;
+    if(only(t => /ase$/.test(t))) n++;
+    return n;
+  }
+  function choicesFor(q){
+    const pool = [...new Set(RC_Q.filter(x => x.a !== q.a).map(x => x.t + "\u0000" + x.a))]
+      .map(k => ({ t: k.split("\u0000")[0], a: k.split("\u0000")[1] }));
+    pool.forEach(c => { c.d = distance(c.a, q.a) + (c.t === q.t ? 0 : 9); });
+    pool.sort((a, b) => a.d - b.d);
+    const near = pool.slice(0, 18).map(c => c.a);
+    let best = null, bestScore = 99;
+    for(let i = 0; i < 25 && bestScore > 0; i++){
+      const draw = [q.a, ...shuffle(near).slice(0, 7)];
+      const score = tells(draw, q.a);
+      if(score < bestScore){ bestScore = score; best = draw; }
+    }
+    return shuffle(best);
+  }
+
+  function nextQuestion(){
+    if(!pool.length) pool = shuffle(RC_Q.filter(q => topic === "all" || q.t === topic));
+    current = pool.pop();
+    answered = false;
+    $("rc-clue").textContent = current.q;
+    const sel = $("rc-select");
+    sel.innerHTML = '<option value="">choose an answer</option>' +
+      choicesFor(current).map(c => '<option>' + c + '</option>').join("");
+    sel.disabled = false;
+    $("rc-feedback").textContent = "";
+    $("rc-feedback").className = "rc-feedback";
+  }
+
+  function check(){
+    if(answered) return nextQuestion();
+    const val = $("rc-select").value;
+    if(!val) return;
+    answered = true; total++;
+    const fb = $("rc-feedback");
+    if(val === current.a){ right++; fb.textContent = "✓ Correct"; fb.className = "rc-feedback ok"; }
+    else { fb.textContent = "✗ Answer: " + current.a; fb.className = "rc-feedback bad"; }
+    $("rc-select").disabled = true;
+    $("rc-score").textContent = "Score: " + right + " / " + total;
+  }
+
+  $("rc-topics").innerHTML = ['<button data-t="all" class="on">All</button>']
+    .concat(Object.keys(RC_TOPICS).map(k => '<button data-t="' + k + '">' + RC_TOPICS[k] + '</button>')).join("");
+  $("rc-topics").addEventListener("click", e => {
+    if(e.target.tagName !== "BUTTON") return;
+    topic = e.target.dataset.t;
+    [...$("rc-topics").children].forEach(b => b.classList.toggle("on", b === e.target));
+    pool = []; nextQuestion();
+  });
+  $("rc-check").addEventListener("click", check);
+  $("rc-next").addEventListener("click", nextQuestion);
+  $("rc-reset").addEventListener("click", () => { right = total = 0; $("rc-score").textContent = ""; });
+  nextQuestion();
+
+  // ponytail: self-check, run by loading the page with #selftest
+  if(location.hash === "#selftest"){
+    RC_Q.forEach(q => {
+      const c = choicesFor(q);
+      console.assert(c.includes(q.a), "missing answer", q.a);
+      console.assert(c.length >= 6, "fewer than 6 options for topic " + q.t, c.length);
+      console.assert(new Set(c).size === c.length, "duplicate option", q.a);
+      const lens = c.map(x => x.length).sort((a, b) => a - b);
+      console.assert(lens[lens.length - 1] - lens[0] <= 26, "option lengths too spread for " + q.a, lens);
+      console.assert(tells(c, q.a) === 0, "answer stands out for " + q.a, c);
+    });
+    console.log("selftest done:", RC_Q.length, "questions");
+  }
+})();
+</script>
+
+<script>
+/* Glossary: first mention of a key term in each section gets a hover/tap definition. */
+(function(){
+  const DEFS = {
+    "CRALBP": "Cellular retinaldehyde-binding protein, a soluble retinoid carrier of the visual cycle, encoded by RLBP1 and by rlbp1a in the zebrafish RPE.",
+    "inflammageing": "The chronic, low-grade inflammation that accumulates with age, seen as a transcriptional signature in the old killifish retina.",
+    "transcriptome": "The full set of RNA transcripts in a tissue or cell; comparing it across ages shows dysregulation that histology alone cannot.",
+    "retinyl esters": "Storage forms of vitamin A that accumulate as lipid droplets in the RPE when the visual cycle is blocked.",
+    "single-cell RNA sequencing": "Sequencing transcripts cell by cell, so changes can be assigned to particular retinal cell types rather than averaged.",
+    "macula": "The central patch of human retina, about 5 to 6 mm across, yellow with lutein and zeaxanthin and responsible for detailed vision.",
+    "fovea": "The cone-only pit at the centre of the macula, the point of highest acuity, where inner retinal layers are swept aside.",
+    "outer segment": "The stack of opsin-loaded membrane discs that detects light; its oldest tips are shed and replaced daily.",
+    "inner segment": "The photoreceptor compartment below the outer segment, densely packed with mitochondria.",
+    "connecting cilium": "The narrow bridge between inner and outer segment through which all outer-segment cargo must pass.",
+    "retinal pigment epithelium": "A single layer of pigmented, non-dividing cells beneath the photoreceptors that feeds, cleans and insulates them.",
+    "RPE": "The retinal pigment epithelium: one layer of non-dividing pigmented cells serving dozens of photoreceptors each, for life.",
+    "Bruch's membrane": "The five-layered sheet between the RPE and the choroid that every exchange with the blood must cross.",
+    "choriocapillaris": "The sheet of wide, fenestrated capillaries that supplies the photoreceptors with oxygen and nutrients.",
+    "choroid": "The vascular layer behind Bruch's membrane, carrying the highest blood flow of any tissue in the body.",
+    "drusen": "Lipid-rich extracellular deposits below the RPE, inside Bruch's membrane; large soft ones predict progression.",
+    "subretinal drusenoid deposits": "Granular deposits above the RPE, between it and the outer segments; less lipid-rich than drusen and strongly predictive of atrophy.",
+    "geographic atrophy": "Late AMD in which RPE, photoreceptors and choriocapillaris are lost together in sharp-edged, expanding patches.",
+    "macular neovascularisation": "Growth of abnormal vessels into the outer retina, driven mainly by VEGF-A; the lesion behind neovascular AMD.",
+    "metamorphopsia": "Distortion in which straight lines look wavy, an early symptom of macular disease.",
+    "optical coherence tomography": "Cross-sectional retinal imaging that resolves individual layers, deposits, fluid and atrophy.",
+    "fundus autofluorescence": "Imaging of the natural glow of lipofuscin, in which atrophic areas appear black.",
+    "electroretinography": "Recording of the retina's electrical response to light, usable in patients and in adult fish.",
+    "lipofuscin": "Autofluorescent, indigestible residue that accumulates in RPE lysosomes over a lifetime of phagocytosis.",
+    "A2E": "A bis-retinoid formed from two molecules of all-trans retinal; a major, indigestible component of lipofuscin.",
+    "ceramide": "A sphingolipid whose accumulation marks cellular stress and can trigger RPE cell death.",
+    "oxidised phospholipids": "Lipid peroxidation products that innate immunity reads as danger signals; present in drusen.",
+    "oxidation-specific epitopes": "Structures created by lipid peroxidation, such as carboxyethylpyrrole, recognised by innate immune receptors.",
+    "phagocytosis": "The RPE's daily engulfment and digestion of shed photoreceptor outer-segment tips.",
+    "visual cycle": "The chain of reactions, largely in the RPE, that regenerates 11-cis retinal after light isomerises it.",
+    "complement": "An innate immune cascade, central to AMD; its alternative pathway runs on host surfaces unless actively switched off.",
+    "complement factor H": "The regulator that shuts the alternative complement pathway off on host surfaces; the Y402H variant does this less well.",
+    "membrane attack complex": "C5b-9, the pore-forming end product of the complement cascade, found in drusen and ageing Bruch's membrane.",
+    "VEGF": "Vascular endothelial growth factor, which drives vessel growth and leakage; the target of the standard injected drugs.",
+    "PEDF": "Pigment epithelium-derived factor, secreted apically by the RPE, which opposes angiogenesis.",
+    "macrophages": "Blood-derived immune cells that enter the normally immune-quiet subretinal space with age and in AMD.",
+    "microglia": "The retina's resident immune cells, which migrate into the subretinal space as the tissue ages.",
+    "Müller glia": "Radial glia spanning the retina; in fish they can re-enter the cell cycle and regenerate lost neurons.",
+    "ciliary marginal zone": "The ring of retinal stem cells at the rim of a fish eye that adds new retina throughout life.",
+    "paralogue": "One of two gene copies left by a genome duplication; in fish these are labelled a and b and may compensate for each other.",
+    "subfunctionalisation": "Division of an ancestral gene's job between its duplicate copies, so each does only part of the original function.",
+    "opsin": "The light-absorbing protein of photoreceptor discs; its presence in the cell body signals degeneration.",
+    "zpr-3": "An antibody that labels opsin in rod and double-cone outer segments, widely used in fish retina work.",
+    "PRPH2": "Peripherin, a membrane protein required to shape outer-segment discs.",
+    "L-plastin": "An actin-binding protein used as a marker to label and count macrophages in tissue sections.",
+    "hybridisation chain reaction": "An in situ method that amplifies signal to show which cell type expresses a given gene.",
+    "preprint": "A manuscript posted publicly before peer review; its reasoning is readable but its numbers are not yet refereed.",
+    "AREDS": "The Age-Related Eye Disease Study, which showed antioxidants plus zinc slow progression in intermediate AMD.",
+    "pegcetacoplan": "An intravitreal C3 inhibitor approved in the United States in 2023 to slow geographic atrophy.",
+    "avacincaptad pegol": "An intravitreal C5 inhibitor approved in the United States in 2023 to slow geographic atrophy.",
+    "faricimab": "A bispecific antibody blocking both VEGF-A and angiopoietin-2, allowing longer dosing intervals.",
+    "aflibercept": "A receptor-Fc fusion protein that traps VEGF-A, VEGF-B and placental growth factor.",
+    "ranibizumab": "An antibody fragment against VEGF-A, the first widely approved treatment for neovascular AMD.",
+    "turquoise killifish": "Nothobranchius furzeri, a rapidly ageing cone-rich fish whose laboratory strain lives six to eight months.",
+    "zebrafish": "Danio rerio, a cone-rich diurnal fish living three to five years; the standard genetic model for retinal disease.",
+    "GRZ": "The short-lived laboratory strain of turquoise killifish used in the retinal ageing studies."
+  };
+
+  const SKIP = "a,code,button,select,svg,h1,h2,.deck,.memory,.rc-clue,.term";
+  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const keys = Object.keys(DEFS).sort((a, b) => b.length - a.length);
+  const hit = {};
+
+  document.querySelectorAll("main > section").forEach(sec => {
+    keys.forEach(k => {
+      // acronyms and proper names match case-sensitively, so "cap" is not read as "CAP"
+      const re = new RegExp("(?<![\\w-])" + esc(k) + "s?(?!\\w)", k === k.toLowerCase() ? "i" : "");
+      const walk = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT);
+      let node;
+      while ((node = walk.nextNode())) {
+        if (node.parentElement.closest(SKIP)) continue;
+        const m = re.exec(node.nodeValue);
+        if (!m) continue;
+        const word = node.splitText(m.index);
+        word.splitText(m[0].length);
+        const span = document.createElement("span");
+        span.className = "term";
+        span.tabIndex = 0;
+        span.dataset.term = k;
+        span.dataset.def = DEFS[k];
+        span.textContent = word.nodeValue;
+        word.parentNode.replaceChild(span, word);
+        hit[k] = (hit[k] || 0) + 1;
+        break;
+      }
+    });
+  });
+
+  const tip = document.createElement("div");
+  tip.id = "gloss-tip";
+  tip.setAttribute("role", "tooltip");
+  document.body.appendChild(tip);
+  let open = null;
+
+  function show(el){
+    if (open === el) return;
+    hide();
+    open = el;
+    const head = document.createElement("b");
+    head.textContent = el.dataset.term;
+    tip.replaceChildren(head, document.createTextNode(el.dataset.def));
+    tip.classList.add("on");
+    el.setAttribute("aria-describedby", "gloss-tip");
+    const r = el.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    const x = Math.min(r.left, innerWidth - 8 - t.width);
+    let y = r.bottom + 6;
+    if (y + t.height > innerHeight - 8) y = r.top - t.height - 6;
+    tip.style.left = Math.max(8, x) + "px";
+    tip.style.top = Math.max(8, y) + "px";
+  }
+
+  function hide(){
+    if (open) open.removeAttribute("aria-describedby");
+    tip.classList.remove("on");
+    open = null;
+  }
+
+  function track(e){
+    const t = e.target.closest(".term");
+    if (t) show(t); else if (open) hide();
+  }
+  document.addEventListener("mouseover", track);
+  document.addEventListener("focusin", track);
+  document.addEventListener("click", track);
+  addEventListener("scroll", () => { if (open) hide(); }, true);
+  addEventListener("keydown", e => { if (e.key === "Escape") hide(); });
+
+  // ponytail: self-check, load the page with #glosstest
+  if (location.hash === "#glosstest") {
+    const missed = keys.filter(k => !hit[k]);
+    console.assert(missed.length === 0, "glossary terms never matched:", missed);
+    console.assert([...document.querySelectorAll(".term")].every(e => e.dataset.def && e.textContent.trim()), "empty term span");
+    console.log("glossary:", keys.length, "terms,", document.querySelectorAll(".term").length, "marked");
+  }
+})();
+</script>
+
+</body>
+</html>
