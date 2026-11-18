@@ -1582,6 +1582,21 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <h2>Topic 8: regulation of gene expression</h2>
   <p>A bacterium carries far more genes than it uses at any moment. Regulation is about spending on what the current environment rewards, and because these cells have short generation times and no compartments, most of the control happens at transcription initiation, where it is cheapest.</p>
 
+  <h3>Refresher: bacterial transcription and translation</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Step</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>Initiation</td><td>A sigma factor bound to core RNA polymerase directs it to a promoter. Different sigma factors send the same core enzyme to different genes as needed</td></tr>
+      <tr><td>Rho-independent termination</td><td>A GC-rich stretch of the new RNA folds into a hairpin, followed by a run of U residues, and the polymerase falls off the DNA</td></tr>
+      <tr><td>Rho-dependent termination</td><td>The Rho protein follows the polymerase along the RNA and removes it from the DNA when it reaches a termination sequence</td></tr>
+      <tr><td>Translation start</td><td>The small ribosomal subunit pairs with the Shine-Dalgarno sequence, which lines the machinery up on the correct start codon</td></tr>
+      <tr><td>Polycistronic mRNA</td><td>One mRNA carries several coding sequences, each with its own Shine-Dalgarno sequence, so one transcript makes several proteins</td></tr>
+      <tr><td>Coupling</td><td>With no nucleus, ribosomes start translating the 5' end while the 3' end is still being transcribed. Attenuation depends on this</td></tr>
+    </tbody>
+  </table>
+  </div>
+
   <h3>8.1 Differential gene expression</h3>
   <div class="scroll">
   <table>
@@ -1609,6 +1624,18 @@ document.getElementById("fc-only").addEventListener("click", e => {
   </table>
   </div>
   <div class="key">Swapping the sigma factor changes which promoters the same core polymerase can read. That is how one enzyme runs several separate programmes, and it is the mechanism behind sporulation cascades, heat shock and the phage T4 takeover of its host.</div>
+  <h4>Regulating protein activity</h4>
+  <p>The fastest control acts on enzymes that already exist. In <strong>feedback inhibition</strong>, the end product of a multistep pathway, often an amino acid, binds the enzyme at the first committed step. It binds at an <strong>allosteric site</strong> away from the active site, the enzyme changes shape, substrate can no longer bind, and the whole pathway stops at once. When the product is used up it comes off and the pathway restarts. <strong>Covalent modification</strong> changes shape the same way but by attaching a group with a covalent bond.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th></th><th>Allosteric regulation</th><th>Covalent modification</th></tr></thead>
+    <tbody>
+      <tr><td>How</td><td>An effector molecule binds non-covalently at the allosteric site</td><td>An enzyme attaches a phosphoryl, AMP (adenylylation) or methyl group</td></tr>
+      <tr><td>Reversal</td><td>The effector leaves as its concentration falls</td><td>A second enzyme removes the group</td></tr>
+      <tr><td>Example</td><td>End product inhibiting the first enzyme of an amino acid pathway</td><td>Glutamine synthetase adenylylation; methylation of chemotaxis receptors (MCPs)</td></tr>
+    </tbody>
+  </table>
+  </div>
 
   <h3>8.2 The operon</h3>
   <p>An operon is a set of genes transcribed from one promoter into one mRNA, with a shared operator. The arrangement means a whole pathway is switched together, and it is why bacterial regulation can be described in terms of a few DNA sites.</p>
@@ -1627,6 +1654,19 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
+  <h4>Negative and positive control</h4>
+  <p><strong>Negative control</strong> uses a repressor that binds the operator and blocks RNA polymerase. Both repression and induction are negative control, because both work through a repressor. <strong>Positive control</strong> uses an activator that binds an <strong>activator binding site</strong> and raises the polymerase's affinity for the promoter. Positively controlled promoters bind RNA polymerase only weakly on their own, so the activator recruits it, by touching the polymerase directly or by bending the DNA. The activator site can sit right next to the promoter or hundreds of base pairs away. An <em>E. coli</em> gene can be under negative control, positive control, both (lac) or neither, and some operons have several promoters each with its own control.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Effector</th><th>Binds</th><th>Effect</th><th>Typical pathway</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Inducer</td><td>Repressor</td><td>Repressor leaves the operator, transcription on</td><td>Catabolic; the effector is the substrate</td><td>Allolactose and LacI</td></tr>
+      <tr><td>Corepressor</td><td>Repressor</td><td>Repressor can now bind the operator, transcription off</td><td>Anabolic; the effector is the end product</td><td>Tryptophan and TrpR</td></tr>
+      <tr><td>Coactivator</td><td>Activator</td><td>Activator can now bind its site, transcription on</td><td>Catabolic</td><td>Maltose and the maltose activator; cAMP and CRP</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Effector is the collective term for these small molecules: they act only through an allosteric regulatory protein, never on the DNA directly. Maltose catabolism is the textbook positive control case: the maltose activator protein binds DNA only when maltose is bound to it, so the genes are made only when there is maltose to use.</p>
   <h4>The lac operon</h4>
   <p><code>lacZ</code> encodes beta-galactosidase, <code>lacY</code> the permease and <code>lacA</code> a transacetylase; <code>lacI</code>, transcribed separately, encodes the repressor. Allolactose, made as a side product by beta-galactosidase itself, binds the repressor and releases it from the operator, so lactose induces its own catabolism. IPTG does the same in the laboratory and is not metabolised, which makes it a gratuitous inducer.</p>
   <p>Negative control alone is not enough. cAMP receptor protein (CAP, also called CRP) must bind cAMP and sit upstream of the weak lac promoter to recruit RNA polymerase. Glucose lowers cAMP, so CAP is inactive and the operon stays quiet no matter how much lactose is present. That is catabolite repression, and it produces diauxic growth: <em>E. coli</em> in glucose plus lactose consumes the glucose, pauses, then induces lac.</p>
@@ -1662,6 +1702,15 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
+  <h4>The SOS regulon, step by step</h4>
+  <ol>
+    <li><strong>Off.</strong> In a healthy cell the LexA repressor sits on the operators of the SOS genes, including <em>recA</em> and <em>lexA</em> themselves, keeping them low.</li>
+    <li><strong>Damage.</strong> Serious DNA damage stalls replication and leaves single-stranded DNA.</li>
+    <li><strong>Sensing.</strong> RecA coats the single-stranded DNA and becomes activated.</li>
+    <li><strong>Derepression.</strong> Activated RecA triggers LexA to cleave itself. With LexA gone, repair genes come on, cell division is blocked, and as a last resort error-prone polymerases copy past the damage, raising the mutation rate.</li>
+    <li><strong>Reset.</strong> Once the DNA is repaired there is no single-stranded DNA, RecA is no longer active, newly made LexA builds up and the regulon shuts off again.</li>
+  </ol>
+  <p>Alternative sigma factors are the other regulon example. Most <em>E. coli</em> promoters are read with σ<sup>70</sup>; σ<sup>54</sup> reads nitrogen utilisation genes, σ<sup>38</sup> general stress genes and σ<sup>32</sup> heat shock genes. σ<sup>32</sup> is normally degraded very quickly after it is made. When the temperature rises it is stabilised, so it accumulates and starts transcription at σ<sup>32</sup> promoters.</p>
 
   <h3>8.4 Post-initiation control of gene expression</h3>
   <div class="scroll">
@@ -1693,7 +1742,15 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table>
   </div>
-  <p>The founding example is <em>Aliivibrio fischeri</em> in the light organ of the bobtail squid, where the <em>lux</em> operon for bioluminescence is expressed only at the high densities reached inside the organ and not in open seawater. Quorum sensing also controls biofilm maturation, virulence factor timing in <em>P. aeruginosa</em> and <em>S. aureus</em>, natural competence in <em>Bacillus</em> and <em>Streptococcus</em>, and swarming. Because it times attack rather than causing damage directly, blocking it (quorum quenching) is an antivirulence strategy that puts less selective pressure on growth than an antibiotic does.</p>
+  <h4>The <em>lux</em> system of <em>Aliivibrio fischeri</em></h4>
+  <ol>
+    <li>LuxI makes acyl homoserine lactone (AHL) at a constant low rate, and AHL diffuses freely in and out of cells.</li>
+    <li>Free-living in seawater the cells are sparse, AHL diffuses away, and nothing happens.</li>
+    <li>Packed into the light organ of the Hawaiian bobtail squid, AHL builds up until it reaches a threshold and binds LuxR, a transcriptional activator.</li>
+    <li>LuxR with AHL binds the <strong>lux box</strong>, the activator binding site, and turns on the luciferase genes, so the cells glow.</li>
+    <li>The same activation turns on <em>luxI</em>, which makes more AHL. This positive feedback loop gives a fast, all-or-nothing switch.</li>
+  </ol>
+  <p>The founding example is <em>Aliivibrio fischeri</em> in the light organ of the bobtail squid, where the <em>lux</em> operon for bioluminescence is expressed only at the high densities reached inside the organ and not in open seawater. Quorum sensing also controls biofilm maturation, virulence factor timing in <em>P. aeruginosa</em> and <em>S. aureus</em>, natural competence in <em>Bacillus</em> and <em>Streptococcus</em>, swarming and other motility, and conjugation. Autoinducers can even be weapons in competition, interrupting or jamming the control pathways of other microbes nearby. Because it times attack rather than causing damage directly, blocking it (quorum quenching) is an antivirulence strategy that puts less selective pressure on growth than an antibiotic does.</p>
 
   <h3>8.6 Two-component regulatory systems</h3>
   <figure class="slot">
@@ -1715,6 +1772,18 @@ document.getElementById("fc-only").addEventListener("click", e => {
   </table>
   </div>
   <p><em>E. coli</em> has about 30 such pairs and some species have over a hundred. Cross-talk between them is kept low by specificity between each kinase and its own regulator, which is why these systems can be multiplied without interference.</p>
+  <p>In course terms the two parts are the <strong>sensor kinase</strong> (histidine protein kinase, HPK), which detects the stimulus, and the <strong>response regulator</strong> (RR), which controls transcription and works only when phosphorylated. Depending on the system it can act as an activator or a repressor.</p>
+  <h4><em>Agrobacterium tumefaciens</em>: VirA and VirG</h4>
+  <p>The <em>vir</em> genes on the Ti plasmid are expressed only in conditions like a plant wound site, and VirA and VirG, a two-component pair, are needed to switch on all the others.</p>
+  <ol>
+    <li><strong>Signal.</strong> A wounded plant releases phenolic compounds such as acetosyringone, along with sugars.</li>
+    <li><strong>Sensing.</strong> VirA, the membrane sensor kinase, detects the phenolics and autophosphorylates.</li>
+    <li><strong>Transfer.</strong> VirA passes the phosphoryl group to VirG, the response regulator.</li>
+    <li><strong>Response.</strong> Phosphorylated VirG activates transcription of the other <em>vir</em> genes.</li>
+    <li><strong>T-DNA processing.</strong> Vir proteins cut a single strand of T-DNA out of the Ti plasmid and coat it for transport.</li>
+    <li><strong>Transfer to the plant.</strong> The T-DNA passes through a Vir secretion system into the plant cell and integrates into the plant chromosome.</li>
+    <li><strong>Crown gall.</strong> T-DNA genes make plant hormones (auxin and cytokinin), so the cells divide into a tumour, and opines, which only the bacterium can use as carbon and nitrogen sources.</li>
+  </ol>
 
   <h3>8.7 Chemotaxis</h3>
   <figure class="slot">
@@ -1737,7 +1806,24 @@ document.getElementById("fc-only").addEventListener("click", e => {
   </table>
   </div>
   <div class="key"><strong>Adaptation is the clever part.</strong> Attractant binding inhibits CheA at once, which is the fast response. Methylation of the receptor by CheR then restores CheA activity over seconds, resetting sensitivity so the cell responds to further change rather than to the absolute concentration. The CheR and CheB pair is a memory with a few seconds of span, and it lets the same receptor work across five orders of magnitude of concentration.</div>
+  <p>Chemotaxis is a modified two-component system: CheA is the sensor kinase that autophosphorylates, CheY is the response regulator, and CheY-P acts on the flagellar motor instead of a gene. The course splits it into three steps.</p>
+  <ol>
+    <li><strong>Response to signal.</strong> MCPs sense specific attractants or repellents and, through CheW, set how much CheA autophosphorylates. Attractants decrease it, repellents increase it.</li>
+    <li><strong>Control of flagellar rotation.</strong> CheA-P phosphorylates CheY when attractant is low. CheY-P reverses the motor to clockwise, so the cell tumbles. Little CheY-P means counter-clockwise rotation and long runs.</li>
+    <li><strong>Adaptation.</strong> CheR keeps methylating the MCPs; CheA-P also phosphorylates CheB, and CheB-P removes the methyl groups. Under steady high attractant, CheB-P stays low, so methylation rises. Highly methylated MCPs respond only to even higher attractant, so CheA-P and CheB-P creep back up, MCPs are demethylated and sensitivity returns. The system resets and avoids saturation.</li>
+  </ol>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Attractant is</th><th>CheA-P</th><th>CheY-P</th><th>Motor</th><th>CheB-P</th><th>MCP methylation</th></tr></thead>
+    <tbody>
+      <tr><td>Increasing (or repellent decreasing)</td><td>Down</td><td>Down</td><td>Counter-clockwise, longer runs</td><td>Down</td><td>Rises</td></tr>
+      <tr><td>Decreasing (or repellent increasing)</td><td>Up</td><td>Up</td><td>Clockwise, more tumbles</td><td>Up</td><td>Falls</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Chemotaxis mutants are found with a <strong>capillary assay</strong>: a thin tube filled with nutrients or another attractant is dipped into a cell suspension. Cells with normal chemotaxis swim into the tube; mutants with defective chemotaxis proteins stay outside.</p>
   <p>Repellents work in the opposite direction, raising CheA activity and shortening runs. Related systems use the same architecture for other stimuli: phototaxis, aerotaxis (through redox sensing by Aer), magnetotaxis using magnetosomes, and energy taxis toward whatever supports the best proton-motive force.</p>
+  <div class="memory" data-set="reg"></div>
   <a class="back" href="#top">Back to top</a>
   <div class="deck" data-topic="reg"></div>
 </section>
@@ -2165,6 +2251,18 @@ const FC = {
 ["Which is the most abundant photosynthetic organism on Earth?", "Prochlorococcus, a tiny marine cyanobacterium."]
 ],
 "reg": [
+["How do rho-dependent and rho-independent termination differ?", "Rho-independent: a GC-rich RNA hairpin followed by U residues makes the polymerase fall off. Rho-dependent: the Rho protein follows the polymerase and removes it at a termination sequence."],
+["What does the Shine-Dalgarno sequence do, and how does it allow polycistronic mRNA?", "The small ribosomal subunit pairs with it to line up the start codon. Several Shine-Dalgarno sequences on one mRNA let each coding sequence be translated separately."],
+["Distinguish allosteric regulation from covalent modification.", "Allosteric: an effector binds non-covalently at a site away from the active site and changes the enzyme's shape. Covalent: an enzyme attaches a phosphoryl, AMP or methyl group, and another enzyme removes it."],
+["What is feedback inhibition?", "The end product of a pathway binds the allosteric site of the enzyme at the first committed step, so substrate cannot bind and the whole pathway stops at once."],
+["Distinguish an inducer from a corepressor.", "Both are effectors acting on a repressor, so both are negative control. An inducer releases the repressor (catabolic, substrate, e.g. allolactose); a corepressor activates it (anabolic, product, e.g. tryptophan)."],
+["How does positive control work, using maltose as the example?", "The maltose activator binds its activator binding site only with maltose bound, then recruits RNA polymerase to a promoter that binds polymerase only weakly on its own."],
+["How does LuxR switch on light in Aliivibrio fischeri?", "At high density AHL from LuxI builds up and binds LuxR, which binds the lux box and activates the luciferase genes and luxI, a positive feedback loop."],
+["List the steps of an Agrobacterium tumefaciens infection.", "Wound phenolics are sensed by VirA, which autophosphorylates and phosphorylates VirG. VirG-P activates the vir genes, T-DNA is cut out, transferred and integrated into the plant genome, and the plant makes hormones (crown gall) and opines."],
+["What happens to CheA, CheY and CheB as attractant increases?", "CheA autophosphorylation falls, so CheY-P falls and runs lengthen; CheB-P falls too, so MCP methylation rises until the cell adapts."],
+["How does a capillary assay find chemotaxis mutants?", "A tube filled with attractant is dipped into cells. Normal cells swim in; mutants with defective chemotaxis proteins stay outside."],
+["How do RecA and LexA control the SOS response?", "LexA represses the SOS genes. Damage leaves single-stranded DNA, RecA binds it and triggers LexA self-cleavage, derepressing repair. When repair is done new LexA re-represses."],
+["How is sigma-32 kept inactive until a heat shock?", "It is degraded very quickly after it is made. Heat stabilises it, so it builds up and starts transcription of heat shock genes."],
 ["Why is most bacterial regulation at transcription initiation?", "It is the cheapest point to control, since nothing has been synthesised yet. Later control wastes the mRNA or the protein already made."],
 ["How does a sigma factor change what a promoter does?", "It determines which promoters the core polymerase can recognise, so swapping sigma factors switches whole programmes, as in heat shock, stationary phase and sporulation."],
 ["Name the four operon logics.", "Negative inducible like lac, negative repressible like trp, positive inducible like ara, and positive repressible."],
@@ -2439,6 +2537,32 @@ const MEM = {
 ["Geosmin", "Earthy smell made by actinobacteria and some cyanobacteria"],
 ["Heterocyst", "Thick-envelope cyanobacterial cell without photosystem II, where N<sub>2</sub> is fixed"],
 ["Thylakoids", "Cyanobacterial internal membranes holding chlorophyll <em>a</em> and phycobilins"]
+]},
+"reg": {title: "Gene regulation cards", intro: "Topic 8 terms, proteins and signals from the course notes.", pairs: [
+["Sigma factor", "Subunit that directs core RNA polymerase to a particular set of promoters"],
+["Rho-independent termination", "GC-rich RNA hairpin followed by U residues knocks the polymerase off"],
+["Rho-dependent termination", "Rho protein follows the polymerase along the RNA and releases it"],
+["Shine-Dalgarno sequence", "Ribosome binding site that pairs with 16S rRNA to line up the start codon"],
+["Polycistronic mRNA", "One transcript coding several proteins, each from its own ribosome binding site"],
+["Feedback inhibition", "End product binds the allosteric site of the first committed enzyme in its own pathway"],
+["Covalent modification", "Reversible attachment of a phosphoryl, AMP or methyl group that reshapes an enzyme"],
+["Operator", "DNA site where a repressor binds and blocks RNA polymerase"],
+["Activator binding site", "DNA site, near the promoter or hundreds of base pairs away, where an activator binds"],
+["Inducer", "Effector that releases a repressor; usually the substrate of a catabolic pathway"],
+["Corepressor", "Effector that activates a repressor; usually the product of a biosynthetic pathway"],
+["LacI", "lac repressor, released from the operator by allolactose"],
+["CRP (CAP)", "Activator that binds cAMP when glucose is low and recruits polymerase to lac"],
+["Attenuation", "Transcription stopped after initiation by an RNA hairpin, set by ribosome speed on the leader"],
+["Acyl homoserine lactone", "Diffusible Gram-negative quorum sensing signal made by LuxI"],
+["LuxR", "Activator that binds AHL, then the lux box, to switch on light"],
+["Sensor kinase", "Membrane histidine kinase of a two-component system; detects the stimulus"],
+["Response regulator", "Second component; once phosphorylated it activates or represses transcription"],
+["VirA and VirG", "<em>Agrobacterium</em> sensor kinase and response regulator that switch on <em>vir</em> genes at a plant wound"],
+["MCP", "Methyl-accepting chemotaxis protein: membrane receptor for attractants and repellents"],
+["CheY-P", "Phosphorylated response regulator that turns the flagellum clockwise, causing a tumble"],
+["CheR and CheB", "Methylate and demethylate MCPs, which resets sensitivity (adaptation)"],
+["LexA", "SOS repressor that cleaves itself when activated RecA binds single-stranded DNA"],
+["Regulon", "Set of genes or operons controlled by the same regulatory protein"]
 ]},
 "fungi": {title: "Eukaryotic microbe cards", intro: "Fungi, other eukaryotic microbes and key terms.", pairs: [
 ["Chytridiomycota", "Early-branching fungi with flagellated zoospores"],

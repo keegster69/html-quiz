@@ -1315,6 +1315,34 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   </table>
   </div>
   <div class="hook">Channel, G protein, enzyme: open a gate, flip a switch, or start a kinase.</div>
+  <figure>
+    <svg viewBox="0 0 620 200" role="img" aria-label="Ligand-gated ion channel: closed without ligand, open with ligand bound so ions flow into the cell">
+      <text class="svgbold" x="155" y="16" text-anchor="middle">Closed: no ligand</text>
+      <text class="svgbold" x="470" y="16" text-anchor="middle">Open: ligand bound</text>
+      <line x1="20" y1="90" x2="290" y2="90" stroke="#cdeccf" stroke-width="22"/>
+      <line x1="330" y1="90" x2="600" y2="90" stroke="#cdeccf" stroke-width="22"/>
+      <text class="svgsm" x="22" y="68">outside</text><text class="svgsm" x="22" y="120">cytosol</text>
+      <rect x="136" y="60" width="18" height="60" rx="5" fill="#e6fff0" stroke="#1c7c3a"/>
+      <rect x="156" y="60" width="18" height="60" rx="5" fill="#e6fff0" stroke="#1c7c3a"/>
+      <rect x="438" y="60" width="18" height="60" rx="5" fill="#e6fff0" stroke="#1c7c3a"/>
+      <rect x="484" y="60" width="18" height="60" rx="5" fill="#e6fff0" stroke="#1c7c3a"/>
+      <circle cx="447" cy="52" r="7" fill="#f6c177" stroke="#1e1e1e"/><circle cx="493" cy="52" r="7" fill="#f6c177" stroke="#1e1e1e"/>
+      <text class="svgsm" x="506" y="50">ligand</text>
+      <g fill="#1c7c3a">
+        <circle cx="70" cy="42" r="4"/><circle cx="100" cy="55" r="4"/><circle cx="125" cy="36" r="4"/><circle cx="200" cy="48" r="4"/><circle cx="235" cy="36" r="4"/><circle cx="262" cy="56" r="4"/>
+        <circle cx="375" cy="42" r="4"/><circle cx="405" cy="56" r="4"/><circle cx="562" cy="60" r="4"/><circle cx="585" cy="38" r="4"/>
+        <circle cx="440" cy="150" r="4"/><circle cx="500" cy="152" r="4"/><circle cx="455" cy="168" r="4"/><circle cx="488" cy="170" r="4"/>
+      </g>
+      <text class="svgsm" x="242" y="28">ions (Na⁺)</text>
+      <line x1="470" y1="34" x2="470" y2="146" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <line x1="294" y1="60" x2="326" y2="60" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgsm" x="310" y="52" text-anchor="middle">binds</text>
+      <text class="svgtxt" x="155" y="160" text-anchor="middle" style="fill:var(--danger)">Off: ligand leaves or is broken down,</text>
+      <text class="svgtxt" x="155" y="175" text-anchor="middle" style="fill:var(--danger)">pore shuts, pumps reset the gradient</text>
+      <text class="svgtxt" x="470" y="192" text-anchor="middle">thousands of ions per open channel</text>
+    </svg>
+    <figcaption>Ligand-gated ion channel. On: ligand opens the pore. Carrier: the ions themselves. Amplification: many ions per channel. Off: ligand removed.</figcaption>
+  </figure>
 
   <div class="deck" data-topic="signalling"></div>
 </section>
@@ -1360,6 +1388,34 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <ol class="flow" aria-label="Adrenaline to glucose pathway">
     <li>Adrenaline</li><li>β-adrenergic GPCR</li><li>Gαs-GTP</li><li>Adenylyl cyclase</li><li>cAMP</li><li>PKA</li><li>Phosphorylase kinase</li><li>Glycogen phosphorylase</li><li>Glucose released</li>
   </ol>
+  <figure>
+    <svg viewBox="0 0 620 320" role="img" aria-label="GPCR pathway: adrenaline binds the receptor, G alpha takes up GTP, adenylyl cyclase makes cAMP, cAMP activates PKA, PKA phosphorylates targets; off switches listed">
+      <line x1="10" y1="70" x2="610" y2="70" stroke="#cdeccf" stroke-width="22"/>
+      <text class="svgsm" x="606" y="50" text-anchor="end">outside</text><text class="svgsm" x="606" y="100" text-anchor="end">cytosol</text>
+      <circle cx="90" cy="32" r="9" fill="#f6c177" stroke="#1e1e1e"/><text class="svgtxt" x="105" y="36">adrenaline</text>
+      <rect x="55" y="46" width="70" height="48" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="90" y="74" text-anchor="middle">GPCR</text>
+      <line x1="127" y1="100" x2="188" y2="108" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgsm" x="150" y="128" text-anchor="middle">GDP out, GTP in</text><text class="svgbold" x="150" y="143" text-anchor="middle">× many</text>
+      <rect x="190" y="92" width="110" height="34" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="245" y="113" text-anchor="middle">Gα-GTP</text>
+      <line x1="302" y1="106" x2="368" y2="92" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <rect x="370" y="46" width="130" height="48" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="435" y="74" text-anchor="middle">adenylyl cyclase</text>
+      <line x1="435" y1="96" x2="435" y2="138" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgsm" x="445" y="114">ATP → cAMP</text><text class="svgbold" x="445" y="129">× many</text>
+      <rect x="385" y="140" width="100" height="32" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="435" y="160" text-anchor="middle">cAMP</text>
+      <line x1="435" y1="174" x2="435" y2="203" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <rect x="385" y="205" width="100" height="32" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="435" y="225" text-anchor="middle">PKA active</text>
+      <line x1="435" y1="239" x2="435" y2="268" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgbold" x="445" y="258">× many</text>
+      <rect x="345" y="270" width="180" height="34" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="435" y="291" text-anchor="middle">targets–P → response</text>
+      <rect x="20" y="180" width="290" height="124" rx="8" fill="#fff0f0" stroke="#c62828"/>
+      <text class="svgtxt" x="34" y="202" style="font-weight:bold">Off switches</text>
+      <text class="svgtxt" x="34" y="224">1. Ligand leaves the receptor</text>
+      <text class="svgtxt" x="34" y="244">2. Gα hydrolyses GTP → GDP, rejoins βγ</text>
+      <text class="svgtxt" x="34" y="264">3. Phosphodiesterase: cAMP → AMP</text>
+      <text class="svgtxt" x="34" y="284">4. Phosphatases remove the phosphates</text>
+    </svg>
+    <figcaption>GPCR / cAMP pathway. “× many” marks the three amplification steps; Gα to adenylyl cyclase is one-to-one.</figcaption>
+  </figure>
   <p>Adenylyl cyclase makes cAMP from ATP, and cAMP phosphodiesterase breaks it down, so the level rises and falls quickly. cAMP switches on <strong>protein kinase A (PKA)</strong>, a serine/threonine kinase. In liver and muscle PKA sets off a cascade that turns glycogen breakdown on and, at the same time, turns glycogen synthase off, so the cell stops storing glucose and starts releasing it.</p>
   <p>There is also a slow branch. PKA moves into the nucleus and phosphorylates the transcription factor CREB, which binds <strong>cAMP response elements (CRE)</strong> in DNA and switches on target genes. The fast response modifies enzymes that already exist (seconds to minutes); the slow one makes new proteins (minutes to hours).</p>
 
@@ -1374,6 +1430,37 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(
   <ol class="flow" aria-label="RTK to Ras to MAP kinase pathway">
     <li>Growth factor binds</li><li>Two RTKs dimerize</li><li>They phosphorylate each other's tyrosines</li><li>Adaptor and Ras-GEF dock</li><li>Ras swaps GDP for GTP</li><li>MAP kinase cascade</li><li>Genes for growth and division</li>
   </ol>
+  <figure>
+    <svg viewBox="0 0 620 320" role="img" aria-label="Receptor tyrosine kinase pathway: growth factor dimerises two receptors, tails phosphorylate each other, Ras takes up GTP, three MAP kinases activate in series, transcription factors switch on division genes; off switches listed">
+      <line x1="10" y1="70" x2="610" y2="70" stroke="#cdeccf" stroke-width="22"/>
+      <text class="svgsm" x="606" y="50" text-anchor="end">outside</text><text class="svgsm" x="606" y="100" text-anchor="end">cytosol</text>
+      <circle cx="77" cy="30" r="8" fill="#f6c177" stroke="#1e1e1e"/><circle cx="123" cy="30" r="8" fill="#f6c177" stroke="#1e1e1e"/>
+      <text class="svgtxt" x="138" y="34">growth factor</text>
+      <rect x="64" y="40" width="26" height="76" rx="6" fill="#e6fff0" stroke="#1c7c3a"/>
+      <rect x="110" y="40" width="26" height="76" rx="6" fill="#e6fff0" stroke="#1c7c3a"/>
+      <text class="svgbold" x="77" y="132" text-anchor="middle">P</text><text class="svgbold" x="123" y="132" text-anchor="middle">P</text>
+      <text class="svgsm" x="100" y="150" text-anchor="middle">RTK dimer: tails</text><text class="svgsm" x="100" y="163" text-anchor="middle">phosphorylate each other</text>
+      <line x1="138" y1="106" x2="228" y2="108" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <text class="svgsm" x="186" y="98" text-anchor="middle">adaptor + GEF</text>
+      <rect x="230" y="92" width="100" height="34" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="280" y="113" text-anchor="middle">Ras-GTP</text>
+      <text class="svgsm" x="280" y="140" text-anchor="middle">GDP out, GTP in</text>
+      <line x1="332" y1="108" x2="383" y2="108" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/>
+      <rect x="385" y="92" width="110" height="32" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="440" y="112" text-anchor="middle">MAP kinase 1</text>
+      <line x1="440" y1="126" x2="440" y2="150" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/><text class="svgbold" x="450" y="143">× many</text>
+      <rect x="385" y="152" width="110" height="32" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="440" y="172" text-anchor="middle">MAP kinase 2</text>
+      <line x1="440" y1="186" x2="440" y2="210" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/><text class="svgbold" x="450" y="203">× many</text>
+      <rect x="385" y="212" width="110" height="32" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="440" y="232" text-anchor="middle">MAP kinase 3</text>
+      <line x1="440" y1="246" x2="440" y2="270" stroke="#1c7c3a" stroke-width="2" marker-end="url(#ar)"/><text class="svgsm" x="450" y="263">enters nucleus</text>
+      <rect x="335" y="272" width="210" height="34" rx="8" fill="#e6fff0" stroke="#1c7c3a"/><text class="svgbold" x="440" y="293" text-anchor="middle">transcription factors–P → divide</text>
+      <rect x="20" y="186" width="290" height="120" rx="8" fill="#fff0f0" stroke="#c62828"/>
+      <text class="svgtxt" x="34" y="208" style="font-weight:bold">Off switches</text>
+      <text class="svgtxt" x="34" y="230">1. Ligand leaves; receptor taken in</text>
+      <text class="svgtxt" x="34" y="250">2. Ras hydrolyses GTP → GDP</text>
+      <text class="svgtxt" x="34" y="270">3. Phosphatases remove the phosphates</text>
+      <text class="svgtxt" x="34" y="292" style="fill:var(--danger)">Ras stuck on GTP = always on = cancer</text>
+    </svg>
+    <figcaption>Receptor kinase / Ras / MAP kinase pathway. Each kinase activates many copies of the next one.</figcaption>
+  </figure>
   <p><strong>Ras</strong> is a <strong>monomeric</strong> (small) G protein held to the inner face of the plasma membrane by a lipid tail. It uses the same GTP/GDP switch as Gα but works alone, downstream of RTKs rather than GPCRs. Ras is the <strong>most commonly mutated gene in human cancer</strong>: about one cancer in three carries a Ras mutation, usually one that stops it hydrolysing GTP, so it keeps signalling "divide".</p>
   <div class="hook">A Ras that cannot hydrolyse GTP is a car with the accelerator taped to the floor.</div>
 
