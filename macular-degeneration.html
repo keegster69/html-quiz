@@ -193,7 +193,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
   scrollTo(0, 0);
 });
 </script>
-<nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">9 sections</span></summary><div class="wrap">
+<nav><details id="jump"><summary><span class="jump-label">Jump to section</span><span class="jump-count">10 sections</span></summary><div class="wrap">
   <a href="#eye">1. Outer retina</a>
   <a href="#amd">2. The disease</a>
   <a href="#mech">3. Mechanisms</a>
@@ -201,6 +201,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
   <a href="#models">5. Why fish</a>
   <a href="#papers">6. The papers</a>
   <a href="#killi">6.7 Killifish AMD paper</a>
+  <a href="#mosaic">6.8 Killifish cone mosaic</a>
   <a href="#appraise">7. Reading a model paper</a>
   <a href="#recall">8. Recall practice</a>
 </div></details></nav>
@@ -421,12 +422,12 @@ document.getElementById("fc-only").addEventListener("click", e => {
       <tr><td>Laser-induced neovascularisation</td><td>Reliable and quantitative for drug testing</td><td>An injury model, not ageing; no deposits</td></tr>
       <tr><td>Human iPSC-RPE and organoids</td><td>Human genetics, patient-specific lines</td><td>No choroid, no blood, no immune system, no ageing</td></tr>
       <tr><td>Zebrafish</td><td>Cone-rich, diurnal, fast genetics, transparent larvae, drug screening at scale</td><td>Lives 3 to 5 years, regenerates retina and RPE, no macula</td></tr>
-      <tr><td>Turquoise killifish</td><td>Ages naturally in months, cone-rich, forms deposits spontaneously</td><td>Newer model with fewer tools; no macula; key data still recent or unreviewed</td></tr>
+      <tr><td>Turquoise killifish</td><td>Ages naturally in months, cone-rich, forms deposits spontaneously; cone complement and mosaic now described</td><td>Newer model with fewer tools; no macula; key data still recent or unreviewed</td></tr>
     </tbody>
   </table></div>
 
   <h3>5.1 What fish share with the human macula</h3>
-  <p>Zebrafish and killifish are diurnal, so their retinas are cone-rich, much closer in photoreceptor composition to the human macula than any mouse retina. Zebrafish have four cone types in a regular mosaic, plus rods. The layering of neural retina, RPE, Bruch's membrane and choroid is conserved, as are visual cycle genes and most known AMD risk genes. The cone-specific visual cycle, reviewed by Wang and Kefalov (2011), is in fact better studied in fish than in mammals, because a cone-dominant retina makes it tractable.</p>
+  <p>Zebrafish and killifish are diurnal, so their retinas are cone-rich, much closer in photoreceptor composition to the human macula than any mouse retina. Zebrafish have four cone types in a regular mosaic, plus rods. The adult killifish retina turns out to be about 55% cones carrying the same four cone classes, against roughly 3% cones in a mouse, and about 74% cones in the killifish larva. Those numbers come from section 6.8, and it is worth noticing that nobody measured them until 2026, years after the model was adopted on the strength of the claim. The layering of neural retina, RPE, Bruch's membrane and choroid is conserved, as are visual cycle genes and most known AMD risk genes. The cone-specific visual cycle, reviewed by Wang and Kefalov (2011), is in fact better studied in fish than in mammals, because a cone-dominant retina makes it tractable.</p>
 
   <h3>5.2 What fish do differently, and how papers handle it</h3>
   <ul>
@@ -522,7 +523,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
     <li><strong>The genes are in the right cells.</strong> Young retinas expressed <code>rpe65a</code> in the RPE and <code>rp1l1</code>, <code>prph2b</code>, <code>elovl4b</code> and <code>eys</code> in photoreceptors, all localised as expected from other species. Old retinas expressed them in the same cell types. This is groundwork, not a result: it licenses the comparison by showing the tissue is built the way human retina is built.</li>
     <li><strong>Photoreceptors shorten.</strong> Old males had significantly shorter inner and outer segment regions than young fish. Old females trended shorter without reaching significance. Outer segment <em>width</em> did not differ between any group, which is the control that matters: the tissue is losing material rather than changing shape.</li>
     <li><strong>Outer segment proteins end up in the wrong place.</strong> In old fish, zpr-3 and PRPH2 labelling appeared in inner segments, cell bodies and synaptic terminals, in cells with no identifiable outer segment at all. Protein that belongs in the outer segment accumulating in the cell body is a recognised signature of photoreceptor degeneration, and it is strong evidence because mislocalisation can itself kill the cell.</li>
-    <li><strong>Deposits form spontaneously.</strong> Lipid deposits appeared mainly in the central retina, few in the periphery, consistent with the age gradient. Most sat between outer segments and the RPE, but some were sub-RPE. They stained positive for oxidised phospholipids, which is the Handa criterion from 6.2. Opsin labelled with zpr-3 was found within or around the deposits.</li>
+    <li><strong>Deposits form spontaneously.</strong> Lipid deposits appeared mainly in the central retina, few in the periphery, consistent with the age gradient. Most sat between outer segments and the RPE, but some were sub-RPE. They stained positive for oxidised phospholipids, which is the Handa criterion from 6.2. Opsin labelled with zpr-3 was found within or around the deposits. Read that alongside 6.8, which came later: in killifish zpr-3 marks rods and red cones rather than green ones, so the opsin in the deposits is rod and red-cone opsin. The preprint does not say this, because the mosaic work had not been published yet.</li>
     <li><strong>Males are affected earlier and worse.</strong> Males averaged more than four times as many central-retina deposits as females, and deposits were detectable by 18 weeks in males. Deposit composition was also more varied in males, some staining for neutral lipid only.</li>
     <li><strong>The RPE is stressed.</strong> Ceramide, which signals stress and can trigger RPE death, was confined to the neural retina and Müller glia in young fish, but accumulated in the RPE of old fish, unevenly between neighbouring cells.</li>
     <li><strong>Immune cells move in.</strong> Young fish had few L-plastin-positive macrophages near the outer segments, with small round cell bodies. Old fish had macrophages throughout the outer segment region, some apparently wrapping around outer segments, with thick processes and a motile appearance. Old males had significantly more than young fish or than their own peripheral retina.</li>
@@ -545,7 +546,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
     <li>The sex difference is reported, not explained. The authors suggest hormones or metabolism, and note the human literature is itself inconsistent: some studies find late disease more common in women, possibly confounded by longer life expectancy, while another found large drusen and pigment change more likely in men.</li>
   </ul>
 
-  <h3>Where the seven papers sit relative to each other</h3>
+  <h3>Where the eight papers sit relative to each other</h3>
   <div class="scroll"><table>
     <thead><tr><th>Paper</th><th>System</th><th>Drives the pathology</th><th>Hallmarks shown</th><th>Biggest gap</th></tr></thead>
     <tbody>
@@ -556,18 +557,88 @@ document.getElementById("fc-only").addEventListener("click", e => {
       <tr><td>Vanhunsel 2021</td><td>Killifish</td><td>Ageing</td><td>Oxidative stress, gliosis, thinning, vision loss</td><td>No AMD-specific lesions; thinning disputed</td></tr>
       <tr><td>Bergmans 2024</td><td>Killifish</td><td>Ageing</td><td>Transcriptional dysregulation, gliosis, inflammageing</td><td>Transcripts are not lesions</td></tr>
       <tr><td>Noel 2025</td><td>Killifish</td><td>Ageing alone</td><td>Deposits, mislocalisation, ceramide, macrophages, sex difference</td><td>No genetics, no complement, preprint</td></tr>
+      <tr><td>Noel 2026</td><td>Killifish</td><td>Nothing, descriptive</td><td>None; defines the normal cone complement and mosaic</td><td>Two life stages, no ageing series, no function</td></tr>
     </tbody>
   </table></div>
-  <p>Read as a set, they make one argument. Spaide says what counts as a deposit. Handa says why an oxidised deposit is dangerous. Noel 2020 shows a photoreceptor defect is sufficient to make one, and Schlegel shows an RPE metabolic blockage makes a different kind, so lipid accumulation has at least two independent routes. Vanhunsel shows the killifish eye genuinely ages, and Bergmans 2024 confirms it in the transcriptome where the stretching objection cannot reach. Noel 2025 then shows ageing alone, with no mutation, produces deposits plus three further hallmarks, and that sex changes the severity.</p>
+  <p>Read as a set, they make one argument. Spaide says what counts as a deposit. Handa says why an oxidised deposit is dangerous. Noel 2020 shows a photoreceptor defect is sufficient to make one, and Schlegel shows an RPE metabolic blockage makes a different kind, so lipid accumulation has at least two independent routes. Vanhunsel shows the killifish eye genuinely ages, and Bergmans 2024 confirms it in the transcriptome where the stretching objection cannot reach. Noel 2025 then shows ageing alone, with no mutation, produces deposits plus three further hallmarks, and that sex changes the severity. Noel 2026 comes last and belongs first: it finally says what the cone-rich retina every one of these papers invokes is actually made of.</p>
   <div class="key"><strong>The shape of the argument.</strong> Notice that no single paper here is decisive, and the authors of each would say so. What carries the case is that the engineered models supply mechanism without ageing, the ageing models supply ageing without engineered mechanism, and they converge on the same lesions. Learning to see that convergence, rather than grading each paper alone, is most of what reading a literature means.</div>
   <a class="back" href="#top">Back to top</a>
   <div class="memory" data-set="paper"></div>
   <div class="deck" data-topic="killi"></div>
 </section>
 
+<section id="mosaic">
+  <h2>6.8 The baseline that arrived last: what a killifish sees with</h2>
+  <h4>Noel NCL (2026). Ordered chaos: photoreceptor mosaics in the larval and adult turquoise killifish (Nothobranchius furzeri). <em>Journal of Comparative Neurology</em> 534(9):e70199. DOI 10.1002/cne.70199. Sole author, Institute of Ophthalmology, UCL.</h4>
+  <div class="key"><strong>Why this paper sits here and not first.</strong> Every section above leans on one phrase: killifish have a cone-rich retina, so they resemble the human macula better than a mouse does. Nobody had checked which cones, in what proportions, arranged how. This paper, peer reviewed and published a year after the preprint in 6.7 and by the same author, supplies the baseline the earlier work assumed. Read it as a lesson in how a young model fills in its own foundations out of order, and as the reason you check what a model's headline claim actually rests on.</div>
+
+  <h3>The question</h3>
+  <p>Turquoise killifish live in turbid, short-lived pools. Murky water filters out short wavelengths and leaves longer red ones, so a fish adapted to it should be built differently from one adapted to clear water. Two questions follow. What photoreceptor types does the killifish have, and how are they arranged across the retina, which is to say what is its photoreceptor mosaic? And does that arrangement look like an adaptation to the light it actually lives in? Mosaics come in three broad kinds: stochastic, with no pattern at all; regionalised, where densities differ predictably between parts of the retina; and ordered, where cells sit in a repeating lattice of rows, squares or other shapes. Retinas can combine them, and can change kind between life stages.</p>
+
+  <h3>Design</h3>
+  <ul>
+    <li>GRZ strain again, so the animals are the same ones used in 6.5 to 6.7.</li>
+    <li>Two life stages, not an ageing series: young adults at 6 weeks post-hatching, and larvae at 1 day post-hatching.</li>
+    <li>Opsin genes pulled out of the killifish genome and placed on a maximum likelihood tree against eight other teleost fishes, rooted on melanopsin as a non-visual outgroup, to confirm each gene really is the opsin class its annotation claims.</li>
+    <li>Hybridisation chain reaction for opsin transcripts, on sections and on whole retinal flatmounts. The flatmounts are the point: cone identity has to be read off a map of the retinal surface before arrangement means anything.</li>
+    <li>The antibodies zpr-3 and 1D4 to tell apart the two members of a physically fused cone.</li>
+    <li>Cells segmented with StarDist in Napari, then nearest neighbour distances and a regularity index computed in Python, each compared against a randomly seeded simulation holding the same number of cones.</li>
+  </ul>
+
+  <h3>Findings, in the order the paper builds them</h3>
+  <ol>
+    <li><strong>Adults are cone-dominant.</strong> Counting rod and cone nuclei, which differ in both shape and depth within the outer nuclear layer, gave 55% cones. So the cone-rich claim holds, but only just: this is a retina a little over half cones, not an all-cone retina.</li>
+    <li><strong>Four cone classes, seven cone opsin genes.</strong> The genome carries one UV opsin gene, one blue, two green and three red, plus one rhodopsin gene for the rods. All grouped correctly with their counterparts in other fishes on the tree, and all five classes were found expressed in distinct cells in the adult retina. Note the asymmetry: four classes but seven genes, which is the duplication problem of section 4.1 turning up again in the opsins.</li>
+    <li><strong>Double cones can be matched or mismatched.</strong> The adult retina has physically fused double cones whose two members cannot be told apart by shape. Every double cone contains a red member; its partner is either another red or a green. In zebrafish, by contrast, a double cone is always one red plus one green.</li>
+    <li><strong>The antibody does not mean what it means in zebrafish.</strong> In zebrafish, zpr-3 labels rods and green cones while 1D4 labels red cones, so the pair should separate the two members of a double cone. In killifish the two antibodies overlapped instead. Labelling for green and red opsin transcripts first and then applying zpr-3 settled it: cells expressing red opsin carried zpr-3 labelling, cells expressing green opsin did not. In this species zpr-3 marks rods and red cones.</li>
+    <li><strong>Adults have a square mosaic.</strong> Double cones form the sides of squares. A single cone sits in each square's centre, and single cones can also sit at the corners where squares meet. Centre single cones are UV, blue, red or, rarely, green; corner single cones are only UV or blue. Where a double cone pairs red with green, the green members do not face each other inside their own square, so green cones end up apposed across the corners between neighbouring squares. Single red cones and rare single green cones are themselves notable, because adult zebrafish keep red and green opsin strictly inside double cones.</li>
+    <li><strong>Red cones dominate, and evenly.</strong> Red cones are about 70% of the adult cone population. Crucially, subtype proportions did not differ significantly between dorsal, nasal, ventral and temporal retina: the adult mosaic is not regionalised.</li>
+    <li><strong>Ordered, yet random where it counts.</strong> The regularity index is the mean nearest neighbour distance divided by its standard deviation, so a higher value means more evenly spaced cells. Scored by cone <em>type</em>, single against double, the real retina was significantly more regular than the random simulation in every quadrant. Scored by cone <em>subtype</em>, UV against UV, UV against blue and so on through every combination, most pairings were not distinguishable from random, and the few that reached significance did not do so consistently across quadrants. The lattice is real; which subtype occupies which position in it is stochastic. That is the ordered chaos of the title, and it is unlike the rigid alternating rows of the adult zebrafish.</li>
+    <li><strong>Larvae are different animals, optically.</strong> Larval retinas are about 74% cones, more cone-enriched than the adult, with a smaller red share and correspondingly more UV, blue and green. There is no square mosaic yet. Instead the larval retina is regionalised: a dorsonasal patch holds more than twice the blue cones and about one and a half times the UV cones of the ventrotemporal retina directly opposite, while central retina is blue-sparse. In that patch the short-wavelength cones are packed closer together and less regularly spaced than elsewhere.</li>
+  </ol>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Cone subtype</th><th>Share of adult cones</th><th>Share of larval cones</th></tr></thead>
+    <tbody>
+      <tr><td>Red (lws, three genes)</td><td>70.5% &plusmn; 1.6</td><td>52.4% &plusmn; 1.1</td></tr>
+      <tr><td>Green (rh2, two genes)</td><td>10.7% &plusmn; 0.7</td><td>15.2% &plusmn; 0.5</td></tr>
+      <tr><td>Blue (sws2, one gene)</td><td>10.2% &plusmn; 1.3</td><td>14.7% &plusmn; 0.6</td></tr>
+      <tr><td>UV (sws1, one gene)</td><td>8.6% &plusmn; 0.3</td><td>17.7% &plusmn; 0.7</td></tr>
+      <tr><td>Cones as a share of all photoreceptors</td><td>55.1% &plusmn; 3.3</td><td>73.6% &plusmn; 1.5</td></tr>
+      <tr><td>Arrangement</td><td>Ordered square lattice, no regionalisation</td><td>No lattice, dorsonasal short-wavelength patch</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The interpretation</h3>
+  <p>The three red-shifted features travel together: a square mosaic, a cone population dominated by red, and red cones surviving as singles rather than only as double cone members. Goldfish, another diurnal fish that tolerates murky water, also has red single cones. Zebrafish, which do not live in turbid water, have a row mosaic and confine red and green opsin to double cones. Square mosaics may therefore be an arrangement suited to environments where long wavelengths dominate, with red single cones a further step in the same direction. Square mosaics also turn up in the few other killifishes examined, so some of this may be lineage rather than habitat.</p>
+  <p>For the stochastic placement of subtypes, the paper offers a hypothesis worth remembering because it is testable: some fish shift which opsins they express according to the light they are reared in, and bluefin killifish raised in swamp water carry more red opsin than those raised in clear springs. A mosaic that does not commit to a fixed subtype pattern may be one that stays free to re-tune. The alternative is duller and equally possible, that whatever pressure produces rigid patterns in zebrafish is simply absent here.</p>
+  <p>The larval dorsonasal patch points down and forward, at the bed of the pool, which is where a larva would look for prey or for the shadow of something above it. Whether it works as a high-acuity zone, the way the larval zebrafish UV-rich region does for hunting, is untested.</p>
+  <div class="hook">Two sentences hold the whole paper. The adult killifish retina is an ordered square lattice whose cone identities are randomly arranged. The larval retina has no lattice but does have a short-wavelength corner, and red cones lead at both stages.</div>
+
+  <h3>Limits</h3>
+  <ul>
+    <li>Two life stages, 6 weeks and 1 day, so nothing here says whether the mosaic degrades with age. In a model whose whole purpose is ageing, that is the obvious next experiment rather than a flaw.</li>
+    <li>Opsin transcripts and antibodies, not spectral sensitivity. What the fish can actually discriminate was not measured.</li>
+    <li>Which of the two green and three red genes are used where, when, and in single versus double cones was not examined. The author flags it as future work; until it is done, every red cone count pools three genes.</li>
+    <li>No sex breakdown is given for the adults, and 6.7 is the paper that showed sex matters for retinal ageing in this same strain.</li>
+    <li>Small numbers, four to six retinas per measurement, with visible variation between individuals. Whether that variation is genetic, epigenetic, environmental or simply stochastic is unknown, and the strain is inbred, which makes it more interesting rather than less.</li>
+    <li>One species. Whether any of this generalises to annual killifishes as a group is open.</li>
+  </ul>
+
+  <h3>What it changes in the sections above</h3>
+  <ul>
+    <li><strong>Section 5.1 gets numbers.</strong> Cone-rich means 55% in the adult and about 74% in the larva, against a mouse retina that is roughly 3% cones. Close to the human macula in composition, nothing like it in organisation.</li>
+    <li><strong>6.7's opsin stain gets an identity.</strong> The zpr-3 labelling that mislocalises into cell bodies, and that appears in and around the deposits, is rod and red-cone opsin in this species. Not green, whatever the zebrafish literature implies.</li>
+    <li><strong>6.7's internal control gets stronger.</strong> Deposits in old fish concentrate centrally. Since adult cone subtype proportions are the same in all four quadrants, a central excess cannot be explained away as a different cone mix in the centre.</li>
+    <li><strong>Section 1's age gradient gains a developmental twin.</strong> The larval retina starts regionalised and the adult is not, so the retina reorganises as it matures. Any regional comparison in an adult fish is reading a structure that was rebuilt, not one that simply grew.</li>
+  </ul>
+  <a class="back" href="#top">Back to top</a>
+  <div class="deck" data-topic="mosaic"></div>
+</section>
+
 <section id="appraise">
   <h2>7. Reading a model paper: a checklist you can apply to any of them</h2>
-  <p>The skill being built here is not recall of seven papers, it is the ability to read the eighth. Run any animal-model paper through these questions.</p>
+  <p>The skill being built here is not recall of eight papers, it is the ability to read the ninth. Run any animal-model paper through these questions.</p>
   <div class="scroll"><table>
     <thead><tr><th>Question</th><th>Why it decides the paper's value</th><th>Worked example</th></tr></thead>
     <tbody>
@@ -582,6 +653,7 @@ document.getElementById("fc-only").addEventListener("click", e => {
       <tr><td>Paralogue problem?</td><td>A negative knockout result may just mean the other copy compensated.</td><td>The a and b genes of section 4.1</td></tr>
       <tr><td>Could the measurement be a growth artefact?</td><td>Fish eyes keep growing; tissue can stretch.</td><td>Bergmans 2023 versus thinning claims</td></tr>
       <tr><td>Both sexes?</td><td>Single-sex designs can hide a fourfold effect.</td><td>Exactly what Noel 2025 found</td></tr>
+      <tr><td>Do the reagents mean the same thing in this species?</td><td>A marker validated in one animal can label a different cell type in another, so what the label identifies is itself a result, not an assumption.</td><td>zpr-3 marks green cones in zebrafish, red cones in killifish</td></tr>
       <tr><td>Peer reviewed?</td><td>Changes how hard you lean on the numbers, not whether the ideas are worth learning.</td><td>Noel 2025 is a preprint</td></tr>
     </tbody>
   </table></div>
@@ -744,6 +816,26 @@ const FC = {
 ["List the limits of Noel 2025.", "A preprint; no genetics tested; only two main timepoints; no functional vision measurement; still no macula; complement not examined; and the sex difference reported but unexplained."],
 ["How does the human literature on sex differences compare with the killifish result?", "It is inconsistent. Some studies find late disease more common in women, possibly confounded by longer life expectancy, while another found large drusen and pigment change more likely in men, which matches the male-biased killifish result."],
 ["Summarise what the seven papers argue as a set.", "Spaide defines what counts as a deposit, Handa explains why an oxidised one is dangerous, Noel 2020 shows a photoreceptor defect alone can make one, Schlegel shows an RPE metabolic blockage makes a different kind, Vanhunsel shows the killifish eye ages, Bergmans 2024 confirms it in the transcriptome, and Noel 2025 shows ageing alone produces deposits plus three further hallmarks with a sex difference."]
+],
+"mosaic": [
+["Why is a photoreceptor mosaic paper needed before an ageing or degeneration paper?", "Because every claim that the killifish retina resembles the human macula rests on its cone complement and arrangement, and until this work nobody had measured either."],
+["What share of adult killifish photoreceptors are cones, and what share in the larva?", "About 55% in the adult, and about 74% in the larva, so larvae are the more cone-enriched of the two."],
+["How many cone opsin classes and cone opsin genes does the killifish carry?", "Four classes, UV, blue, green and red, across seven genes: one UV, one blue, two green and three red, plus a single rhodopsin gene for the rods."],
+["Describe the adult killifish square mosaic.", "Double cones form the sides of squares, with a single cone in each square's centre and single cones at the corners where squares meet."],
+["Which cone subtypes sit in square centres, and which at the corners?", "Centres take UV, blue, red or rarely green single cones. Corners take only UV or blue."],
+["What are the two possible compositions of a killifish double cone?", "One red member with a green partner, or two red members. Every double cone contains at least one red cone."],
+["How does the killifish double cone differ from the zebrafish one?", "A zebrafish double cone is always one red plus one green, and its members are distinguishable; killifish members cannot be told apart by shape and can both be red."],
+["What does zpr-3 label in killifish, and what does it label in zebrafish?", "Rods and red cones in killifish. In zebrafish it labels rods and green cones, so the reagent does not carry over between species."],
+["How was the true target of zpr-3 in killifish established?", "Opsin transcripts were labelled first, then zpr-3 applied. Red opsin cells carried zpr-3 labelling and green opsin cells did not."],
+["What is the regularity index, and what is it compared against?", "The mean nearest neighbour distance divided by its standard deviation, so higher means more evenly spaced. It is compared against a randomly seeded simulation with the same cone numbers."],
+["Give the result that makes the mosaic ordered, and the result that makes it chaotic.", "Scored by cone type, single against double, regularity beat the random simulation in every quadrant. Scored by cone subtype, almost nothing beat random consistently."],
+["Which cone subtype dominates, and does its abundance vary across the adult retina?", "Red cones, about 70% of the adult cone population, with no significant difference between dorsal, nasal, ventral and temporal retina."],
+["Describe the larval retinal regionalisation.", "A dorsonasal patch with more than twice the blue cones and about one and a half times the UV cones of the opposite ventrotemporal retina, plus a blue-sparse central retina."],
+["Why might the dorsonasal patch be useful to a larva?", "It points at the bed of the pool, where a larva would look for prey below or the shadow of a predator above. Whether it gives higher acuity is untested."],
+["Which features suggest adaptation to turbid water?", "A square mosaic, a red-dominated cone population and red cones surviving as singles. Goldfish, also tolerant of murky water, keeps red single cones too."],
+["Why might stochastic subtype placement be an advantage?", "A mosaic not committed to a fixed subtype pattern may stay free to re-tune, and some fish do shift opsin expression with the light they are reared in."],
+["What are the two biggest limits of this paper for AMD work?", "It covers two life stages rather than an ageing series, so it says nothing yet about whether the mosaic degrades, and it measures transcripts rather than what the fish can see."],
+["How does this paper strengthen the central-versus-peripheral control in 6.7?", "Adult cone subtype proportions are the same in all four quadrants, so a central excess of deposits cannot be put down to a different cone mix in the centre."]
 ],
 "appraise": [
 ["Why is 'AMD-like' not a finding?", "Deposits, atrophy, neovascularisation, inflammation and photoreceptor loss are separate claims needing separate evidence. A paper must say which hallmark it demonstrates."],
@@ -1008,7 +1100,7 @@ const RC_Q = [
   {t:"lesion", q:"Lipid-rich extracellular deposit lying beneath the pigment epithelium, inside the underlying sheet", a:"Drusen"},
   {t:"lesion", q:"Granular deposit lying above the pigment epithelium, between it and the light-detecting segments", a:"Drusenoid deposit"},
   {t:"lesion", q:"Sharp-edged late lesion in which pigment cells, photoreceptors and capillaries are all lost together", a:"Geographic atrophy"},
-  {t:"lesion", q:"Late form in which abnormal vessels leak and bleed, ending as a fibrous disciform scar", a:"Neovascular disease"},
+  {t:"lesion", q:"Late form in which abnormal vessels leak and bleed, ending as a fibrous disciform scar", a:"Neovascular AMD"},
   {t:"lesion", q:"Patient complaint in which straight lines appear wavy, classically tested with a printed grid", a:"Metamorphopsia"},
   {t:"lesion", q:"Cross-sectional imaging method that reveals deposits, retinal fluid and areas of atrophy", a:"Coherence tomography"},
   {t:"lesion", q:"Imaging method reading the natural glow of accumulated residue, where atrophy appears black", a:"Autofluorescence"},
@@ -1058,13 +1150,25 @@ const RC_Q = [
   {t:"paper", q:"Comparison within one fish eye that serves as an internal control for age", a:"Central versus peripheral"},
   {t:"paper", q:"Publication status of the central killifish study, meaning its numbers are not yet refereed", a:"Preprint"},
   {t:"paper", q:"Finding that males carried over four times as many deposits as females of the same age", a:"Sex difference"},
-  {t:"paper", q:"Editing tool used to knock out the ciliary gene in the deposit-forming zebrafish line", a:"Cas nuclease"},
+  {t:"paper", q:"Targeted editing approach used to remove the ciliary gene in the deposit-forming zebrafish line", a:"Crispr knockout"},
   {t:"paper", q:"Soluble carrier of the visual cycle whose loss fills the pigment layer with droplets", a:"Cralbp"},
   {t:"paper", q:"Sequencing approach revealing which individual retinal cell types change with age", a:"Single cell sequencing"},
   {t:"paper", q:"Ageing signature of chronic low grade inflammation found in the killifish transcriptome", a:"Inflammageing"},
   {t:"paper", q:"Breakdown in which cells switch on genes not characteristic of their own type", a:"Lost cell specificity"},
   {t:"fish", q:"Duplicate copy expressed in radial glia, whose knockout left zebrafish vision unharmed", a:"Glial paralogue"},
-  {t:"fish", q:"Storage form of retinoid that accumulated as droplets inside the mutant pigment layer", a:"Retinyl esters"}
+  {t:"fish", q:"Storage form of retinoid that accumulated as droplets inside the mutant pigment layer", a:"Retinyl esters"},
+  {t:"fish", q:"Arrangement of photoreceptor types across the retinal surface, ordered in some fishes and random in others", a:"Photoreceptor mosaic"},
+  {t:"fish", q:"Adult killifish lattice in which fused cone pairs enclose a central single cone", a:"Square mosaic"},
+  {t:"fish", q:"Two physically fused cone cells counted as one unit, always holding a red member in killifish", a:"Double cone"},
+  {t:"fish", q:"Murky water condition that filters out short wavelengths and leaves longer ones dominant", a:"Turbidity"},
+  {t:"fish", q:"Larval retinal region of crowded blue and ultraviolet cones, pointing at the bed of the pool", a:"Dorsonasal patch"},
+  {t:"fish", q:"Property of cone subtype placement within the killifish square lattice, indistinguishable from random", a:"Stochasticity"},
+  {t:"paper", q:"Mean nearest neighbour distance divided by its standard deviation, scoring how evenly cells are spaced", a:"Regularity index"},
+  {t:"paper", q:"Failure of a marker to label the same cell type once it is carried from one fish species to another", a:"Reagent mismatch"},
+  {t:"paper", q:"Computer generated pattern with matched cell numbers, serving as the null model for spatial order", a:"Random simulation"},
+  {t:"paper", q:"Whole retina preparation that lets cone identity be mapped across the retinal surface", a:"Retinal flatmount"},
+  {t:"paper", q:"Tree built from sequences across nine fishes to confirm each opsin gene was annotated correctly", a:"Likelihood tree"},
+  {t:"paper", q:"Result that adult cone proportions did not differ between dorsal, nasal, ventral and temporal retina", a:"No regionalisation"}
 ];
 
 (function(){
@@ -1234,7 +1338,7 @@ const RC_Q = [
     "paralogue": "One of two gene copies left by a genome duplication; in fish these are labelled a and b and may compensate for each other.",
     "subfunctionalisation": "Division of an ancestral gene's job between its duplicate copies, so each does only part of the original function.",
     "opsin": "The light-absorbing protein of photoreceptor discs; its presence in the cell body signals degeneration.",
-    "zpr-3": "An antibody that labels opsin in rod and double-cone outer segments, widely used in fish retina work.",
+    "zpr-3": "An antibody raised against zebrafish rod opsin. It labels rods and green cones in zebrafish, but rods and red cones in killifish, so what it identifies is species-specific.",
     "PRPH2": "Peripherin, a membrane protein required to shape outer-segment discs.",
     "L-plastin": "An actin-binding protein used as a marker to label and count macrophages in tissue sections.",
     "hybridisation chain reaction": "An in situ method that amplifies signal to show which cell type expresses a given gene.",
@@ -1247,6 +1351,18 @@ const RC_Q = [
     "ranibizumab": "An antibody fragment against VEGF-A, the first widely approved treatment for neovascular AMD.",
     "turquoise killifish": "Nothobranchius furzeri, a rapidly ageing cone-rich fish whose laboratory strain lives six to eight months.",
     "zebrafish": "Danio rerio, a cone-rich diurnal fish living three to five years; the standard genetic model for retinal disease.",
+    "photoreceptor mosaic": "The arrangement of photoreceptor types across the retinal surface; stochastic, regionalised or ordered, and able to differ between life stages.",
+    "square mosaic": "An ordered arrangement in which double cones form the sides of squares with single cones in the centres and at the corners; found in adult killifish and other turbid-water fishes.",
+    "double cone": "Two physically fused cone cells counted as one mosaic unit. In killifish every double cone holds a red member, with either red or green as its partner.",
+    "single cone": "An unfused cone cell. In adult killifish these sit at the centres and corners of the squares, and unusually include red and rare green singles.",
+    "regularity index": "The mean nearest neighbour distance divided by its standard deviation; a higher value means more evenly spaced cells. Judged against a random simulation with the same cell numbers.",
+    "nearest neighbour": "The distance from each cell to the closest cell of the compared class, the raw measurement behind the regularity index.",
+    "dorsonasal": "The upper front quadrant of the retina, which views the bed of the pool; in killifish larvae it is enriched for blue and ultraviolet cones.",
+    "stochastic": "Random, with no predictable pattern. Killifish cone subtypes are placed stochastically within an otherwise ordered lattice.",
+    "turbid": "Murky, cloudy with suspended particles. Turbid water filters out short wavelengths, leaving long red ones dominant.",
+    "rhodopsin": "The rod opsin. Killifish carry one rhodopsin gene alongside seven cone opsin genes.",
+    "retinal flatmount": "A retina dissected out and laid flat, so cone identity can be mapped across the retinal surface rather than read from a cross-section.",
+    "1D4": "An antibody against rhodopsin that labels red cones in both zebrafish and killifish, used with zpr-3 to resolve the members of a double cone.",
     "GRZ": "The short-lived laboratory strain of turquoise killifish used in the retinal ageing studies."
   };
 
