@@ -658,8 +658,11 @@ document.getElementById("fc-only").addEventListener("click", e => {
     </tbody>
   </table></div>
   <div class="key"><strong>The question that survives all of this.</strong> Does the model let you do an experiment you could not otherwise do? Killifish let you watch deposits appear from scratch, in a cone-rich retina, in under six months, in an animal you can sample at will. No other system offers that, and that is the claim to judge, not whether a fish has a macula.</div>
+  <h3>7.1 What each paper refuses to conclude</h3>
+  <p>The checklist above is for judging a paper. This last deck is for a narrower habit that is easy to skip: knowing, for each paper, the claim its authors declined to make. Overstating a paper is the most common way to sound like you have not read it, and the most avoidable. Every card here is a limit the authors state themselves, or a question they leave open on purpose.</p>
   <a class="back" href="#top">Back to top</a>
-  <div class="deck" data-topic="appraise"></div>
+  <div class="deck" data-topic="appraise" data-title="Flashcards: the checklist"></div>
+  <div class="deck" data-topic="open" data-title="Flashcards: what stays open"></div>
 </section>
 
 <section id="recall">
@@ -848,6 +851,28 @@ const FC = {
 ["What does single-sex design risk, on the evidence of Noel 2025?", "Missing an effect of fourfold magnitude. All earlier killifish retina work used females, and the male phenotype turned out to be earlier and more severe."],
 ["How should a preprint change your reading?", "Lean less on the exact numbers, since they have not been refereed, but still learn the design and the reasoning."],
 ["State the question that survives all the others.", "Does the model permit an experiment otherwise impossible? Killifish let you watch deposits form from scratch in a cone-rich retina in under six months, in an animal you can sample at will."]
+],
+"open": [
+["Spaide 2018 defines both deposit types. What can it not tell you?", "Any mechanism. It is descriptive, and supplies the criteria for judging a deposit claim rather than a cause for one."],
+["Handa 2017 shows oxidised lipid acts as a danger signal. What does that leave unsettled?", "Whether the oxidised lipid initiates the damage or accompanies it. A review of associations cannot order cause and consequence."],
+["Noel 2020 proves a photoreceptor defect alone makes deposits. What does it not establish?", "Why deposits appear in an ageing eye carrying no such mutation. Showing one route is sufficient does not show it is the route ageing takes."],
+["Schlegel 2021 fills the RPE with retinyl ester droplets. What does it not address?", "Whether that intracellular route ever yields extracellular deposits. The droplets are inside RPE cells and the human conditions modelled are inherited dystrophies, not AMD."],
+["Vanhunsel 2021 shows the killifish retina ages. Name its three open edges.", "Female fish only, general ageing markers rather than AMD-specific lesions, and a thinning result that Bergmans 2023 disputes as a growth artefact."],
+["What does Bergmans 2023 settle, and what does it only raise?", "It settles nothing. It raises the possibility that apparent thinning is tissue stretching as the eye grows, which remains the model's hardest methodological objection."],
+["Bergmans 2024 finds age-related transcriptional dysregulation. What can transcripts not show?", "Protein levels or lesions. It demonstrates dysregulation rather than damage, and expression changes alone cannot separate causes from consequences."],
+["Why do Bergmans 2024 and Noel 2025 not line up exactly?", "The transcriptomic study's oldest group is 18 weeks, younger than the 24-week animals in which deposits are most obvious, so the molecular and lesion timelines do not overlap."],
+["Noel 2025 offers two routes to deposit formation. State both, and state the verdict.", "Either outer-segment deterioration and RPE dysfunction leave shed material unphagocytosed, or a degenerating RPE expels its own contents such as opsin-containing phagosomes. There is no verdict: the opsin found in and around the deposits fits both, and the authors say so explicitly."],
+["Does RPE dysfunction come before or after the deposits in Noel 2025?", "Unresolved, and named as future work. This is the single most useful thing to ask about the paper."],
+["Noel 2025 reports a fourfold sex difference. What does it not do?", "Explain it. Hormones and metabolism are suggested, and the human literature is itself inconsistent on whether late disease favours women or men."],
+["List what Noel 2025 did not test at all.", "Genetics, complement, and functional vision. The authors name human AMD variants and high-fat or hypoxic challenge as next steps."],
+["Noel 2026 maps the cone mosaic at two life stages. What is the obvious missing experiment?", "An ageing series. Two stages, 1 day and 6 weeks, cannot say whether the mosaic degrades with age, which is the point of an ageing model."],
+["Which paralogue question does Noel 2026 leave open?", "Which of the two green and three red opsin genes are used where, when, and in single versus double cones. Until that is done, every red cone count pools three genes."],
+["Noel 2026 identifies four cone classes. What did it not measure?", "Spectral sensitivity, or any functional vision. The cone identities come from opsin transcripts and antibodies, not from what the fish can discriminate."],
+["Is the killifish square mosaic an adaptation to turbid water?", "Not established. Red dominance and red single cones point that way, and goldfish agree, but clear-water killifishes also have square mosaics, so lineage is an equally live explanation."],
+["Noel 2026 saw variation between individuals of an inbred strain. What explains it?", "Unknown. Genetic, epigenetic, environmental and stochastic mechanisms are all possible, and no sex breakdown is given for the adults."],
+["Killifish deposits are drusen-like in composition and subretinal in position. Which answer wins?", "Neither. Report both and name the disagreement. Picking whichever reading flatters the model is the error the paper itself avoids."],
+["How do you answer when a paper offers two hypotheses and declines to choose?", "Name both, name the evidence consistent with both, and say what measurement would separate them. Asserting one is a misreading, even when it sounds more confident."],
+["What is absent from the whole set of fish papers?", "A macula, any test of complement, any human AMD risk variant introduced into a fish, and any single killifish study measuring vision and deposits in the same animals."]
 ]
 };
 
@@ -857,7 +882,7 @@ document.querySelectorAll(".deck").forEach(deck => {
   let order = cards.map((_, i) => i), at = 0, shown = false;
 
   deck.innerHTML =
-    '<div class="deck-head"><span class="deck-title">Flashcards</span>' +
+    '<div class="deck-head"><span class="deck-title">' + (deck.dataset.title || "Flashcards") + '</span>' +
     '<span class="deck-count"></span></div>' +
     '<button class="card" type="button" aria-expanded="false">' +
     '<span class="card-side"></span><span class="card-hint"></span></button>' +
